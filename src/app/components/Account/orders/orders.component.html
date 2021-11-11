@@ -69,48 +69,57 @@
                   </div>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="account.html"
+                  <li class="nav-item active">
+                    <a class="nav-link" routerLink="/Patient/Account"
                       ><i class="fa fa-user"></i> My Account</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="change-password.html"
+                    <a
+                      class="nav-link"
+                      routerLink="/Patient/Account/Change-Password"
                       ><i class="fa fa-lock"></i> Password</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="my-drugs.html"
+                    <a class="nav-link" routerLink="/Patient/Account/Add-Drug"
                       ><i class="fa fa-prescription-bottle-alt"></i> Add Drug</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="Drugs.html"
-                      ><i class="fa fa-address-book"></i> My Drugs</a
+                    <a class="nav-link" routerLink="/Patient/Account/Drugs"
+                      ><i class="fas fa-capsules"></i> My Drugs</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="water.html"
-                      ><i class="fa fa-address-book"></i> Drinking Water</a
+                    <a class="nav-link" routerLink="/Patient/Account/Water"
+                      ><i class="fas fa-tint"></i> Drinking Water</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="address.html"
+                    <a
+                      class="nav-link"
+                      routerLink="/Patient/Account/Health-Report"
+                      ><i class="fas fa-file-medical"></i> Add Health Report</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/Patient/Account/Address"
                       ><i class="fa fa-address-book"></i> Address</a
                     >
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="orders.html"
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/Patient/Account/Orders"
                       ><i class="fa fa-shopping-cart"></i> Order</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="wishlist.html"
+                    <a class="nav-link" routerLink="/Patient/Account/Wish-List"
                       ><i class="fa fa-heart"></i> Wishlist</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"
+                    <a class="nav-link"
                       ><i class="fa fa-sign-out"></i> Logout</a
                     >
                   </li>
@@ -130,7 +139,10 @@
                   </p>
                 </div>
                 <div class="col-auto">
-                  <a href="orders.html" class="btn btn-primary btn-sm">
+                  <a
+                    routerLink="/Patient/Account"
+                    class="btn btn-primary btn-sm"
+                  >
                     <i class="ti-angle-left"></i> Go Back</a
                   >
                 </div>

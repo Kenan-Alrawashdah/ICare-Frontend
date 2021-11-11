@@ -3,7 +3,7 @@
     <div class="top-header">
       <div class="row align-items-center">
         <div class="col-auto">
-          <a href="index.html">
+          <a>
             <img src="assets/img/logo.png" alt="logo" class="header-logo" />
           </a>
         </div>
@@ -72,7 +72,6 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
-                href="#"
                 data-toggle="modal"
                 data-dismiss="modal"
                 data-target="#login_modal"
@@ -83,7 +82,6 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
-                href="#"
                 data-toggle="modal"
                 data-dismiss="modal"
                 data-target="#register_modal"
@@ -144,36 +142,13 @@
         <!-- <div class="avater btn-soft-primary">H</div>
                     <span>Hi, Deep saha</span> -->
       </div>
-      <div class="mobileMenuLinks mb-4 mt-2">
-        <h6>Account Info</h6>
-        <ul>
-          <li><a href="account.html">Account</a></li>
-          <li><a href="orders.html">My Orders</a></li>
-          <li><a href="wishlist.html">Wish List</a></li>
-          <li><a href="index.html">Logout</a></li>
-        </ul>
-      </div>
-      <div class="mobileMenuLinks">
-        <h6>Category</h6>
-        <ul>
-          <li><a href="category.html">AllMedicines</a></li>
-          <li><a href="category.html">COVID Prevention</a></li>
-          <li><a href="category.html">Featured</a></li>
-          <li><a href="category.html">Fitness</a></li>
-          <li><a href="category.html">Diabetes</a></li>
-          <li><a href="category.html">COVID Test </a></li>
-          <li><a href="category.html">Papular</a></li>
-          <li><a href="category.html">Supplements</a></li>
-          <li><a href="category.html">Nutrition</a></li>
-        </ul>
-      </div>
     </div>
   </div>
   <div class="overlay"></div>
 </div>
 
 <div class="slider" data-autoplay="true" data-autoplay-speed="4000">
-  <a href="category.html">
+  <a>
     <img src="assets/img/slider/slider-1.svg" alt="" />
   </a>
 </div>
@@ -200,7 +175,6 @@
         <div class="row">
           <div class="col-12">
             <a
-              href="#"
               class="
                 btn btn-gray-border btn-full
                 rounded
@@ -213,7 +187,6 @@
               Login with Facebook
             </a>
             <a
-              href="#"
               class="
                 btn btn-gray-border btn-full
                 rounded
@@ -251,14 +224,23 @@
               class="form-control input-lg rounded"
             />
           </div>
-          <button
+
+          <a
+            routerLink="/Index"
+            id="login_btn"
+            name="submit"
+            class="btn btn-primary btn-full btn-medium rounded"
+          >
+            Login
+          </a>
+          <!-- <button
             type="submit"
             id="login_btn"
             name="submit"
             class="btn btn-primary btn-full btn-medium rounded"
           >
             Login
-          </button>
+          </button> -->
           <div class="form-group text-center small font-weight-bold mt-3">
             <a
               href="#"
@@ -471,7 +453,7 @@
           </div>
 
           <a
-            type="submit"
+            routerLink="/Index"
             id="register_btn"
             name="submit"
             class="btn btn-primary btn-full btn-medium rounded"
