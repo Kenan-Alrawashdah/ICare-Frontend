@@ -3,7 +3,7 @@
     <div class="top-header">
       <div class="row align-items-center">
         <div class="col-auto">
-          <a href="index.html">
+          <a>
             <img src="assets/img/logo.png" alt="logo" class="header-logo" />
           </a>
         </div>
@@ -76,7 +76,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <div class="list-icon">
+                <div class="list-icon" id="cart">
                   <i class="ti-bag"></i>
                 </div>
                 <span class="badge badge-secondary">2</span>
@@ -87,8 +87,10 @@
                   shopping-cart shopping-cart-empty
                   dropdown-menu dropdown-menu-right
                 "
+                id="showCart"
                 aria-labelledby="dropdownMenuButton"
               >
+                
                 <!-- <ul class="shopping-cart-items">
                                         <li>You have no items in your shopping cart.</li>
                                     </ul> -->
@@ -138,7 +140,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <div class="list-icon"><i class="ti-user"></i>Murad Awad</div>
+                <div class="list-icon" id="account"><i class="ti-user"></i>Murad Awad</div>
               </button>
 
               <div
@@ -148,22 +150,24 @@
               >
                 <ul>
                   <li>
-                    <a href="account.html"> Account </a>
+                    <a routerLink="/Patient/Account"> Account </a>
                   </li>
                   <li>
-                    <a href="change-password.html"> Change Password </a>
+                    <a routerLink="/Patient/Account/Change-Password">
+                      Change Password
+                    </a>
                   </li>
                   <li>
-                    <a href="address.html"> Address </a>
+                    <a routerLink="/Patient/Account/Add-Drug"> Add New Drug </a>
                   </li>
                   <li>
-                    <a href="orders.html"> My Orders </a>
+                    <a routerLink="/Patient/Account/Address"> Address </a>
                   </li>
                   <li>
-                    <a href="orders-details.html"> Order Details </a>
+                    <a routerLink="/Patient/Account/Orders"> My Orders </a>
                   </li>
                   <li>
-                    <a href="wishlist.html"> Wish List </a>
+                    <a routerLink="/Patient/Account/Wish-List"> Wish List </a>
                   </li>
                   <li>
                     <a href="#"> Logout </a>

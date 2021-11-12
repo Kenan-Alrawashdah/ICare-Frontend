@@ -13,34 +13,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     (function ($) {
       'use strict';
-      // ---------------------------------------------//
-      //  Background
-      //--------------------------------------------- //
-      $('[data-background]').each(function () {
-        $(this).attr(
-          'style',
-          'background-image:url(' + $(this).attr('data-background') + ')'
-        );
-      });
-      // ---------------------------------------------//
-      //  Background
-      //--------------------------------------------- //
 
-      //-------------------------------------------------------
-      // Date Picker
-      //-------------------------------------------------------*/
-
-      // -------------------------------------------//
-      //  Custom Select
-      // -------------------------------------------//
-
-      // ---------------------------------------------//
-      // add Remove item
-      // ---------------------------------------------//
-
-      // ---------------------------------------------//
-      // File Upload name add
-      // ---------------------------------------------//
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {};
 
       $('.header-search input.custom-search').on('click', function (event) {
         if ($('.search-content .search-product').hasClass('d-none')) {
@@ -64,18 +39,18 @@ export class AppComponent implements OnInit {
         $('body').attr({ style: '' });
       });
 
-      $('.open-sidebar').on('click', function (event) {
-        $('.menu-sidebar').addClass('show');
-        $('.overlay').addClass('show');
+      $(document).click((event) => {
+        if (!$(event.target).closest('#element').length) {
+          $('#section_1').removeClass('show');
+          $('.user-links').removeClass('show');
+        }
       });
-      $('.close').on('click', function (event) {
-        $('.menu-sidebar').removeClass('show');
-        $('.overlay').removeClass('show');
-      });
-      $('.overlay').on('click', function (event) {
-        $('.menu-sidebar').removeClass('show');
-        $('.overlay').removeClass('show');
-      });
+      var x = document
+        .getElementById('section_1')
+        ?.addEventListener('click', function () {
+          $('#section_1').addClass('show');
+          $('.user-links').addClass('show');
+        });
     })(jQuery);
   }
 }

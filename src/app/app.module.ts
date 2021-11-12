@@ -23,17 +23,23 @@ import { CartComponent } from './components/Shop/cart/cart.component';
 import { CheckOutComponent } from './components/Shop/check-out/check-out.component';
 import { ProductSingleComponent } from './components/Shop/product-single/product-single.component';
 import { ThankYouComponent } from './components/Shop/thank-you/thank-you.component';
+
 import { HealthReportComponent } from './components/Account/health-report/health-report.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PatientComponent } from './components/Index/patient/patient.component';
 import { IndexComponent } from './components/Index/patient/index/index.component';
 import { ICareComponent } from './components/Home/icare/icare.component';
+import { ProductCategoryComponent } from './components/Shop/product-category/product-category.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/Home',
     pathMatch: 'full',
+  },
+  {
+    path: 'Home',
+    component: ICareComponent,
   },
   {
     path: 'Index',
@@ -85,7 +91,7 @@ const routes: Routes = [
   },
   {
     path: 'Patient/Shop/Category',
-    component: CategoryComponent,
+    component: ProductCategoryComponent,
   },
   {
     path: 'Patient/Shop/Check-Out',
@@ -93,7 +99,7 @@ const routes: Routes = [
   },
   {
     path: 'Patient/Shop/Product',
-    component: ProductComponent,
+    component: ProductSingleComponent,
   },
   {
     path: 'Patient/Shop/ThanksForPayment',
@@ -126,6 +132,7 @@ const routes: Routes = [
     HealthReportComponent,
     PatientComponent,
     ICareComponent,
+    ProductCategoryComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
