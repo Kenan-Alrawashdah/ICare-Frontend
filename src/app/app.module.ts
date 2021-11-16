@@ -30,6 +30,13 @@ import { PatientComponent } from './components/Index/patient/patient.component';
 import { IndexComponent } from './components/Index/patient/index/index.component';
 import { ICareComponent } from './components/Home/icare/icare.component';
 import { ProductCategoryComponent } from './components/Shop/product-category/product-category.component';
+import { LoginFormComponent } from './components/Home/icare/home/login-form/login-form.component';
+import { ForgotPasswordComponent } from './components/Home/icare/home/forgot-password/forgot-password.component';
+import { RegistrationFormComponent } from './components/Home/icare/home/registration-form/registration-form.component';
+import { SubscribeFormComponent } from './components/Home/icare/home/subscribe-form/subscribe-form.component';
+import { PaymentFormComponent } from './components/Home/icare/home/payment-form/payment-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -133,8 +140,18 @@ const routes: Routes = [
     PatientComponent,
     ICareComponent,
     ProductCategoryComponent,
+    LoginFormComponent,
+    ForgotPasswordComponent,
+    RegistrationFormComponent,
+    SubscribeFormComponent,
+    PaymentFormComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
