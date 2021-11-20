@@ -30,13 +30,16 @@ import { PatientComponent } from './components/Index/patient/patient.component';
 import { IndexComponent } from './components/Index/patient/index/index.component';
 import { ICareComponent } from './components/Home/icare/icare.component';
 import { ProductCategoryComponent } from './components/Shop/product-category/product-category.component';
-import { LoginFormComponent } from './components/Home/icare/home/login-form/login-form.component';
-import { ForgotPasswordComponent } from './components/Home/icare/home/forgot-password/forgot-password.component';
-import { RegistrationFormComponent } from './components/Home/icare/home/registration-form/registration-form.component';
-import { SubscribeFormComponent } from './components/Home/icare/home/subscribe-form/subscribe-form.component';
-import { PaymentFormComponent } from './components/Home/icare/home/payment-form/payment-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { HeaderComponent } from './components/User/header/header.component';
+import { LoginComponent } from './components/User/login/login.component';
+import { SubscribeComponent } from './components/User/subscribe/subscribe.component';
+import { RegistrationComponent } from './components/User/registration/registration.component';
+import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
+import { PaymentComponent } from './components/User/payment/payment.component';
+import { AuthGuardService } from './guards/auth.service';
 
 const routes: Routes = [
   {
@@ -51,66 +54,102 @@ const routes: Routes = [
   {
     path: 'Index',
     component: PatientComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'Home/User/SignIn',
+    component: LoginComponent,
+  },
+  {
+    path: 'Home/User/ForgotPassword',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'Home/User/PricePlan',
+    component: SubscribeComponent,
+  },
+  {
+    path: 'Home/User/Payment',
+    component: PaymentComponent,
+  },
+  {
+    path: 'Home/User/SignUp',
+    component: RegistrationComponent,
   },
   {
     path: 'Patient/Account',
     component: AccountComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Change-Password',
     component: ChangePasswordComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Address',
     component: AddressComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Health-Report',
     component: HealthReportComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Add-Drug',
     component: MyDrugsComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Order-Details',
     component: OrderDetailsComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Orders',
     component: OrdersComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Water',
     component: WaterComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Wish-List',
     component: WishlistComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Drugs',
     component: DrugsComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Cart',
     component: CartComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Category',
     component: ProductCategoryComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Check-Out',
     component: CheckOutComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Product',
     component: ProductSingleComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/ThanksForPayment',
     component: ThankYouComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 @NgModule({
@@ -140,11 +179,12 @@ const routes: Routes = [
     PatientComponent,
     ICareComponent,
     ProductCategoryComponent,
-    LoginFormComponent,
+    HeaderComponent,
+    LoginComponent,
+    SubscribeComponent,
+    RegistrationComponent,
     ForgotPasswordComponent,
-    RegistrationFormComponent,
-    SubscribeFormComponent,
-    PaymentFormComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

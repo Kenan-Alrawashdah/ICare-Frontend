@@ -3,68 +3,37 @@
     <div class="top-header">
       <div class="row align-items-center">
         <div class="col-auto">
-          <a>
+          <a href="index.html">
             <img src="assets/img/logo.png" alt="logo" class="header-logo" />
           </a>
         </div>
         <div class="col">
-          <div class="header-search">
-            <form action="#">
-              <input
-                class="form-control custom-search"
-                placeholder="Search for Medicines and Health Products"
-                type="text"
-              />
-            </form>
-            <div class="search-content">
-              <div class="search-product d-none">
-                <!-- Search Popup -->
-                <div class="product list-view">
-                  <a href="product-single.html" class="product-img">
-                    <img
-                      src="assets/img/product/product-1.png"
-                      class=""
-                      alt=""
-                    />
-                  </a>
-                  <div class="product-info">
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <div class="review-count">4.5 (2,213)</div>
-                    </div>
-                    <h3>
-                      <a href="product-single.html"
-                        >CoviFind Covid 19 Antigen Self Test Kit</a
-                      >
-                    </h3>
-                    <div class="product-value">
-                      <div class="d-flex">
-                        <small class="regular-price"
-                          >MRP <del>₹2540.99</del></small
-                        >
-                        <div class="off-price">23% off</div>
-                      </div>
-                      <div class="current-price">₹1007.99</div>
-                    </div>
-                  </div>
-                  <div class="product-actions">
-                    <a href="#" class="btn btn-soft-primary">
-                      <i class="ti-heart"></i>
-                      Add to Wishlist
-                    </a>
-                    <a href="#" class="btn btn-primary">
-                      <i class="ti-shopping-cart"></i>
-                      Add to cart
-                    </a>
-                  </div>
-                </div>
-              </div>
+          <ul class="navbar-nav mr-auto">
+            <div class="row">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="
+                    margin: 5px 20px 5px 55px;
+                    font-size: 17px;
+                    color: black;
+                  "
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="
+                    margin: 5px 20px 5px 5px;
+                    font-size: 17px;
+                    color: black;
+                  "
+                  >Link</a
+                >
+              </li>
             </div>
-          </div>
+          </ul>
         </div>
         <div class="col-auto">
           <ul class="header-right-options">
@@ -72,6 +41,7 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
+                href="#"
                 data-toggle="modal"
                 data-dismiss="modal"
                 data-target="#login_modal"
@@ -82,6 +52,7 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
+                href="#"
                 data-toggle="modal"
                 data-dismiss="modal"
                 data-target="#register_modal"
@@ -94,7 +65,6 @@
     </div>
   </div>
 </div>
-
 <div class="mobile-header">
   <div class="container-fluid theme-container">
     <div class="row align-items-center">
@@ -142,13 +112,30 @@
         <!-- <div class="avater btn-soft-primary">H</div>
                     <span>Hi, Deep saha</span> -->
       </div>
+      <div class="mobileMenuLinks mb-4 mt-2">
+        <h6>Account Info</h6>
+        <ul>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="orders.html">My Orders</a></li>
+          <li><a href="wishlist.html">Wish List</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </div>
+      <div class="mobileMenuLinks">
+        <h6>Category</h6>
+        <ul>
+          <li><a href="category.html">AllMedicines</a></li>
+          <li><a href="category.html">COVID Prevention</a></li>
+          <li><a href="category.html">Featured</a></li>
+          <li><a href="category.html">Fitness</a></li>
+          <li><a href="category.html">Diabetes</a></li>
+          <li><a href="category.html">COVID Test </a></li>
+          <li><a href="category.html">Papular</a></li>
+          <li><a href="category.html">Supplements</a></li>
+          <li><a href="category.html">Nutrition</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="overlay"></div>
-</div>
-
-<div class="slider" data-autoplay="true" data-autoplay-speed="4000">
-  <a>
-    <img src="assets/img/slider/slider-1.svg" alt="" />
-  </a>
 </div>
