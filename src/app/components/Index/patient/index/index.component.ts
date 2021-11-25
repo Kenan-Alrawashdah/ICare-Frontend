@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'jquery';
+import { Constants } from 'src/app/Helper/constants';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -59,5 +60,8 @@ export class IndexComponent implements OnInit {
         }
       });
     })(jQuery);
+  }
+  logout() {
+    localStorage.removeItem(Constants.USER_KEY);
   }
 }

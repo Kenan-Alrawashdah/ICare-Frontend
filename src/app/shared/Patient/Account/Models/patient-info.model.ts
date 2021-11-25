@@ -1,5 +1,5 @@
 export class PatientInfo {
-  name: string;
-  phone: string;
+  Name: string;
+  role: string;
   email: string;
 }

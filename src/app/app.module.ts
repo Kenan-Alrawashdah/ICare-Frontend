@@ -30,7 +30,7 @@ import { PatientComponent } from './components/Index/patient/patient.component';
 import { IndexComponent } from './components/Index/patient/index/index.component';
 import { ICareComponent } from './components/Home/icare/icare.component';
 import { ProductCategoryComponent } from './components/Shop/product-category/product-category.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from './components/User/header/header.component';
@@ -40,6 +40,12 @@ import { RegistrationComponent } from './components/User/registration/registrati
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { PaymentComponent } from './components/User/payment/payment.component';
 import { AuthGuardService } from './guards/auth.service';
+
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule,
+} from 'ngx-toastr';
 
 const routes: Routes = [
   {
@@ -54,7 +60,6 @@ const routes: Routes = [
   {
     path: 'Index',
     component: PatientComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Home/User/SignIn',
@@ -94,12 +99,10 @@ const routes: Routes = [
   {
     path: 'Patient/Account/Health-Report',
     component: HealthReportComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Add-Drug',
     component: MyDrugsComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Account/Order-Details',
@@ -124,7 +127,6 @@ const routes: Routes = [
   {
     path: 'Patient/Account/Drugs',
     component: DrugsComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Cart',
@@ -139,17 +141,14 @@ const routes: Routes = [
   {
     path: 'Patient/Shop/Check-Out',
     component: CheckOutComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/Product',
     component: ProductSingleComponent,
-    canActivate: [AuthGuardService],
   },
   {
     path: 'Patient/Shop/ThanksForPayment',
     component: ThankYouComponent,
-    canActivate: [AuthGuardService],
   },
 ];
 @NgModule({
@@ -189,6 +188,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

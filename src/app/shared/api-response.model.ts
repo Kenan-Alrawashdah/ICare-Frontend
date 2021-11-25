@@ -1,9 +1,5 @@
-export class ApiBaseUrl {
-  BaseURL: string = 'http://localhost:61236/api/';
-}
-
-export class ApiResponseData {
-  Data: any;
+export class ApiResponseData<T> {
+  data: T;
   success: boolean;
   errors?: string[];
 }

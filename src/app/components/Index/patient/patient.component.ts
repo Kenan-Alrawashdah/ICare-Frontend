@@ -11,7 +11,4 @@ export class PatientComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  logout() {
-    localStorage.removeItem(Constants.USER_KEY);
-  }
 }

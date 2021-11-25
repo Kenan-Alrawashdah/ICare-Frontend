@@ -1,1 +1,3 @@
-export class AddPatientAddress {}
+export class AddPatientAddress {
+  image: File;
+}
