@@ -5,66 +5,6 @@
       <div class="col-md-9">
         <div class="card">
           <div class="card-body">
-            <div class="row pb-4">
-              <div class="col-sm-6">
-                <div class="form-group mb-4">
-                  <label class="form-label"
-                    >First name <span class="text-danger">*</span></label
-                  >
-                  <input class="form-control" type="text" value="Jhon" />
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group mb-4">
-                  <label class="form-label"
-                    >Last name <span class="text-danger">*</span></label
-                  >
-                  <input class="form-control" type="text" value="Doe" />
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group mb-4">
-                  <label class="form-label"
-                    >Email address <span class="text-danger">*</span></label
-                  >
-                  <input
-                    class="form-control"
-                    type="email"
-                    value="jhon@doe.com"
-                  />
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group mb-4">
-                  <label class="form-label"
-                    >Country <span class="text-danger">*</span></label
-                  >
-                  <select class="form-control">
-                    <option value>Select country</option>
-                    <option value="Irbid">Irbid</option>
-                    <option value="Ajloun">Ajloun</option>
-                    <option value="Jerash">Jerash</option>
-                    <option value="	Mafraq" selected>Mafraq</option>
-                    <option value="Balqa">Balqa</option>
-                    <option value="Amman">Amman</option>
-                    <option value="Zarqa">Zarqa</option>
-                    <option value="Madaba">Madaba</option>
-                    <option value="Karak">Karak</option>
-                    <option value="Tafilah">Tafilah</option>
-                    <option value="Ma'an">Ma'an</option>
-                    <option value="Aqaba">Aqaba</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group mb-4">
-                  <label class="form-label"
-                    >Location <span class="text-danger">*</span></label
-                  >
-                  <input class="form-control" type="text" />
-                </div>
-              </div>
-            </div>
             <div id="accordion">
               <div class="accordion-item">
                 <div class="accordion-title">
@@ -91,24 +31,49 @@
                         alt="Cerdit Cards"
                       />
                     </p>
-                    <form class="credit-card-form row g-3">
+                    <form
+                      class="credit-card-form row g-3"
+                      [formGroup]="CheckOutForm"
+                    >
                       <div class="col-sm-6 mb-4">
                         <input
                           class="form-control"
                           type="text"
                           name="number"
                           placeholder="Card Number"
-                          required=""
+                          formControlName="cardNumber"
                         />
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            CheckOutForm.get('cardNumber').hasError(
+                              'required'
+                            ) &&
+                            (CheckOutForm.controls['cardNumber'].dirty ||
+                              CheckOutForm.controls['cardNumber'].touched)
+                          "
+                        >
+                          This field is required.
+                        </small>
                       </div>
                       <div class="col-sm-6 mb-4">
                         <input
                           class="form-control"
                           type="text"
                           name="name"
-                          placeholder="Full Name"
-                          required=""
+                          placeholder="Card Name"
+                          formControlName="cardName"
                         />
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            CheckOutForm.get('cardName').hasError('required') &&
+                            (CheckOutForm.controls['cardName'].dirty ||
+                              CheckOutForm.controls['cardName'].touched)
+                          "
+                        >
+                          This field is required.
+                        </small>
                       </div>
                       <div class="col-sm-3 mb-4">
                         <input
@@ -116,8 +81,18 @@
                           type="text"
                           name="expiry"
                           placeholder="MM/YY"
-                          required=""
+                          formControlName="expiry"
                         />
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            CheckOutForm.get('expiry').hasError('required') &&
+                            (CheckOutForm.controls['expiry'].dirty ||
+                              CheckOutForm.controls['expiry'].touched)
+                          "
+                        >
+                          This field is required.
+                        </small>
                       </div>
                       <div class="col-sm-3 mb-4">
                         <input
@@ -125,15 +100,26 @@
                           type="text"
                           name="cvc"
                           placeholder="CVC"
-                          required=""
+                          formControlName="CVC"
                         />
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            CheckOutForm.get('CVC').hasError('required') &&
+                            (CheckOutForm.controls['CVC'].dirty ||
+                              CheckOutForm.controls['CVC'].touched)
+                          "
+                        >
+                          This field is required.
+                        </small>
                       </div>
                       <div class="col-sm-6 mb-4">
-                        <a
-                          href="thak-you.html"
+                        <button
+                          [disabled]="!CheckOutForm.valid"
                           class="btn btn-primary d-block w-100"
-                          >Place order</a
                         >
+                          Place order
+                        </button>
                       </div>
                     </form>
                   </div>

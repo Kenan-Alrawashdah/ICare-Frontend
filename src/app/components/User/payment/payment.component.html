@@ -201,7 +201,12 @@
                           </div>
                         </div>
                         <div class="col-12">
-                          <div class="btn btn-primary w-100">Make Payment</div>
+                          <button
+                            class="btn btn-primary w-100"
+                            [disabled]="!PaymentForm.valid"
+                          >
+                            Make Payment
+                          </button>
                         </div>
                       </div>
                     </form>

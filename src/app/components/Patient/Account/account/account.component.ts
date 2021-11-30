@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import 'jquery';
 
 @Component({
@@ -7,7 +8,15 @@ import 'jquery';
   styleUrls: ['./account.component.css'],
 })
 export class AccountComponent implements OnInit {
-  constructor() {}
+  AccountForm: FormGroup;
+  constructor() {
+    this.AccountForm = new FormGroup({
+      fname: new FormControl('', [Validators.required]),
+      lname: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      phone: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {}
 }

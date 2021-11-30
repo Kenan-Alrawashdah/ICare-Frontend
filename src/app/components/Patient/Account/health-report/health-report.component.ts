@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,9 +8,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./health-report.component.css'],
 })
 export class HealthReportComponent implements OnInit {
+  healthReportForm: FormGroup;
   constructor(private userService: UserService) {}
   selectedFile: File;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.healthReportForm = new FormGroup({
+      testName: new FormControl(''),
+      testValue: new FormControl(''),
+      testFile: new FormControl(''),
+    });
+  }
 
   upload(event) {
     this.selectedFile = event.target.files.item(0);

@@ -212,11 +212,11 @@
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="modal-body">
-        <form action="#" id="address_modal_form" method="POST">
+        <form id="address_modal_form" [formGroup]="AddressForm">
           <div class="form-group">
             <input
               name="name"
-              required
+              formControlName="addressName"
               type="text"
               placeholder="Address Name"
               class="form-control input-lg rounded"
@@ -225,7 +225,7 @@
           <div class="form-group">
             <input
               name="phone"
-              required
+              formControlName="phone"
               type="text"
               placeholder="Phone Number"
               class="form-control input-lg rounded"
@@ -237,7 +237,7 @@
                 <label class="form-label" for="address">Address</label>
                 <input
                   type="text"
-                  required=""
+                  formControlName="phone"
                   class="form-control"
                   name="address"
                   id="address"

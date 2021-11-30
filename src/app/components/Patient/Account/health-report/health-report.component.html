@@ -154,25 +154,32 @@
             <div class="card">
               <div class="card-body">
                 <div>
-                  <form class="row align-items-end">
+                  <form
+                    class="row align-items-end"
+                    [formGroup]="healthReportForm"
+                  >
                     <!-- First name -->
                     <div class="mb-3 col-12 col-md-6">
-                      <label class="form-label" for="fname">Test Name</label>
+                      <label class="form-label" for="testName">Test Name</label>
                       <input
                         type="text"
-                        id="fname"
+                        id="testName"
+                        formControlName="testName"
                         class="form-control"
-                        placeholder="First Name"
+                        placeholder="Test Name"
                       />
                     </div>
                     <!-- Last name -->
                     <div class="mb-3 col-12 col-md-6">
-                      <label class="form-label" for="lname">Test Type</label>
+                      <label class="form-label" for="testType"
+                        >Test Value</label
+                      >
                       <input
                         type="text"
-                        id="lname"
+                        id="testValue"
+                        formControlName="testValue"
                         class="form-control"
-                        placeholder="Last Name"
+                        placeholder="Test Value"
                       />
                     </div>
 
@@ -183,12 +190,13 @@
                       <input
                         (change)="upload($event)"
                         type="file"
+                        formControlName="testFile"
                         class="form-control"
                         style="padding: 7px; height: 70px"
                       />
                     </div>
                     <div class="col-12 mb-3 text-lg-right">
-                      <button class="btn btn-primary" type="submit">
+                      <button class="btn btn-primary" [disabled]="!healthReportForm.valid">
                         Add Health Report
                       </button>
                     </div>
