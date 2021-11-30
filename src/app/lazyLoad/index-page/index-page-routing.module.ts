@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountComponent } from 'src/app/components/Account/account/account.component';
-import { AddressComponent } from 'src/app/components/Account/address/address.component';
-import { ChangePasswordComponent } from 'src/app/components/Account/change-password/change-password.component';
-import { DrugsComponent } from 'src/app/components/Account/drugs/drugs.component';
-import { HealthReportComponent } from 'src/app/components/Account/health-report/health-report.component';
-import { MyDrugsComponent } from 'src/app/components/Account/my-drugs/my-drugs.component';
-import { OrderDetailsComponent } from 'src/app/components/Account/order-details/order-details.component';
-import { OrdersComponent } from 'src/app/components/Account/orders/orders.component';
-import { WaterComponent } from 'src/app/components/Account/water/water.component';
-import { WishlistComponent } from 'src/app/components/Account/wishlist/wishlist.component';
-import { PatientComponent } from 'src/app/components/Index/patient/patient.component';
-import { CartComponent } from 'src/app/components/Shop/cart/cart.component';
-import { CheckOutComponent } from 'src/app/components/Shop/check-out/check-out.component';
-import { ProductCategoryComponent } from 'src/app/components/Shop/product-category/product-category.component';
-import { ProductSingleComponent } from 'src/app/components/Shop/product-single/product-single.component';
-import { ThankYouComponent } from 'src/app/components/Shop/thank-you/thank-you.component';
+import { AccountComponent } from 'src/app/components/Patient/Account/account/account.component';
+import { AddressComponent } from 'src/app/components/Patient/Account/address/address.component';
+import { ChangePasswordComponent } from 'src/app/components/Patient/Account/change-password/change-password.component';
+import { DrugsComponent } from 'src/app/components/Patient/Account/drugs/drugs.component';
+import { HealthReportComponent } from 'src/app/components/Patient/Account/health-report/health-report.component';
+import { MyDrugsComponent } from 'src/app/components/Patient/Account/my-drugs/my-drugs.component';
+import { OrderDetailsComponent } from 'src/app/components/Patient/Account/order-details/order-details.component';
+import { OrdersComponent } from 'src/app/components/Patient/Account/orders/orders.component';
+import { WaterComponent } from 'src/app/components/Patient/Account/water/water.component';
+import { WishlistComponent } from 'src/app/components/Patient/Account/wishlist/wishlist.component';
+import { PatientComponent } from 'src/app/components/Patient/Index/patient/patient.component';
+import { CartComponent } from 'src/app/components/Patient/Shop/cart/cart.component';
+import { CheckOutComponent } from 'src/app/components/Patient/Shop/check-out/check-out.component';
+import { ProductCategoryComponent } from 'src/app/components/Patient/Shop/product-category/product-category.component';
+import { ProductSingleComponent } from 'src/app/components/Patient/Shop/product-single/product-single.component';
+import { ThankYouComponent } from 'src/app/components/Patient/Shop/thank-you/thank-you.component';
 import { AuthGuardService } from 'src/app/guards/auth.service';
 
 const routes: Routes = [
@@ -96,6 +96,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class IndexPageRoutingModule { }
+export class IndexPageRoutingModule {}

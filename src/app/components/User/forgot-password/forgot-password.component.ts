@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,13 +13,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
+  ForgotPasswordForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
-  ) {}
-  public ForgotPasswordForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]]
-  });
+  ) {
+    this.ForgotPasswordForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
+  }
+
   ngOnInit(): void {}
   onSubmit() {
     let email = this.ForgotPasswordForm.controls['email'].value;

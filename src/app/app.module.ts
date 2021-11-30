@@ -9,27 +9,27 @@ import { AboutComponent } from './components/Home/icare/about/about.component';
 import { ContactComponent } from './components/Home/icare/contact/contact.component';
 import { FooterComponent } from './components/Home/icare/footer/footer.component';
 
-import { AddressComponent } from './components/Account/address/address.component';
-import { AccountComponent } from './components/Account/account/account.component';
-import { ChangePasswordComponent } from './components/Account/change-password/change-password.component';
-import { DrugsComponent } from './components/Account/drugs/drugs.component';
-import { MyDrugsComponent } from './components/Account/my-drugs/my-drugs.component';
-import { OrdersComponent } from './components/Account/orders/orders.component';
-import { WaterComponent } from './components/Account/water/water.component';
-import { WishlistComponent } from './components/Account/wishlist/wishlist.component';
-import { OrderDetailsComponent } from './components/Account/order-details/order-details.component';
+import { AddressComponent } from './components/Patient/Account/address/address.component';
+import { AccountComponent } from './components/Patient/Account/account/account.component';
+import { ChangePasswordComponent } from './components/Patient/Account/change-password/change-password.component';
+import { DrugsComponent } from './components/Patient/Account/drugs/drugs.component';
+import { MyDrugsComponent } from './components/Patient/Account/my-drugs/my-drugs.component';
+import { OrdersComponent } from './components/Patient/Account/orders/orders.component';
+import { WaterComponent } from './components/Patient/Account/water/water.component';
+import { WishlistComponent } from './components/Patient/Account/wishlist/wishlist.component';
+import { OrderDetailsComponent } from './components/Patient/Account/order-details/order-details.component';
 
-import { CartComponent } from './components/Shop/cart/cart.component';
-import { CheckOutComponent } from './components/Shop/check-out/check-out.component';
-import { ProductSingleComponent } from './components/Shop/product-single/product-single.component';
-import { ThankYouComponent } from './components/Shop/thank-you/thank-you.component';
+import { CartComponent } from './components/Patient/Shop/cart/cart.component';
+import { CheckOutComponent } from './components/Patient/Shop/check-out/check-out.component';
+import { ProductSingleComponent } from './components/Patient/Shop/product-single/product-single.component';
+import { ThankYouComponent } from './components/Patient/Shop/thank-you/thank-you.component';
 
-import { HealthReportComponent } from './components/Account/health-report/health-report.component';
+import { HealthReportComponent } from './components/Patient/Account/health-report/health-report.component';
 import { RouterModule, Routes } from '@angular/router';
-import { PatientComponent } from './components/Index/patient/patient.component';
-import { IndexComponent } from './components/Index/patient/index/index.component';
+import { PatientComponent } from './components/Patient/Index/patient/patient.component';
+import { IndexComponent } from './components/Patient/Index/patient/index/index.component';
 import { ICareComponent } from './components/Home/icare/icare.component';
-import { ProductCategoryComponent } from './components/Shop/product-category/product-category.component';
+import { ProductCategoryComponent } from './components/Patient/Shop/product-category/product-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 

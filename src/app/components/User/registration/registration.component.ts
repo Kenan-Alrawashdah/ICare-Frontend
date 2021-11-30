@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Registration } from 'src/app/shared/User/Models/registration.model';
 
@@ -9,17 +14,19 @@ import { Registration } from 'src/app/shared/User/Models/registration.model';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
-  public RegistrationForm = this.formBuilder.group({
-    fname: ['', Validators.required],
-    lname: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    phone: ['', Validators.required],
-  });
+  RegistrationForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
-  ) {}
+  ) {
+    this.RegistrationForm = new FormGroup({
+      fname: new FormControl('', Validators.required),
+      lname: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+      phone: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {}
 

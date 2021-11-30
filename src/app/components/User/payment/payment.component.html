@@ -102,18 +102,31 @@
                     </p>
                   </div>
                   <div class="col-lg-7">
-                    <form action="" class="form">
+                    <form [formGroup]="PaymentForm" class="form">
                       <div class="row">
                         <div class="col-12">
                           <div class="form__div">
                             <input
                               type="text"
                               class="form-control"
+                              formControlName="CardNumber"
                               placeholder=" "
                             />
                             <label for="" class="form__label"
                               >Card Number</label
                             >
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                PaymentForm.get('CardNumber').hasError(
+                                  'required'
+                                ) &&
+                                (PaymentForm.controls['CardNumber'].dirty ||
+                                  PaymentForm.controls['CardNumber'].touched)
+                              "
+                            >
+                              This field is required.
+                            </small>
                           </div>
                         </div>
                         <div class="col-6">
@@ -121,31 +134,70 @@
                             <input
                               type="text"
                               class="form-control"
+                              formControlName="ExpDate"
                               placeholder=" "
                             />
                             <label for="" class="form__label">MM / yy</label>
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                PaymentForm.get('ExpDate').hasError(
+                                  'required'
+                                ) &&
+                                (PaymentForm.controls['ExpDate'].dirty ||
+                                  PaymentForm.controls['ExpDate'].touched)
+                              "
+                            >
+                              This field is required.
+                            </small>
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="form__div">
                             <input
                               type="password"
+                              formControlName="CVCCode"
                               class="form-control"
                               placeholder=" "
                             />
                             <label for="" class="form__label">cvv code</label>
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                PaymentForm.get('CVCCode').hasError(
+                                  'required'
+                                ) &&
+                                (PaymentForm.controls['CVCCode'].dirty ||
+                                  PaymentForm.controls['CVCCode'].touched)
+                              "
+                            >
+                              This field is required.
+                            </small>
                           </div>
                         </div>
                         <div class="col-12">
                           <div class="form__div">
                             <input
                               type="text"
+                              formControlName="CardName"
                               class="form-control"
                               placeholder=" "
                             />
                             <label for="" class="form__label"
                               >name on the card</label
                             >
+                            <small
+                              class="text-danger"
+                              *ngIf="
+                                PaymentForm.get('CardName').hasError(
+                                  'required'
+                                ) &&
+                                (PaymentForm.controls['CardName'].dirty ||
+                                  PaymentForm.controls['CardName'].touched)
+                              "
+                            >
+                              This field is required.
+                            </small>
                           </div>
                         </div>
                         <div class="col-12">

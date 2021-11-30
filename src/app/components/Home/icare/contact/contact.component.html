@@ -34,29 +34,68 @@
                   <div class="form-group">
                     <input
                       class="form-control"
-                      placeholder="Name *"
+                      placeholder="Name*"
+                      name="Name"
                       type="text"
                       formControlName="Name"
                     />
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        ContactForm.controls['Name'].dirty ||
+                        ContactForm.controls['Name'].touched
+                      "
+                    >
+                      This field is required.
+                    </small>
                   </div>
                   <div class="form-group">
                     <input
                       class="form-control"
-                      placeholder="Email *"
+                      placeholder="Email*"
                       formControlName="Email"
                       type="text"
                     />
                   </div>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      ContactForm.get('Email').hasError('required') &&
+                      (ContactForm.controls['Email'].dirty ||
+                        ContactForm.controls['Email'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      ContactForm.get('Email').hasError('email') &&
+                      (ContactForm.controls['Email'].dirty ||
+                        ContactForm.controls['Email'].touched)
+                    "
+                  >
+                    This email is invalid.
+                  </small>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
                     <input
                       class="form-control"
-                      placeholder="Subject"
+                      placeholder="Subject*"
                       formControlName="Subject"
                       type="text"
                     />
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        ContactForm.controls['Subject'].dirty ||
+                        ContactForm.controls['Subject'].touched
+                      "
+                    >
+                      This field is required.
+                    </small>
                   </div>
                   <div class="form-group">
                     <input
@@ -74,8 +113,17 @@
                       class="form-control"
                       rows="4"
                       formControlName="Message"
-                      placeholder="Text Here"
+                      placeholder="Text Here*"
                     ></textarea>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        ContactForm.controls['Message'].dirty ||
+                        ContactForm.controls['Message'].touched
+                      "
+                    >
+                      This field is required.
+                    </small>
                   </div>
                 </div>
 
