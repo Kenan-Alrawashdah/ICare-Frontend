@@ -6,6 +6,9 @@ import { PatientInfo } from '../shared/Patient/Account/Models/patient-info.model
 import { Constants } from '../Helper/constants';
 import { UserToken } from '../shared/Patient/Account/Models/user-token.model';
 import { AddPatientAddress } from '../shared/Patient/Account/Models/add-patient-address.model';
+import { ApiResponseWithoutData } from '../shared/api-response-without-data.model';
+import { Forgotpassword } from '../shared/User/Models/forgotpassword.model';
+import { Registration } from '../shared/User/Models/registration.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +26,14 @@ export class UserService {
       body
     );
   }
-
+  public ForgotPassword(email: string) {
+    var fp = new Forgotpassword();
+    fp.email = email;
+    return this.httpClient.post<ApiResponseWithoutData>(
+      Constants.baseURL + 'User/ForgotPassword',
+      fp
+    );
+  }
   public upload(file: File) {
     let userInf = localStorage.getItem(Constants.USER_KEY);
     const headers = new HttpHeaders({
@@ -32,7 +42,7 @@ export class UserService {
 
     const formData: FormData = new FormData();
     formData.append('Image', file, file.name);
-    return this.httpClient.post<ApiResponseData<string>>(
+    return this.httpClient.post<ApiResponseWithoutData>(
       Constants.baseURL + 'User/UploadProilePicture',
       formData,
       { headers: headers }
@@ -47,11 +57,11 @@ export class UserService {
     phone: string
   ) {
     const body = {
-      Fname: fname,
-      Lname: lname,
-      Email: email,
-      Password: password,
-      Phone: phone,
+      firstName: fname,
+      lastName: lname,
+      email: email,
+      password: password,
+      phoneNumber: phone,
     };
     return this.httpClient.post<ApiResponseData<UserToken>>(
       Constants.baseURL + 'User/PatientRegistration',

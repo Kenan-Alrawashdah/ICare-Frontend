@@ -12,24 +12,15 @@
             <div class="row">
               <li class="nav-item">
                 <a
+                  routerLink="/Home"
                   class="nav-link"
                   style="
                     margin: 5px 20px 5px 55px;
                     font-size: 17px;
                     color: black;
+                    cursor: pointer;
                   "
                   >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  style="
-                    margin: 5px 20px 5px 5px;
-                    font-size: 17px;
-                    color: black;
-                  "
-                  >Link</a
                 >
               </li>
             </div>
@@ -41,10 +32,7 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
-                href="#"
-                data-toggle="modal"
-                data-dismiss="modal"
-                data-target="#login_modal"
+                routerLink="/Home/User/SignIn"
                 >Login</a
               >
             </li>
@@ -52,10 +40,7 @@
               <a
                 class="btn btn-primary btn-sm"
                 style="color: white"
-                href="#"
-                data-toggle="modal"
-                data-dismiss="modal"
-                data-target="#register_modal"
+                routerLink="/Home/User/SignUp"
                 >Register</a
               >
             </li>

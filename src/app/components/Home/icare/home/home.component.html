@@ -9,17 +9,18 @@
         </div>
         <div class="col">
           <div class="header-search">
-            <form action="#">
+            <form [formGroup]="SearchForm" (change)="onSubmit()">
               <input
                 class="form-control custom-search"
-                placeholder="Search for Medicines and Health Products"
+                placeholder="Search for Medicines Products"
                 type="text"
+                formControlName="Search"
               />
             </form>
             <div class="search-content">
               <div class="search-product d-none">
                 <!-- Search Popup -->
-                <div class="product list-view">
+                <div class="product list-view" *ngFor="let pd of list">
                   <a href="product-single.html" class="product-img">
                     <img
                       src="assets/img/product/product-1.png"
@@ -28,14 +29,6 @@
                     />
                   </a>
                   <div class="product-info">
-                    <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <div class="review-count">4.5 (2,213)</div>
-                    </div>
                     <h3>
                       <a href="product-single.html"
                         >CoviFind Covid 19 Antigen Self Test Kit</a

@@ -41,11 +41,8 @@ import { ForgotPasswordComponent } from './components/User/forgot-password/forgo
 import { PaymentComponent } from './components/User/payment/payment.component';
 import { AuthGuardService } from './guards/auth.service';
 
-import {
-  ToastrModule,
-  ToastNoAnimation,
-  ToastNoAnimationModule,
-} from 'ngx-toastr';
+import { Search } from './shared/User/Models/search.model';
+import { HomePageService } from './shared/User/Services/home-page.service';
 
 const routes: Routes = [
   {
@@ -55,100 +52,17 @@ const routes: Routes = [
   },
   {
     path: 'Home',
-    component: ICareComponent,
+    loadChildren: () =>
+      import('./lazyLoad/home-page/home-page-routing.module').then(
+        (m) => m.HomePageRoutingModule
+      ),
   },
   {
-    path: 'Index',
-    component: PatientComponent,
-  },
-  {
-    path: 'Home/User/SignIn',
-    component: LoginComponent,
-  },
-  {
-    path: 'Home/User/ForgotPassword',
-    component: ForgotPasswordComponent,
-  },
-  {
-    path: 'Home/User/PricePlan',
-    component: SubscribeComponent,
-  },
-  {
-    path: 'Home/User/Payment',
-    component: PaymentComponent,
-  },
-  {
-    path: 'Home/User/SignUp',
-    component: RegistrationComponent,
-  },
-  {
-    path: 'Patient/Account',
-    component: AccountComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Change-Password',
-    component: ChangePasswordComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Address',
-    component: AddressComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Health-Report',
-    component: HealthReportComponent,
-  },
-  {
-    path: 'Patient/Account/Add-Drug',
-    component: MyDrugsComponent,
-  },
-  {
-    path: 'Patient/Account/Order-Details',
-    component: OrderDetailsComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Orders',
-    component: OrdersComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Water',
-    component: WaterComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Wish-List',
-    component: WishlistComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Account/Drugs',
-    component: DrugsComponent,
-  },
-  {
-    path: 'Patient/Shop/Cart',
-    component: CartComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Shop/Category',
-    component: ProductCategoryComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Patient/Shop/Check-Out',
-    component: CheckOutComponent,
-  },
-  {
-    path: 'Patient/Shop/Product',
-    component: ProductSingleComponent,
-  },
-  {
-    path: 'Patient/Shop/ThanksForPayment',
-    component: ThankYouComponent,
+    path: 'Patient',
+    loadChildren: () =>
+      import('./lazyLoad/index-page/index-page-routing.module').then(
+        (m) => m.IndexPageRoutingModule
+      ),
   },
 ];
 @NgModule({
@@ -192,7 +106,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [Search],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
