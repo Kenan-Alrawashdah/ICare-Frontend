@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Constants } from 'src/app/Helper/constants';
 import { ApiResponseData } from '../../api-response.model';
 import { Search } from '../Models/search.model';
 import { Usersearch } from '../Models/usersearch.model';
 import { UsersearchRequest } from '../Models/usersearch-request.model';
 import { GetAllDrugs } from '../Models/get-all-drugs.model';
+import { Constants } from 'src/app/Constants/constants';
 
 @Injectable({
   providedIn: 'any',

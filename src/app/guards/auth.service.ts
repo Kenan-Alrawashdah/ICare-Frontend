@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Constants } from '../Helper/constants';
+import { Constants } from '../Constants/constants';
 import { PatientInfo } from '../shared/Patient/Account/Models/patient-info.model';
 
 @Injectable({

@@ -1,37 +1,27 @@
 <div class="header">
-  <div class="container-fluid theme-container">
-    <div class="top-header">
-      <div class="row align-items-center">
-        <div class="col-auto">
-          <a>
-            <img src="assets/img/logo.png" alt="logo" class="header-logo" />
-          </a>
-        </div>
-        <div class="col">
-          <div class="header-search">
-            <form [formGroup]="SearchForm" (change)="onSubmit()">
-              <input
-                class="form-control custom-search"
-                placeholder="Search for Medicines Products"
-                type="text"
-                formControlName="Search"
-              />
-            </form>
-            <div class="search-content">
-              <div class="search-product d-none">
-                <!-- Search Popup -->
-                <div class="product list-view" *ngFor="let pd of list">
-                  <a href="product-single.html" class="product-img">
-                    <img
-                      src="assets/img/product/product-1.png"
-                      class=""
-                      alt=""
-                    />
-                  </a>
-                  <div class="product-info">
-                    <h3>
-                      <a href="product-single.html"
-                        >CoviFind Covid 19 Antigen Self Test Kit</a
+    <div class="container-fluid theme-container">
+        <div class="top-header">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a>
+                        <img src="assets/img/logo.png" alt="logo" class="header-logo" />
+                    </a>
+                </div>
+                <div class="col">
+                    <div class="header-search">
+                        <form [formGroup]="SearchForm" (change)="onSubmit()">
+                            <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" formControlName="Search" />
+                        </form>
+                        <div class="search-content">
+                            <div class="search-product d-none">
+                                <!-- Search Popup -->
+                                <div class="product list-view" *ngFor="let pd of list">
+                                    <a href="product-single.html" class="product-img">
+                                        <img src="assets/img/product/product-1.png" class="" alt="" />
+                                    </a>
+                                    <div class="product-info">
+                                        <h3>
+                                            <a href="product-single.html">CoviFind Covid 19 Antigen Self Test Kit</a
                       >
                     </h3>
                     <div class="product-value">
@@ -49,24 +39,19 @@
                       <i class="ti-heart"></i>
                       Add to Wishlist
                     </a>
-                    <a href="#" class="btn btn-primary">
-                      <i class="ti-shopping-cart"></i>
-                      Add to cart
-                    </a>
-                  </div>
+                                            <a href="#" class="btn btn-primary">
+                                                <i class="ti-shopping-cart"></i> Add to cart
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-auto">
-          <ul class="header-right-options">
-            <li class="link-item">
-              <a
-                class="btn btn-primary btn-sm"
-                style="color: white"
-                routerLink="/Home/User/SignIn"
-                >Login</a
+                <div class="col-auto">
+                    <ul class="header-right-options">
+                        <li class="link-item">
+                            <a class="btn btn-primary btn-sm" style="color: white" routerLink="/Home/User/SignIn">Login</a
               >
             </li>
             <li class="link-item">
@@ -140,4 +125,4 @@
   <a>
     <img src="assets/img/slider/slider-1.svg" alt="" />
   </a>
-</div>
+                </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TokenStorageService } from 'src/app/services/token.service';
 import { Usersearch } from 'src/app/shared/User/Models/usersearch.model';
 import { HomePageService } from 'src/app/shared/User/Services/home-page.service';
 @Component({
@@ -8,9 +9,20 @@ import { HomePageService } from 'src/app/shared/User/Services/home-page.service'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private service: HomePageService) {}
+  private isLogin :boolean;
+  constructor(
+    private service: HomePageService,
+    private tokenService:TokenStorageService,
+    ) {
+      if(tokenService.getToken() == null){
+        this.isLogin = false;
+      }else{
+        this.isLogin = true;
+      }
+    }
   SearchForm!: FormGroup;
   list: Usersearch[];
+  
   ngOnInit(): void {
     let Search = '';
     this.SearchForm = new FormGroup({
