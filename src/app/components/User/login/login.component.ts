@@ -5,7 +5,7 @@ import { Constants } from 'src/app/Constants/constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
-
+declare var FB: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,9 +25,34 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
-  }
+    (window as any).fbAsyncInit = function () {
+      FB.init({
+        appId: '1291083414713212',
+        cookie: true,
+        xfbml: true,
+        version: 'v12.0',
+      });
+      FB.AppEvents.logPageView();
+    };
 
-  async onSubmit() {
+
+  async onSubmit2() {
+
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+ 
+
+     onSubmit() {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
 
@@ -59,5 +84,12 @@ export class LoginComponent implements OnInit {
     console.log(this.tokenStorage.getUser());
     
     
+  }
+  submitLogin() {
+    console.log('submit login to facebook');
+    // FB.login();
+    FB.login((response) => {
+      console.log('submitLogin', response);
+    });
   }
 }
