@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ICareComponent } from 'src/app/components/Home/icare/icare.component';
 import { ForgotPasswordComponent } from 'src/app/components/User/forgot-password/forgot-password.component';
@@ -35,7 +37,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule],
   exports: [RouterModule]
 })
 export class HomePageRoutingModule { }

@@ -1,4 +1,4 @@
 export class Constants {
   public static readonly USER_KEY: string = 'token';
-  public static readonly baseURL: string = 'https://localhost:44349/api/';
+  public static readonly baseURL: string = 'http://localhost:5000/api/';
 }

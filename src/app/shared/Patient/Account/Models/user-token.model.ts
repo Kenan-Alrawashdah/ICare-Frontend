@@ -1,3 +1,4 @@
 export class UserToken {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }

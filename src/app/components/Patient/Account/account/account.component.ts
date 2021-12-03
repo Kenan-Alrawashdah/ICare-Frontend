@@ -18,5 +18,7 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.AccountForm.value
+  }
 }
