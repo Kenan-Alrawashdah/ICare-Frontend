@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
       FB.AppEvents.logPageView();
     };
 
-
-  async onSubmit2() {
+  }
+   onSubmit2() {
 
     (function (d, s, id) {
       var js,
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   }
  
 
-     onSubmit() {
+   async  onSubmit() {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
 
