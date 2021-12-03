@@ -14,7 +14,7 @@
               <div class="row">
                 <div class="col-12">
                   <a
-                  (click)="submitLogin()"
+                    (click)="submitLogin()"
                     class="
                       btn btn-gray-border btn-full
                       rounded
@@ -60,8 +60,8 @@
                   <small
                     class="text-danger"
                     *ngIf="
-                      loginForm.controls['Email'].dirty ||
-                      loginForm.controls['Email'].touched
+                      loginForm.controls['email'].dirty ||
+                      loginForm.controls['email'].touched
                     "
                   >
                     This field is required.
@@ -69,9 +69,9 @@
                   <small
                     class="text-danger"
                     *ngIf="
-                      loginForm.get('Email').hasError('email') &&
-                      (loginForm.controls['Email'].dirty ||
-                        loginForm.controls['Email'].touched)
+                      loginForm.get('email').hasError('email') &&
+                      (loginForm.controls['email'].dirty ||
+                        loginForm.controls['email'].touched)
                     "
                   >
                     This email is invalid.

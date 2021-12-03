@@ -20,10 +20,9 @@ export class AuthGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const Patien = JSON.parse(
-      localStorage.getItem(Constants.USER_KEY)
-    ) as PatientInfo;
-    if (Patien && Patien.email) {
+    const Patien = localStorage.getItem(Constants.USER_KEY);
+
+    if (Patien != null) {
       return true;
     } else {
       this.router.navigate(['Home/User/SignIn']);
