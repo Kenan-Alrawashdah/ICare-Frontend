@@ -11,6 +11,11 @@ export class ICareComponent implements OnInit {
   ngOnInit(): void {
     
 
+  
+  }
+
+  ngAfterViewInit() {
+    
     (function ($) {
       'use strict';
 
