@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiResponseData } from '../../api-response.model';
 import { Search } from '../Models/search.model';
 import { Usersearch } from '../Models/usersearch.model';
 import { UsersearchRequest } from '../Models/usersearch-request.model';
 import { GetAllDrugs } from '../Models/get-all-drugs.model';
 import { Constants } from 'src/app/Constants/constants';
+import { TokenStorageService } from 'src/app/services/token.service';
 
 @Injectable({
   providedIn: 'any',
 })
 export class HomePageService {
-  constructor(private httpClient: HttpClient, private search: Search) {}
+  constructor(private httpClient: HttpClient, 
+    private search: Search,
+   ) {}
   list: Usersearch[];
 
   public GetDrugByNameSearch(search: string) {

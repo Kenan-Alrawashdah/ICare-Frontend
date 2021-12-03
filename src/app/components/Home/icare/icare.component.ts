@@ -9,6 +9,8 @@ export class ICareComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    
+
     (function ($) {
       'use strict';
 
@@ -35,6 +37,28 @@ export class ICareComponent implements OnInit {
         $('body').find('.search_overlay').remove();
         $('.header , .announcement-header').attr({ style: '' });
         $('body').attr({ style: '' });
+      });
+
+      $(document).click((event) => {
+        if (!$(event.target).closest('#element').length) {
+          $('.user-links').removeClass('show');
+          $('#showCart').removeClass('show');
+        }
+      });
+
+      $('#account').on('click', function () {
+        if ($('.user-links').hasClass('show')) {
+          $('.user-links').removeClass('show');
+        } else {
+          $('.user-links').addClass('show');
+        }
+      });
+      $('#cart').on('click', function () {
+        if ($('#showCart').hasClass('show')) {
+          $('#showCart').removeClass('show');
+        } else {
+          $('#showCart').addClass('show');
+        }
       });
     })(jQuery);
   }

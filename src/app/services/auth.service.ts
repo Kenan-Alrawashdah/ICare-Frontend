@@ -5,7 +5,7 @@ import { Constants } from '../Constants/constants';
 import { ApiResponseData } from '../shared/api-response.model';
 import { UserToken } from '../shared/Patient/Account/Models/user-token.model';
 
-const AUTH_API = 'http://localhost:5000/api/Login/SignIn';
+const AUTH_API = 'http://localhost:5000';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,21 +25,15 @@ export class AuthService {
         };
         console.log(body)
         return this.http.post<ApiResponseData<UserToken>>(
-            AUTH_API ,
+            AUTH_API +'/api/Login/SignIn',
           body
         );
       }
 
-
-
-
-
-
-
-
-    refreshToken(token: string) {
-        return this.http.post(AUTH_API + 'refreshtoken', {
-            refreshToken: token
+    refreshToken(token: string,refreshToken:string) {
+        return this.http.post(AUTH_API + '/Refresh', {
+          accessToken: token,
+          refreshToken : refreshToken
         }, httpOptions);
     }
 }
