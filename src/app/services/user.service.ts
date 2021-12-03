@@ -3,18 +3,22 @@ import { Injectable } from '@angular/core';
 import { ApiResponseData } from '../shared/api-response.model';
 import { map } from 'rxjs/operators';
 import { PatientInfo } from '../shared/Patient/Account/Models/patient-info.model';
-import { Constants } from '../Helper/constants';
 import { UserToken } from '../shared/Patient/Account/Models/user-token.model';
 import { AddPatientAddress } from '../shared/Patient/Account/Models/add-patient-address.model';
 import { ApiResponseWithoutData } from '../shared/api-response-without-data.model';
 import { Forgotpassword } from '../shared/User/Models/forgotpassword.model';
 import { Registration } from '../shared/User/Models/registration.model';
+import { Constants } from '../Constants/constants';
+import { RequestService } from './Request.Service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private request:RequestService
+    ) {}
 
   public login(email: string, password: string) {
     const body = {
@@ -29,7 +33,7 @@ export class UserService {
   public ForgotPassword(email: string) {
     var fp = new Forgotpassword();
     fp.email = email;
-    return this.httpClient.post<ApiResponseWithoutData>(
+    return  this.httpClient.post<ApiResponseWithoutData>(
       Constants.baseURL + 'User/ForgotPassword',
       fp
     );
@@ -49,7 +53,7 @@ export class UserService {
     );
   }
 
-  public register(
+  public  register(
     fname: string,
     lname: string,
     email: string,
@@ -63,10 +67,16 @@ export class UserService {
       password: password,
       phoneNumber: phone,
     };
-    return this.httpClient.post<ApiResponseData<UserToken>>(
-      Constants.baseURL + 'User/PatientRegistration',
+    return  this.request.post<ApiResponseData<UserToken>>(
+      'User/PatientRegistration',
       body
     );
+    
+    
+    // this.httpClient.post<ApiResponseData<UserToken>>(
+    //   Constants.baseURL + 'User/PatientRegistration',
+    //   body
+    // );
   }
   public getPatientInfo() {
     let userInf = JSON.parse(localStorage.getItem(Constants.USER_KEY));

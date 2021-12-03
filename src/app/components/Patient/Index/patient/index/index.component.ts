@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'jquery';
-import { Constants } from 'src/app/Helper/constants';
+import { Constants } from 'src/app/Constants/constants';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
