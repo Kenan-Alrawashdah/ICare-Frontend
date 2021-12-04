@@ -31,12 +31,12 @@ export class HomePageService {
     );
   }
 
-  //Test
-  public AddTestimonial(form: FormGroup) {
-    return this.httpClient.post<ApiResponseData>(
-      Constants.baseURL + 'Testimonial/AddNewTestimonial',
-      form.value
-    );
-  }
+  // //Test
+  // public AddTestimonial(form: FormGroup) {
+  //   return this.httpClient.post<ApiResponseData>(
+  //     Constants.baseURL + 'Testimonial/AddNewTestimonial',
+  //     form.value
+  //   );
+  // }
 
 }
