@@ -7,15 +7,14 @@ import { UsersearchRequest } from '../Models/usersearch-request.model';
 import { GetAllDrugs } from '../Models/get-all-drugs.model';
 import { Constants } from 'src/app/Constants/constants';
 import { TokenStorageService } from 'src/app/services/token.service';
-import { ApiResponseWithoutData } from '../../api-response-without-data.model';
-import { FormGroup } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'any',
 })
 export class HomePageService {
-  constructor(private httpClient: HttpClient, private search: Search) {}
+  constructor(private httpClient: HttpClient, 
+    private search: Search,
+   ) {}
   list: Usersearch[];
 
   public GetDrugByNameSearch(search: string) {
@@ -31,6 +30,7 @@ export class HomePageService {
       Constants.baseURL + 'Drugs/GetAll'
     );
   }
+
   //Test
   public AddTestimonial(form: FormGroup) {
     return this.httpClient.post<ApiResponseData>(
@@ -38,4 +38,5 @@ export class HomePageService {
       form.value
     );
   }
+
 }

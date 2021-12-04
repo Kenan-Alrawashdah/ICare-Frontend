@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { UserToken } from '../shared/User/Models/UserToken';
 
 const TOKEN_KEY = 'auth-token';
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';
@@ -18,11 +19,7 @@ export class TokenStorageService {
     public saveToken(token: string): void {
         window.localStorage.removeItem(TOKEN_KEY);
         window.localStorage.setItem(TOKEN_KEY, token);
-
-        const user = this.getUser();
-        if (user.id) {
-            this.saveUser({ ...user, accessToken: token });
-        }
+        this.saveUser(token.split('.')[1]);
     }
 
     public getToken(): string | null {
@@ -38,17 +35,17 @@ export class TokenStorageService {
         return window.localStorage.getItem(REFRESHTOKEN_KEY);
     }
 
-    public saveUser(user: any): void {
-        window.localStorage.removeItem(USER_KEY);
-        window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    public saveUser(token: string): void {
+        var user = JSON.parse(atob(token));
+        window.localStorage.setItem(USER_KEY,user["unique_name"]);
     }
 
-    public getUser(): any {
+    public getUser(): string {
         const user = window.localStorage.getItem(USER_KEY);
         if (user) {
-            return JSON.parse(user);
+            return user;
         }
 
-        return {};
+        return null;
     }
 }
