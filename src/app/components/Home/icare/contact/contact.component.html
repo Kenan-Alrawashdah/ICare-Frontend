@@ -37,14 +37,13 @@
                       placeholder="Name*"
                       name="Name"
                       type="text"
-                      formControlName="userName"
+                      formControlName="Name"
                     />
                     <small
                       class="text-danger"
                       *ngIf="
-                        ContactForm.get('userName').hasError('required') &&
-                        (ContactForm.controls['userName'].dirty ||
-                          ContactForm.controls['userName'].touched)
+                        ContactForm.controls['Name'].dirty ||
+                        ContactForm.controls['Name'].touched
                       "
                     >
                       This field is required.
@@ -54,16 +53,16 @@
                     <input
                       class="form-control"
                       placeholder="Email*"
-                      formControlName="userEmail"
+                      formControlName="Email"
                       type="text"
                     />
                   </div>
                   <small
                     class="text-danger"
                     *ngIf="
-                      ContactForm.get('userEmail').hasError('required') &&
-                      (ContactForm.controls['userEmail'].dirty ||
-                        ContactForm.controls['userEmail'].touched)
+                      ContactForm.get('Email').hasError('required') &&
+                      (ContactForm.controls['Email'].dirty ||
+                        ContactForm.controls['Email'].touched)
                     "
                   >
                     This field is required.
@@ -71,9 +70,9 @@
                   <small
                     class="text-danger"
                     *ngIf="
-                      ContactForm.get('userEmail').hasError('email') &&
-                      (ContactForm.controls['userEmail'].dirty ||
-                        ContactForm.controls['userEmail'].touched)
+                      ContactForm.get('Email').hasError('email') &&
+                      (ContactForm.controls['Email'].dirty ||
+                        ContactForm.controls['Email'].touched)
                     "
                   >
                     This email is invalid.
@@ -85,15 +84,14 @@
                     <input
                       class="form-control"
                       placeholder="Subject*"
-                      formControlName="userSubject"
+                      formControlName="Subject"
                       type="text"
                     />
                     <small
                       class="text-danger"
                       *ngIf="
-                        ContactForm.get('userSubject').hasError('required') &&
-                        (ContactForm.controls['userSubject'].dirty ||
-                          ContactForm.controls['userSubject'].touched)
+                        ContactForm.controls['Subject'].dirty ||
+                        ContactForm.controls['Subject'].touched
                       "
                     >
                       This field is required.
@@ -103,7 +101,7 @@
                     <input
                       class="form-control"
                       placeholder="Phone"
-                      formControlName="userPhone"
+                      formControlName="Phone"
                       type="text"
                     />
                   </div>
@@ -114,15 +112,14 @@
                     <textarea
                       class="form-control"
                       rows="4"
-                      formControlName="userMessage"
+                      formControlName="Message"
                       placeholder="Text Here*"
                     ></textarea>
                     <small
                       class="text-danger"
                       *ngIf="
-                        ContactForm.get('userMessage').hasError('required') &&
-                        (ContactForm.controls['userMessage'].dirty ||
-                          ContactForm.controls['userMessage'].touched)
+                        ContactForm.controls['Message'].dirty ||
+                        ContactForm.controls['Message'].touched
                       "
                     >
                       This field is required.
