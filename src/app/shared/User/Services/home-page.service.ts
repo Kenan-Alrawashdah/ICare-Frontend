@@ -31,7 +31,7 @@ export class HomePageService {
       Constants.baseURL + 'Drugs/GetAll'
     );
   }
-
+  //Test
   public AddTestimonial(form: FormGroup) {
     return this.httpClient.post<ApiResponseData>(
       Constants.baseURL + 'Testimonial/AddNewTestimonial',
