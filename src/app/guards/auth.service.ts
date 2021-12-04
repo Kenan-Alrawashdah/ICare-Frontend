@@ -22,10 +22,12 @@ export class AuthGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+
     const Patient = JSON.parse(atob(this.tokenService.getToken()?.split('.')[1])) as PatientInfo
     
     console.log(Patient);
     if (Patient.role = 'Patient' && Patient.email) {
+
       return true;
     } else {
       this.router.navigate(['Home/User/SignIn']);
