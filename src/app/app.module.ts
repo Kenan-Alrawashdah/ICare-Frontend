@@ -45,6 +45,8 @@ import { Search } from './shared/User/Models/search.model';
 import { HomePageService } from './shared/User/Services/home-page.service';
 import { RequestService } from './services/Request.Service';
 import { authInterceptorProviders } from './services/auth.Interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -66,9 +68,6 @@ const routes: Routes = [
         (m) => m.IndexPageRoutingModule
       ),
   },
-  {path:"signin",
-  component: RegistrationComponent
-  }
 ];
 @NgModule({
   declarations: [
@@ -110,11 +109,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [Search,
-    RequestService,
-    authInterceptorProviders],
+  providers: [Search, RequestService, authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
