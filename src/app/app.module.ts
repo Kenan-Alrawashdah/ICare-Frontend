@@ -34,8 +34,9 @@ import { SubscribeComponent } from './components/User/subscribe/subscribe.compon
 import { RegistrationComponent } from './components/User/registration/registration.component';
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { PaymentComponent } from './components/User/payment/payment.component';
-import { AuthGuardService } from './guards/auth.service';
 
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Search } from './shared/User/Models/search.model';
 import { HomePageService } from './shared/User/Services/home-page.service';
 import { authInterceptorProviders } from './services/auth.Interceptor';
@@ -65,9 +66,7 @@ const routes: Routes = [
         (m) => m.Patient2RoutingModule
       )
   },
-  {path:"signin",
-  component: RegistrationComponent
-  }
+  { path: 'signin', component: RegistrationComponent },
 ];
 @NgModule({
   declarations: [
@@ -108,8 +107,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     Patient2Module
-    
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
+  
   providers: [Search,
     authInterceptorProviders],
   bootstrap: [AppComponent],
