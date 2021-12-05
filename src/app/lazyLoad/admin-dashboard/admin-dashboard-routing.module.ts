@@ -4,6 +4,11 @@ import { MainComponent } from 'src/app/components/admin-dashboard/main/main.comp
 
 const routes: Routes = [
   {
+    path:'',
+    redirectTo:'main',
+    pathMatch: 'full'
+  },
+  {
     path:'main',
     component:MainComponent
   }
