@@ -1,4 +1,3 @@
-<app-index></app-index>
 <main>
     <div class="accounnt_header">
         <div class="container">
@@ -10,22 +9,17 @@
                                 <a class="text-nowrap" routerLink="/Index"><i class="fa fa-home mr-2"></i>Home</a
                 >
               </li>
-              <li class="breadcrumb-item">
-                <a class="text-nowrap" routerLink="/Patient/Account"
-                  ><i class="fa fa-home mr-2"></i>Account</a
-                >
-              </li>
               <li
                 class="breadcrumb-item text-nowrap active"
                 aria-current="page"
               >
-                Add New Drug
+                Account
               </li>
             </ol>
           </nav>
         </div>
         <div class="order-md-1 text-center text-md-left col-lg col-12">
-          <h1 class="h3 mb-0">My Drugs</h1>
+          <h1 class="h3 mb-0">Account</h1>
         </div>
       </div>
     </div>
@@ -71,25 +65,25 @@
                   </div>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="nav-item">
+                  <li class="nav-item " routerLinkActive="active">
                     <a class="nav-link" routerLink="/Patient/Account"
                       ><i class="fa fa-user"></i> My Account</a
                     >
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" routerLinkActive="active">
                     <a
                       class="nav-link"
-                      routerLink="/Patient/Account/Change-Password"
-                      ><i class="fa fa-lock"></i> Password</a
+                      routerLink="./ChangePassword"
+                      ><i class="fa fa-lock"></i>Change Password</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="/Patient/Account/Add-Drug"
+                    <a class="nav-link" routerLink="./AddDrug"
                       ><i class="fa fa-prescription-bottle-alt"></i> Add Drug</a
                     >
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" routerLink="/Patient/Account/Drugs"
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="./MyDrugs"
                       ><i class="fas fa-capsules"></i> My Drugs</a
                     >
                   </li>
@@ -106,7 +100,7 @@
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="/Patient/Account/Address"
+                    <a class="nav-link" routerLink="./Address"
                       ><i class="fa fa-address-book"></i> Address</a
                     >
                   </li>
@@ -131,10 +125,9 @@
           </nav>
         </div>
         <div class="col-lg-8 col-md-8 col-12">
-       
-        </div>
+        <router-outlet></router-outlet>
+    </div>
       </div>
     </div>
   </div>
 </main>
-<app-footer></app-footer>
