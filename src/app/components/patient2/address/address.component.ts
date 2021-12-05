@@ -4,9 +4,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
-  styleUrls: ['./address.component.css'],
+  styleUrls: ['./address.component.css']
 })
 export class AddressComponent implements OnInit {
+
   AddressForm: FormGroup;
   constructor() {}
 
@@ -16,4 +17,5 @@ export class AddressComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
   }
+
 }

@@ -8,12 +8,7 @@ import { ProductComponent } from './components/Home/icare/product/product.compon
 import { AboutComponent } from './components/Home/icare/about/about.component';
 import { ContactComponent } from './components/Home/icare/contact/contact.component';
 import { FooterComponent } from './components/Home/icare/footer/footer.component';
-
-import { AddressComponent } from './components/Patient/Account/address/address.component';
-import { AccountComponent } from './components/Patient/Account/account/account.component';
-import { ChangePasswordComponent } from './components/Patient/Account/change-password/change-password.component';
 import { DrugsComponent } from './components/Patient/Account/drugs/drugs.component';
-import { MyDrugsComponent } from './components/Patient/Account/my-drugs/my-drugs.component';
 import { OrdersComponent } from './components/Patient/Account/orders/orders.component';
 import { WaterComponent } from './components/Patient/Account/water/water.component';
 import { WishlistComponent } from './components/Patient/Account/wishlist/wishlist.component';
@@ -40,9 +35,15 @@ import { RegistrationComponent } from './components/User/registration/registrati
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { PaymentComponent } from './components/User/payment/payment.component';
 
-import { authInterceptorProviders } from './services/auth.Interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Search } from './shared/User/Models/search.model';
+import { HomePageService } from './shared/User/Services/home-page.service';
+import { authInterceptorProviders } from './services/auth.Interceptor';
+import { Patient2Component } from './components/patient2/patient2.component';
+import { AccountComponent } from './components/patient2/account/account.component';
+import { Patient2Module } from './lazyLoad/patient2/patient2.module';
+import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
 
 const routes: Routes = [
   {
@@ -59,10 +60,11 @@ const routes: Routes = [
   },
   {
     path: 'Patient',
+    component : Patient2Component,
     loadChildren: () =>
-      import('./lazyLoad/index-page/index-page-routing.module').then(
-        (m) => m.IndexPageRoutingModule
-      ),
+      import('./lazyLoad/patient2/patient2-routing.module').then(
+        (m) => m.Patient2RoutingModule
+      )
   },
   { path: 'signin', component: RegistrationComponent },
 ];
@@ -75,11 +77,7 @@ const routes: Routes = [
     AboutComponent,
     ContactComponent,
     FooterComponent,
-    AddressComponent,
-    AccountComponent,
-    ChangePasswordComponent,
     DrugsComponent,
-    MyDrugsComponent,
     OrdersComponent,
     WaterComponent,
     WishlistComponent,
@@ -99,6 +97,8 @@ const routes: Routes = [
     RegistrationComponent,
     ForgotPasswordComponent,
     PaymentComponent,
+    Patient2Component,
+    AddDrugComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,10 +106,13 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    Patient2Module
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [ authInterceptorProviders],
+  
+  providers: [Search,
+    authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

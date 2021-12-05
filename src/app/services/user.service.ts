@@ -15,8 +15,10 @@ import { Constants } from '../Constants/constants';
 })
 export class UserService {
   constructor(
+
     private httpClient: HttpClient,
   ) {}
+
 
   public login(email: string, password: string) {
     const body = {
@@ -65,7 +67,9 @@ export class UserService {
       password: password,
       phoneNumber: phone,
     };
+
     return this.httpClient.post<ApiResponseData<UserToken>>(
+
       'User/PatientRegistration',
       body
     );
