@@ -40,7 +40,6 @@ import { RegistrationComponent } from './components/User/registration/registrati
 import { ForgotPasswordComponent } from './components/User/forgot-password/forgot-password.component';
 import { PaymentComponent } from './components/User/payment/payment.component';
 
-import { RequestService } from './services/Request.Service';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -110,7 +109,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [RequestService, authInterceptorProviders],
+  providers: [ authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

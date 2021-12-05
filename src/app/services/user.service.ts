@@ -8,7 +8,7 @@ import { AddPatientAddress } from '../shared/Patient/Account/Models/add-patient-
 import { Forgotpassword } from '../shared/User/Models/forgotpassword.model';
 import { Registration } from '../shared/User/Models/registration.model';
 import { Constants } from '../Constants/constants';
-import { RequestService } from './Request.Service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,6 @@ import { RequestService } from './Request.Service';
 export class UserService {
   constructor(
     private httpClient: HttpClient,
-    private request: RequestService
   ) {}
 
   public login(email: string, password: string) {
@@ -66,7 +65,7 @@ export class UserService {
       password: password,
       phoneNumber: phone,
     };
-    return this.request.post<ApiResponseData<UserToken>>(
+    return this.httpClient.post<ApiResponseData<UserToken>>(
       'User/PatientRegistration',
       body
     );
