@@ -37,13 +37,15 @@ import { PaymentComponent } from './components/User/payment/payment.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Search } from './shared/User/Models/search.model';
 import { HomePageService } from './shared/User/Services/home-page.service';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { Patient2Component } from './components/patient2/patient2.component';
 import { AccountComponent } from './components/patient2/account/account.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
 import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MainComponent } from './components/admin-dashboard/main/main.component';
+import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 
 const routes: Routes = [
   {
@@ -64,6 +66,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./lazyLoad/patient2/patient2-routing.module').then(
         (m) => m.Patient2RoutingModule
+      )
+  },
+  {
+    path: 'Admin',
+    component:AdminDashboardComponent, 
+    loadChildren: () =>
+      import('./lazyLoad/admin-dashboard/admin-dashboard-routing.module').then(
+        (m) => m.AdminDashboardRoutingModule
       )
   },
   { path: 'signin', component: RegistrationComponent },
@@ -99,6 +109,7 @@ const routes: Routes = [
     PaymentComponent,
     Patient2Component,
     AddDrugComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -107,11 +118,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     Patient2Module,
+    AdminDashboardModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
   
-  providers: [Search,
+  providers: [
     authInterceptorProviders],
   bootstrap: [AppComponent],
 })
