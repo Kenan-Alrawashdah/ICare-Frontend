@@ -2,7 +2,7 @@ import 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/services/token.service';
-import { Usersearch as UserSearch } from 'src/app/shared/User/Models/usersearch.model';
+import { Usersearch, Usersearch as UserSearch } from 'src/app/shared/User/Models/usersearch.model';
 import { HomePageService } from 'src/app/shared/User/Services/home-page.service';
 import { UserToken } from 'src/app/shared/User/Models/UserToken';
 @Component({
@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
   GetDrugByNameSearch() {
     this.service.GetDrugByNameSearch(this.InputSearch).subscribe(
       (data) => {
-        if (data.success == true) {
-          this.list = data.data as unknown as UserSearch[];
+        if (data.success) {
+          this.list = data.data as unknown as Usersearch[];
         }
       },
       (error) => {
