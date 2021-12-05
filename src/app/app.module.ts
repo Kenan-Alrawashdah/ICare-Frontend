@@ -106,7 +106,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    Patient2Module
+    Patient2Module,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
