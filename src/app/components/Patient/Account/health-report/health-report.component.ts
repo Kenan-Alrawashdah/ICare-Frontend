@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
+
 @Component({
   selector: 'app-health-report',
   templateUrl: './health-report.component.html',
