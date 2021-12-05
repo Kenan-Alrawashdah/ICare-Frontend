@@ -8,14 +8,9 @@ import 'jquery';
 export class ICareComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-    
-
-  
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
-    
     (function ($) {
       'use strict';
 

@@ -1,6 +1,5 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Injectable } from '@angular/core';
-import { inject } from '@angular/core/testing';
 import { ApiConfiguration } from '../Constants/ApiConfiguration'
 import { Constants } from '../Constants/constants';
 
