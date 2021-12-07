@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/app/components/home2/login/login.component';
 import { MainComponent } from 'src/app/components/home2/main/main.component';
 import { RegistrationComponent } from 'src/app/components/home2/registration/registration.component';
+import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
+import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
 {
   path:'register',
   component:RegistrationComponent
+},
+{
+  path:'Drugs',
+  component:DrugsComponent
+},
+{
+  path:'Drug',
+  component:DrugComponent
 }
 
 ];

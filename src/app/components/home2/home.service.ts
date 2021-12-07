@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Constants } from 'src/app/Constants/constants';
 import { ApiResponseData } from 'src/app/shared/api-response.model';
+import { CategoryModel } from './models/Category.model';
 import { GetAllDrugs } from './models/getAllDrugs.model';
 import { SearchModel } from './models/search.model';
 
@@ -33,5 +34,9 @@ export class HomeService {
       Constants.baseURL + 'Testimonial/AddNewTestimonial',
       form.value
     );
+  }
+
+  public GetAllCategory(){
+    return this.httpClient.get<ApiResponseData<CategoryModel[]>>(Constants.baseURL+'Admin/Category/GetAllDrugCategories');
   }
 }

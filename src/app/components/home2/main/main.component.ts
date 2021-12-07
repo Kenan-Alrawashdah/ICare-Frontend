@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
+import { CategoryModel } from '../models/Category.model';
 
 @Component({
   selector: 'app-main',
@@ -9,13 +11,20 @@ import { HomeService } from '../home.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  constructor(
-    private homePageService: HomeService,
+
+  Categories:CategoryModel[];
+   constructor(
+    private homeService: HomeService,
     private Toastr: ToastrService
-  ) {}
+  ) {
+    
+  }
 
-  ngOnInit(): void {}
-
+   async ngOnInit() {
+    await this.getAllCategories();
+    console.log(this.Categories)
+  }
+  
   ContactForm = new FormGroup({
     userName: new FormControl('', [Validators.required]),
     userEmail: new FormControl('', [Validators.required, Validators.email]),
@@ -24,7 +33,7 @@ export class MainComponent implements OnInit {
     userMessage: new FormControl('', [Validators.required]),
   });
   onSubmit() {
-    this.homePageService.AddTestimonial(this.ContactForm).subscribe((data) => {
+    this.homeService.AddTestimonial(this.ContactForm).subscribe((data) => {
       if (data.success) {
         this.Toastr.success('success', 'Testimonial');
         this.ContactForm.reset();
@@ -32,6 +41,18 @@ export class MainComponent implements OnInit {
         this.Toastr.error(data.errors.toString());
       }
     });
+  }
+
+    async getAllCategories(){
+    await this.homeService.GetAllCategory().toPromise().
+    then(
+      (response)=>{
+        this.Categories = response.data['categories'],
+        console.log(response)
+      }
+    )
+
+    console.log(this.Categories)
   }
 
 }

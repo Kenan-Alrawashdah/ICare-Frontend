@@ -109,7 +109,7 @@ const routes: Routes = [
     AddDrugComponent,
     Patient2Component,
     AdminDashboardComponent,
-    Home2Component
+    Home2Component,
   ],
   imports: [
     BrowserModule,
