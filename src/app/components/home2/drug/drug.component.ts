@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import 'jquery'
-
+import 'jquery';
 @Component({
   selector: 'app-drug',
   templateUrl: './drug.component.html',
@@ -38,81 +37,11 @@ export class DrugComponent implements OnInit {
     
         var slider = document.getElementById("nouislider");
     
-        noUiSlider.create(slider, {
-          connect: true,
-          behaviour: "tap",
-          step: step,
-          start: [startMin, startMax],
-          tooltips: [true, true],
-          range: {
-            min: [min],
-            max: [max],
-          },
-          pips: {
-            mode: "positions",
-            values: [0, 25, 50, 75, 100],
-            density: 3,
-          },
-        });
       }
       //-------------------------------------------------------
       // Date Picker
       //-------------------------------------------------------*/
-      if ($(".date_range_picker").length > 0) {
-        var today = moment();
-        $(".date_range_picker").daterangepicker(
-          {
-            // "autoApply": true,
-            alwaysShowCalendars: true,
-            startDate: today,
-            opens: "center",
-          },
-          function (start, end, label) {
-            console.log(
-              "New date range selected: " +
-                start.format("YYYY-MM-DD") +
-                " to " +
-                end.format("YYYY-MM-DD") +
-                " (predefined range: " +
-                label +
-                ")"
-            );
-          }
-        );
-      }
-      if ($(".date_picker").length > 0) {
-        var today = moment();
-        $(".date_picker").daterangepicker(
-          {
-            autoApply: true,
-            singleDatePicker: true,
-            alwaysShowCalendars: true,
-            startDate: today,
-            opens: "center",
-          },
-          function (start, end, label) {
-            console.log(
-              "New date range selected: " +
-                start.format("YYYY-MM-DD") +
-                " to " +
-                end.format("YYYY-MM-DD") +
-                " (predefined range: " +
-                label +
-                ")"
-            );
-          }
-        );
-      }
-      // -------------------------------------------//
-      //  Custom Select
-      // -------------------------------------------//
-      if ($("select").length > 0) {
-        $("select:not(.ignore)").select2({
-          selectionCssClass: ":all:",
-        });
-        $(".select2-selection--single.wide").parent().addClass("wide");
-        $(".selection.wide").parent().addClass("wide");
-      }
+
     
       // ---------------------------------------------//
       // Slick Slider
@@ -125,29 +54,7 @@ export class DrugComponent implements OnInit {
         var slidesToshow = $(this).data("slides-to-show");
         var slidesToscroll = $(this).data("slides-to-scroll");
         var slideCenter = $(this).data("slick-center-mode");
-        $(this).slick({
-          arrows: nav,
-          dots: dot,
-          slidesToShow: slidesToshow,
-          autoplay: play,
-          autoplaySpeed: playSpeed,
-          centerMode: slideCenter,
-          slidesToScroll: slidesToscroll,
-          responsive: [
-            {
-              breakpoint: 500,
-              settings: {
-                slidesToShow: slidesToshow < 2 ? slidesToshow : 1,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: slidesToshow < 2 ? slidesToshow : 3,
-              },
-            },
-          ],
-        });
+       
       });
       $(".slider-for").each(function () {
         var play = $(this).data("autoplay");
@@ -157,30 +64,7 @@ export class DrugComponent implements OnInit {
         var slidesToshow = $(this).data("slides-to-show");
         var slidesToscroll = $(this).data("slides-to-scroll");
         var slideCenter = $(this).data("slick-center-mode");
-        $(this).slick({
-          arrows: nav,
-          dots: dot,
-          slidesToShow: slidesToshow,
-          autoplay: play,
-          autoplaySpeed: playSpeed,
-          centerMode: slideCenter,
-          slidesToScroll: slidesToscroll,
-          asNavFor: ".slider-nav",
-          responsive: [
-            {
-              breakpoint: 500,
-              settings: {
-                slidesToShow: slidesToshow < 2 ? slidesToshow : 1,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: slidesToshow < 2 ? slidesToshow : 3,
-              },
-            },
-          ],
-        });
+      
       });
       $(".slider-nav").each(function () {
         var play = $(this).data("autoplay");
@@ -190,37 +74,13 @@ export class DrugComponent implements OnInit {
         var slidesToshow = $(this).data("slides-to-show");
         var slidesToscroll = $(this).data("slides-to-scroll");
         var slideCenter = $(this).data("slick-center-mode");
-        $(this).slick({
-          arrows: nav,
-          dots: dot,
-          slidesToShow: slidesToshow,
-          autoplay: play,
-          autoplaySpeed: playSpeed,
-          centerMode: slideCenter,
-          slidesToScroll: slidesToscroll,
-          asNavFor: ".slider-for",
-          focusOnSelect: true,
-        });
+       
       });
     
       // ---------------------------------------------//
       // add Remove item
       // ---------------------------------------------//
-      $(".qty-input i").on("click", function () {
-        var val = parseInt($(".qty-input input").val());
-    
-        if ($(this).hasClass("less")) {
-          val = val - 1;
-        } else if ($(this).hasClass("more")) {
-          val = val + 1;
-        }
-    
-        if (val < 1) {
-          val = 1;
-        }
-    
-        $(".qty-input input").val(val);
-      });
+   
     
       // ---------------------------------------------//
       // File Upload name add
@@ -230,19 +90,7 @@ export class DrugComponent implements OnInit {
           $label = $input.next("label"),
           labelVal = $label.html();
     
-        $input.on("change", function (e) {
-          var fileName = "";
-    
-          if (this.files && this.files.length > 1)
-            fileName = (this.getAttribute("data-multiple-caption") || "").replace(
-              "{count}",
-              this.files.length
-            );
-          else if (e.target.value) fileName = e.target.value.split("\\").pop();
-    
-          if (fileName) $label.find("span").html(fileName);
-          else $label.html(labelVal);
-        });
+       
     
         // Firefox bug fix
         $input
