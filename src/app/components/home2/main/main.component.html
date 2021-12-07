@@ -1,27 +1,33 @@
 <!-- Main image -->
-<div class="slider" data-autoplay="true" data-autoplay-speed="4000">
-    <a>
-        <img src="assets/img/slider/slider-1.svg" alt="" />
-    </a>
-</div>
+
+
+<carousel [cellsToShow]=1 [images]="images" [height]="400">
+</carousel>
+<!-- gggggggggg -->
 
 <!-- Category -->
 <div class="pt-5">
     <div class="container theme-container">
         <div class="row">
-            <div *ngFor="let item of Categories" class="product-categories-grid" style="margin: auto; width: 270px">
-                <div class="product-img">
-                    <img src="http://localhost:5000/images/{{item.imagePath}}" class="" alt="" />
-                    <div class="cat-info">
-                        <h5 class="cat-name">{{item.name}}</h5>
-                        <a routerLink="/Patient/Shop/Category" class="cat-link">
-                View All <i class="ti-arrow-right"></i>
-              </a>
+            <carousel [cellsToShow]=3 [cellWidth]='300'>
+                <div *ngFor="let item of Categories" class="carousel-cell">
+                    <div class=" product-categories-grid" style="margin: auto; width: 350px">
+                        <div class="product-img">
+                            <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
+                            <div class="cat-info">
+                                <h5 class="cat-name">{{item.name}}</h5>
+                                <a routerLink="/Patient/Shop/Category" class="cat-link">
+                    View All <i class="ti-arrow-right"></i>
+                  </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </carousel>
 
         </div>
+
+
     </div>
 </div>
 <!-- About -->

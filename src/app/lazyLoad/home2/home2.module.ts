@@ -8,6 +8,7 @@ import { LoginComponent } from 'src/app/components/home2/login/login.component';
 import { RegistrationComponent } from 'src/app/components/home2/registration/registration.component';
 import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
 import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
     CommonModule,
     Home2RoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IvyCarouselModule
   ]
 })
 export class Home2Module { }

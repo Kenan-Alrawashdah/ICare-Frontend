@@ -12,6 +12,12 @@ import { CategoryModel } from '../models/Category.model';
 })
 export class MainComponent implements OnInit {
 
+  images = [
+    {path: 'assets/img/slider/slider-1.svg'},
+    {path: 'assets/img/slider/slider-1.svg'},
+    {path: 'assets/img/slider/slider-1.svg'},
+
+]
   Categories:CategoryModel[];
    constructor(
     private homeService: HomeService,
