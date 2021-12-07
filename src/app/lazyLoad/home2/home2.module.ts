@@ -25,6 +25,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     FormsModule,
     ReactiveFormsModule,
     IvyCarouselModule
+
   ]
 })
 export class Home2Module { }
