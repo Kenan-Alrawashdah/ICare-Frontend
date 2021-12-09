@@ -16,6 +16,7 @@ export class Home2Component implements OnInit {
   cartList:CartItemModel[];
   cartItemNumber:number;
   Name: string ;
+  
 
   public isLogin: boolean;
   public InputSearch: string;

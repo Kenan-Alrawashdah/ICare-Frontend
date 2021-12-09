@@ -21,49 +21,56 @@
               </div>
             </div>
           </div>
-
           <div *ngFor="let item of cartItems" class="cart_item">
             <div class="cart_item_image">
-              <img src="http://localhost:5000/images/{{item.picturePath}}" alt="shop" />
+              <img
+                src="http://localhost:5000/images/{{ item.picturePath }}"
+                alt="shop"
+              />
             </div>
             <div class="c-item-body mt-4 mt-md-0">
               <div class="cart_item_title mb-2">
-                <h4>{{item.name}}</h4>
+                <h4>{{ item.name }}</h4>
               </div>
               <div class="cart_item_price">
                 <div class="product-price">
                   <span>
-                    <strong>₹{{item.price}} </strong>
+                    <strong>₹{{ item.price }}</strong>
                   </span>
                 </div>
-                <div class="cart_product_remove" >
-                  <a (click)="deleteItem(item.cartId)"> <i class="ti-trash"></i> Remove</a>
+                <div class="cart_product_remove">
+                  <a (click)="deleteItem(item.cartId)">
+                    <i class="ti-trash"></i> Remove</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="qty-input btn mt-4 mt-md-0">
+              <i class="less" (click)="minus(item.cartId,item.quantity)">-</i>
+              <input type="text" [(ngModel)]="item.quantity" />
+              <i class="more" (click)="add(item.cartId)">+</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-lg-0 mt-6">
+        <div class="cart-summary">
+          <div class="cart-summary-wrap">
+            <h4>Cart </h4>
+            <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
+            <h2>
+               Total <span>${{ total }}</span>
+            </h2>
+          </div>
+          <div class="cart-summary-button">
+            <a
+              href="checkout.html"
+              class="btn btn-primary btn-rounded btn-full btn-large"
+              >Proceed to Checkout <i class="ti-arrow-right"></i>
+            </a>
                             </div>
                         </div>
                     </div>
-                    <div class="qty-input btn mt-4 mt-md-0">
-                        <i class="less">-</i>
-                        <input type="text" value="2" />
-                        <i class="more">+</i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-lg-4 mt-lg-0 mt-6">
-            <div class="cart-summary">
-                <div class="cart-summary-wrap">
-                    <h4>Cart Summary</h4>
-                    <p>Sub Total <span>$1250.00</span></p>
-                    <p>Shipping Cost <span>$00.00</span></p>
-                    <h2>Grand Total <span>${{total}}</span></h2>
-                </div>
-                <div class="cart-summary-button">
-                    <a href="checkout.html" class="btn btn-primary btn-rounded btn-full btn-large">Proceed to Checkout <i class="ti-arrow-right"></i>
-            </a>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
 </section>

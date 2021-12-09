@@ -65,10 +65,16 @@ export class HomeService {
     return this.httpClient.delete<ApiResponseData>(Constants.baseURL+'Carts/DeleteCartItem/'+id);
   }
 
-  public CheckItemIfInCart(id:number)
-  {
+  public CheckItemIfInCart(id:number){
     return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/CheckItemIfInCart/'+id);
+  }
 
+  public AddQuantity(id:number){
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/AddQuantity/'+id);
+  }
+
+  public MinusQuantity(id:number){
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/MinusQuantity/'+id);
   }
 
 }

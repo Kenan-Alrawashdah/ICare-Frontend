@@ -5,8 +5,8 @@ import { MainComponent } from 'src/app/components/home2/main/main.component';
 import { RegistrationComponent } from 'src/app/components/home2/registration/registration.component';
 import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
 import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
-import { CheckOutComponent } from 'src/app/components/Patient/Shop/check-out/check-out.component';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
+import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
 
 const routes: Routes = [
   {

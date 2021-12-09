@@ -10,6 +10,7 @@ import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
 import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
+import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CartComponent } from 'src/app/components/home2/cart/cart.component';
     RegistrationComponent,
     DrugComponent,
     DrugsComponent,
-    CartComponent
+    CartComponent,
+    CheckOutComponent
   ],
   imports: [
     CommonModule,

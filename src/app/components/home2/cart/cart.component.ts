@@ -23,16 +23,30 @@ export class CartComponent implements OnInit {
     this.getCartItems()
   }
 
+  add(id:number){
+    this.homeService.AddQuantity(id).subscribe();
+    this.ngOnInit();
+  }
+  minus(id:number,q:number){
+    if(q<=1)
+    {
+      this.Toastr.warning("Quantity can't be less than 1", "",{
+        timeOut: 1000,
+      });
+    }
+    this.homeService.MinusQuantity(id).subscribe();
+    this.ngOnInit();
+  }
+
   async getCartItems() {
     await this.homeService.GetCartItems().toPromise()
       .then(
         (response) => {
           this.cartItems = response.data;
+          this.total =0;
           response.data.forEach(element => {
-            this.total= this.total +element.price;
+            this.total= this.total +element.price * element.quantity;
           });
-          console.log(this.cartItems)
-          console.log(this.total)
         }
       )
   }
@@ -47,7 +61,6 @@ export class CartComponent implements OnInit {
           });
           this.ngOnInit();
           this.homeComponent.ngOnInit();
-
         }
       }
     )

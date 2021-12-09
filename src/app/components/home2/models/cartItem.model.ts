@@ -9,5 +9,5 @@ export interface CartItemModel {
     brand:             string;
     availableQuantity: number;
     description:       string;
-    quantity:          string;
+    quantity:          number;
 }

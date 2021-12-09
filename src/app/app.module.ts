@@ -45,7 +45,6 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 const routes: Routes = [
   {
