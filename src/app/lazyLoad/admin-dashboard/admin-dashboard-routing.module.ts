@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
 
-    path:'main',
+    path:'main3',
     component:MainComponent
   },
   {

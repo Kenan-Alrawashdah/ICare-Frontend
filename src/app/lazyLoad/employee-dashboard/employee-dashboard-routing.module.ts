@@ -5,12 +5,12 @@ import { EmployeesInformationComponent } from 'src/app/components/employee-dashb
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'Employee',
     redirectTo: 'main',
     pathMatch: 'full',
   },
   {
-    path: 'main',
+    path: 'main2',
     component: EmployeeMainComponent,
   },
   {
