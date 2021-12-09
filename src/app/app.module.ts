@@ -43,6 +43,8 @@ import { Patient2Module } from './lazyLoad/patient2/patient2.module';
 import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
+import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
+
 import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
@@ -130,6 +132,7 @@ const routes: Routes = [
     PaymentComponent,
     AddDrugComponent,
     AdminDashboardComponent,
+    AddEmployeeComponent,
     EmployeeDashboardComponent,
     EmployeeMainComponent,
     EmployeesInformationComponent,
@@ -138,7 +141,6 @@ const routes: Routes = [
     Patient2Component,
     AdminDashboardComponent,
     Home2Component
-
   ],
   imports: [
     BrowserModule,
