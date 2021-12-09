@@ -2,7 +2,7 @@ import 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/services/token.service';
-import { Usersearch as UserSearch } from 'src/app/shared/User/Models/usersearch.model';
+import { Usersearch, Usersearch as UserSearch } from 'src/app/shared/User/Models/usersearch.model';
 import { HomePageService } from 'src/app/shared/User/Services/home-page.service';
 import { UserToken } from 'src/app/shared/User/Models/UserToken';
 @Component({
@@ -11,39 +11,31 @@ import { UserToken } from 'src/app/shared/User/Models/UserToken';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  
-  SearchForm!: FormGroup;
   list: UserSearch[];
-  Name:string = this.tokenService.getUser();
-  
-  public isLogin:boolean;
-  
+  Name: string = this.tokenService.getUser();
+
+  public isLogin: boolean;
+  public InputSearch: string;
   constructor(
     private service: HomePageService,
-    private tokenService: TokenStorageService) {
-      
-    }
-    ngOnInit(): void {
+    private tokenService: TokenStorageService
+  ) {}
+  ngOnInit(): void {
     console.log(typeof this.Name);
     let token = this.tokenService.getToken();
-    if(token == null)
-    { 
+    if (token == null) {
       this.isLogin = false;
-    }else{
+    } else {
       this.isLogin = true;
     }
     console.log(this.isLogin);
-    let Search = '';
-    this.SearchForm = new FormGroup({
-      Search: new FormControl(Search, [Validators.required]),
-    });
   }
 
-  GetDrugByNameSearch(search: string) {
-    this.service.GetDrugByNameSearch(search).subscribe(
+  GetDrugByNameSearch() {
+    this.service.GetDrugByNameSearch(this.InputSearch).subscribe(
       (data) => {
-        if (data.success == true) {
-          this.list = data.data as unknown as UserSearch[];
+        if (data.success) {
+          this.list = data.data as unknown as Usersearch[];
         }
       },
       (error) => {
@@ -51,12 +43,7 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  onSubmit() {
-    const Search = this.SearchForm.value.Search;
-    this.GetDrugByNameSearch(Search);
-  }
-
-  logout(){
+  logout() {
     this.tokenService.signOut();
     this.ngOnInit();
   }

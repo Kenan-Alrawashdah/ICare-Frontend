@@ -1,0 +1,76 @@
+<div class="ml-0 ml-md-4">
+    <div class="d-none d-md-block">
+        <div class="row mb-md-5">
+            <div class="col">
+                <h5 class="mb-1 text-white">Account Details</h5>
+                <p class="mb-0 text-white small">
+                    You have full control to manage your own Account.
+                </p>
+            </div>
+            <div class="col-auto">
+                <a routerLink="/Patient/Account/Change-Password" class="btn btn-primary btn-sm">
+                    Change Password</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <form class="row align-items-end" [formGroup]="AccountForm" (ngSubmit)="onSubmit()">
+                    <!-- First name -->
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" formControlName="firstName" id="firstName" class="form-control" placeholder="First Name" />
+                        <small class="text-danger" *ngIf="
+                AccountForm.get('firstName').hasError('required') &&
+                (AccountForm.controls['firstName'].dirty ||
+                  AccountForm.controls['firstName'].touched)
+              ">
+                            This field is required.
+                        </small>
+                    </div>
+                    <!-- Last name -->
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label" for="lastName">Last Name</label>
+                        <input type="text" formControlName="lastName" id="lastName" class="form-control" placeholder="Last Name" />
+                        <small class="text-danger" *ngIf="
+                AccountForm.get('lastName').hasError('required') &&
+                (AccountForm.controls['lastName'].dirty ||
+                  AccountForm.controls['lastName'].touched)
+              ">
+                            This field is required.
+                        </small>
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label" for="phoneNumber">Phone</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Phone" />
+                    </div>
+
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="text" id="email" formControlName="email" class="form-control" placeholder="abc@abc.com" />
+                        <small class="text-danger" *ngIf="
+                AccountForm.get('email').hasError('required') &&
+                (AccountForm.controls['email'].dirty ||
+                  AccountForm.controls['email'].touched)
+              ">
+                            This field is required.
+                        </small>
+                        <small class="text-danger" *ngIf="
+                AccountForm.get('email').hasError('email') &&
+                (AccountForm.controls['email'].dirty ||
+                  AccountForm.controls['email'].touched)
+              ">
+                            This field is required.
+                        </small>
+                    </div>
+                    <div class="col-12 mb-3 text-lg-right">
+                        <button type="submit" class="btn btn-primary" [disabled]="!AccountForm.valid">
+                            edit details
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

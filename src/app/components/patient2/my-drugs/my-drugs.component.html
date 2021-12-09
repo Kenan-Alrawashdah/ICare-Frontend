@@ -1,0 +1,36 @@
+<div class="ml-0 ml-md-4">
+    <div class="d-none d-md-block">
+        <div class="row mb-md-5">
+            <div class="col">
+                <h5 class="mb-1 text-white">My Drugs</h5>
+                <p class="mb-0 text-white small">
+                    You have full control to manage your own account setting.
+                </p>
+            </div>
+            <div class="col-auto">
+                <a routerLink="/Patient/Account" class="btn btn-primary btn-sm">
+                    <i class="ti-angle-left"></i> Go Back</a>
+            </div>
+        </div>
+    </div>
+    <div class="pt-5"></div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div *ngFor="let item of myDrugs" class="col-lg-6" style="margin-bottom: 15px;">
+                    <div class="address-block bg-light rounded p-3">
+                        <a href="#" class="edit_address" data-toggle="modal" data-dismiss="modal" data-target="#address_model">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="delete_address">
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        </a>
+                        <h6>{{item.drugName}}</h6>
+                        <span class="text-muted">Expire Date: {{item.expireDate}}</span>
+                    </div>
+                </div>
+                <div class="col-lg-6"></div>
+            </div>
+        </div>
+    </div>
+</div>
