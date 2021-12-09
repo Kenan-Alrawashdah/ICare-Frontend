@@ -5,11 +5,12 @@ import { MainComponent } from 'src/app/components/admin-dashboard/main/main.comp
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'main',
-    pathMatch: 'full'
+    path: 'Admin',
+    redirectTo: 'Admin/main',
+    pathMatch: 'full',
   },
   {
+
     path:'main',
     component:MainComponent
   },
@@ -17,10 +18,11 @@ const routes: Routes = [
     path:'add',
     component:AddEmployeeComponent
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminDashboardRoutingModule { }
+export class AdminDashboardRoutingModule {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './components/Home/icare/category/category.component';
 import { HomeComponent } from './components/Home/icare/home/home.component';
@@ -37,16 +37,21 @@ import { PaymentComponent } from './components/User/payment/payment.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomePageService } from './shared/User/Services/home-page.service';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { Patient2Component } from './components/patient2/patient2.component';
-import { AccountComponent } from './components/patient2/account/account.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
 import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { MainComponent } from './components/admin-dashboard/main/main.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
+
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
+import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
+import { DeliveryDashboardComponent } from './components/delivery-dashboard/delivery-dashboard.component';
+import { DeliveryMainComponent } from './components/delivery-dashboard/delivery-main/delivery-main.component';
+import { Home2Component } from './components/home2/home2.component';
+import { Home2Module } from './lazyLoad/home2/home2.module';
 
 const routes: Routes = [
   {
@@ -56,28 +61,45 @@ const routes: Routes = [
   },
   {
     path: 'Home',
+    component:Home2Component,
     loadChildren: () =>
-      import('./lazyLoad/home-page/home-page-routing.module').then(
-        (m) => m.HomePageRoutingModule
+      import('./lazyLoad/home2/home2-routing.module').then(
+        (m) => m.Home2RoutingModule
       ),
   },
   {
     path: 'Patient',
-    component : Patient2Component,
+    component: Patient2Component,
     loadChildren: () =>
       import('./lazyLoad/patient2/patient2-routing.module').then(
         (m) => m.Patient2RoutingModule
-      )
+      ),
   },
   {
     path: 'Admin',
-    component:AdminDashboardComponent, 
+    component: AdminDashboardComponent,
     loadChildren: () =>
       import('./lazyLoad/admin-dashboard/admin-dashboard-routing.module').then(
         (m) => m.AdminDashboardRoutingModule
-      )
+
+      ),
   },
-  { path: 'signin', component: RegistrationComponent },
+  {
+    path: 'Delivery',
+    component: DeliveryDashboardComponent,
+    loadChildren: () =>
+      import(
+        './lazyLoad/delivery-dashboard/delivery-dashboard-routing.module'
+      ).then((m) => m.DeliveryDashboardRoutingModule),
+  },
+  {
+    path: 'Accountant',
+    component: EmployeeDashboardComponent,
+    loadChildren: () =>
+      import(
+        './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
+      ).then((m) => m.EmployeeDashboardRoutingModule),
+  }
 ];
 @NgModule({
   declarations: [
@@ -108,10 +130,17 @@ const routes: Routes = [
     RegistrationComponent,
     ForgotPasswordComponent,
     PaymentComponent,
-    Patient2Component,
     AddDrugComponent,
     AdminDashboardComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    EmployeeDashboardComponent,
+    EmployeeMainComponent,
+    EmployeesInformationComponent,
+    DeliveryDashboardComponent,
+    DeliveryMainComponent,
+    Patient2Component,
+    AdminDashboardComponent,
+    Home2Component
   ],
   imports: [
     BrowserModule,
@@ -120,13 +149,14 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     Patient2Module,
+    Home2Module,
     AdminDashboardModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgbModule,
   ],
-  
-  providers: [
-    authInterceptorProviders],
+
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

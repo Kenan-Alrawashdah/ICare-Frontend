@@ -1,0 +1,65 @@
+<div class="container">
+
+    <section class="section-padding mt-4">
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-lg-6 ">
+                    <!--=======  product details slider area  =======-->
+                    <div class="product-details-slider-area">
+                        <div class="big-image-wrapper">
+                            <div class="product-details-big-image-slider-wrapper slider-for" data-autoplay="false" data-nav="false">
+                                <div class="single-image">
+                                    <img src="http://localhost:5000/images/{{drug.picturePath}}" alt="slider">
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--======= End of product details slider area =======-->
+                </div>
+                <div class="col-lg-6 mt-5">
+                    <div class="col-lg-12">
+                        <div class="single-product-content-description">
+                            <h4 class="product-title">{{drug.name}}</h4>
+                            <p class="single-grid-product__price"><span class="discounted-price">₹{{drug.price}}</span></p>
+                            <div class="single-info" style="margin-bottom: 100px;">
+                                <span class="d-block text-muted mb-2"><strong>Category :</strong> {{drug.drugCategory}}</span>
+                                <span class="d-block text-muted mb-2"><strong>Availability :</strong> In
+                                    Stock</span>
+                            </div>
+                            <div class="row">
+                                <!-- Quantity -->
+                                <div class="col-4 qty-input btn">
+                                    <i class="less" (click)="less()">-</i>
+                                    <input type="text" [(ngModel)]="quantity" />
+                                    <i class="more" (click)="more()">+</i>
+                                </div>
+                                <!-- End Quantity -->
+                                <div class="col-8 ">
+                                    <a class=" col-12 btn btn-rounded btn-primary" (click)="CheckItemIfInCart(drug.id)"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=======  product description review   =======-->
+        <div class="product-full-description">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="entry-product-section-heading">Description</h3>
+                        <p>{{drug.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
