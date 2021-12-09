@@ -15,7 +15,7 @@ export class Home2Component implements OnInit {
   searchList: SearchModel[];
   cartList:CartItemModel[];
   cartItemNumber:number;
-  Name: string = this.tokenService.getUser();
+  Name: string ;
 
   public isLogin: boolean;
   public InputSearch: string;
@@ -29,6 +29,7 @@ export class Home2Component implements OnInit {
       this.isLogin = false;
     } else {
       this.isLogin = true;
+      this.Name = this.tokenService.getUser();
     }
     this.GetCartItems();
   }
