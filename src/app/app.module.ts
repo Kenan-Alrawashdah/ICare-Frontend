@@ -46,6 +46,7 @@ import { AddDrugComponent } from './components/patient2/add-drug/add-drug.compon
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MainComponent } from './components/admin-dashboard/main/main.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
+import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
 
 const routes: Routes = [
   {
@@ -109,7 +110,8 @@ const routes: Routes = [
     PaymentComponent,
     Patient2Component,
     AddDrugComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -27,7 +30,11 @@
             "scripts": [
               "src/assets/js/jquery-2.2.4.min.js",
               "src/assets/js/plugins.bundle.js",
-              "src/assets/js/theme.js"
+              "src/assets/js/theme.js",
+              "src/assets/Dashboard/assets/js/material-dashboard.js",
+              "src/assets/js/theme.js",
+              "src/assets/Dashboard/assets/js/material-dashboard.js.map",
+              "src/assets/Dashboard/assets/js/material-dashboard.min.js"
             ]
           },
           "configurations": {
