@@ -5,7 +5,7 @@ import { DeliveryMainComponent } from 'src/app/components/delivery-dashboard/del
 const routes: Routes = [
   {
     path: 'Delivery',
-    redirectTo: 'Dashboard',
+    redirectTo: '/Delivery/Dashboard',
     pathMatch: 'full',
   },
   {

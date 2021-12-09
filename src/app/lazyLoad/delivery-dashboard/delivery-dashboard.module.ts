@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { DeliveryDashboardRoutingModule } from './delivery-dashboard-routing.module';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    DeliveryDashboardRoutingModule
+    DeliveryDashboardRoutingModule,
+    NgbModule,
+
   ]
 })
 export class DeliveryDashboardModule { }

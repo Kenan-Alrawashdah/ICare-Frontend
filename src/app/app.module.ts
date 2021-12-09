@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './components/Home/icare/category/category.component';
 import { HomeComponent } from './components/Home/icare/home/home.component';
@@ -52,6 +51,8 @@ import { DeliveryDashboardComponent } from './components/delivery-dashboard/deli
 import { DeliveryMainComponent } from './components/delivery-dashboard/delivery-main/delivery-main.component';
 import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
+import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
+import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
 
 const routes: Routes = [
   {
@@ -152,8 +153,9 @@ const routes: Routes = [
     Home2Module,
     AdminDashboardModule,
     BrowserAnimationsModule,
+    DeliveryDashboardModule,
+    EmployeeDashboardModule,
     ToastrModule.forRoot(),
-    NgbModule,
   ],
 
   providers: [authInterceptorProviders],
