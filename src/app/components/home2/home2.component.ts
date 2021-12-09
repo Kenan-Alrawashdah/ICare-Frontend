@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { HomeService } from './home.service';
+import { CartItemModel } from './models/cartItem.model';
+import { DrugModel } from './models/Drug.model';
 import { SearchModel } from './models/search.model';
 
 @Component({
@@ -10,7 +12,9 @@ import { SearchModel } from './models/search.model';
 })
 export class Home2Component implements OnInit {
 
-   list: SearchModel[];
+  searchList: SearchModel[];
+  cartList:CartItemModel[];
+  cartItemNumber:number;
   Name: string = this.tokenService.getUser();
 
   public isLogin: boolean;
@@ -20,21 +24,20 @@ export class Home2Component implements OnInit {
     private tokenService: TokenStorageService
   ) {}
   ngOnInit(): void {
-    console.log(typeof this.Name);
     let token = this.tokenService.getToken();
     if (token == null) {
       this.isLogin = false;
     } else {
       this.isLogin = true;
     }
-    console.log(this.isLogin);
+    this.GetCartItems();
   }
 
   GetDrugByNameSearch() {
     this.service.GetDrugByNameSearch(this.InputSearch).subscribe(
       (data) => {
         if (data.success) {
-          this.list = data.data as unknown as SearchModel[];
+          this.searchList = data.data as unknown as SearchModel[];
         }
       },
       (error) => {
@@ -47,7 +50,17 @@ export class Home2Component implements OnInit {
     this.ngOnInit();
   }
 
-  
+  async GetCartItems()
+  {
+    await this.service.GetCartItems().toPromise()
+    .then(
+      (response)=>{
+        this.cartList = response.data;
+        this.cartItemNumber = response.data.length
+
+      }
+    )
+  }
 
   ngAfterViewInit() {
     (function ($) {

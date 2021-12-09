@@ -89,7 +89,10 @@
                         "styles": ["src/styles.css"],
                         "scripts": [
                             "src/assets/Dashboard/assets/js/theme.js",
+                            "src/assets/Dashboard/assets/js/material-dashboard.js.map",
+                            "src/assets/Dashboard/assets/js/material-dashboard.min.js",
                             "src/assets/js/theme.js"
+
 
                         ]
                     }

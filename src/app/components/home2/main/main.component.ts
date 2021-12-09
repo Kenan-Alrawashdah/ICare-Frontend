@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DrugsComponent } from '../../Patient/Account/drugs/drugs.component';
 import { HomeService } from '../home.service';
 import { CategoryModel } from '../models/Category.model';
 
@@ -21,14 +23,14 @@ export class MainComponent implements OnInit {
   Categories:CategoryModel[];
    constructor(
     private homeService: HomeService,
-    private Toastr: ToastrService
+    private Toastr: ToastrService,
+    private router:Router
   ) {
     
   }
 
    async ngOnInit() {
     await this.getAllCategories();
-    console.log(this.Categories)
   }
   
   ContactForm = new FormGroup({
@@ -53,12 +55,16 @@ export class MainComponent implements OnInit {
     await this.homeService.GetAllCategory().toPromise().
     then(
       (response)=>{
-        this.Categories = response.data['categories'],
-        console.log(response)
+        this.Categories = response.data['categories']
       }
     )
 
-    console.log(this.Categories)
   }
+
+  public goToCategoryDrugs(id:number){
+    this.homeService.CategoryId = id;
+   this.router.navigate(['Home/Drugs'])
+  }
+  
 
 }

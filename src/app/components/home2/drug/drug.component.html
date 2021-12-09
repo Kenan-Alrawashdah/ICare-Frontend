@@ -9,7 +9,7 @@
                         <div class="big-image-wrapper">
                             <div class="product-details-big-image-slider-wrapper slider-for" data-autoplay="false" data-nav="false">
                                 <div class="single-image">
-                                    <img src="assets/img/product/product-1.png" alt="slider">
+                                    <img src="http://localhost:5000/images/{{drug.picturePath}}" alt="slider">
                                 </div>
 
 
@@ -22,26 +22,23 @@
                 <div class="col-lg-6 mt-5">
                     <div class="col-lg-12">
                         <div class="single-product-content-description">
-                            <h4 class="product-title">BrandName Beginner's Protein, 2.2 lb, Cookies and Cream</h4>
-                            <p class="single-grid-product__price"><span class="discounted-price">₹999</span></p>
+                            <h4 class="product-title">{{drug.name}}</h4>
+                            <p class="single-grid-product__price"><span class="discounted-price">₹{{drug.price}}</span></p>
                             <div class="single-info" style="margin-bottom: 100px;">
-                                <span class="d-block text-muted mb-2"><strong>SKU :</strong> MB5415</span>
-                                <span class="d-block text-muted mb-2"><strong>Category :</strong> Sports
-                                    Nutrition</span>
-
+                                <span class="d-block text-muted mb-2"><strong>Category :</strong> {{drug.drugCategory}}</span>
                                 <span class="d-block text-muted mb-2"><strong>Availability :</strong> In
                                     Stock</span>
                             </div>
                             <div class="row">
                                 <!-- Quantity -->
                                 <div class="col-4 qty-input btn">
-                                    <i class="less">-</i>
-                                    <input type="text" value="2" />
-                                    <i class="more">+</i>
+                                    <i class="less" (click)="less()">-</i>
+                                    <input type="text" [(ngModel)]="quantity" />
+                                    <i class="more" (click)="more()">+</i>
                                 </div>
                                 <!-- End Quantity -->
                                 <div class="col-8 ">
-                                    <a class=" col-12 btn btn-rounded btn-primary" href="cart.html"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                                    <a class=" col-12 btn btn-rounded btn-primary" (click)="CheckItemIfInCart(drug.id)"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
                                 </div>
 
                             </div>
@@ -58,15 +55,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h3 class="entry-product-section-heading">Description</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tenetur culpa quis aut, ex totam fugit nam consequuntur corporis deserunt quos molestias temporibus sit aliquam, provident molestiae modi, rem pariatur. Lorem ipsum dolor
-                            sit amet consectetur adipisicing elit. Ipsum voluptates sunt tempore exer cum labore, delectus asperiores molestias saepe consequatur totam sed.</p>
-                        <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit
-                            est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et
-                            blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.
-                        </p>
-
-
-
+                        <p>{{drug.description}}</p>
                     </div>
                 </div>
             </div>

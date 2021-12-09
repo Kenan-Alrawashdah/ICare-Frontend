@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
+import { Home2Component } from '../home2.component';
 declare var FB: any;
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
+    private homeComponent: Home2Component
   ) { }
 
   ngOnInit(): void {
@@ -63,9 +65,8 @@ export class LoginComponent implements OnInit {
         if (data.success) {
           this.tokenStorage.saveToken(data.data.accessToken);
           this.tokenStorage.saveRefreshToken(data.data.refreshToken);
-          this.router.navigate(['Home']).then(() => {
-            window.location.reload()
-          });;
+          this.homeComponent.ngOnInit();
+          this.router.navigate(['Home']);
         } else {
           console.log(data.errors)
         }

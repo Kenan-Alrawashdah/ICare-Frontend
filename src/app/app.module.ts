@@ -124,9 +124,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  
-  providers: [
-    authInterceptorProviders],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
