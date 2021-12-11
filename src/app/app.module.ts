@@ -53,6 +53,9 @@ import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
 import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
+import { PharmacerDashboardComponent } from './components/pharmacer-dashboard/pharmacer-dashboard.component';
+import { PharmacerMainComponent } from './components/pharmacer-dashboard/pharmacer-main/pharmacer-main.component';
+import { PharmacerCategorieComponent } from './components/pharmacer-dashboard/pharmacer-categorie/pharmacer-categorie.component';
 
 const routes: Routes = [
   {
@@ -62,7 +65,7 @@ const routes: Routes = [
   },
   {
     path: 'Home',
-    component:Home2Component,
+    component: Home2Component,
     loadChildren: () =>
       import('./lazyLoad/home2/home2-routing.module').then(
         (m) => m.Home2RoutingModule
@@ -82,7 +85,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./lazyLoad/admin-dashboard/admin-dashboard-routing.module').then(
         (m) => m.AdminDashboardRoutingModule
-
       ),
   },
   {
@@ -100,7 +102,15 @@ const routes: Routes = [
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-  }
+  },
+  {
+    path: 'Pharmacer',
+    component: PharmacerDashboardComponent,
+    loadChildren: () =>
+      import(
+        './lazyLoad/pharmacer-dashboard/pharmacer-dashboard-routing.module'
+      ).then((m) => m.PharmacerDashboardRoutingModule),
+  },
 ];
 @NgModule({
   declarations: [
@@ -141,7 +151,10 @@ const routes: Routes = [
     DeliveryMainComponent,
     Patient2Component,
     AdminDashboardComponent,
-    Home2Component
+    Home2Component,
+    PharmacerDashboardComponent,
+    PharmacerMainComponent,
+    PharmacerCategorieComponent,
   ],
   imports: [
     BrowserModule,
