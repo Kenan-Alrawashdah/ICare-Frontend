@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
-declare let paypal:any;
+declare let paypal: any;
 @Component({
   selector: 'app-pharmacer-main',
   templateUrl: './pharmacer-main.component.html',
@@ -47,15 +47,22 @@ export class PharmacerMainComponent implements AfterViewChecked {
       });
     }
   }
-  addPaypalScript(){
-    this.addScript=true;
-    return new Promise((resolve,reject)=>{
-      let scripttagElement=document.createElement('script');
-      scripttagElement.src="http://www.paypalobjects.com/api/checkout.js";
-      scripttagElement.onload=resolve;
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');
+      scripttagElement.src = 'http://www.paypalobjects.com/api/checkout.js';
+      scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
-    })
-  };
+    });
+  }
+  gg() {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(function (postion) {
+        console.log(postion);
+      });
+    else console.log('not supported');
+  }
 
   ngOnInit(): void {}
 }

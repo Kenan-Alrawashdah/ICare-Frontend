@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AllOrdersForDelivery } from 'src/app/shared/Delivery/all-orders-for-delivery.model';
 import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
 import { GetLocatinForUser } from 'src/app/shared/Delivery/get-locatin-for-user.model';
@@ -49,11 +49,9 @@ export class DeliveryMainComponent implements OnInit {
   }
 
   TakeOrder(id: number) {
-    this.dashboardService.TakeOrder(id).subscribe((data) => this.ngOnInit());
+    this.dashboardService.TakeOrder(id).subscribe(() => this.ngOnInit());
   }
   OrderDeliverd(id: number) {
-    this.dashboardService
-      .OrderDeliverd(id)
-      .subscribe((data) => this.ngOnInit());
+    this.dashboardService.OrderDeliverd(id).subscribe(() => this.ngOnInit());
   }
 }

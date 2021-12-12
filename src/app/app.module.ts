@@ -56,7 +56,7 @@ import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-
 import { PharmacerDashboardComponent } from './components/pharmacer-dashboard/pharmacer-dashboard.component';
 import { PharmacerMainComponent } from './components/pharmacer-dashboard/pharmacer-main/pharmacer-main.component';
 import { PharmacerCategorieComponent } from './components/pharmacer-dashboard/pharmacer-categorie/pharmacer-categorie.component';
-
+import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
 const routes: Routes = [
   {
     path: '',
@@ -155,6 +155,7 @@ const routes: Routes = [
     PharmacerDashboardComponent,
     PharmacerMainComponent,
     PharmacerCategorieComponent,
+    DeliveryOrdersComponent,
   ],
   imports: [
     BrowserModule,
