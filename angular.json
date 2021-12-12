@@ -24,8 +24,7 @@
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles.css",
-                            "src/assets/css/theme.css",
-                            "src/assets/Admin/css/vertical-layout-light/style.css"
+                            "src/assets/css/theme.css"
                         ],
                         "scripts": [
                             "src/assets/js/jquery-2.2.4.min.js",
