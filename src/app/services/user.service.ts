@@ -69,7 +69,7 @@ export class UserService {
     };
 
     return this.httpClient.post<ApiResponseData<UserToken>>(
-
+      Constants.baseURL+
       'User/PatientRegistration',
       body
     );

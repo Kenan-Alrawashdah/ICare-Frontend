@@ -39,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { Patient2Component } from './components/patient2/patient2.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
-import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
@@ -53,6 +52,7 @@ import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
 import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
+import { Admin2Component } from './components/admin2/admin2.component';
 
 const routes: Routes = [
   {
@@ -101,6 +101,11 @@ const routes: Routes = [
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
   }
+  ,
+  {
+    path: 'Admin2',
+    component: Admin2Component
+  }
 ];
 @NgModule({
   declarations: [
@@ -131,7 +136,6 @@ const routes: Routes = [
     RegistrationComponent,
     ForgotPasswordComponent,
     PaymentComponent,
-    AddDrugComponent,
     AdminDashboardComponent,
     AddEmployeeComponent,
     EmployeeDashboardComponent,
@@ -141,7 +145,8 @@ const routes: Routes = [
     DeliveryMainComponent,
     Patient2Component,
     AdminDashboardComponent,
-    Home2Component
+    Home2Component,
+    Admin2Component
   ],
   imports: [
     BrowserModule,

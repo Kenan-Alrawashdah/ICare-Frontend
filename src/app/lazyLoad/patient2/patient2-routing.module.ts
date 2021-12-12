@@ -6,6 +6,7 @@ import { AddDrugComponent } from 'src/app/components/patient2/add-drug/add-drug.
 import { AddressComponent } from 'src/app/components/patient2/address/address.component';
 import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.component';
+import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'Address',
     component:AddressComponent
+  },
+  {
+    path:'Orders',
+    component:OrdersComponent
   },
 ];
 

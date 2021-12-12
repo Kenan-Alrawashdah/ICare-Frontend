@@ -29,10 +29,10 @@ export class Home2Component implements OnInit {
     if (token == null) {
       this.isLogin = false;
     } else {
+      this.GetCartItems();
       this.isLogin = true;
       this.Name = this.tokenService.getUser();
     }
-    this.GetCartItems();
   }
 
   GetDrugByNameSearch() {

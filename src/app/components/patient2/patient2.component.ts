@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token.service';
+import { AccountModel } from './models/account.model';
+import { PatientService } from './patient.service';
 
 @Component({
   selector: 'app-patient2',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Patient2Component implements OnInit {
 
-  constructor() { }
+  user:AccountModel;
+
+  constructor(
+    private tokenService:TokenStorageService,
+    private patientServices:PatientService
+  ) { }
 
   ngOnInit(): void {
+    this.getUserName();
+  }
+
+  async getUserName(){
+    var info = await this.patientServices.getPatientInfo().toPromise()
+    .then(
+(response)=>{
+  this.user = response.data;
+}
+
+    )
+  
+    
   }
 
 }

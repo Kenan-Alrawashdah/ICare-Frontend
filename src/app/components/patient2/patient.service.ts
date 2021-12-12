@@ -6,6 +6,7 @@ import { AccountModel } from './models/account.model';
 import { AddAddressModel } from './models/AddAddress.model';
 import { AddDrugModel } from './models/AddDrug.Model';
 import { GetMyDrugsModel } from './models/GetMyDrug.model';
+import { OrdersModel } from './models/PatientOrders.model';
 
 const baseURL = Constants.baseURL;
 
@@ -35,5 +36,9 @@ export class PatientService {
 
   addAddress(body:AddAddressModel){
     return this.http.post<ApiResponseData>(baseURL+'Patient/AddLocation',body)
+  }
+
+  GetOrders(){
+    return this.http.get<ApiResponseData>(baseURL+'Orders/GetPatientOrders')
   }
 }
