@@ -53,6 +53,7 @@ import { Home2Module } from './lazyLoad/home2/home2.module';
 import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
 import { Admin2Component } from './components/admin2/admin2.component';
+import { Admin2Module } from './lazyLoad/admin2/admin2.module';
 
 const routes: Routes = [
   {
@@ -104,7 +105,11 @@ const routes: Routes = [
   ,
   {
     path: 'Admin2',
-    component: Admin2Component
+    component: Admin2Component,
+    loadChildren: () =>
+    import(
+      './lazyLoad/admin2/admin2-routing.module'
+    ).then((m) => m.Admin2RoutingModule),
   }
 ];
 @NgModule({
@@ -156,6 +161,7 @@ const routes: Routes = [
     HttpClientModule,
     Patient2Module,
     Home2Module,
+    Admin2Module,
     AdminDashboardModule,
     BrowserAnimationsModule,
     DeliveryDashboardModule,
