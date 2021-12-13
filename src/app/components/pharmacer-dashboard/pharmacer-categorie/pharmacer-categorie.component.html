@@ -13,18 +13,19 @@
             position-absolute
           "
         >
-          <i class="material-icons opacity-10">person</i>
+          <i class="fas fa-prescription-bottle-alt"></i>
         </div>
         <div class="text-end pt-1">
-          <p class="text-sm mb-0 text-capitalize">Orders</p>
-          <h4 class="mb-0">{{ NumberOfOrders.numberOfOrders }}</h4>
+          <p class="text-sm mb-0 text-capitalize">Drugs Categorie</p>
+          <h4 class="mb-0"></h4>
         </div>
       </div>
       <hr class="dark horizontal my-0" />
-      <div class="card-footer p-3">Number of user requests</div>
+      <div class="card-footer p-3">The number of categories in the pharmacy</div>
     </div>
   </div>
 </div>
+
 <div class="row mt-5">
   <div class="col-12">
     <div class="card my-4">
@@ -32,7 +33,19 @@
         <div
           class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"
         >
-          <h6 class="text-white text-capitalize ps-3">Order List</h6>
+          <h6
+            class="text-white text-capitalize ps-3"
+            style="display: inline-block"
+          >
+            Drug Categorie List
+          </h6>
+          <button
+            class="btn btn-success"
+            style="float: right; margin: 0 10px 5px 0"
+          >
+            <i class="fas fa-plus"></i>
+            Add Drug Categorie
+          </button>
         </div>
       </div>
       <div class="card-body px-0 pb-2">
@@ -47,7 +60,7 @@
                     opacity-7
                   "
                 >
-                  Customer Name
+                  Categorie Name
                 </th>
                 <th
                   class="
@@ -57,7 +70,7 @@
                     ps-2
                   "
                 >
-                  Amount
+                  Price
                 </th>
                 <th
                   class="
@@ -66,7 +79,7 @@
                     opacity-7
                   "
                 >
-                  Status
+                  Exp Date
                 </th>
                 <th
                   class="
@@ -89,7 +102,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr
+              <!-- <tr
                 *ngFor="let item of OrderList"
                 class="
                   text-center text-uppercase text-secondary text-xxs
@@ -120,7 +133,7 @@
                 </td>
                 <td>
                   <span
-                    *ngIf="item.status == '2'"
+                    *ngIf="item.status == '1'"
                     (click)="TakeOrder(item.orderId)"
                     style="cursor: pointer"
                   >
@@ -131,7 +144,7 @@
                     ></i>
                   </span>
                   <span
-                    *ngIf="item.status == '3'"
+                    *ngIf="item.status == '2'"
                     (click)="OrderDeliverd(item.orderId)"
                     style="cursor: pointer"
                   >
@@ -142,7 +155,7 @@
                     ></i>
                   </span>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -150,101 +163,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #mymodal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-      Customer Address Information
-    </h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true">×</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form id="address_modal_form">
-      <div class="form-group">
-        <label class="form-label" for="locality">Address Name</label>
-
-        <input
-          type="text"
-          disabled
-          [value]="Locatins.addressName"
-          class="form-control input-lg rounded"
-        />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="locality">Phone Number</label>
-
-        <input
-          disabled
-          name="phone"
-          type="text"
-          [value]="Locatins.phoneNumber"
-          class="form-control input-lg rounded"
-        />
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-4">
-            <label class="form-label" for="locality">City</label>
-            <input
-              type="text"
-              disabled
-              class="form-control"
-              [value]="Locatins.city"
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="mb-4">
-            <label class="form-label" for="country">Zip Code</label>
-            <input
-              type="number"
-              disabled
-              class="form-control"
-              [value]="Locatins.zipCode"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-4">
-            <label class="form-label" for="locality">Details</label>
-            <input
-              type="text"
-              disabled
-              class="form-control"
-              [value]="Locatins.details"
-            />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="mb-4">
-            <label class="form-label" for="country">Street</label>
-            <input
-              type="text"
-              disabled
-              class="form-control"
-              [value]="Locatins.street"
-            />
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="modal.close('Save click')"
-    >
-      Ok
-    </button>
-  </div>
-</ng-template>
