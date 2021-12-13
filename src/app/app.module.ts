@@ -39,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { Patient2Component } from './components/patient2/patient2.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
-import { AddDrugComponent } from './components/patient2/add-drug/add-drug.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
@@ -57,6 +56,17 @@ import { PharmacerDashboardComponent } from './components/pharmacer-dashboard/ph
 import { PharmacerMainComponent } from './components/pharmacer-dashboard/pharmacer-main/pharmacer-main.component';
 import { PharmacerCategorieComponent } from './components/pharmacer-dashboard/pharmacer-categorie/pharmacer-categorie.component';
 import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
+import { Admin2Component } from './components/admin2/admin2.component';
+import { Admin2Module } from './lazyLoad/admin2/admin2.module';
+import { PharmacistComponent } from './components/pharmacist/pharmacist.component';
+import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
+import { AddDrugComponent } from './components/pharmacist/add-drug/add-drug.component';
+import { GetAllDrugsComponent } from './components/pharmacist/get-all-drugs/get-all-drugs.component';
+import { SingleDrugComponent } from './components/pharmacist/single-drug/single-drug.component';
+import { EditDrugComponent } from './components/pharmacist/edit-drug/edit-drug.component';
+import { OpenOrdersComponent } from './components/pharmacist/open-orders/open-orders.component';
+import { OrderDrugsComponent } from './components/pharmacist/order-drugs/order-drugs.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -102,7 +112,8 @@ const routes: Routes = [
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-  },
+    },
+
   {
     path: 'Pharmacer',
     component: PharmacerDashboardComponent,
@@ -111,6 +122,24 @@ const routes: Routes = [
         './lazyLoad/pharmacer-dashboard/pharmacer-dashboard-routing.module'
       ).then((m) => m.PharmacerDashboardRoutingModule),
   },
+  {
+    path: 'Admin2',
+    component: Admin2Component,
+    loadChildren: () =>
+    import(
+      './lazyLoad/admin2/admin2-routing.module'
+    ).then((m) => m.Admin2RoutingModule),
+  }
+  ,
+  {
+    path: 'pharmacist',
+    component: PharmacistComponent,
+    loadChildren: () =>
+    import(
+      './lazyLoad/pharmacist/pharmacist-routing.module'
+    ).then((m) => m.PharmacistRoutingModule),
+  }
+
 ];
 @NgModule({
   declarations: [
@@ -141,12 +170,12 @@ const routes: Routes = [
     RegistrationComponent,
     ForgotPasswordComponent,
     PaymentComponent,
-    AddDrugComponent,
     AdminDashboardComponent,
     AddEmployeeComponent,
     EmployeeDashboardComponent,
     EmployeeMainComponent,
     EmployeesInformationComponent,
+    //-------
     DeliveryDashboardComponent,
     DeliveryMainComponent,
     Patient2Component,
@@ -156,6 +185,9 @@ const routes: Routes = [
     PharmacerMainComponent,
     PharmacerCategorieComponent,
     DeliveryOrdersComponent,
+    Admin2Component,
+    PharmacistComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -163,12 +195,16 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    //lazyLoad Models 
     Patient2Module,
     Home2Module,
+    Admin2Module,
+    PharmacistModule,
     AdminDashboardModule,
-    BrowserAnimationsModule,
     DeliveryDashboardModule,
     EmployeeDashboardModule,
+    //--------
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
 

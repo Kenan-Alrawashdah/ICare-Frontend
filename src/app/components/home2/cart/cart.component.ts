@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
 import { Home2Component } from '../home2.component';
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private Toastr:ToastrService,
-    private homeComponent:Home2Component
+    private homeComponent:Home2Component,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,16 @@ export class CartComponent implements OnInit {
         }
       }
     )
+  }
+
+  CheckOut(){
+    if(this.cartItems.length == 0){
+      this.Toastr.warning("You must have one item at least to checkout", "",{
+        timeOut: 1500,
+      });
+    }else{
+      this.router.navigate(['/Home/CheckOut']);
+    }
   }
 
 }

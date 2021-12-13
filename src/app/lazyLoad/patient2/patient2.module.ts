@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.component';
 import { AddressComponent } from 'src/app/components/patient2/address/address.component';
+import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
+import { AddDrugComponent } from 'src/app/components/patient2/add-drug/add-drug.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AddressComponent } from 'src/app/components/patient2/address/address.co
     AccountComponent,
     ChangePasswordComponent,
     MyDrugsComponent,
-    AddressComponent
+    AddressComponent,
+    OrdersComponent,
+    AddDrugComponent
   ],
   imports: [
     CommonModule,
