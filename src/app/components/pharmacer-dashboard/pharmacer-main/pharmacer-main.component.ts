@@ -56,13 +56,7 @@ export class PharmacerMainComponent implements AfterViewChecked {
       document.body.appendChild(scripttagElement);
     });
   }
-  gg() {
-    if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(function (postion) {
-        console.log(postion);
-      });
-    else console.log('not supported');
-  }
+ 
 
   ngOnInit(): void {}
 }
