@@ -120,7 +120,7 @@
                 </td>
                 <td>
                   <span
-                    *ngIf="item.status == '1'"
+                    *ngIf="item.status == '2'"
                     (click)="TakeOrder(item.orderId)"
                     style="cursor: pointer"
                   >
@@ -131,7 +131,7 @@
                     ></i>
                   </span>
                   <span
-                    *ngIf="item.status == '2'"
+                    *ngIf="item.status == '3'"
                     (click)="OrderDeliverd(item.orderId)"
                     style="cursor: pointer"
                   >

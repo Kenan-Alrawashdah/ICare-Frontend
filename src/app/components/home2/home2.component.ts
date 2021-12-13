@@ -29,10 +29,10 @@ export class Home2Component implements OnInit {
     if (token == null) {
       this.isLogin = false;
     } else {
+      this.GetCartItems();
       this.isLogin = true;
       this.Name = this.tokenService.getUser();
     }
-    this.GetCartItems();
   }
 
   GetDrugByNameSearch() {
@@ -113,6 +113,101 @@ export class Home2Component implements OnInit {
         } else {
           $('#showCart').addClass('show');
         }
+      });
+    })(jQuery);
+    (function ($) {
+      "use strict";
+      // ---------------------------------------------//
+      //  Background
+      //--------------------------------------------- //
+      $("[data-background]").each(function () {
+        $(this).attr(
+          "style",
+          "background-image:url(" + $(this).attr("data-background") + ")"
+        );
+      });
+      // ---------------------------------------------//
+      //  Background
+      //--------------------------------------------- //
+      if ($(".range-slider").length > 0) {
+        var nonLinearSlider = $(".range-slider");
+        var startMin = parseInt(nonLinearSlider.data("start-min"));
+        var startMax = parseInt(nonLinearSlider.data("start-max"));
+        var min = parseInt(nonLinearSlider.data("min"));
+        var max = parseInt(nonLinearSlider.data("max"));
+        var step = parseInt(nonLinearSlider.data("step"));
+    
+        var slider = document.getElementById("nouislider");
+    
+      
+      }
+      //-------------------------------------------------------
+      // Date Picker
+      //-------------------------------------------------------*/
+   
+      // -------------------------------------------//
+      //  Custom Select
+      // -------------------------------------------//
+
+    
+      // ---------------------------------------------//
+      // Slick Slider
+      // ---------------------------------------------//
+   
+      // ---------------------------------------------//
+      // add Remove item
+      // ---------------------------------------------//
+   
+  
+    
+      var websiteWidth = $(document).width();
+      $(".header-links-item .header-childrenItem-parent").on(
+        "mouseover",
+        function (event) {
+          var liparent = $(this.parentElement);
+          var ulChild = liparent.find(".header-childrenItem-child-category-links");
+          var xOffset = liparent.offset().left;
+          var alignRight = $(document).width() - xOffset < xOffset;
+    
+          if ($(document).width() > websiteWidth) {
+            ulChild.addClass("dropdown-menu-right");
+          }
+        }
+      );
+    
+      $(".header-search input.custom-search").on("click", function (event) {
+        if ($(".search-content .search-product").hasClass("d-none")) {
+          $(".search-content").find(".search-product").removeClass("d-none");
+          if ($(".search_overlay").length > 0 == false) {
+            $("body").append('<div class="search_overlay"></div>');
+          }
+          $(".header , .announcement-header").css({ zIndex: "99999" });
+          $("body").css({ overflow: "hidden" });
+        } else {
+          $(".search-content").find(".search-product").addClass("d-none");
+          $("body").find(".search_overlay").remove();
+          $(".header , .announcement-header").attr({ style: "" });
+          $("body").attr({ style: "" });
+        }
+      });
+      $(document).on("click", ".search_overlay", function (event) {
+        $(".search-content").find(".search-product").addClass("d-none");
+        $("body").find(".search_overlay").remove();
+        $(".header , .announcement-header").attr({ style: "" });
+        $("body").attr({ style: "" });
+      });
+    
+      $(".open-sidebar").on("click", function (event) {
+        $(".menu-sidebar").addClass("show");
+        $(".overlay").addClass("show");
+      });
+      $(".close").on("click", function (event) {
+        $(".menu-sidebar").removeClass("show");
+        $(".overlay").removeClass("show");
+      });
+      $(".overlay").on("click", function (event) {
+        $(".menu-sidebar").removeClass("show");
+        $(".overlay").removeClass("show");
       });
     })(jQuery);
   }

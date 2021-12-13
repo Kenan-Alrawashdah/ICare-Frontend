@@ -1,0 +1,57 @@
+<div class="container">
+
+    <section class="section-padding mt-4">
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-lg-6 ">
+                    <!--=======  product details slider area  =======-->
+                    <div class="product-details-slider-area">
+                        <div class="big-image-wrapper">
+                            <div class="product-details-big-image-slider-wrapper slider-for" data-autoplay="false" data-nav="false">
+                                <div class="single-image">
+                                    <img src="http://localhost:5000/images/{{drug.picturePath}}" alt="slider">
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--======= End of product details slider area =======-->
+                </div>
+                <div class="col-lg-6 mt-5">
+                    <div class="col-lg-12">
+                        <div class="single-product-content-description">
+                            <h4 class="product-title">{{drug.name}}</h4>
+                            <p class="single-grid-product__price"><span class="discounted-price">${{drug.price}}</span></p>
+                            <div class="single-info" style="margin-bottom: 25px;">
+                                <span class="d-block text-muted mb-2"><strong>Category :</strong> {{drug.drugCategory}}</span>
+                                <span class="d-block text-muted mb-2"><strong>Quantity : </strong> {{drug.availableQuantity}}</span>
+                                <span class="d-block text-muted mb-2"><strong>Description : </strong> {{drug.description}}</span>
+                            </div>
+                            <div class="row" style="margin-bottom: 35px;">
+                                <div class="col-5 ">
+                                    <input type="number" [(ngModel)]="Quantity">
+                                </div>
+                                <div class="col-7 ">
+                                    <a class=" col-12 btn btn-rounded btn-success" (click)="AddQuantity()"> <i class="fa fa-plus"></i>add To quantity</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <a class=" col-12 btn btn-rounded btn-danger"> <i class="fa fa-remove"></i>Delete</a>
+                                </div>
+                                <div class="col-6 ">
+                                    <a class=" col-12 btn btn-rounded btn-primary" routerLink="/pharmacist/EditDrug"> <i class="fa fa-edit"></i>Edit</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</div>

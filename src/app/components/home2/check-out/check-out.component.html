@@ -1,7 +1,7 @@
 <section class="section-padding mt-5">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
                         <div id="accordion">
@@ -81,35 +81,24 @@
                                         <p class="pt-4 mb-0 pb-2">
                                             <span class="font-weight-bold">PayPal</span> - the safer, easier way to pay
                                         </p>
-                                        <a href="thak-you.html" class="btn btn-primary">Checkout with PayPal</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <!-- accordion Title -->
-                <div class="accordion-title">
-                  <h5
-                    class="mb-0"
-                    data-toggle="collapse"
-                    data-target="#collapseThree"
-                  >
-                    Pay later
-                  </h5>
-                </div>
-                <!-- accordion Content -->
-                <div
-                  class="collapse accordion-content"
-                  id="collapseThree"
-                  data-parent="#accordion"
-                >
-                  <div class="accordion-content-inner">
-                    <p class="pt-4 mb-0 pb-3">
-                      <span class="font-weight-bold">Cash On Delevary</span>
-                      -Buy Now Pay Later for all your shopping
-                    </p>
-                    <a href="thak-you.html" class="btn btn-primary"
-                      >Place order</a
+                                        <div id="paypal-checkout-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <!-- accordion Title -->
+                                <div class="accordion-title">
+                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseThree">
+                                        Pay later
+                                    </h5>
+                                </div>
+                                <!-- accordion Content -->
+                                <div class="collapse accordion-content" id="collapseThree" data-parent="#accordion">
+                                    <div class="accordion-content-inner">
+                                        <p class="pt-4 mb-0 pb-3">
+                                            <span class="font-weight-bold">Cash On Delevary</span> -Buy Now Pay Later for all your shopping
+                                        </p>
+                                        <a (click)="onCheckOut()" class="btn btn-primary">Place order</a
                     >
                   </div>
                 </div>
@@ -118,21 +107,25 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 mt-lg-0 mt-6">
+      <div class="col-lg-4 mt-lg-0 mt-6">
         <h6 class="font-weight-bold">Deliver to</h6>
-        <div class="mb-4">
-          <select class="form-control">
-            <option value="s">Siliguri - 734001</option>
-            <option value="s" selected>Delhi - 110002</option>
-            <option value="s">Kolkata - 700027</option>
+        <div *ngIf="locationsNumber != 0" class="mb-4">
+          <select [(ngModel)]="selectedLocation" class="form-control">
+            <option [ngValue]="0" selected disabled hidden>Choose here</option>
+            <option *ngFor="let item of locations" [ngValue]="item.id">{{item.addressName}} - {{item.zipCode}}</option>
           </select>
+        </div>
+        <div *ngIf="locationsNumber == 0" class="mb-4" style="text-align: center;">
+          <p style="color: red;">Please add location </p>
+          <button (click)="goTOAddLocation()" class="btn btn-primary d-block w-100">Add Location</button>
         </div>
         <div class="cart-summary">
           <div class="cart-summary-wrap">
-            <h4>Cart Summary</h4>
-            <p>Sub Total <span>$1250.00</span></p>
-            <p>Shipping Cost <span>$00.00</span></p>
-            <h2>Grand Total <span>$1250.00</span></h2>
+            <h4>Cart </h4>
+            <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
+            <h2>
+               Total <span>${{ total }}</span>
+            </h2>
           </div>
         </div>
       </div>

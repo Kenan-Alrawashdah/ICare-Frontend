@@ -1,0 +1,165 @@
+<div class="row">
+  <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div
+          class="
+            icon icon-lg icon-shape
+            bg-gradient-dark
+            shadow-dark
+            text-center
+            border-radius-xl
+            mt-n4
+            position-absolute
+          "
+        >
+          <i class="fas fa-prescription-bottle-alt"></i>
+        </div>
+        <div class="text-end pt-1">
+          <p class="text-sm mb-0 text-capitalize">Drugs Categorie</p>
+          <h4 class="mb-0"></h4>
+        </div>
+      </div>
+      <hr class="dark horizontal my-0" />
+      <div class="card-footer p-3">The number of categories in the pharmacy</div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div
+          class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"
+        >
+          <h6
+            class="text-white text-capitalize ps-3"
+            style="display: inline-block"
+          >
+            Drug Categorie List
+          </h6>
+          <button
+            class="btn btn-success"
+            style="float: right; margin: 0 10px 5px 0"
+          >
+            <i class="fas fa-plus"></i>
+            Add Drug Categorie
+          </button>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th
+                  class="
+                    text-center text-uppercase text-secondary text-xxs
+                    font-weight-bolder
+                    opacity-7
+                  "
+                >
+                  Categorie Name
+                </th>
+                <th
+                  class="
+                    text-center text-uppercase text-secondary text-xxs
+                    font-weight-bolder
+                    opacity-7
+                    ps-2
+                  "
+                >
+                  Price
+                </th>
+                <th
+                  class="
+                    text-center text-uppercase text-secondary text-xxs
+                    font-weight-bolder
+                    opacity-7
+                  "
+                >
+                  Exp Date
+                </th>
+                <th
+                  class="
+                    text-center text-uppercase text-secondary text-xxs
+                    font-weight-bolder
+                    opacity-7
+                  "
+                >
+                  Address Information
+                </th>
+                <th
+                  class="
+                    text-center text-uppercase text-secondary text-xxs
+                    font-weight-bolder
+                    opacity-7
+                  "
+                >
+                  Place Order Submitted!
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr
+                *ngFor="let item of OrderList"
+                class="
+                  text-center text-uppercase text-secondary text-xxs
+                  font-weight-bolder
+                  opacity-7
+                "
+              >
+                <td>
+                  {{ item.customerName }}
+                </td>
+                <td>
+                  {{ item.amount }}
+                </td>
+                <td>
+                  {{ item.status }}
+                </td>
+                <td>
+                  <span
+                    (click)="open(mymodal, item.orderId)"
+                    style="cursor: pointer"
+                  >
+                    <i
+                      style="font-size: 20px"
+                      class="fas fa-address-card"
+                      title="Show Address Information"
+                    ></i>
+                  </span>
+                </td>
+                <td>
+                  <span
+                    *ngIf="item.status == '1'"
+                    (click)="TakeOrder(item.orderId)"
+                    style="cursor: pointer"
+                  >
+                    <i
+                      style="font-size: 20px"
+                      class="fas fa-clipboard-check"
+                      title="Take Order"
+                    ></i>
+                  </span>
+                  <span
+                    *ngIf="item.status == '2'"
+                    (click)="OrderDeliverd(item.orderId)"
+                    style="cursor: pointer"
+                  >
+                    <i
+                      style="font-size: 20px"
+                      class="fas fa-check-circle"
+                      title="Order Deliverd"
+                    ></i>
+                  </span>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

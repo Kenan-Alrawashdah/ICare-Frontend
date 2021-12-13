@@ -11,6 +11,7 @@ import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
 import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
+import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.
     DrugComponent,
     DrugsComponent,
     CartComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    ThankYouComponent
   ],
   imports: [
     CommonModule,
