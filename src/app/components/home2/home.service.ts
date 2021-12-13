@@ -52,7 +52,6 @@ export class HomeService {
 
   public GetDrug(){
     return this.httpClient.get<ApiResponseData<DrugModel>>(Constants.baseURL+'Drugs/GetDrugById/'+this.DrugId);
-
   }
 
   public AddToCart(id:number,Quantity:number){

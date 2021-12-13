@@ -54,6 +54,14 @@ import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
 import { Admin2Component } from './components/admin2/admin2.component';
 import { Admin2Module } from './lazyLoad/admin2/admin2.module';
+import { PharmacistComponent } from './components/pharmacist/pharmacist.component';
+import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
+import { AddDrugComponent } from './components/pharmacist/add-drug/add-drug.component';
+import { GetAllDrugsComponent } from './components/pharmacist/get-all-drugs/get-all-drugs.component';
+import { SingleDrugComponent } from './components/pharmacist/single-drug/single-drug.component';
+import { EditDrugComponent } from './components/pharmacist/edit-drug/edit-drug.component';
+import { OpenOrdersComponent } from './components/pharmacist/open-orders/open-orders.component';
+import { OrderDrugsComponent } from './components/pharmacist/order-drugs/order-drugs.component';
 
 const routes: Routes = [
   {
@@ -111,6 +119,15 @@ const routes: Routes = [
       './lazyLoad/admin2/admin2-routing.module'
     ).then((m) => m.Admin2RoutingModule),
   }
+  ,
+  {
+    path: 'pharmacist',
+    component: PharmacistComponent,
+    loadChildren: () =>
+    import(
+      './lazyLoad/pharmacist/pharmacist-routing.module'
+    ).then((m) => m.PharmacistRoutingModule),
+  }
 ];
 @NgModule({
   declarations: [
@@ -146,12 +163,14 @@ const routes: Routes = [
     EmployeeDashboardComponent,
     EmployeeMainComponent,
     EmployeesInformationComponent,
+    //-------
     DeliveryDashboardComponent,
     DeliveryMainComponent,
     Patient2Component,
     AdminDashboardComponent,
     Home2Component,
-    Admin2Component
+    Admin2Component,
+    PharmacistComponent,
   ],
   imports: [
     BrowserModule,
@@ -159,13 +178,16 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    //lazyLoad Models 
     Patient2Module,
     Home2Module,
     Admin2Module,
+    PharmacistModule,
     AdminDashboardModule,
-    BrowserAnimationsModule,
     DeliveryDashboardModule,
     EmployeeDashboardModule,
+    //--------
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
 
