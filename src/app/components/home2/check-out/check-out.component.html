@@ -81,35 +81,24 @@
                                         <p class="pt-4 mb-0 pb-2">
                                             <span class="font-weight-bold">PayPal</span> - the safer, easier way to pay
                                         </p>
-                                        <a href="thak-you.html" class="btn btn-primary">Checkout with PayPal</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <!-- accordion Title -->
-                <div class="accordion-title">
-                  <h5
-                    class="mb-0"
-                    data-toggle="collapse"
-                    data-target="#collapseThree"
-                  >
-                    Pay later
-                  </h5>
-                </div>
-                <!-- accordion Content -->
-                <div
-                  class="collapse accordion-content"
-                  id="collapseThree"
-                  data-parent="#accordion"
-                >
-                  <div class="accordion-content-inner">
-                    <p class="pt-4 mb-0 pb-3">
-                      <span class="font-weight-bold">Cash On Delevary</span>
-                      -Buy Now Pay Later for all your shopping
-                    </p>
-                    <a (click)="onCheckOut()" class="btn btn-primary"
-                      >Place order</a
+                                        <div id="paypal-checkout-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <!-- accordion Title -->
+                                <div class="accordion-title">
+                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseThree">
+                                        Pay later
+                                    </h5>
+                                </div>
+                                <!-- accordion Content -->
+                                <div class="collapse accordion-content" id="collapseThree" data-parent="#accordion">
+                                    <div class="accordion-content-inner">
+                                        <p class="pt-4 mb-0 pb-3">
+                                            <span class="font-weight-bold">Cash On Delevary</span> -Buy Now Pay Later for all your shopping
+                                        </p>
+                                        <a (click)="onCheckOut()" class="btn btn-primary">Place order</a
                     >
                   </div>
                 </div>

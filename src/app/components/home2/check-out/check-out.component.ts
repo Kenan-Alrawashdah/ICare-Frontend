@@ -7,7 +7,7 @@ import { HomeService } from '../home.service';
 import { CartItemModel } from '../models/cartItem.model';
 import { CreateOrderModel } from '../models/CreateOrder.model';
 import { LocationModel } from '../models/location.model';
-
+declare let paypal: any;
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
@@ -21,6 +21,7 @@ export class CheckOutComponent implements OnInit {
   locations:LocationModel[];
   locationsNumber:number;
   selectedLocation:number = 0;
+  addScript: boolean = false;
 
   constructor(
     private homeService:HomeService,
@@ -68,9 +69,6 @@ export class CheckOutComponent implements OnInit {
   {
     this.router.navigate(['/Patient/Address'])
   }
-
-
-
   onCheckOut()
   {
     if(this.selectedLocation != 0)
@@ -90,5 +88,53 @@ export class CheckOutComponent implements OnInit {
     }else{
       this.toastr.warning('Please select location to deliver','',{timeOut:1500});
     }
+  }
+
+
+  paypalConfig = {
+    env: 'sandbox',
+    client: {
+      sandbox:
+        'ASV8RKeof7CFrr0VhXiu-50xLBsu6EhXCavQE9_hzvq_-d3x4flBhU6j_l_ssiWIgHJYhEWhYyiLLQvG',
+      production:
+        'EE5UoDIZFtGw5ldbADOB5Bu5SIvjpMY65vRMZGMDkluHRkNPQhSAQyU9qUYLKkjAH1GoXnBFIdRSWrCy',
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            {
+              amount: {
+                total: this.total,
+                currency: 'USD',
+              },
+            },
+          ],
+        },
+      });
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then((payment) => {
+        console.log('sussecc');
+      });
+    },
+  };
+
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, 'paypal-checkout-btn');
+      });
+    }
+  }
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');
+      scripttagElement.src = 'http://www.paypalobjects.com/api/checkout.js';
+      scripttagElement.onload = resolve;
+      document.body.appendChild(scripttagElement);
+    });
   }
 }
