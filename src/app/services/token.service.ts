@@ -1,6 +1,4 @@
-
 import { Injectable } from '@angular/core';
-import { UserToken } from '../shared/User/Models/UserToken';
 
 const TOKEN_KEY = 'auth-token';
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';

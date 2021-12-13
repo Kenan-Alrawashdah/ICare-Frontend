@@ -7,6 +7,7 @@ import { DrugsComponent } from 'src/app/components/home2/drugs/drugs.component';
 import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
 import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
+import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
 },{
   path:'Cart',
   component:CartComponent
+},{
+  path:'ThankYou',
+  component:ThankYouComponent
 }
 
 ];

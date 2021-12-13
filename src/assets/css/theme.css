@@ -179,15 +179,9 @@ a:hover {
     text-decoration: underline;
 }
 
-a:not([href]) {
-    color: inherit;
-    text-decoration: none;
-}
+a:not([href]) {}
 
-a:not([href]):hover {
-    color: inherit;
-    text-decoration: none;
-}
+a:not([href]):hover {}
 
 pre,
 code,
@@ -26009,50 +26003,15 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
     transition: all 0.1s ease 0s;
 }
 
-.shop-header .grid-icons button.three-column {
-    width: 20px;
-    margin-right: 4px;
-    background-image: url("../img/product/icons/grid-3-column.png");
-}
-
 .shop-header .grid-icons button.three-column:hover,
-.shop-header .grid-icons button.three-column.active {
-    background-image: url("../img/product/icons/grid-3-column-hover.png");
-}
-
-.shop-header .grid-icons button.four-column {
-    width: 35px;
-    margin-right: 4px;
-    background-image: url("../img/product/icons/grid-4-column.png");
-}
-
 .shop-header .grid-icons button.four-column:hover,
-.shop-header .grid-icons button.four-column.active {
-    background-image: url("../img/product/icons/grid-4-column-hover.png");
-}
-
-.shop-header .grid-icons button.five-column {
-    width: 35px;
-    margin-right: 4px;
-    background-image: url("../img/product/icons/grid-5-column.png");
-}
-
 .shop-header .grid-icons button.five-column:hover,
-.shop-header .grid-icons button.five-column.active {
-    background-image: url("../img/product/icons/grid-5-column-hover.png");
-}
-
 .shop-header .grid-icons button.list-view {
     width: 20px;
     margin-left: 6px;
-    background-image: url("../img/product/icons/list.png");
 }
 
 .shop-header .grid-icons button.list-view:hover,
-.shop-header .grid-icons button.list-view.active {
-    background-image: url("../img/product/icons/list-hover.png");
-}
-
 .cart_product {
     border-radius: 2px;
     border: 1px solid #dee2e6;

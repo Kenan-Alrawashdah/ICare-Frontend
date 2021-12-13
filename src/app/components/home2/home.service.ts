@@ -5,8 +5,10 @@ import { Constants } from 'src/app/Constants/constants';
 import { ApiResponseData } from 'src/app/shared/api-response.model';
 import { CartItemModel } from './models/cartItem.model';
 import { CategoryModel } from './models/Category.model';
+import { CreateOrderModel } from './models/CreateOrder.model';
 import { DrugModel } from './models/Drug.model';
 import { GetAllDrugs } from './models/getAllDrugs.model';
+import { LocationModel } from './models/location.model';
 import { SearchModel } from './models/search.model';
 
 @Injectable({
@@ -50,7 +52,6 @@ export class HomeService {
 
   public GetDrug(){
     return this.httpClient.get<ApiResponseData<DrugModel>>(Constants.baseURL+'Drugs/GetDrugById/'+this.DrugId);
-
   }
 
   public AddToCart(id:number,Quantity:number){
@@ -75,6 +76,16 @@ export class HomeService {
 
   public MinusQuantity(id:number){
     return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/MinusQuantity/'+id);
+  }
+
+  public GetUserLocations(){
+    return this.httpClient.get<ApiResponseData<LocationModel[]>>(Constants.baseURL+'Patient/GetUserLocations');
+  }
+
+  public createOrder(body:CreateOrderModel){
+    console.log(body);
+    return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Orders/CreateOrder',body);
+
   }
 
 }

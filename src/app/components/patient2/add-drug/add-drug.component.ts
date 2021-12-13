@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AddDrugModel } from '../models/AddDrug.Model';
+import { MyDrugsComponent } from '../my-drugs/my-drugs.component';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -9,22 +12,24 @@ import { PatientService } from '../patient.service';
 })
 export class AddDrugComponent implements OnInit {
 
-  AddDrugForm: FormGroup;
-  SecondeDose:boolean = false;
+  drugNameValidation:boolean = false;
+  firstDoseValidation:boolean = false;
+  endDateValidation:boolean = false;
+  secondeDose:boolean = false;
+  thirdDose:boolean = false;
+  fourthDose:boolean = false;
+  drugName:string;
+  endDate: Date;
+  drugDoseTime1?:string;
+  drugDoseTime2?:string;
+  drugDoseTime3?:string;
+  drugDoseTime4?:string;
   
   constructor(
-    private patientService:PatientService
+    private patientService:PatientService,
+    
+    private router:Router
   ) { 
-    this.AddDrugForm = new FormGroup({
-      drugName:      new FormControl('',[Validators.required]),
-      endDate:       new FormControl('',[Validators.required]),
-      drugDoseTime1: new FormControl(''),
-      drugDoseTime2: new FormControl(''),
-      drugDoseTime3: new FormControl(''),
-      drugDoseTime4: new FormControl(''),
-    }
-
-    )
   }
 
   ngOnInit(): void {
@@ -35,21 +40,57 @@ export class AddDrugComponent implements OnInit {
 
     // }
     console.log('-------')
-    console.log(this.SecondeDoseOnClick)
 
   }
 
   onSubmit(){
-    this.patientService.addPatientDrug(this.AddDrugForm.value)
-    .subscribe(
-      (data)=>{
-        console.log('data')
-        console.log(data)
-      },
-      (error)=>{
-        console.log(error)
+    if(this.drugName != null && this.drugDoseTime1 != null && this.endDate != null)
+    {
+      let model: AddDrugModel=new AddDrugModel();
+      model.drugName = this.drugName;
+      model.endDate = this.endDate;
+      model.drugDoseTime1 = this.drugDoseTime1;
+      if(this.secondeDose == true)
+      {
+        model.drugDoseTime2 = this.drugDoseTime2;
       }
-    )
+      model.drugDoseTime3 = this.drugDoseTime3;
+      model.drugDoseTime4 = this.drugDoseTime4;
+      this.patientService.addPatientDrug(model)
+      .subscribe(
+        (data)=>{
+          this.router.navigate(['/Patient/MyDrugs']).then(
+            ()=>{
+              window.location.reload();
+            }
+          );
+        }
+        )
+      
+      }else{
+    if(this.drugName == null )
+    {
+      this.drugNameValidation = true;
+    }else{
+      this.drugNameValidation = false;
+
+    }
+    if( this.drugDoseTime1 == null )
+    {
+      this.firstDoseValidation = true;
+    }else{
+      this.firstDoseValidation = false;
+
+    }
+    if(this.endDate == null)
+    {
+      this.endDateValidation = true;
+    }else{
+      this.endDateValidation = false;
+    }
   }
+
+  }
+
 
 }

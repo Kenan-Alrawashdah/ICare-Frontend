@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { data } from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../patient.service';
+import { Patient2Component } from '../patient2.component';
 
 
 @Component({
@@ -13,7 +15,9 @@ export class AccountComponent implements OnInit {
 
   AccountForm: FormGroup;
   constructor(
-    private patientServices:PatientService
+    private patientServices:PatientService,
+    private patientComponent:Patient2Component,
+    private toastr:ToastrService
   ) {
     this.AccountForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
@@ -37,7 +41,6 @@ export class AccountComponent implements OnInit {
       this.AccountForm = new FormGroup({
         firstName: new FormControl(info.data.firstName, [Validators.required]),
         lastName: new FormControl(info.data.lastName, [Validators.required]),
-        email: new FormControl(info.data.email, [Validators.required]),
         phoneNumber: new FormControl(info.data.phoneNumber),
       });
     }
@@ -50,7 +53,9 @@ export class AccountComponent implements OnInit {
       data=>{
         if(data.success == true)
         {
+          this.patientComponent.ngOnInit();
           this.ngOnInit();
+          this.toastr.success('Data updated successfully','',{timeOut:1500})
         }
       },
       error=>{

@@ -61,12 +61,15 @@ export class LoginComponent implements OnInit {
 
     await this.authService.login(email, password).toPromise().then(
       data => {
-        console.log(data)
         if (data.success) {
           this.tokenStorage.saveToken(data.data.accessToken);
           this.tokenStorage.saveRefreshToken(data.data.refreshToken);
-          this.homeComponent.ngOnInit();
-          this.router.navigate(['Home']);
+       
+          this.router.navigate(['Home']).then(
+            ()=>{
+              window.location.reload();
+            }
+          ); 
         } else {
           console.log(data.errors)
         }
@@ -80,9 +83,6 @@ export class LoginComponent implements OnInit {
       }
     );
 
-    console.log(this.tokenStorage.getToken());
-    console.log(this.tokenStorage.getRefreshToken());
-    console.log(this.tokenStorage.getUser());
 
 
   }
