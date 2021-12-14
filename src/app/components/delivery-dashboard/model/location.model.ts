@@ -1,5 +1,4 @@
-export class AddAddressModel
-{
+export interface LocationModel {
     addressName: string;
     phoneNumber: string;
     city:        string;

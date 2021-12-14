@@ -60,12 +60,8 @@ import { Admin2Component } from './components/admin2/admin2.component';
 import { Admin2Module } from './lazyLoad/admin2/admin2.module';
 import { PharmacistComponent } from './components/pharmacist/pharmacist.component';
 import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
-import { AddDrugComponent } from './components/pharmacist/add-drug/add-drug.component';
-import { GetAllDrugsComponent } from './components/pharmacist/get-all-drugs/get-all-drugs.component';
-import { SingleDrugComponent } from './components/pharmacist/single-drug/single-drug.component';
-import { EditDrugComponent } from './components/pharmacist/edit-drug/edit-drug.component';
-import { OpenOrdersComponent } from './components/pharmacist/open-orders/open-orders.component';
-import { OrderDrugsComponent } from './components/pharmacist/order-drugs/order-drugs.component';
+import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
+import { EditAddressComponent } from './components/patient2/edit-address/edit-address.component';
 
 const routes: Routes = [
   {
@@ -187,6 +183,7 @@ const routes: Routes = [
     DeliveryOrdersComponent,
     Admin2Component,
     PharmacistComponent,
+    AvilableOrdersComponent,
 
   ],
   imports: [

@@ -84,6 +84,18 @@ export class PharmacistService {
   public GetOrderDrugs()
   {
     return this.httpClient.get<ApiResponseData<OrderDrugsModel[]>>(Constants.baseURL+'Orders/GetOrderDrugs/'+this.orderDrugId);
+  }
+
+  public SetOrderAsPlaced(id:number)
+  {
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Orders/SetOrderAsPlaced/'+id);
 
   }
+
+  public SetOrderAsCanceled(id:number)
+  {
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Orders/SetOrderAsCanceled/'+id);
+
+  }
+
 }
