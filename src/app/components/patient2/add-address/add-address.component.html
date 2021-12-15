@@ -6,7 +6,6 @@
             </div>
         </div>
     </div>
-
     <div class="card" style="margin-top: 20px;">
         <div class="card-body">
             <form id="address_modal_form" [formGroup]="AddressForm" (ngSubmit)="onSubmit()">
@@ -46,32 +45,26 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="" class="form-label">Set your Location in map</label>
+                        <label for="" class="form-label">Set Location on map</label>
                     </div>
                     <div class="col-md-8">
-                        <a data-toggle="modal" data-dismiss="modal" data-target="#map_model" class="btn btn-success  btn-full rounded">
-                  Add Address On Mapss
-                </a>
+                        <a data-toggle="modal" data-dismiss="modal" data-target="#map_model" class="btn btn-success  btn-full rounded">Add Address On Maps</a>
                     </div>
                 </div>
                 <hr />
                 <button type="submit" id="address_btn" name="submit" class="btn btn-primary btn-full btn-medium rounded">
         Add Address
-      </button>
+        </button>
             </form>
-
-
         </div>
     </div>
     <div class="modal clean_modal clean_modal-lg" id="map_model" tabindex="-1" aria-labelledby="map_model" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
                 <div class="modal-body" style="height: 450px; width: 100%">
                     <div id="map"></div>
                 </div>
+                <button type="button" class="btn btn-success" style="margin-top: 10px;" data-dismiss="modal" aria-label="Close">set location</button>
             </div>
         </div>
     </div>

@@ -32,6 +32,7 @@ export class EditAddressComponent implements OnInit {
         (response)=>{
           console.log(response)
           this.AddressForm = new FormGroup({
+            id: new FormControl(response.data.id, [Validators.required]),
             addressName: new FormControl(response.data.addressName, [Validators.required]),
             phoneNumber: new FormControl(response.data.phoneNumber, [Validators.required]),
             city: new FormControl(response.data.city, [Validators.required]),
@@ -59,9 +60,9 @@ export class EditAddressComponent implements OnInit {
         center: Jordan
       }
       );
-      this.location.lat = this.AddressForm.get('lat').value;
-      this.location.lng = this.AddressForm.get('lng').value;
-      this.addMarker(this.location,map)
+      // this.location.lat = this.AddressForm.get('lat').value;
+      // this.location.lng = this.AddressForm.get('lng').value;
+      this.addMarker(Jordan,map)
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, 'click', (event) => {
       this.addMarker(event.latLng, map);
@@ -122,7 +123,7 @@ export class EditAddressComponent implements OnInit {
   {
     console.log('onSubmit')
     console.log(this.AddressForm.value)
-    this.patientService.addAddress(this.AddressForm.value).subscribe();
+    this.patientService.EditLocation(this.AddressForm.value).subscribe();
   }
 
   goToAddAddress()

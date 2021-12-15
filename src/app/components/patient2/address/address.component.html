@@ -17,10 +17,10 @@
                 <div *ngFor="let item of LocationList" class="col-lg-6" style="margin-bottom: 15px;">
                     <div class="address-block bg-light rounded p-3">
                         <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <i class="fa fa-pencil-square-o"></i>
                         </a>
-                        <a href="#" class="delete_address">
-                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
+                            <i class="fa fa-pencil-square-o"></i>
                         </a>
                         <h6>{{item.addressName}}</h6>
                         <p class="text-muted">{{item.phoneNumber}}</p>

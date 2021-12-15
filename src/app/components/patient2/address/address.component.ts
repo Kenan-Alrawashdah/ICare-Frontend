@@ -35,10 +35,7 @@ export class AddressComponent implements OnInit {
   goToAddAddress()
   {
     this.router.navigate(['/Patient/AddAddress']).then(
-      ()=>
-      {
-        window.location.reload();
-      }
+      
     )
   }
 }

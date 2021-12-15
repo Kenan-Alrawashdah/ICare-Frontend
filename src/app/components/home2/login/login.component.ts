@@ -36,10 +36,6 @@ export class LoginComponent implements OnInit {
       });
       FB.AppEvents.logPageView();
     };
-
-  }
-  onSubmit2() {
-
     (function (d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
@@ -51,6 +47,22 @@ export class LoginComponent implements OnInit {
       js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
+
+  }
+  onSubmit2() {
+
+    // (function (d, s, id) {
+    //   var js,
+    //     fjs = d.getElementsByTagName(s)[0];
+    //   if (d.getElementById(id)) {
+    //     return;
+    //   }
+    //   js = d.createElement(s);
+    //   js.id = id;
+    //   js.src = 'https://connect.facebook.net/en_US/sdk.js';
+    //   fjs.parentNode.insertBefore(js, fjs);
+    // })(document, 'script', 'facebook-jssdk');
+
   }
 
 
@@ -82,10 +94,9 @@ export class LoginComponent implements OnInit {
         console.log('error' + err.error.message);
       }
     );
-
-
-
   }
+
+  
   submitLogin() {
     console.log('submit login to facebook');
     // FB.login();

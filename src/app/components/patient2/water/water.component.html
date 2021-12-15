@@ -1,0 +1,69 @@
+<div class="ml-0 ml-md-4">
+    <div class="d-none d-md-block">
+        <div class="row mb-md-5">
+            <div class="col">
+                <h5 class="mb-1 text-white">Water Notification</h5>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="card">
+        <form [formGroup]="WaterForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" formControlName="">
+
+            <div class="card-body">
+                <div class="col-lg-6">
+                    <div class="form-group mb-4">
+                        <label for="" class="form-label">Notification start time </label>
+                        <input class="form-control" formControlName="from" required name="drugTimes" type="time" />
+                        <small class="text-danger" *ngIf="
+                        WaterForm.get('from').hasError('required') &&
+                        (WaterForm.controls['from'].dirty ||
+                        WaterForm.controls['from'].touched) ">
+                        This field is required. </small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-4">
+                        <label for="" class="form-label">Notification end time</label>
+                        <input class="form-control" formControlName="to" type="time" />
+                        <small class="text-danger" *ngIf="
+                        WaterForm.get('to').hasError('required') &&
+                        (WaterForm.controls['to'].dirty ||
+                        WaterForm.controls['to'].touched) ">
+                        This field is required. </small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-4">
+                        <label for="" class="form-label">remind me every <small style="color: rgb(95, 95, 255);">(in
+                                minties)</small></label>
+                        <input class="form-control" type="number" formControlName="every" />
+                        <small class="text-danger" *ngIf="
+                        WaterForm.get('every').hasError('required') &&
+                        (WaterForm.controls['every'].dirty ||
+                        WaterForm.controls['every'].touched) ">
+                        This field is required. </small>
+                        <small class="text-danger" *ngIf="
+                        WaterForm.get('every').hasError('min') &&
+                        (WaterForm.controls['every'].dirty ||
+                        WaterForm.controls['every'].touched) ">
+                        minimum value is 15. </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center ">
+                <button *ngIf="isEditing == false" [disabled]="!WaterForm.valid" type="submit" class="btn btn-primary btn-lg">
+                    Set Water Notification
+                </button>
+                <button *ngIf="isEditing == true" [disabled]="!WaterForm.valid" type="submit" class="btn btn-primary btn-lg">
+                    Edit Water Notification
+                </button>
+                <a *ngIf="isEditing == true" (click)="deleteWater()" style="margin-left: 25px;" class="btn btn-danger btn-lg">
+                    Stop water notifications
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,6 +5,8 @@ import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
 import { GetLocatinForUser } from 'src/app/shared/Delivery/get-locatin-for-user.model';
 import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
 import { Loader } from '@googlemaps/js-api-loader';
+import { DeliveryService } from '../service/delivery.service';
+import { DeliveryOrdersModel } from '../model/DeliveryOrders.model';
 
 declare const google: any;
 
@@ -14,30 +16,35 @@ declare const google: any;
   styleUrls: ['./delivery-orders.component.css'],
 })
 export class DeliveryOrdersComponent implements OnInit {
-  OrdersForDelivery: AllOrdersForDelivery[];
-  ReservationAvailableCount: ReservationAvailableCount;
-  Locatins: GetLocatinForUser;
-  closeResult: string = '';
 
+  myOrders:DeliveryOrdersModel[]
+  closeResult: string = '';
   lat = '';
   lng = '';
+  Locatins;
 
   constructor(
-    private dashboardService: DashboardService,
+    private deliveryService:DeliveryService,
     private modalService: NgbModal
+
   ) {}
 
-  async ngOnInit() {
-    this.dashboardService.ReservationAvailableCount().subscribe((data) => {
-      this.ReservationAvailableCount = data.data;
-    });
-    await this.dashboardService
-      .getAllOrdersAvailableForDelivery()
-      .toPromise()
-      .then((data) => {
-        this.OrdersForDelivery = data.data;
-      });
+  ngOnInit(): void {
+      this.getMyOrders()
   }
+
+  async getMyOrders()
+  {
+    await this.deliveryService.GetMyOrders().toPromise()
+    .then(
+      (response)=>
+      {
+        this.myOrders = response.data
+        console.log(response.data)
+      }
+    )
+  }
+
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
@@ -45,33 +52,15 @@ export class DeliveryOrdersComponent implements OnInit {
       document.getElementById('map') as HTMLElement,
       {
         zoom: 15,
-        center: { lat: 50.0, lng: 50.0 },
-        mapTypeId: 'satellite',
+        center: { lat: lat, lng: lng },
+       
       }
     );
     const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
     this.geocodeLatLng(geocoder, map, infowindow);
   }
-  async open(content: any, id: number) {
-    await this.dashboardService
-      .GetLocatinForUser(id)
-      .toPromise()
-      .then((data) => {
-        this.Locatins = data.data;
-      });
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      });
-  }
 
-  ReservationAvailable(id: number) {
-    this.dashboardService
-      .ReservationAvailable(id)
-      .subscribe(() => this.ngOnInit());
-  }
   geocodeLatLng(
     geocoder: google.maps.Geocoder,
     map: google.maps.Map,
@@ -99,5 +88,15 @@ export class DeliveryOrdersComponent implements OnInit {
         }
       })
       .catch((e) => window.alert('Geocoder failed due to: ' + e));
+  }
+
+  async open(content: any, id: number) {
+  
+    this.Locatins = this.myOrders.find(o=>o.orderId == id)
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      });
   }
 }

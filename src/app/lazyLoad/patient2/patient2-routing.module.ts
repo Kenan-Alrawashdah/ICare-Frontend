@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from 'src/app/components/patient2/change-pass
 import { EditAddressComponent } from 'src/app/components/patient2/edit-address/edit-address.component';
 import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.component';
 import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
+import { WaterComponent } from 'src/app/components/patient2/water/water.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
     path:'EditAddress/:id',
     component:EditAddressComponent
   },
+  {
+    path:'Water2',
+    component:WaterComponent
+  }
 ];
 
 @NgModule({

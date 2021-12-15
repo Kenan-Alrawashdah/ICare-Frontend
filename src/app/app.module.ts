@@ -109,7 +109,6 @@ const routes: Routes = [
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
     },
-
   {
     path: 'Pharmacer',
     component: PharmacerDashboardComponent,

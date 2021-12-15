@@ -59,7 +59,6 @@ export class Home2Component implements OnInit {
       (response)=>{
         this.cartList = response.data;
         this.cartItemNumber = response.data.length
-
       }
     )
   }
@@ -93,9 +92,6 @@ export class Home2Component implements OnInit {
         $('.header , .announcement-header').attr({ style: '' });
         $('body').attr({ style: '' });
       });
-
-
-
     })(jQuery);
 
     (function ($) {
