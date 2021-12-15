@@ -1,23 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AllOrdersForDelivery } from 'src/app/shared/Delivery/all-orders-for-delivery.model';
-import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
-import { GetLocatinForUser } from 'src/app/shared/Delivery/get-locatin-for-user.model';
-import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
-import { Loader } from '@googlemaps/js-api-loader';
+import { PlacedLocationModel } from '../model/placedLocation.model';
 import { DeliveryService } from '../service/delivery.service';
-import { DeliveryOrdersModel } from '../model/DeliveryOrders.model';
-
-declare const google: any;
 
 @Component({
-  selector: 'app-delivery-orders',
-  templateUrl: './delivery-orders.component.html',
-  styleUrls: ['./delivery-orders.component.css'],
+  selector: 'app-avilable-orders',
+  templateUrl: './avilable-orders.component.html',
+  styleUrls: ['./avilable-orders.component.css']
 })
-export class DeliveryOrdersComponent implements OnInit {
+export class AvilableOrdersComponent implements OnInit {
 
-  myOrders:DeliveryOrdersModel[]
+  ordersList:PlacedLocationModel[]
   closeResult: string = '';
   lat = '';
   lng = '';
@@ -26,21 +19,19 @@ export class DeliveryOrdersComponent implements OnInit {
   constructor(
     private deliveryService:DeliveryService,
     private modalService: NgbModal
-
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-      this.getMyOrders()
+    this.getLocation()
   }
 
-  async getMyOrders()
+  async getLocation()
   {
-    await this.deliveryService.GetMyOrders().toPromise()
+    await this.deliveryService.GetPlacedOrders().toPromise()
     .then(
-      (response)=>
-      {
-        this.myOrders = response.data
-        console.log(response.data)
+      (response)=>{
+        console.log(response);
+        this.ordersList = response.data;
       }
     )
   }
@@ -92,11 +83,23 @@ export class DeliveryOrdersComponent implements OnInit {
 
   async open(content: any, id: number) {
   
-    this.Locatins = this.myOrders.find(o=>o.orderId == id)
+    
+    this.Locatins = this.ordersList.find(o=>o.orderId == id)
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       });
   }
+
+  takeOrder(id:number)
+  {
+    this.deliveryService.Takeorder(id).subscribe(
+      (response)=>
+      {
+        this.ngOnInit();
+      }
+    )
+  }
+
 }

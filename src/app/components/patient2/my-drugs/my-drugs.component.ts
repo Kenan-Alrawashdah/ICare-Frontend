@@ -18,7 +18,6 @@ export class MyDrugsComponent implements OnInit {
 
   async ngOnInit() {
    await this.getMyDrugs();
-    console.log(this.myDrugs)
   }
 
   async getMyDrugs(){

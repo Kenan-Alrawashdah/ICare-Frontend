@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { OpenOrderModel } from '../Models/OpenOrders.model';
 import { PharmacistService } from '../Services/pharmacist.service';
 
@@ -14,7 +15,8 @@ export class OpenOrdersComponent implements OnInit {
   OpenOrders:OpenOrderModel[]
   constructor(
     private pharmacistService:PharmacistService,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,26 @@ export class OpenOrdersComponent implements OnInit {
       {
         this.OpenOrders = response.data
         console.log(this.OpenOrders)
+      }
+    )
+  }
+
+  SetOrderAsPlaced(id:number)
+  {
+    this.pharmacistService.SetOrderAsPlaced(id).subscribe(
+      (response)=>{
+        this.toastr.success('Order status set as Placed','',{timeOut:1500});
+        this.ngOnInit();
+      }
+    )
+  }
+
+  SetOrderAsCanceled(id:number)
+  {
+    this.pharmacistService.SetOrderAsCanceled(id).subscribe(
+      (response)=>{
+        this.toastr.success('Order status set as Canceled','',{timeOut:1500});
+        this.ngOnInit();
       }
     )
   }

@@ -1,5 +1,6 @@
 <div class="container" style="margin-top:30px;">
     <div class="row justify-content-center">
+
         <div class="card card-rounded">
             <div class="card-body">
                 <h2 style="text-align: center;margin-bottom: 15px;">Available Orders</h2>
@@ -8,7 +9,6 @@
                         <thead>
                             <tr>
                                 <th>Order Number</th>
-                                <th>Customer Name</th>
                                 <th>City</th>
                                 <th>Details</th>
                                 <th>Show On Map</th>
@@ -16,30 +16,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of myOrders">
+                            <tr *ngFor="let item of ordersList">
                                 <td>
                                     <h6>Order#{{item.orderId}}</h6>
-                                </td>
-                                <td>
-                                    <h6>{{item.firstName +' '+ item.lastName}}</h6>
                                 </td>
                                 <td>
                                     <h6>{{item.city}}</h6>
                                 </td>
                                 <td>
                                     <span (click)="open(mymodal, item.orderId)" style="cursor: pointer">
-                                      <i style="font-size: 20px" class="fas fa-address-card"
-                                          title="Show Address Information"></i>
-                                  </span>
+                                        <i style="font-size: 20px" class="fas fa-address-card"
+                                            title="Show Address Information"></i>
+                                    </span>
                                 </td>
                                 <td>
                                     <span *ngIf="item.lat != 0" data-toggle="modal" data-dismiss="modal" data-target="#address_model" (click)="ChangeMapLocation(item.lat, item.lng)" style="cursor: pointer">
-                                      <i style="font-size: 20px" class="fas fa-map-marked"
-                                          title="Show Address Information"></i>
-                                  </span>
+                                        <i style="font-size: 20px" class="fas fa-map-marked"
+                                            title="Show Address Information"></i>
+                                    </span>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary">Order Delivered</a>
+                                    <a class="btn btn-primary" (click)="takeOrder(item.orderId)">Take this order</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -55,12 +52,11 @@
             Customer Address Information
         </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">×</span>
-      </button>
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
     <div class="modal-body">
         <form id="address_modal_form">
-
             <div class="form-group">
                 <label class="form-label" for="locality">Phone Number</label>
 
@@ -98,16 +94,16 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
-          Ok
-      </button>
+            Ok
+        </button>
     </div>
 </ng-template>
 <div class="modal clean_modal clean_modal-lg" id="address_model" tabindex="-1" aria-labelledby="address_model" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
+                <span aria-hidden="true">&times;</span>
+            </button>
             <div class="modal-body" style="height: 450px; width: 100%; padding: auto">
                 <div id="map"></div>
             </div>

@@ -3,21 +3,24 @@
 
         <div class="card card-rounded">
             <div class="card-body">
-
+                <h2 style="text-align: center;margin-bottom: 15px;">Open Orders</h2>
                 <div class="table-responsive  mt-1">
                     <table class="table select-table">
                         <thead>
                             <tr>
+                                <th>Order Number</th>
                                 <th>Total Price</th>
                                 <th>Patient Name</th>
                                 <th> </th>
                                 <th> </th>
                                 <th> </th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of OpenOrders">
+                                <td>
+                                    <h6>Order#{{item.id}}</h6>
+                                </td>
                                 <td>
                                     <h6>{{item.totalPrice}}</h6>
                                 </td>
@@ -28,10 +31,10 @@
                                     <a class="btn btn-primary" (click)="goToOrderDrugs(item.id)">Details</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success">Set on home</a>
+                                    <a class="btn btn-success" (click)="SetOrderAsPlaced(item.id)">Set As Placed</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger">Cancel</a>
+                                    <a class="btn btn-danger" (click)="SetOrderAsCanceled(item.id)">Cancel</a>
                                 </td>
                             </tr>
 
