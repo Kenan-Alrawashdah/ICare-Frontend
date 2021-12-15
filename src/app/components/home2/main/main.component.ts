@@ -3,7 +3,6 @@ import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DrugsComponent } from '../../Patient/Account/drugs/drugs.component';
 import { HomeService } from '../home.service';
 import { CategoryModel } from '../models/Category.model';
 
