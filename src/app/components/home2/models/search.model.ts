@@ -3,5 +3,6 @@ export class SearchModel {
     drugName: string;
     drugPrice: number;
     drugPicturePath: string;
+    drugDescription: string;
   }
   

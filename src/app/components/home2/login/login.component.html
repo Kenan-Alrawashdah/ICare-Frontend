@@ -11,7 +11,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <a (click)="onSubmit2()" class="
+                                    <a (click)="submitLogin()" class="
                       btn btn-gray-border btn-full
                       rounded
                       btn-large
@@ -20,7 +20,6 @@
                     ">
                                         <img src="assets/img/facebook.png" alt="" /> Login with Facebook
                                     </a>
-
                                 </div>
                                 <div class="col-12 text-center">
                                     <p class="text-muted my-4">Or Login With</p>
@@ -31,36 +30,25 @@
                             </div>
                             <form id="login_modal_form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group">
+                                    <small class="text-danger" style="text-align: center; align-items: center" *ngIf="loginValidation">{{ error }}</small>
                                     <input formControlName="email" id="email" type="email" placeholder="Email" class="form-control input-lg rounded" />
-                                    <!-- <small
-                    class="text-danger"
-                    *ngIf="
+                                    <small class="text-danger" *ngIf="
+                                    loginForm.get('email').hasError('required') &&
+                                    (            
                       loginForm.controls['email'].dirty ||
-                      loginForm.controls['email'].touched
-                    "
-                  >
-                    This field is required.
-                  </small> -->
-                                    <!-- <small
-                    class="text-danger"
-                    *ngIf="
-                      loginForm.get('email').hasError('email') &&
-                      (loginForm.controls['email'].dirty ||
-                        loginForm.controls['email'].touched)
-                    "
-                  >
-                    This email is invalid.
+                      loginForm.controls['email'].touched)
+                    ">
+                                        This field is required.
+                                    </small>
 
-                  </small> -->
                                 </div>
                                 <div class="form-group">
-                                    <input formControlName="password" id="password" type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" placeholder="Password" class="form-control input-lg rounded" />
+                                    <input formControlName="password" id="password" type="password" placeholder="Password" class="form-control input-lg rounded" />
                                     <small class="text-danger" *ngIf="
                       loginForm.get('password').hasError('required') &&
                       (loginForm.controls['password'].dirty ||
                         loginForm.controls['password'].touched)
                     ">
-
                                         This field is required.
                                     </small>
                                 </div>
@@ -84,4 +72,3 @@
         </div>
     </div>
 </div>
-<button (click)="submitLogin()">asdfsadfsadf</button>

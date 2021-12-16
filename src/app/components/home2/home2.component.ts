@@ -36,16 +36,21 @@ export class Home2Component implements OnInit {
   }
 
   GetDrugByNameSearch() {
-    this.service.GetDrugByNameSearch(this.InputSearch).subscribe(
-      (data) => {
-        if (data.success) {
-          this.searchList = data.data as unknown as SearchModel[];
+    if(this.InputSearch != '' )
+    {
+      this.service.GetDrugByNameSearch(this.InputSearch).subscribe(
+        (data) => {
+          if (data.success) {
+            console.log(data.data)
+            this.searchList = data.data as unknown as SearchModel[];
+          }
+        },
+        (error) => {
+          console.log('error', error);
         }
-      },
-      (error) => {
-        console.log('error', error);
-      }
-    );
+      );
+    }
+  
   }
   logout() {
     this.tokenService.signOut();

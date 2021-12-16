@@ -14,17 +14,18 @@ declare var FB: any;
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
+  loginValidation:boolean =false;
+  error:string='';
   constructor(private userService: UserService,
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private homeComponent: Home2Component
+    private home2Component:Home2Component
   ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
     (window as any).fbAsyncInit = function () {
@@ -49,21 +50,7 @@ export class LoginComponent implements OnInit {
     })(document, 'script', 'facebook-jssdk');
 
   }
-  onSubmit2() {
-
-    // (function (d, s, id) {
-    //   var js,
-    //     fjs = d.getElementsByTagName(s)[0];
-    //   if (d.getElementById(id)) {
-    //     return;
-    //   }
-    //   js = d.createElement(s);
-    //   js.id = id;
-    //   js.src = 'https://connect.facebook.net/en_US/sdk.js';
-    //   fjs.parentNode.insertBefore(js, fjs);
-    // })(document, 'script', 'facebook-jssdk');
-
-  }
+  
 
 
   async onSubmit() {
@@ -76,14 +63,15 @@ export class LoginComponent implements OnInit {
         if (data.success) {
           this.tokenStorage.saveToken(data.data.accessToken);
           this.tokenStorage.saveRefreshToken(data.data.refreshToken);
-       
           this.router.navigate(['Home']).then(
             ()=>{
               window.location.reload();
             }
           ); 
+         
         } else {
-          console.log(data.errors)
+          this.loginValidation = true; 
+          this.error = data.errors[0]
         }
 
 
