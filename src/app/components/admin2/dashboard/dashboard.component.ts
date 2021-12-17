@@ -5,6 +5,10 @@ import { MonthlyEmployeeSalaries } from 'src/app/shared/Accountant/monthly-emplo
 import { RegisteredAnnualCount } from 'src/app/shared/Accountant/registered-annual-count.model';
 import { RegisteredDailyCount } from 'src/app/shared/Accountant/registered-daily-count.model';
 import { RegisteredMonthlyCount } from 'src/app/shared/Accountant/registered-monthly-count.model';
+import { Chart } from 'chart.js';
+import { GetPatientStatsLast5Year } from '../../admin-dashboard/Models/get-patient-stats-last5-year.model';
+import { AdminService } from '../../admin-dashboard/Service/admin.service';
+import { GetSalesStatsLast5Year } from '../../admin-dashboard/Models/get-sales-stats-last5-year.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +21,21 @@ export class DashboardComponent implements OnInit {
   m2 = new RegisteredAnnualCount();
   me = new MonthlyEmployeeSalaries();
   me1 = new AnnualEmployeeSalaries();
-  constructor(private dashboardService: DashboardService) {}
+  PatientStats: GetPatientStatsLast5Year[];
+  count: number[] = [];
+  label: number[] = [];
+
+  count1: number[] = [];
+  label1: number[] = [];
+  SaleStats: GetSalesStatsLast5Year[];
+
+  chart: any = [];
+  chart2: any = [];
+
+  constructor(
+    private dashboardService: DashboardService,
+    private adminService: AdminService
+  ) {}
 
   ngOnInit(): void {
     this.dashboardService
@@ -35,6 +53,52 @@ export class DashboardComponent implements OnInit {
     this.dashboardService
       .getRegisteredAnnualCount()
       .subscribe((data) => (this.m2 = data.data));
+    this.adminService.GetPatientStatsLast5Year().subscribe((data) => {
+      this.PatientStats = data.data;
+      this.PatientStats.forEach((element) => {
+        this.label.push(element.year);
+        this.count.push(element.count);
+      });
+      this.chart = new Chart('canvas', {
+        type: 'line',
+        data: {
+          labels: this.label,
+          datasets: [
+            {
+              data: this.count,
+              borderColor: '#3e95cd',
+              fill: false,
+              label: 'Number Of Patients',
+              backgroundColor: 'rgba(93, 175, 89, 0.1)',
+              borderWidth: 3,
+            },
+          ],
+        },
+      });
+    });
+    this.adminService.GetSalesStatsLast5Year().subscribe((data) => {
+      this.SaleStats = data.data;
+      this.SaleStats.forEach((element) => {
+        this.label1.push(element.year);
+        this.count1.push(element.total);
+      });
+      this.chart2 = new Chart('canvas1', {
+        type: 'line',
+        data: {
+          labels: this.label1,
+          datasets: [
+            {
+              data: this.count1,
+              borderColor: '#3e95cd',
+              fill: false,
+              label: 'Drug Sales',
+              backgroundColor: 'rgba(93, 175, 89, 0.1)',
+              borderWidth: 3,
+            },
+          ],
+        },
+      });
+    });
   }
 
   AnnualCareSystemReport() {

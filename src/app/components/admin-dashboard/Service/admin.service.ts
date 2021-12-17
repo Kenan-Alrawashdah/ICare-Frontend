@@ -7,6 +7,8 @@ import { AddEmployeeModel } from '../Models/AddEmployee';
 import { GetAllTestimonial } from '../Models/get-all-testimonial.model';
 import { GetPaymentOrders } from '../Models/get-payment-orders.model';
 import { FormGroup } from '@angular/forms';
+import { GetPatientStatsLast5Year } from '../Models/get-patient-stats-last5-year.model';
+import { GetSalesStatsLast5Year } from '../Models/get-sales-stats-last5-year.model';
 
 const baseURL = Constants.baseURL;
 @Injectable({
@@ -38,6 +40,17 @@ export class AdminService {
     return this.http.post<ApiResponseData<GetPaymentOrders[]>>(
       Constants.baseURL + 'Admin/SearchInByDatePaymentOrders',
       form.value
+    );
+  }
+
+  public GetPatientStatsLast5Year() {
+    return this.http.get<ApiResponseData<GetPatientStatsLast5Year[]>>(
+      Constants.baseURL + 'Admin/GetPatientStatsLast5Year'
+    );
+  }
+  public GetSalesStatsLast5Year() {
+    return this.http.get<ApiResponseData<GetSalesStatsLast5Year[]>>(
+      Constants.baseURL + 'Admin/GetSalesStatsLast5Year'
     );
   }
 }

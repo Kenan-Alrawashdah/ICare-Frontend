@@ -31,6 +31,7 @@ import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
 import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
 import { EditAddressComponent } from './components/patient2/edit-address/edit-address.component';
 import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -142,6 +143,7 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgChartsModule,
   ],
 
   providers: [authInterceptorProviders],
