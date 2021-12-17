@@ -1,39 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
+import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
 import { PlacedLocationModel } from '../model/placedLocation.model';
 import { DeliveryService } from '../service/delivery.service';
 
 @Component({
   selector: 'app-avilable-orders',
   templateUrl: './avilable-orders.component.html',
-  styleUrls: ['./avilable-orders.component.css']
+  styleUrls: ['./avilable-orders.component.css'],
 })
 export class AvilableOrdersComponent implements OnInit {
-
-  ordersList:PlacedLocationModel[]
+  ordersList: PlacedLocationModel[];
   closeResult: string = '';
   lat = '';
   lng = '';
   Locatins;
+  NumberOfOrders: number;
 
   constructor(
-    private deliveryService:DeliveryService,
+    private deliveryService: DeliveryService,
     private modalService: NgbModal
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.getLocation()
+    this.getLocation();
   }
 
-  async getLocation()
-  {
-    await this.deliveryService.GetPlacedOrders().toPromise()
-    .then(
-      (response)=>{
-        console.log(response);
+  async getLocation() {
+    await this.deliveryService
+      .GetPlacedOrders()
+      .toPromise()
+      .then((response) => {
         this.ordersList = response.data;
-      }
-    )
+        console.log(this.ordersList);
+        if (this.ordersList == null) this.NumberOfOrders = 0;
+        else this.NumberOfOrders = this.ordersList.length;
+      });
   }
 
   ChangeMapLocation(lat, lng) {
@@ -44,7 +47,6 @@ export class AvilableOrdersComponent implements OnInit {
       {
         zoom: 15,
         center: { lat: lat, lng: lng },
-       
       }
     );
     const geocoder = new google.maps.Geocoder();
@@ -82,9 +84,7 @@ export class AvilableOrdersComponent implements OnInit {
   }
 
   async open(content: any, id: number) {
-  
-    
-    this.Locatins = this.ordersList.find(o=>o.orderId == id)
+    this.Locatins = this.ordersList.find((o) => o.orderId == id);
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
@@ -92,14 +92,9 @@ export class AvilableOrdersComponent implements OnInit {
       });
   }
 
-  takeOrder(id:number)
-  {
-    this.deliveryService.Takeorder(id).subscribe(
-      (response)=>
-      {
-        this.ngOnInit();
-      }
-    )
+  takeOrder(id: number) {
+    this.deliveryService.Takeorder(id).subscribe((response) => {
+      this.ngOnInit();
+    });
   }
-
 }

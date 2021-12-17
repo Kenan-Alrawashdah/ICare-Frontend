@@ -1,112 +1,204 @@
-<div class="container" style="margin-top:30px;">
-    <div class="row justify-content-center">
-
-        <div class="card card-rounded">
-            <div class="card-body">
-                <h2 style="text-align: center;margin-bottom: 15px;">Available Orders</h2>
-                <div class="table-responsive  mt-1">
-                    <table class="table select-table">
-                        <thead>
-                            <tr>
-                                <th>Order Number</th>
-                                <th>City</th>
-                                <th>Details</th>
-                                <th>Show On Map</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of ordersList">
-                                <td>
-                                    <h6>Order#{{item.orderId}}</h6>
-                                </td>
-                                <td>
-                                    <h6>{{item.city}}</h6>
-                                </td>
-                                <td>
-                                    <span (click)="open(mymodal, item.orderId)" style="cursor: pointer">
-                                        <i style="font-size: 20px" class="fas fa-address-card"
-                                            title="Show Address Information"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span *ngIf="item.lat != 0" data-toggle="modal" data-dismiss="modal" data-target="#address_model" (click)="ChangeMapLocation(item.lat, item.lng)" style="cursor: pointer">
-                                        <i style="font-size: 20px" class="fas fa-map-marked"
-                                            title="Show Address Information"></i>
-                                    </span>
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary" (click)="takeOrder(item.orderId)">Take this order</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="row">
+  <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div
+          class="
+            icon icon-lg icon-shape
+            bg-gradient-dark
+            shadow-dark
+            text-center
+            border-radius-xl
+            mt-n4
+            position-absolute
+          "
+        >
+          <i class="material-icons opacity-10">person</i>
         </div>
+        <div class="text-end pt-1">
+          <p class="text-sm mb-0 text-capitalize">Orders</p>
+          <h4 class="mb-0">{{ NumberOfOrders }}</h4>
+        </div>
+      </div>
+      <hr class="dark horizontal my-0" />
+      <div class="card-footer p-3">Number of user requests</div>
     </div>
+  </div>
+</div>
+<div class="container" style="margin-top: 30px">
+  <div class="row justify-content-center">
+    <div class="card card-rounded">
+      <div class="card-body">
+        <h2 style="text-align: center; margin-bottom: 15px">
+          Available Orders
+        </h2>
+        <div class="table-responsive mt-1">
+          <table class="table select-table">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>City</th>
+                <th>Details</th>
+                <th>Show On Map</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ordersList">
+                <td>
+                  <h6>Order#{{ item.orderId }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.city }}</h6>
+                </td>
+                <td>
+                  <span
+                    (click)="open(mymodal, item.orderId)"
+                    style="cursor: pointer"
+                  >
+                    <i
+                      style="font-size: 20px"
+                      class="fas fa-address-card"
+                      title="Show Address Information"
+                    ></i>
+                  </span>
+                </td>
+                <td>
+                  <span
+                    *ngIf="item.lat != 0"
+                    data-toggle="modal"
+                    data-dismiss="modal"
+                    data-target="#address_model"
+                    (click)="ChangeMapLocation(item.lat, item.lng)"
+                    style="cursor: pointer"
+                  >
+                    <i
+                      style="font-size: 20px"
+                      class="fas fa-map-marked"
+                      title="Show Address Information"
+                    ></i>
+                  </span>
+                </td>
+                <td>
+                  <a class="btn btn-primary" (click)="takeOrder(item.orderId)"
+                    >Take this order</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <ng-template #mymodal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-            Customer Address Information
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form id="address_modal_form">
-            <div class="form-group">
-                <label class="form-label" for="locality">Phone Number</label>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Customer Address Information
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="address_modal_form">
+      <div class="form-group">
+        <label class="form-label" for="locality">Phone Number</label>
 
-                <input disabled name="phone" type="text" [value]="Locatins.phoneNumber" class="form-control input-lg rounded" />
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-4">
-                        <label class="form-label" for="locality">City</label>
-                        <input type="text" disabled class="form-control" [value]="Locatins.city" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-4">
-                        <label class="form-label" for="country">Zip Code</label>
-                        <input type="number" disabled class="form-control" [value]="Locatins.zipCode" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-4">
-                        <label class="form-label" for="locality">Details</label>
-                        <input type="text" disabled class="form-control" [value]="Locatins.details" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-4">
-                        <label class="form-label" for="country">Street</label>
-                        <input type="text" disabled class="form-control" [value]="Locatins.street" />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
-            Ok
-        </button>
-    </div>
-</ng-template>
-<div class="modal clean_modal clean_modal-lg" id="address_model" tabindex="-1" aria-labelledby="address_model" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="modal-body" style="height: 450px; width: 100%; padding: auto">
-                <div id="map"></div>
-            </div>
+        <input
+          disabled
+          name="phone"
+          type="text"
+          [value]="Locatins.phoneNumber"
+          class="form-control input-lg rounded"
+        />
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-4">
+            <label class="form-label" for="locality">City</label>
+            <input
+              type="text"
+              disabled
+              class="form-control"
+              [value]="Locatins.city"
+            />
+          </div>
         </div>
+        <div class="col-md-6">
+          <div class="mb-4">
+            <label class="form-label" for="country">Zip Code</label>
+            <input
+              type="number"
+              disabled
+              class="form-control"
+              [value]="Locatins.zipCode"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-4">
+            <label class="form-label" for="locality">Details</label>
+            <input
+              type="text"
+              disabled
+              class="form-control"
+              [value]="Locatins.details"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-4">
+            <label class="form-label" for="country">Street</label>
+            <input
+              type="text"
+              disabled
+              class="form-control"
+              [value]="Locatins.street"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Ok
+    </button>
+  </div>
+</ng-template>
+<div
+  class="modal clean_modal clean_modal-lg"
+  id="address_model"
+  tabindex="-1"
+  aria-labelledby="address_model"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body" style="height: 450px; width: 100%; padding: auto">
+        <div id="map"></div>
+      </div>
     </div>
+  </div>
 </div>
