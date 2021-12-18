@@ -109,12 +109,19 @@
         <div class="collapse" id="tables">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a
-                class="nav-link"
-                asp-controller="Admin"
-                asp-action="GetEmployees"
-                >All Employees</a
-              >
+
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                    <i class="menu-icon mdi mdi-table"></i>
+                    <span class="menu-title">Employee </span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="tables">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" routerLink="/Admin2/GetEmployee" >All Employees</a></li>
+                        <li class="nav-item"> <a class="nav-link" routerLink="/Admin2/AddEmployee"asp-action="AddEmployee">Add Employee</a></li>
+                    </ul>
+                </div>
+
             </li>
             <li class="nav-item">
               <a
