@@ -7,6 +7,7 @@ import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-a
 import { Loader } from '@googlemaps/js-api-loader';
 import { DeliveryService } from '../service/delivery.service';
 import { DeliveryOrdersModel } from '../model/DeliveryOrders.model';
+import { GetNumberOfOrdersForDelivery } from 'src/app/shared/Delivery/get-number-of-orders-for-delivery.model';
 
 declare const google: any;
 
@@ -16,33 +17,30 @@ declare const google: any;
   styleUrls: ['./delivery-orders.component.css'],
 })
 export class DeliveryOrdersComponent implements OnInit {
-
-  myOrders:DeliveryOrdersModel[]
+  myOrders: DeliveryOrdersModel[];
   closeResult: string = '';
   lat = '';
   lng = '';
   Locatins;
+  NumberOfOrders: number;
 
   constructor(
-    private deliveryService:DeliveryService,
+    private deliveryService: DeliveryService,
     private modalService: NgbModal
-
   ) {}
 
   ngOnInit(): void {
-      this.getMyOrders()
+    this.getMyOrders();
   }
 
-  async getMyOrders()
-  {
-    await this.deliveryService.GetMyOrders().toPromise()
-    .then(
-      (response)=>
-      {
-        this.myOrders = response.data
-        console.log(response.data)
-      }
-    )
+  async getMyOrders() {
+    await this.deliveryService
+      .GetMyOrders()
+      .toPromise()
+      .then((response) => {
+        this.myOrders = response.data;
+        this.NumberOfOrders = this.myOrders.length;
+      });
   }
 
   ChangeMapLocation(lat, lng) {
@@ -53,7 +51,6 @@ export class DeliveryOrdersComponent implements OnInit {
       {
         zoom: 15,
         center: { lat: lat, lng: lng },
-       
       }
     );
     const geocoder = new google.maps.Geocoder();
@@ -91,8 +88,7 @@ export class DeliveryOrdersComponent implements OnInit {
   }
 
   async open(content: any, id: number) {
-  
-    this.Locatins = this.myOrders.find(o=>o.orderId == id)
+    this.Locatins = this.myOrders.find((o) => o.orderId == id);
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {

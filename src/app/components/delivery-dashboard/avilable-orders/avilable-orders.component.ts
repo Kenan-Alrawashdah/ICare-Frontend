@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
+import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
 import { PlacedLocationModel } from '../model/placedLocation.model';
 import { DeliveryService } from '../service/delivery.service';
 
@@ -14,10 +16,14 @@ export class AvilableOrdersComponent implements OnInit {
   lat = '';
   lng = '';
   Locatins;
+
+  NumberOfOrders: number;
+
   ds: google.maps.DirectionsService;
   dr: google.maps.DirectionsRenderer;
   source: google.maps.LatLngLiteral;
   destination: google.maps.LatLngLiteral;
+
 
   constructor(
     private deliveryService: DeliveryService,
@@ -26,11 +32,14 @@ export class AvilableOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocation();
+
+
     this.ds = new google.maps.DirectionsService();
     this.dr = new google.maps.DirectionsRenderer({
       map: null,
       suppressMarkers: true,
     });
+
   }
 
   async getLocation() {
@@ -38,8 +47,15 @@ export class AvilableOrdersComponent implements OnInit {
       .GetPlacedOrders()
       .toPromise()
       .then((response) => {
+
+        this.ordersList = response.data;
+        console.log(this.ordersList);
+        if (this.ordersList == null) this.NumberOfOrders = 0;
+        else this.NumberOfOrders = this.ordersList.length;
+
         console.log(response);
         this.ordersList = response.data;
+
       });
   }
 
