@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
         this.count.push(element.count);
       });
       this.chart = new Chart('canvas', {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: this.label,
           datasets: [
@@ -89,7 +89,6 @@ export class DashboardComponent implements OnInit {
             {
               data: this.count1,
               borderColor: '#3e95cd',
-              fill: false,
               label: 'Drug Sales',
               backgroundColor: 'rgba(93, 175, 89, 0.1)',
               borderWidth: 3,
