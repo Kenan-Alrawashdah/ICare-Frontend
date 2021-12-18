@@ -1,4 +1,227 @@
+<div class="d-flex h-100 m-auto">
+  <form (ngSubmit)="addEmployee()" class="w-75 m-auto">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="control-label">First Name</label>
+          <input
+            type="text"
+            name="fName"
+            formControlName="fName"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('fName').hasError('required') &&
+              (AddEmployeeForm.controls['fName'].dirty ||
+                AddEmployeeForm.controls['fName'].touched)
+            "
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('fName').hasError('minlength') &&
+              (AddEmployeeForm.controls['fName'].dirty ||
+                AddEmployeeForm.controls['fName'].touched)
+            "
+          >
+            At least three char !
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('fName').hasError('maxlength') &&
+              (AddEmployeeForm.controls['fName'].dirty ||
+                AddEmployeeForm.controls['fName'].touched)
+            "
+          >
+            Do not exceed 55 letter!
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Last Name</label>
+          <input
+            type="text"
+            name="lName"
+            formControlName="lName"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('lName').hasError('required') &&
+              (AddEmployeeForm.controls['lName'].dirty ||
+                AddEmployeeForm.controls['lName'].touched)
+            "
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('lName').hasError('minlength') &&
+              (AddEmployeeForm.controls['lName'].dirty ||
+                AddEmployeeForm.controls['lName'].touched)
+            "
+          >
+            At least three char !
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('lName').hasError('maxlength') &&
+              (AddEmployeeForm.controls['lName'].dirty ||
+                AddEmployeeForm.controls['lName'].touched)
+            "
+          >
+            Do not exceed 55 letter!
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <input
+            type="email"
+            name="email"
+            formControlName="email"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('email').hasError('required') &&
+              (AddEmployeeForm.controls['email'].dirty ||
+                AddEmployeeForm.controls['email'].touched)
+            "
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('email').hasError('email') &&
+              (AddEmployeeForm.controls['email'].dirty ||
+                AddEmployeeForm.controls['email'].touched)
+            "
+          >
+            Email invald.
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            formControlName="phone"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('phone').hasError('required') &&
+              (AddEmployeeForm.controls['phone'].dirty ||
+                AddEmployeeForm.controls['phone'].touched)
+            "
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
 
+      <div class="col-6">
+        <div class="form-group">
+          <label class="control-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            formControlName="password"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('password').hasError('required') &&
+              (AddEmployeeForm.controls['password'].dirty ||
+                AddEmployeeForm.controls['password'].touched)
+            "
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('password').hasError('minlength') &&
+              (AddEmployeeForm.controls['password'].dirty ||
+                AddEmployeeForm.controls['password'].touched)
+            "
+          >
+            At least 8 char !
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">HourSalary</label>
+          <input
+            type="number"
+            name="hourSalary"
+            formControlName="hourSalary"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('hourSalary').hasError('required') &&
+              (AddEmployeeForm.controls['hourSalary'].dirty ||
+                AddEmployeeForm.controls['hourSalary'].touched)
+            "
+          >
+            This field is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Monthly Working Hours</label>
+          <input
+            type="number"
+            name="MWH"
+            formControlName="MWH"
+            value="yyyy-mm-dd"
+            class="form-control"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('MWH').hasError('required') &&
+              (AddEmployeeForm.controls['MWH'].dirty ||
+                AddEmployeeForm.controls['MWH'].touched)
+            "
+          >
+            This field is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Role</label>
+          <select
+            class="form-select form-control"
+            formControlName="role"
+            aria-label="Default select example"
+          >
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let item of roles" value="{{ item.id }}">
+              {{ item.name }}
+            </option>
+          </select>
+          <small
+            class="text-danger"
+            *ngIf="
+              AddEmployeeForm.get('role').hasError('required') &&
+              (AddEmployeeForm.controls['role'].dirty ||
+                AddEmployeeForm.controls['role'].touched)
+            "
+          >
+            This field is required.
+          </small>
+        </div>
 
 <div class="d-flex h-100 m-auto">
     <form  [formGroup]="AddEmployeeForm" (ngSubmit)="addEmployee()" class="w-75 m-auto">
@@ -139,7 +362,7 @@
                 <div class="form-group">
                     <label  class="control-label">Role</label>
                     <select  class="form-select form-control" formControlName="role"  aria-label="Default select example">
-                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="" selected disabled >Choose here</option>
                         <option *ngFor="let item of roles" value="{{item.id}}"> {{item.name}}</option>
                       </select>
                       <small class="text-danger" *ngIf="
@@ -156,6 +379,9 @@
                     <input type="submit" value="Add" class="btn btn-success font-weight-bold w-50" style="font-size: 17px;" />
                 </div>
             </div>
+
         </div>
-    </form>
+      </div>
+    </div>
+  </form>
 </div>

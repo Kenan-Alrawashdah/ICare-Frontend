@@ -1,68 +1,170 @@
 <div class="row justify-content-center">
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form class="forms-sample" asp-action="AddEmployee">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <form class="forms-sample" asp-action="AddEmployee">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                    <div class="form-group">
-                        <label asp-for="FirstName">First Name</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="First Name" asp-for="FirstName">
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                <form  [formGroup]="AddEmployeeForm" class="forms-sample"  (ngSubmit)="addEmployee()">
+                     <div class="text-center">
+                          <span class="text-danger">{{err}}</span>
+                      </div>
+                  <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" id="exampleInputUsername1" placeholder="First Name" >
+                        <small class="text-danger" *ngIf="
+                        AddEmployeeForm.get('firstName').hasError(
+                          'required'
+                        ) &&
+                        (AddEmployeeForm.controls['firstName'].dirty ||
+                        AddEmployeeForm.controls['firstName'].touched) ">
+                        This field is required.
+                       </small>
+                       <small class="text-danger" *ngIf="
+                        AddEmployeeForm.get('firstName').hasError(
+                          'minlength'
+                        ) &&
+                        (AddEmployeeForm.controls['firstName'].dirty ||
+                        AddEmployeeForm.controls['firstName'].touched) ">
+                        At least three char !
+                       </small>
+                       <small class="text-danger" *ngIf="
+                        AddEmployeeForm.get('firstName').hasError(
+                          'maxlength'
+                        ) &&
+                        (AddEmployeeForm.controls['firstName'].dirty ||
+                        AddEmployeeForm.controls['firstName'].touched) ">
+                        Do not exceed 55 letter!
+                       </small>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="LastName">Last Name</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Last Name" asp-for="LastName">
-                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" id="exampleInputUsername1" placeholder="Last Name" >
+                        <small class="text-danger" *ngIf=" AddEmployeeForm.get('lastName').hasError( 'required' ) &&
+                        (AddEmployeeForm.controls['lastName'].dirty || AddEmployeeForm.controls['lastName'].touched) ">
+                        This field is required.
+                       </small>
+                       <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('lastName').hasError(
+                      'minlength'
+                    ) &&
+                    (AddEmployeeForm.controls['lastName'].dirty ||
+                    AddEmployeeForm.controls['lastName'].touched) ">
+                    At least three char !
+                   </small>
+                   <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('lastName').hasError(
+                      'maxlength'
+                    ) &&
+                    (AddEmployeeForm.controls['lastName'].dirty ||
+                    AddEmployeeForm.controls['lastName'].touched) ">
+                    Do not exceed 55 letter!
+                   </small>         
                     </div>
                     <div class="form-group">
-                        <label asp-for="PhoneNumber">PhoneNumber</label>
-                        <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" asp-for="PhoneNumber">
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <label >Phone Number</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number" >
+                        <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('phoneNumber').hasError(
+                      'required'
+                    ) &&
+                    (AddEmployeeForm.controls['phoneNumber'].dirty ||
+                    AddEmployeeForm.controls['phoneNumber'].touched) ">
+                    This field is required.
+                </small>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Email">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" asp-for="Email">
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label>Email address</label>
+                        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" placeholder="Email" >
+                        <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('email').hasError(
+                      'required'
+                    ) &&
+                    (AddEmployeeForm.controls['email'].dirty ||
+                    AddEmployeeForm.controls['email'].touched) ">
+                    This field is required.
+                   </small>
+                   <small class="text-danger" *ngIf="
+                   AddEmployeeForm.get('email').hasError(
+                     'email'
+                   ) &&
+                   (AddEmployeeForm.controls['email'].dirty ||
+                   AddEmployeeForm.controls['email'].touched) ">
+                   Email invald.
+                  </small>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Password">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" asp-for="Password">
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <label>Password</label>
+                        <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password" >
+                        <small class="text-danger" *ngIf="
+                        AddEmployeeForm.get('password').hasError(
+                          'required'
+                        ) &&
+                        (AddEmployeeForm.controls['password'].dirty ||
+                        AddEmployeeForm.controls['password'].touched) ">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('password').hasError(
+                      'minlength'
+                    ) &&
+                    (AddEmployeeForm.controls['password'].dirty ||
+                    AddEmployeeForm.controls['password'].touched) ">
+                    At least 8 char !
+                   </small>
                     </div>
                     <div class="form-group">
-                        <label asp-for="EmployeeType">Employee Type</label>
-                        <select class="form-control" asp-for="EmployeeType">
-                                <option value="Accountant">Accountant</option>
-                                <option value="CallCenter">Call Center</option>
-                                <option value="Other">Other</option>
-
-                            </select>
+                        <label >Role</label>
+                        <select  class="form-select form-control" formControlName="roleId"  >
+                            <option value="" selected disabled >Choose here</option>
+                            <option *ngFor="let item of roles" [value]="item.id"> {{item.name}}</option>
+                          </select>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Salary">Salary</label>
+                        <label>Hour Salary</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Salary" aria-label="Username" asp-for="Salary">
-                            <span asp-validation-for="Salary" class="text-danger"></span>
+                            <input type="number" formControlName="hourSalary" class="form-control" placeholder="hourSalary" >
+                            <small class="text-danger" *ngIf="
+                            AddEmployeeForm.get('hourSalary').hasError(
+                              'required'
+                            ) &&
+                            (AddEmployeeForm.controls['hourSalary'].dirty ||
+                            AddEmployeeForm.controls['hourSalary'].touched) ">
+                            This field is required.
+                        </small>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Working Hours</label>
+                        <div class="input-group">
+                            <input type="number" formControlName="monthlyWorkingHours" class="form-control" placeholder="Monthly Working Hours" >
+                            <small class="text-danger" *ngIf="
+                    AddEmployeeForm.get('monthlyWorkingHours').hasError(
+                      'required'
+                    ) &&
+                    (AddEmployeeForm.controls['monthlyWorkingHours'].dirty ||
+                    AddEmployeeForm.controls['monthlyWorkingHours'].touched) ">
+                    This field is required.
+                </small>
 
                         </div>
                     </div>
 
-                    <div class="form-group justify-content-center">
-                        <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary me-2">Add</button>
-                        </div>
-                    </div>
-                </form>
+          <div class="form-group justify-content-center">
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-primary me-2">Add</button>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

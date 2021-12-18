@@ -11,7 +11,6 @@ import { Patient2Component } from './components/patient2/patient2.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
-import { AddEmployeeComponent } from './components/admin-dashboard/add-employee/add-employee.component';
 import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
@@ -35,6 +34,12 @@ import { OrderDetailsComponent } from './components/patient2/order-details/order
 import { EditDrugComponent } from './components/patient2/edit-drug/edit-drug.component';
 import { SubscriptionComponent } from './components/home2/subscription/subscription.component';
 import { SubscriptionCheckOutComponent } from './components/home2/subscription-check-out/subscription-check-out.component';
+
+import { GetEmployeeComponent } from './components/admin2/get-employee/get-employee.component';
+
+import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 const routes: Routes = [
   {
@@ -81,7 +86,7 @@ const routes: Routes = [
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-    },
+  },
   {
     path: 'Pharmacer',
     component: PharmacerDashboardComponent,
@@ -94,26 +99,23 @@ const routes: Routes = [
     path: 'Admin2',
     component: Admin2Component,
     loadChildren: () =>
-    import(
-      './lazyLoad/admin2/admin2-routing.module'
-    ).then((m) => m.Admin2RoutingModule),
-  }
-  ,
+      import('./lazyLoad/admin2/admin2-routing.module').then(
+        (m) => m.Admin2RoutingModule
+      ),
+  },
   {
     path: 'pharmacist',
     component: PharmacistComponent,
     loadChildren: () =>
-    import(
-      './lazyLoad/pharmacist/pharmacist-routing.module'
-    ).then((m) => m.PharmacistRoutingModule),
-  }
-
+      import('./lazyLoad/pharmacist/pharmacist-routing.module').then(
+        (m) => m.PharmacistRoutingModule
+      ),
+  },
 ];
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
-    AddEmployeeComponent,
     EmployeeDashboardComponent,
     EmployeeMainComponent,
     EmployeesInformationComponent,
@@ -131,6 +133,10 @@ const routes: Routes = [
     PharmacistComponent,
     AvilableOrdersComponent
 
+    GetEmployeeComponent,
+
+    DashboardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -138,7 +144,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    //lazyLoad Models 
+    //lazyLoad Models
     Patient2Module,
     Home2Module,
     Admin2Module,
@@ -149,6 +155,7 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgChartsModule,
   ],
 
   providers: [authInterceptorProviders],

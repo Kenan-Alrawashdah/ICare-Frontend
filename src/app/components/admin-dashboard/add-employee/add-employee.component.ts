@@ -43,6 +43,7 @@ export class AddEmployeeComponent implements OnInit {
           if(data.success){
             console.log('kenan');
             this.roles = data.data;
+            console.log('dataa :'+data.data);
           }
       },
       (error)=>{
