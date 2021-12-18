@@ -7,7 +7,9 @@ import { AddDrugComponent } from 'src/app/components/patient2/add-drug/add-drug.
 import { AddressComponent } from 'src/app/components/patient2/address/address.component';
 import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 import { EditAddressComponent } from 'src/app/components/patient2/edit-address/edit-address.component';
+import { EditDrugComponent } from 'src/app/components/patient2/edit-drug/edit-drug.component';
 import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.component';
+import { OrderDetailsComponent } from 'src/app/components/patient2/order-details/order-details.component';
 import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
 import { WaterComponent } from 'src/app/components/patient2/water/water.component';
 
@@ -45,8 +47,15 @@ const routes: Routes = [
     component:EditAddressComponent
   },
   {
-    path:'Water2',
+    path:'WaterNotification',
     component:WaterComponent
+  },
+  {
+    path:'OrderDetails',
+    component:OrderDetailsComponent
+  },{
+    path:'EditDrug',
+    component:EditDrugComponent
   }
 ];
 

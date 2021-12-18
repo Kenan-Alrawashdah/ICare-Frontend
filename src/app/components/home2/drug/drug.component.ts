@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/services/token.service';
 import { DrugsComponent } from '../drugs/drugs.component';
 import { HomeService } from '../home.service';
 import { Home2Component } from '../home2.component';
@@ -20,7 +21,8 @@ export class DrugComponent implements OnInit {
     private homeService:HomeService,
     private router:Router,
     private homComponent:Home2Component,
-    private Toastr:ToastrService
+    private Toastr:ToastrService,
+    private tokenService:TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class DrugComponent implements OnInit {
   }
 
   async CheckItemIfInCart(id:number){
+    
     await this.homeService.CheckItemIfInCart(id).toPromise()
     .then(
       (response)=>{
@@ -44,18 +47,20 @@ export class DrugComponent implements OnInit {
   }
 
 
+
   addToCart(id:number)
   {
-    console.log(id)
-    this.homeService.AddToCart(id,this.quantity).subscribe(
-      (data)=>{
-      this.homComponent.ngOnInit();
-      if(data.success ==true)
-      this.Toastr.success('Item added successfully', '',{
-        timeOut: 2000,
-      });
-      }
-    );
+      console.log(id)
+      this.homeService.AddToCart(id,this.quantity).subscribe(
+        (data)=>{
+        this.homComponent.ngOnInit();
+        if(data.success ==true)
+        this.Toastr.success('Item added successfully', '',{
+          timeOut: 2000,
+        });
+        }
+      );
+    
   }
 
   async getDrug(){

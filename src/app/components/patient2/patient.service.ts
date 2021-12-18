@@ -6,8 +6,10 @@ import { AccountModel } from './models/account.model';
 import { AddAddressModel } from './models/AddAddress.model';
 import { AddDrugModel } from './models/AddDrug.Model';
 import { ChangePasswordModel } from './models/ChangePassword.model';
+import { EditDrugModel } from './models/EditDrug.model';
 import { GetMyDrugsModel } from './models/GetMyDrug.model';
 import { LocationModel } from './models/location.model';
+import { OrderDetailsModel } from './models/OrderDetails.model';
 import { OrdersModel } from './models/PatientOrders.model';
 import { WaterModel } from './models/Water.modle';
 
@@ -17,6 +19,8 @@ const baseURL = Constants.baseURL;
   providedIn: 'root'
 })
 export class PatientService {
+  orderId:number=-1;
+  editDrugIdNumber = -1; 
   constructor(
     private http:HttpClient
   ) { }
@@ -31,6 +35,9 @@ export class PatientService {
 
   addPatientDrug(body:AddDrugModel){
     return this.http.post<ApiResponseData>(baseURL+'Patient/AddPatientDrug',body);
+  }
+  editPatientDrug(body:EditDrugModel){
+    return this.http.post<ApiResponseData>(baseURL+'Patient/EditDrug',body);
   }
 
   getMyDrugs(){
@@ -86,6 +93,16 @@ export class PatientService {
   changePassword(body:ChangePasswordModel)
   {
     return this.http.put<ApiResponseData>(Constants.baseURL+'User/ChangePassword',body);
+  }
+
+  getOrderDetails()
+  {
+    return this.http.get<ApiResponseData<OrderDetailsModel>>(Constants.baseURL+'Orders/GetOrderDetails/'+this.orderId);
+  }
+  
+  getDrugForEdit()
+  {
+    return this.http.get<ApiResponseData<EditDrugModel>>(Constants.baseURL+'Patient/EditDrug/'+this.editDrugIdNumber)
   }
 
 }

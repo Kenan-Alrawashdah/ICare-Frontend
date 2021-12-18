@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +12,7 @@ export class RegistrationComponent implements OnInit {
   RegistrationForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private homeService:HomeService
   ) {
     this.RegistrationForm = new FormGroup({
       fname: new FormControl('', Validators.required),
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
     let email = this.RegistrationForm.controls['email'].value;
     let password = this.RegistrationForm.controls['password'].value;
     let phone = this.RegistrationForm.controls['phone'].value;
-    this.userService.register(fname, lname, email, password, phone).subscribe(
+    this.homeService.register(fname, lname, email, password, phone).subscribe(
       (data) => {
         console.log('response', data);
       },

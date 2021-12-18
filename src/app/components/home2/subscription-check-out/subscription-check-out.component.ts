@@ -1,32 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
 import { CartItemModel } from '../models/cartItem.model';
 import { CreateOrderModel } from '../models/CreateOrder.model';
 import { LocationModel } from '../models/location.model';
+import { SubscriptionTypeModel } from '../models/SubscriptionType.model';
+
 declare let paypal: any;
+
 @Component({
-  selector: 'app-check-out',
-  templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.css']
+  selector: 'app-subscription-check-out',
+  templateUrl: './subscription-check-out.component.html',
+  styleUrls: ['./subscription-check-out.component.css'],
 })
-export class CheckOutComponent implements OnInit {
+export class SubscriptionCheckOutComponent implements OnInit {
+  id: string;
+  SType:SubscriptionTypeModel
+
+
+
 
   CheckOutForm: FormGroup;
   cartItems: CartItemModel[];
-  total:number= 0;
-  locations:LocationModel[];
-  locationsNumber:number;
-  selectedLocation:number = 0;
+  total: number = 100;
+  selectedLocation: number = 0;
   addScript: boolean = false;
 
   constructor(
-    private homeService:HomeService,
-    private router:Router,
-    private toastr:ToastrService,
+    private homeService: HomeService,
+    private router: Router,
+    private toastr: ToastrService,
+    private _Activatedroute: ActivatedRoute
   ) {
+    this.id = this._Activatedroute.snapshot.paramMap.get('id');
     this.CheckOutForm = new FormGroup({
       cardNumber: new FormControl('', [Validators.required]),
       cardName: new FormControl('', [Validators.required]),
@@ -36,59 +44,27 @@ export class CheckOutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCartItems();
-    this.getLocations();
+    this.GetSubscriptionType()
   }
 
-  async getLocations(){
-    await this.homeService.GetUserLocations().toPromise()
+  async GetSubscriptionType() {
+    await this.homeService.GetSubscriptionTypeById(this.id).toPromise()
     .then(
-      (response=>{
-        this.locations = response.data;
-        this.locationsNumber = response.data.length;
-        console.log(this.locations);
-      })
+      (response)=>{
+        console.log(response)
+        this.SType = response.data
+        if(response.data.onSale)
+        {
+          this.total = response.data.priceAfterSale
+        }else{
+          this.total = response.data.price
+        }
+        console.log(this.SType)
+      }
     )
   }
 
-  async getCartItems() {
-    await this.homeService.GetCartItems().toPromise()
-      .then(
-        (response) => {
-          this.cartItems = response.data;
-          this.total =0;
-          response.data.forEach(element => {
-            this.total= this.total +element.price * element.quantity;
-          });
-        }
-      )
-  }
-
-  goTOAddLocation()
-  {
-    this.router.navigate(['/Patient/Address'])
-  }
-  onCheckOut()
-  {
-    if(this.selectedLocation != 0)
-    {
-      let order: CreateOrderModel = new CreateOrderModel();
-  
-       order.totalPrice = this.total; 
-       order.locationId = this.selectedLocation;
-       let CartsId:number[]=[] ; 
-       this.cartItems.forEach(element => {
-        CartsId.push(element.cartId);
-       });
-       order.cartsId = CartsId;
-       console.log(order.cartsId);
-       this.homeService.createOrder(order).subscribe();
-       this.router.navigate(['/Home/ThankYou']);
-    }else{
-      this.toastr.warning('Please select location to deliver','',{timeOut:1500});
-    }
-  }
-
+  onCheckOut() {}
 
   paypalConfig = {
     env: 'sandbox',

@@ -8,36 +8,36 @@
                         <img src="assets/img/logo.png" alt="logo" class="header-logo" />
                     </a>
                 </div>
+                <div id="Navigators" class="row">
+                    <a style="margin-right: 15px;margin-left: 20px;" routerLink="/Home">Home </a>
+                    <a routerLink="/Home/Subscription" style="margin-right: 15px;">Subscription </a>
+                    <a style="margin-right: 0px;">About Us </a>
+                </div>
                 <div class="col">
                     <div class="header-search">
+
                         <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
                         <div class="search-content">
                             <div class="search-product d-none">
                                 <!-- Search Popup -->
-                                <div class="product list-view" *ngFor="let pd of searchList">
-                                    <a href="product-single.html" class="product-img">
-                                        <img src="assets/img/product/product-1.png" class="" alt="" />
+                                <div id="LgSearch" class="product list-view" *ngFor="let item of searchList | slice:0:4">
+                                    <a (click)="GoToDrug(item.id)" class="product-img">
+                                        <img src="http://localhost:5000/images/{{item.drugPicturePath}}" id="test" class="close" alt="" />
                                     </a>
                                     <div class="product-info">
                                         <h3>
-                                            <a href="product-single.html">CoviFind Covid 19 Antigen Self Test Kit</a
+                                            <a (click)="GoToDrug(item.id)">{{item.drugName}}</a
                         >
                       </h3>
                       <div class="product-value">
-                        <div class="d-flex">
-                          <small class="regular-price"
-                            >MRP <del>₹2540.99</del></small
-                          >
-                          <div class="off-price">23% off</div>
-                        </div>
-                        <div class="current-price">₹1007.99</div>
+                      
+                        <div class="current-price">${{item.drugPrice}}</div>
+                        <div class="current-price">{{item.drugDescription}}</div>
                       </div>
                     </div>
                     <div class="product-actions">
-                      <a href="#" class="btn btn-soft-primary">
-                        <i class="ti-heart"></i> Add to Wishlist
-                      </a>
-                                            <a href="#" class="btn btn-primary">
+                     
+                                            <a (click)="CheckItemIfInCart(item.id)" class="btn btn-primary">
                                                 <i class="ti-shopping-cart"></i> Add to cart
                                             </a>
                                     </div>
@@ -87,73 +87,82 @@
                   id="showCart"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <!-- <ul class="shopping-cart-items">
+                  <ul *ngIf="cartList.length == 0" class="shopping-cart-items">
                                           <li>You have no items in your shopping cart.</li>
-                                      </ul> -->
-                  <ul class="shopping-cart-items">
-                    <li *ngFor="let item of cartList" class="mini_cart_item">
-                      <div class="left-section">
-                        <a href="product-single.html">
-                          <img src="http://localhost:5000/images/{{item.picturePath}}" alt="" />
-                        </a>
-                </div>
-                <div class="right-section">
-                    {{item.name}}
-                    <div>
-                        <div class="item-desc">${{item.price}}</div>
-                    </div>
-                </div>
-                </li>
+                                          <li class="w-100 d-block">
+                                            <a routerLink="/Home/Cart" class="btn btn-primary w-100 d-block">
+                                                Go to Cart
+                                              </a>
+                        </li>
+                    </ul>
+                    <ul *ngIf="cartList.length > 0" class="shopping-cart-items">
+                        <li *ngFor="let item of cartList" class="mini_cart_item">
+                            <div class="left-section">
+                                <a href="product-single.html">
+                                    <img src="http://localhost:5000/images/{{item.picturePath}}" alt="" />
+                                </a>
+                            </div>
+                            <div class="right-section">
+                                {{item.name}}
+                                <div>
+                                    <div class="item-desc">${{item.price}}</div>
+                                </div>
+                            </div>
+                        </li>
 
-                <li class="w-100 d-block">
-                    <a routerLink="/Home/Cart" class="btn btn-primary w-100 d-block">
+                        <li class="w-100 d-block">
+                            <a routerLink="/Home/Cart" class="btn btn-primary w-100 d-block">
                         Go to Cart
                       </a>
+                        </li>
+                    </ul>
+                </div>
                 </li>
-                </ul>
-            </div>
-            </li>
-            <li class="dropdown" id="section_1">
-                <button id="dropdownCartButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="dropdown" id="section_1">
+                    <button id="dropdownCartButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="list-icon" id="account">
                     <i class="ti-user"></i>{{ Name }}
                   </div>
                 </button>
 
-                <div style="z-index: 999;" class="dropdown-menu dropdown-menu-right user-links" aria-labelledby="dropdownMenuButton" id="user">
-                    <ul>
-                        <li>
-                            <a routerLink="/Patient/Account"> Account </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Patient/Account/Change-Password">
+                    <div style="z-index: 999;" class="dropdown-menu dropdown-menu-right user-links" aria-labelledby="dropdownMenuButton" id="user">
+                        <ul>
+                            <li>
+                                <a routerLink="/Patient/Account"> Account </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/ChangePassword">
                         Change Password
                       </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Patient/Account/Add-Drug"> Add New Drug </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Patient/Account/Address"> Address </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Patient/Account/Orders"> My Orders </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Patient/Account/Wish-List"> Wish List </a>
-                        </li>
-                        <li>
-                            <a routerLink="/Home/User/SignIn" (click)="logout()">
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/MyDrugs"> Drugs Notifications </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/WaterNotification"> Water Notifications </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/HealthReport">  Health Report </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/Address"> Address </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/Orders"> My Orders </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Home/User/SignIn" (click)="logout()">
                         Logout
                       </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+            </div>
+
         </div>
     </div>
-</div>
 </div>
 </div>
 
@@ -168,15 +177,32 @@
                 </ul>
             </div>
             <div class="col text-center">
-                <img src="assets/img/logo.png" alt="logo" class="header-logo" />
+                <a routerLink="/Home">
+                    <img src="assets/img/logo.png" alt="logo" class="header-logo" />
+                </a>
             </div>
             <div class="col-auto">
-                <ul class="header-right-options">
+                <ul class="header-right-options ">
                     <li class="link-item">
-                        <span class="badge badge-secondary">0</span>
-                        <i class="ti-bag"></i>
+                        <a id="mobile" style="color: #0d141f;">
+                            <i class="fa fa-search"></i>
+                        </a>
                     </li>
+
                 </ul>
+
+            </div>
+            <div *ngIf="isLogin" class="col-auto">
+                <ul class="header-right-options ">
+                    <li class="link-item" routerLink="/Home/Cart">
+                        <a style="    color: #0d141f;">
+                            <span class="badge badge-secondary">{{cartItemNumber}}</span>
+                            <i class="ti-bag "></i>
+                        </a>
+                    </li>
+
+                </ul>
+
             </div>
         </div>
         <div class="menu-sidebar">
@@ -185,7 +211,7 @@
             </div>
 
             <div class="welcome d-flex align-items-center">
-                <a *ngIf="!isLogin" routerLink="./login" data-toggle="modal" data-dismiss="modal" data-target="#login_modal" class="btn btn-soft-primary btn-md">Login</a
+                <a *ngIf="!isLogin" (click)="sidebarGoTo('/Home/login')" data-toggle="modal" data-dismiss="modal" data-target="#login_modal" class="btn btn-soft-primary btn-md">Login</a
           >
           <a *ngIf="!isLogin"
           routerLink="./register"
@@ -212,7 +238,40 @@
     </div>
     <div class="overlay"></div>
 </div>
+<div class="col" id="SmSearch2" style="display: none;">
+    <div class="header-search">
+        <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
+        <div class="search-content">
+            <div class="search-product d-none">
+                <!-- Search Popup -->
 
+                <div class="product list-view" *ngFor="let item of searchList | slice:0:4">
+                    <!-- <a  class="product-img">
+                        <img src="http://localhost:5000/images/{{item.drugPicturePath}}" class="" alt="" />
+                    </a> -->
+                    <div class="product-info">
+                        <h3>
+                            <a href="product-single.html">{{item.drugName}}</a
+        >
+      </h3>
+      <div class="product-value">
+      
+        <div class="current-price">${{item.drugPrice}}</div>
+        <div class="current-price">{{item.drugDescription}}</div>
+      </div>
+    </div>
+    <div class="product-actions">
+     
+                            <a (click)="CheckItemIfInCart(item.id)" class="btn btn-primary">
+                                <i class="ti-shopping-cart"></i> Add to cart
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <router-outlet></router-outlet>
 
 <footer class="site-footer footer-padding-lg bg-light mt-8">

@@ -8,6 +8,8 @@ import { DrugComponent } from 'src/app/components/home2/drug/drug.component';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
 import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
 import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.component';
+import { SubscriptionComponent } from 'src/app/components/home2/subscription/subscription.component';
+import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,13 @@ const routes: Routes = [
 },{
   path:'ThankYou',
   component:ThankYouComponent
+},{
+  path:'Subscription',
+  component:SubscriptionComponent
+},
+{
+  path:'SubscriptionCheckOut/:id',
+  component:SubscriptionCheckOutComponent
 }
 
 ];

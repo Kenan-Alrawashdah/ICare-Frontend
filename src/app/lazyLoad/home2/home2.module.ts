@@ -12,6 +12,9 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CartComponent } from 'src/app/components/home2/cart/cart.component';
 import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.component';
 import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SubscriptionComponent } from 'src/app/components/home2/subscription/subscription.component';
+import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
 
 
 @NgModule({
@@ -23,14 +26,17 @@ import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.
     DrugsComponent,
     CartComponent,
     CheckOutComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    SubscriptionComponent,
+    SubscriptionCheckOutComponent
   ],
   imports: [
     CommonModule,
     Home2RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgbModule
 
   ]
 })
