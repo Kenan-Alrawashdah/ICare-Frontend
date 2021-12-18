@@ -3,9 +3,6 @@
         <div class="row mb-md-5">
             <div class="col">
                 <h5 class="mb-1 text-white">Orders</h5>
-                <p class="mb-0 text-white small">
-                    You have full control to manage your own orders.
-                </p>
             </div>
             <div class="col-auto">
                 <a routerLink="/Patient/Account" class="btn btn-primary btn-sm">
@@ -27,13 +24,17 @@
                 <tbody>
                     <tr *ngFor="let item of orders">
                         <td class="py-3">
-                            <a class="nav-link-style fw-medium fs-sm" href="orders-details.html" data-bs-toggle="modal">Order#{{item.id}}</a>
+                            <a class="nav-link-style fw-medium fs-sm" (click)="goToDrugDetails(item.id)" data-bs-toggle="modal">Order#{{item.id}}</a>
                         </td>
                         <td class="py-3">
-                            {{item.createdOn}}
+                            {{item.createdOn| date: "dd/MM/yyyy"}}
                         </td>
                         <td class="py-3">
-                            <span *ngIf="item.status == 'In Progress'" class="badge bg-soft-info m-0">In Progress</span>
+                            <span *ngIf="item.status == 'In Progress'" class="badge bg-soft-warning m-0">In Progress</span>
+                            <span *ngIf="item.status == 'Placed'" class="badge bg-soft-info m-0">Placed</span>
+                            <span *ngIf="item.status == 'Out for delivery'" class="badge bg-soft-primary m-0">Out for delivery</span>
+                            <span *ngIf="item.status == 'Canceled'" class="badge bg-soft-danger m-0">Canceled</span>
+                            <span *ngIf="item.status == 'Delivered'" class="badge bg-soft-success m-0">Delivered</span>
                         </td>
                         <td class="py-3">${{item.totalPrice}}</td>
                     </tr>

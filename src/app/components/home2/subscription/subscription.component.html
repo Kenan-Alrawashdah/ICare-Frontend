@@ -1,0 +1,78 @@
+<div class=" container">
+    <div class="block-heading">
+        <h2>Pricing Table</h2>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="item">
+                <div *ngIf="SubscriptionTypeList[0].hasRibbon" class="ribbon" [style.background]="SubscriptionTypeList[0].ribbonColor">{{SubscriptionTypeList[0].ribbon}}</div>
+                <div class="heading">
+                    <h3>{{SubscriptionTypeList[0].name}}</h3>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                <div class="features">
+                    <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
+                    <h4><span class="feature">Duration</span> : <span class="value">{{SubscriptionTypeList[0].days}} Days</span></h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[0].onSale == false" class="price">
+                    <h4>${{SubscriptionTypeList[0].price}}</h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[0].onSale == true" class="price">
+                    <div class="row">
+                        <h4 style="text-decoration-line: line-through;color: rgb(110, 22, 0); font-size: 30px;" class="col-4"> ${{SubscriptionTypeList[0].price}}</h4>
+                        <h4 class="col-6">${{SubscriptionTypeList[0].priceAfterSale}}</h4>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-outline-primary" routerLink="/Home/SubscriptionCheckOut/{{SubscriptionTypeList[0].id}}">Subscribe Now</button>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-4">
+            <div class="item">
+                <div *ngIf="SubscriptionTypeList[1].hasRibbon" class="ribbon" [style.background]="SubscriptionTypeList[1].ribbonColor">{{SubscriptionTypeList[1].ribbon}}</div>
+
+                <div class="heading">
+                    <h3>{{SubscriptionTypeList[1].name}}</h3>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="features">
+                    <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
+                    <h4><span class="feature">Duration</span> : <span class="value">{{SubscriptionTypeList[1].days}} Days</span></h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[1].onSale == false" class="price">
+                    <h4>${{SubscriptionTypeList[1].price}}</h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[1].onSale == true" class="price">
+                    <div class="row">
+                        <h4 style="text-decoration-line: line-through;color: rgb(110, 22, 0); font-size: 30px;" class="col-4"> ${{SubscriptionTypeList[1].price}}</h4>
+                        <h4 class="col-6">${{SubscriptionTypeList[1].priceAfterSale}}</h4>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-primary" type="submit">BUY NOW</button>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-4">
+            <div class="item">
+                <div *ngIf="SubscriptionTypeList[2].hasRibbon" class="ribbon" [style.background]="SubscriptionTypeList[2].ribbonColor">{{SubscriptionTypeList[2].ribbon}}</div>
+                <div class="heading">
+                    <h3>{{SubscriptionTypeList[2].name}}</h3>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="features">
+                    <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
+                    <h4><span class="feature">Duration</span> : <span class="value">{{SubscriptionTypeList[2].days}} Days</span></h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[2].onSale == false" class="price">
+                    <h4>${{SubscriptionTypeList[2].price}}</h4>
+                </div>
+                <div *ngIf="SubscriptionTypeList[2].onSale == true" class="price">
+                    <div class="row">
+                        <h4 style="text-decoration-line: line-through;color: rgb(110, 22, 0); font-size: 30px;" class="col-4"> ${{SubscriptionTypeList[2].price}}</h4>
+                        <h4 class="col-6">${{SubscriptionTypeList[2].priceAfterSale}}</h4>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-outline-primary" type="submit">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+</div>

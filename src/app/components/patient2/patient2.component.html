@@ -2,21 +2,19 @@
     <div class="accounnt_header">
         <div class="container">
             <div class="row align-items-center">
+                <div class="order-md-1 text-center text-md-left col-lg col-12">
+                    <h1 class="h3 mb-0">User DashBoard</h1>
+                </div>
                 <div class="col-lg-auto col-12 order-md-2">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a class="text-nowrap" routerLink="/Home"><i class="fa fa-home mr-2"></i>Home</a>
-                            </li>
-                            <li class="breadcrumb-item text-nowrap active" aria-current="page">
-                                {{ user.firstName }}
+                                <a class="btn btn-primary" style="font-size: 15px;" routerLink="/Home"><i class="fa fa-home fa-10x  mr-2"></i>Back to home</a>
                             </li>
                         </ol>
                     </nav>
                 </div>
-                <div class="order-md-1 text-center text-md-left col-lg col-12">
-                    <h1 class="h3 mb-0">{{ user.firstName }}</h1>
-                </div>
+
             </div>
         </div>
     </div>
@@ -28,7 +26,7 @@
                         <!-- Menu -->
                         <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Sidebar Menu</a>
                         <!-- Button -->
-                        <button class="navbar-toggler d-md-none rounded bg-primary text-light" type="button" data-toggle="collapse" data-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler d-md-none rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-label="Toggle navigation">
                             <span class="ti-menu"></span>
                         </button>
                         <!-- Collapse navbar -->
@@ -62,16 +60,12 @@
                                                 class="fa fa-lock"></i>Change Password</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="./AddDrug"><i
-                                                class="fa fa-prescription-bottle-alt"></i> Add Drug</a>
+                                        <a class="nav-link" routerLink="./MyDrugs"><i class="fas fa-capsules"></i>
+                                            Drugs Notification</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="./MyDrugs"><i class="fas fa-capsules"></i> My
-                                            Drugs</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" routerLink="/Patient/Account/Water"><i
-                                                class="fas fa-tint"></i> Drinking Water</a>
+                                        <a class="nav-link" routerLink="./Water2"><i
+                                                class="fas fa-tint" ></i> Drinking Water Notification</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" routerLink="/Patient/Account/Health-Report"><i
@@ -86,7 +80,7 @@
                                                 class="fa fa-shopping-cart"></i> Order</a>
                                     </li>
 
-                                    <li class="nav-item">
+                                    <li class="nav-item" (click)="LogOut()">
                                         <a class="nav-link"><i class="fa fa-sign-out"></i> Logout</a>
                                     </li>
                                 </ul>

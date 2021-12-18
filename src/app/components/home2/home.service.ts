@@ -7,9 +7,12 @@ import { CartItemModel } from './models/cartItem.model';
 import { CategoryModel } from './models/Category.model';
 import { CreateOrderModel } from './models/CreateOrder.model';
 import { DrugModel } from './models/Drug.model';
+import { Forgotpassword } from './models/Forgotpassword.model';
 import { GetAllDrugs } from './models/getAllDrugs.model';
 import { LocationModel } from './models/location.model';
 import { SearchModel } from './models/search.model';
+import { SubscriptionTypeModel } from './models/SubscriptionType.model';
+import { UserToken } from './models/UserToken';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +36,37 @@ export class HomeService {
     return this.httpClient.get<ApiResponseData<GetAllDrugs>>(
       Constants.baseURL + 'Drugs/GetAll'
     );
+  }
+
+  public ForgotPassword(email: string) {
+    var fp = new Forgotpassword();
+    fp.email = email;
+    return this.httpClient.post<ApiResponseData>(
+      Constants.baseURL + 'User/ForgotPassword',
+      fp
+    );
+  }
+  public register(
+    fname: string,
+    lname: string,
+    email: string,
+    password: string,
+    phone: string
+  ) {
+    const body = {
+      firstName: fname,
+      lastName: lname,
+      email: email,
+      password: password,
+      phoneNumber: phone,
+    };
+
+    return this.httpClient.post<ApiResponseData<UserToken>>(
+      Constants.baseURL+
+      'User/PatientRegistration',
+      body
+    );
+
   }
 
   public AddTestimonial(form: FormGroup) {
@@ -83,9 +117,20 @@ export class HomeService {
   }
 
   public createOrder(body:CreateOrderModel){
-    console.log(body);
     return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Orders/CreateOrder',body);
-
   }
+
+  public GetSubscriptionType()
+  {
+    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel[]>>(Constants.baseURL + 'Subscription/GetTypes/');
+  }
+
+  public GetSubscriptionTypeById(id:string)
+  {
+    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel>>(Constants.baseURL + 'Subscription/GetSubscriptionById/'+id);
+  }
+
+
+  
 
 }

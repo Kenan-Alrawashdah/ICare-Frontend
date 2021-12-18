@@ -26297,7 +26297,7 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
 
 .accounnt_header {
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
     background-color: #343a40;
     color: #fff;
     margin-bottom: 40px;
@@ -26409,8 +26409,9 @@ html:not([dir="rtl"]) .range-slider-ui.noUi-horizontal .noUi-handle {
     .accounnt_header .breadcrumb {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
-        justify-content: center;
+        justify-content: end;
         margin-bottom: 10px !important;
+        margin-top: 25px !important;
     }
     .accounnt_body .sidenav {
         border-radius: 0px;

@@ -1,0 +1,127 @@
+<div class="container" style="margin-top: 30px">
+  <div class="row justify-content-center">
+    <div class="card card-rounded">
+      <div class="card-body">
+        <h2 style="text-align: center; margin-bottom: 15px">Sales List</h2>
+        <p class="float-left" *ngIf="Search.value.from != ''">
+          From: {{ Search.value.from }} , To:{{ Search.value.to }}
+        </p>
+        <button
+          class="btn btn-primary me-2 mb-5 float-right"
+          data-toggle="modal"
+          data-dismiss="modal"
+          data-target="#search_model"
+        >
+          Search
+        </button>
+        <div class="table-responsive mt-1">
+          <table class="table select-table">
+            <thead>
+              <tr>
+                <th>Drug Name</th>
+                <th>Total</th>
+                <th>Order Date</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of PaymentOrders">
+                <td>
+                  <h6>{{ item.drugName }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.totalPrice }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.orderDate | date: "dd/MM/yyyy" }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.quantity }}</h6>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal clean_modal clean_modal-lg"
+  id="search_model"
+  tabindex="-1"
+  aria-labelledby="search_model"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body">
+        <form id="address_modal_form" [formGroup]="Search">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="mb-4">
+                <label class="form-label">From</label>
+                <input
+                  type="date"
+                  required
+                  class="form-control"
+                  formControlName="from"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    Search.get('from').hasError('required') &&
+                    (Search.controls['from'].dirty ||
+                      Search.controls['from'].touched)
+                  "
+                >
+                  This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="mb-4">
+                <label class="form-label">To</label>
+                <input
+                  type="date"
+                  required
+                  class="form-control"
+                  formControlName="to"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    Search.get('to').hasError('required') &&
+                    (Search.controls['to'].dirty ||
+                      Search.controls['to'].touched)
+                  "
+                >
+                  This field is required.
+                </small>
+              </div>
+            </div>
+          </div>
+          <a data-dismiss="modal" aria-label="Close" (click)="onSubmit()">
+            <button
+              type="submit"
+              class="btn btn-primary btn-full btn-medium rounded"
+              [disabled]="Search.invalid"
+            >
+              Search
+            </button></a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

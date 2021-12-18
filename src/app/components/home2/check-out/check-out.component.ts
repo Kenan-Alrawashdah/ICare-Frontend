@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { timeout } from 'rxjs';
 import { HomeService } from '../home.service';
 import { CartItemModel } from '../models/cartItem.model';
 import { CreateOrderModel } from '../models/CreateOrder.model';

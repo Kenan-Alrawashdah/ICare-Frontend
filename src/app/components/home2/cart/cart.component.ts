@@ -32,12 +32,16 @@ export class CartComponent implements OnInit {
   minus(id:number,q:number){
     if(q<=1)
     {
+      
       this.Toastr.warning("Quantity can't be less than 1", "",{
         timeOut: 1000,
       });
+    }else{
+      this.homeService.MinusQuantity(id).subscribe();
+      this.ngOnInit();
+
     }
-    this.homeService.MinusQuantity(id).subscribe();
-    this.ngOnInit();
+
   }
 
   async getCartItems() {

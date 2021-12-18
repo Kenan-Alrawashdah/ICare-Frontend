@@ -24,11 +24,7 @@
       </div>
       <hr class="dark horizontal my-0" />
       <div class="card-footer p-3">
-        <button
-          class="mb-0 btn"
-          style="cursor: pointer"
-          (click)="DailyCareSystemReport()"
-        >
+        <button class="mb-0 btn" (click)="DailyCareSystemReport()">
           Download report of care system Daily
         </button>
       </div>
@@ -105,62 +101,31 @@
     </div>
   </div>
 </div>
-<div class="row mt-5">
-  <div class="col-12">
-    <div class="card my-4">
-      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-        <div
-          class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"
-        >
-          <h6 class="text-white text-capitalize ps-3">Patient List</h6>
-        </div>
-      </div>
-      <div class="card-body px-0 pb-2">
-        <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+
+<div class="container" style="margin-top: 30px">
+  <div class="row justify-content-center">
+    <div class="card card-rounded">
+      <div class="card-body">
+        <h2 style="text-align: center; margin-bottom: 15px">Patient List</h2>
+        <div class="table-responsive mt-1">
+          <table class="table select-table">
             <thead>
               <tr>
-                <th
-                  class="
-                    text-uppercase text-secondary text-xxs
-                    font-weight-bolder
-                    opacity-7
-                  "
-                >
-                  Name
-                </th>
-                <th
-                  class="
-                    text-uppercase text-secondary text-xxs
-                    font-weight-bolder
-                    opacity-7
-                    ps-2
-                  "
-                >
-                  Phone Number
-                </th>
-                <th
-                  class="
-                    text-center text-uppercase text-secondary text-xxs
-                    font-weight-bolder
-                    opacity-7
-                  "
-                >
-                  Email
-                </th>
+                <th class="align-middle text-center text-sm">Patient Name</th>
+                <th class="align-middle text-center text-sm">Phone Number</th>
+                <th class="align-middle text-center text-sm">Email</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of PatientList">
-                <td>
-                  {{item.name}}
+                <td class="align-middle text-center text-sm">
+                  {{ item.name }}
                 </td>
-                <td>
-                  {{item.phoneNumber}}
-
+                <td class="align-middle text-center text-sm">
+                  {{ item.phoneNumber }}
                 </td>
-                <td >
-                  {{item.email}}
+                <td class="align-middle text-center text-sm">
+                  {{ item.email }}
                 </td>
               </tr>
             </tbody>

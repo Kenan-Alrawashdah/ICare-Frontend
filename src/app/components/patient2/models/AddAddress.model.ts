@@ -6,4 +6,6 @@ export class AddAddressModel
     street:      string;
     details:     string;
     zipCode:     number;
+    lat:         number;
+    lng:         number;
 }

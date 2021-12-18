@@ -1,0 +1,20 @@
+/* @import '../../../assets/Dashboard/assets/css/nucleo-icons.css';
+@import '../../../assets/Dashboard/assets/css/nucleo-svg.css';
+@import '../../../assets/Dashboard/assets/css/material-dashboard.css'; */
+
+@import '../../../assets/Admin/css/vertical-layout-light/style.css';
+@import '../../../assets/Admin/vendors/feather/feather.css';
+@import '../../../assets/Admin/vendors/mdi/css/materialdesignicons.min.css';
+@import '../../../assets/Admin/vendors/ti-icons/css/themify-icons.css';
+@import '../../../assets/Admin/vendors/typicons/typicons.css';
+@import '../../../assets/Admin/vendors/simple-line-icons/css/simple-line-icons.css';
+@import '../../../assets/Admin/vendors/css/vendor.bundle.base.css';
+@import '../../../assets/Admin/js/select.dataTables.min.css';
+
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

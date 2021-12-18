@@ -1,0 +1,248 @@
+<div class="ml-0 ml-md-4">
+    <div class="d-none d-md-block">
+        <div class="row mb-md-5">
+            <div class="col">
+                <h5 class="mb-1 text-white">Order Details</h5>
+
+            </div>
+            <div class="col-auto">
+                <a href="orders.html" class="btn btn-primary btn-sm">
+                    <i class="ti-angle-left"></i> Go Back</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="cart_product border-0">
+                <div *ngFor="let item of order.orderDrugs" class="cart_item px-0">
+                    <div class="cart_item_image">
+                        <img src="http://localhost:5000/images/{{item.picturePath}}" alt="shop" />
+                    </div>
+                    <div class="c-item-body">
+                        <div class="cart_item_title mb-2">
+                            <h4>{{item.name}}</h4>
+                            <small>Quantity: {{item.quantity}}</small>
+
+                        </div>
+                        <div class="cart_item_price">
+                            <div class="product-price">
+                                <span>
+                    <strong>${{item.price*item.quantity}}   => ({{item.price}} x {{item.quantity}})  </strong>
+                    
+                  </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div class="border p-3 mb-4">
+                        <h5 class="details">Order Info</h5>
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <i class="ti-map-alt text-secondary mr-2"></i>
+                            </div>
+                            <div class="col">
+                                <p class="text-muted small mb-2">
+                                    <strong>Delevery Address:</strong> {{order.city}}, {{order.street}}, {{order.details}}, {{order.zipCode}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <i class="ti-mobile text-secondary mr-2"></i>
+                            </div>
+                            <div class="col">
+                                <p class="text-muted small mb-0">
+                                    <strong>Phone Number:</strong> {{order.phoneNumber}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-auto">
+                                <i class="ti-money text-secondary mr-2"></i>
+                            </div>
+                            <div class="col">
+                                <p class="text-muted small mb-0">
+                                    <strong>Total Price:</strong> ${{order.totalPrice}}
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <ul class="timeline mt-4">
+                <li *ngIf=" order.status == 'In Progress' || order.status == 'Placed' || order.status == 'Out for delivery' || order.status == 'Delivered'" class="timeline-item active">
+                    <div class="timeline-figure">
+                        <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i></span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="timeline-heading">Order in review</h6>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- Canceled -->
+                <li *ngIf=" order.status == 'Canceled'" class="timeline-item ">
+                    <div class="timeline-figure">
+                        <span style="background-color: #ec1616;color: white;" class="tile tile-circle tile-sm"><i class="fa fa-times-circle"></i></span>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="timeline-heading">Order Canceled</h6>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li *ngIf="order.status == 'Placed' || order.status == 'Out for delivery' || order.status == 'Delivered'" class="timeline-item active">
+                    <div class="timeline-figure">
+                        <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+              ></span>
+                    </div>
+
+                    <div class="timeline-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="timeline-heading">
+                                    <a href="#" class="text-link">Order Ready</a>
+                                </h6>
+                            </div>
+
+                        </div>
+                        <!-- /.media -->
+                    </div>
+                    <!-- /.timeline-body -->
+                </li>
+
+                <li *ngIf="order.status == 'In Progress' " class="timeline-item ">
+                    <div class="timeline-figure">
+                        <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+            ></span>
+                    </div>
+
+                    <div class="timeline-body">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="timeline-heading">
+                                    <a href="#" class="text-link">Order Ready</a>
+                                </h6>
+                            </div>
+
+                        </div>
+                        <!-- /.media -->
+                    </div>
+                    <!-- /.timeline-body -->
+                </li>
+
+                <li *ngIf=" order.status == 'Out for delivery' || order.status == 'Delivered'" class="timeline-item active">
+                    <!-- .timeline-figure -->
+                    <div class="timeline-figure">
+                        <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+              ></span>
+                    </div>
+                    <!-- /.timeline-figure -->
+                    <!-- .timeline-body -->
+                    <div class="timeline-body">
+                        <!-- .media -->
+                        <div class="media">
+                            <!-- .media-body -->
+                            <div class="media-body">
+                                <h6 class="timeline-heading">
+                                    <a href="#" class="text-link">Way to deliver</a>
+                                </h6>
+                            </div>
+                            <!-- /.media-right -->
+                        </div>
+                        <!-- /.media -->
+                    </div>
+                    <!-- /.timeline-body -->
+                </li>
+                <li *ngIf="order.status == 'In Progress' || order.status == 'Placed'" class="timeline-item">
+                    <!-- .timeline-figure -->
+                    <div class="timeline-figure">
+                        <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+            ></span>
+                    </div>
+                    <!-- /.timeline-figure -->
+                    <!-- .timeline-body -->
+                    <div class="timeline-body">
+                        <!-- .media -->
+                        <div class="media">
+                            <!-- .media-body -->
+                            <div class="media-body">
+                                <h6 class="timeline-heading">
+                                    <a href="#" class="text-link">Way to deliver</a>
+                                </h6>
+                            </div>
+                            <!-- /.media-right -->
+                        </div>
+                        <!-- /.media -->
+                    </div>
+                    <!-- /.timeline-body -->
+                </li>
+
+                <li *ngIf="order.status == 'Delivered'" class="timeline-item last-child ">
+                    <!-- .timeline-figure -->
+                    <div class="timeline-figure">
+                        <span style="background-color: #4e97fd;color: white;" class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+              ></span>
+                    </div>
+                    <!-- /.timeline-figure -->
+                    <!-- .timeline-body -->
+                    <div class="timeline-body">
+                        <!-- .media -->
+                        <div class="media">
+                            <!-- .media-body -->
+                            <div class="media-body">
+                                <h6 class="timeline-heading">
+                                    <a href="#" class="text-link">Delivered successfully</a
+                    >
+                  </h6>
+                </div>
+              
+                <!-- /.media-right -->
+              </div>
+              <!-- /.media -->
+            </div>
+            <!-- /.timeline-body -->
+          </li>
+          <li *ngIf="order.status == 'Out for delivery' || order.status == 'In Progress' || order.status == 'Placed'" class="timeline-item">
+            <!-- .timeline-figure -->
+            <div class="timeline-figure">
+                <span class="tile tile-circle tile-sm"><i class="ti-arrow-circle-down"></i
+      ></span>
+            </div>
+            <!-- /.timeline-figure -->
+            <!-- .timeline-body -->
+            <div class="timeline-body">
+                <!-- .media -->
+                <div class="media">
+                    <!-- .media-body -->
+                    <div class="media-body">
+                        <h6 class="timeline-heading">
+                            <a href="#" class="text-link">Delivered successfully</a
+            >
+          </h6>
+        </div>
+      
+        <!-- /.media-right -->
+      </div>
+      <!-- /.media -->
+    </div>
+    <!-- /.timeline-body -->
+  </li>
+        
+        </ul>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>

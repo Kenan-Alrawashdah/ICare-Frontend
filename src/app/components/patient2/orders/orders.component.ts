@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrdersModel } from '../models/PatientOrders.model';
 import { PatientService } from '../patient.service';
 
@@ -11,7 +12,8 @@ export class OrdersComponent implements OnInit {
 
   orders:OrdersModel[]
   constructor(
-    private patientService:PatientService
+    private patientService:PatientService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,12 @@ export class OrdersComponent implements OnInit {
         console.log(this.orders)
       }
     )
+  }
+
+  goToDrugDetails(id:number)
+  {
+    this.patientService.orderId = id;
+    this.router.navigate(['/Patient/OrderDetails']);
   }
 
 }

@@ -11,7 +11,7 @@ import { PharmacistService } from '../Services/pharmacist.service';
 export class AddDrugComponent implements OnInit {
 
   AddDrugFormGroup:FormGroup;
-  image : File = null ;
+  imageFile : File = null ;
   CategoryList:CategoryModel[];
   constructor(
     private pharmacistService:PharmacistService,
@@ -29,7 +29,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   onFileSelected(event){
-    this.image =<File> event.target.files[0];
+    this.imageFile =<File> event.target.files[0];
   }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class AddDrugComponent implements OnInit {
   }
   onSubmit(){
     this.AddDrugFormGroup.patchValue({
-      image: this.image
+      image: this.imageFile
     });
     this.pharmacistService.addDrug(this.AddDrugFormGroup.value).subscribe(
       (response)=>{

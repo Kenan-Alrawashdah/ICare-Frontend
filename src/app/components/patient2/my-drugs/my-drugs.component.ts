@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetMyDrugsModel } from '../models/GetMyDrug.model';
 import { PatientService } from '../patient.service';
 
@@ -8,22 +9,35 @@ import { PatientService } from '../patient.service';
   templateUrl: './my-drugs.component.html',
   styleUrls: ['./my-drugs.component.css']
 })
-
+@Injectable({
+  providedIn:'root'
+})
 export class MyDrugsComponent implements OnInit {
 
-  myDrugs?:GetMyDrugsModel[]
+  myDrugs:GetMyDrugsModel[]
   constructor(
-    private patientServices:PatientService
+    private patientServices:PatientService,
+    private router:Router
   ) { }
 
   async ngOnInit() {
    await this.getMyDrugs();
-    console.log(this.myDrugs)
   }
 
   async getMyDrugs(){
-      var myDrugs = await this.patientServices.getMyDrugs().toPromise();
-      this.myDrugs= myDrugs.data['myDrugs'];
+    await this.patientServices.getMyDrugs().toPromise()
+    .then(
+      (response)=>{
+        this.myDrugs = response.data['myDrugs'];
+        console.log(this.myDrugs)
+      }
+    )
+  }
+
+  goToEditDrug(id:number)
+  {
+    this.patientServices.editDrugIdNumber = id; 
+    this.router.navigate(['/Patient/EditDrug'])
   }
 
 }

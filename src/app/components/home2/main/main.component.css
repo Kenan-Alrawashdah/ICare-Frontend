@@ -1,0 +1,35 @@
+@media screen and (min-width: 0px) and (max-width: 767px) {
+    #LgCarousel {
+        display: none;
+    }
+    #MdCarousel {
+        display: none;
+    }
+    #SmCarousel {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    #LgCarousel {
+        display: none;
+    }
+    #MdCarousel {
+        display: block;
+    }
+    #SmCarousel {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #LgCarousel {
+        display: block;
+    }
+    #MdCarousel {
+        display: none;
+    }
+    #SmCarousel {
+        display: none;
+    }
+}
