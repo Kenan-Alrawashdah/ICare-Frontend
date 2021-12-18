@@ -16,7 +16,14 @@ export class AvilableOrdersComponent implements OnInit {
   lat = '';
   lng = '';
   Locatins;
+
   NumberOfOrders: number;
+
+  ds: google.maps.DirectionsService;
+  dr: google.maps.DirectionsRenderer;
+  source: google.maps.LatLngLiteral;
+  destination: google.maps.LatLngLiteral;
+
 
   constructor(
     private deliveryService: DeliveryService,
@@ -25,6 +32,14 @@ export class AvilableOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocation();
+
+
+    this.ds = new google.maps.DirectionsService();
+    this.dr = new google.maps.DirectionsRenderer({
+      map: null,
+      suppressMarkers: true,
+    });
+
   }
 
   async getLocation() {
@@ -32,10 +47,15 @@ export class AvilableOrdersComponent implements OnInit {
       .GetPlacedOrders()
       .toPromise()
       .then((response) => {
+
         this.ordersList = response.data;
         console.log(this.ordersList);
         if (this.ordersList == null) this.NumberOfOrders = 0;
         else this.NumberOfOrders = this.ordersList.length;
+
+        console.log(response);
+        this.ordersList = response.data;
+
       });
   }
 
@@ -45,42 +65,62 @@ export class AvilableOrdersComponent implements OnInit {
     const map = new google.maps.Map(
       document.getElementById('map') as HTMLElement,
       {
-        zoom: 15,
         center: { lat: lat, lng: lng },
       }
     );
-    const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
-    this.geocodeLatLng(geocoder, map, infowindow);
-  }
+    navigator.geolocation.getCurrentPosition((position) => {});
 
-  geocodeLatLng(
-    geocoder: google.maps.Geocoder,
-    map: google.maps.Map,
-    infowindow: google.maps.InfoWindow
-  ) {
+    this.source = {
+      lat: parseFloat('40.714224'),
+      lng: parseFloat('-73.991452'),
+    };
+    new google.maps.Marker({
+      position: this.source,
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: './assets/map/truck_pin.svg',
+        anchor: new google.maps.Point(35, 10),
+        scaledSize: new google.maps.Size(100, 100),
+      },
+      map: map,
+    });
     const latlng = {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
     };
-    geocoder
-      .geocode({ location: latlng })
-      .then((response) => {
-        if (response.results[0]) {
-          map.setZoom(11);
+    this.destination = latlng;
 
-          const marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-          });
+    new google.maps.Marker({
+      position: this.destination,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: './assets/map/destination_custom_pin.svg',
+        anchor: new google.maps.Point(35, 10),
+        scaledSize: new google.maps.Size(100, 100),
+      },
+    });
+    map.panTo(this.destination);
+    this.setRoutePolyline(map);
+  }
 
-          infowindow.setContent(response.results[0].formatted_address);
-          infowindow.open(map, marker);
-        } else {
-          window.alert('No results found');
-        }
-      })
-      .catch((e) => window.alert('Geocoder failed due to: ' + e));
+  setRoutePolyline(map: google.maps.Map) {
+    let request = {
+      origin: this.source,
+      destination: this.destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
+
+    this.ds.route(request, (response, status) => {
+      this.dr.setOptions({
+        suppressPolylines: false,
+        map: map,
+      });
+
+      if (status == google.maps.DirectionsStatus.OK) {
+        this.dr.setDirections(response);
+      }
+    });
   }
 
   async open(content: any, id: number) {
