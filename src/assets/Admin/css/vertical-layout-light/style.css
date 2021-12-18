@@ -30406,7 +30406,7 @@ div.tagsinput span.tag a {
         transition: all 0.25s ease-out;
     }
     .sidebar-offcanvas.active {
-        right: 0;
+        left: 0;
     }
 }
 

@@ -6,9 +6,11 @@ import { AdminService } from '../../admin-dashboard/Service/admin.service';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css']
+  styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
+  constructor() {}
+
 
   AddEmployeeForm: FormGroup;
   roles:Role[];
@@ -52,5 +54,6 @@ export class AddEmployeeComponent implements OnInit {
          }
     })
   }
+
 
 }

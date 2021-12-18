@@ -1,0 +1,43 @@
+<div class="container" style="margin-top: 30px">
+  <div class="row justify-content-center">
+    <div class="card card-rounded">
+      <div class="card-body">
+        <h2 style="text-align: center; margin-bottom: 15px">
+          Testimonial List
+        </h2>
+        <div class="table-responsive mt-1">
+          <table class="table select-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Subject</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of AllTestimonial">
+                <td>
+                  <h6>{{ item.userName }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.userEmail }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.userPhone }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.userSubject }}</h6>
+                </td>
+                <td>
+                  <h6>{{ item.userMessage }}</h6>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
