@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { GetPaymentOrders } from '../../admin-dashboard/Models/get-payment-orders.model';
-import { AdminService } from '../../admin-dashboard/Service/admin.service';
+import { AdminService } from '../admin.service';
+import { GetPaymentOrders } from '../Models/get-payment-orders.model';
+
 
 @Component({
   selector: 'app-payment-orders',

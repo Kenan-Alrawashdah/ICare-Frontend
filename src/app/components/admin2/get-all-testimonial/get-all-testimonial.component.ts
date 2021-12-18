@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllTestimonial } from '../../admin-dashboard/Models/get-all-testimonial.model';
-import { AdminService } from '../../admin-dashboard/Service/admin.service';
+import { AdminService } from '../admin.service';
+import { GetAllTestimonial } from '../Models/get-all-testimonial.model';
+
 
 @Component({
   selector: 'app-get-all-testimonial',

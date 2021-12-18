@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path:'GetEmployee',
     component:GetEmployeeComponent
-  }
+  },
   {
     path: 'Testimonials',
     component: GetAllTestimonialComponent,

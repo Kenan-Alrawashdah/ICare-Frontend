@@ -1,7 +1,7 @@
-import { Role } from './../../admin-dashboard/Models/GetRoles';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AdminService } from '../../admin-dashboard/Service/admin.service';
+import { AdminService } from '../admin.service';
+import { Role } from '../Models/GetRoles';
 
 @Component({
   selector: 'app-add-employee',
@@ -9,7 +9,7 @@ import { AdminService } from '../../admin-dashboard/Service/admin.service';
   styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent implements OnInit {
-  constructor() {}
+
 
 
   AddEmployeeForm: FormGroup;

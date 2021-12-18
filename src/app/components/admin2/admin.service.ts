@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { ApiResponseData } from './../../../shared/api-response.model';
 import { Injectable } from '@angular/core';
-import { Role } from '../Models/GetRoles';
 import { Constants } from 'src/app/Constants/constants';
-import { AddEmployeeModel } from '../Models/AddEmployee';
 
-import { GetAllTestimonial } from '../Models/get-all-testimonial.model';
-import { GetPaymentOrders } from '../Models/get-payment-orders.model';
 import { FormGroup } from '@angular/forms';
-import { GetPatientStatsLast5Year } from '../Models/get-patient-stats-last5-year.model';
-import { GetSalesStatsLast5Year } from '../Models/get-sales-stats-last5-year.model';
+import { ApiResponseData } from 'src/app/shared/api-response.model';
+import { Role } from './Models/GetRoles';
+import { AddEmployeeModel } from './Models/AddEmployee';
+import { GetAllTestimonial } from './Models/get-all-testimonial.model';
+import { GetPatientStatsLast5Year } from './Models/get-patient-stats-last5-year.model';
+import { GetPaymentOrders } from './Models/get-payment-orders.model';
+import { GetSalesStatsLast5Year } from './Models/get-sales-stats-last5-year.model';
 
 
 const baseURL = Constants.baseURL;
@@ -25,9 +25,7 @@ export class AdminService {
     );
   }
 
-  addEmployee(body: AddEmployeeModel) {
-    return this.http.post<ApiResponseData>(baseURL + ' ', body);
-  }
+  
   public GetAllTestimonial() {
     return this.http.get<ApiResponseData<GetAllTestimonial[]>>(
       Constants.baseURL + 'Testimonial/GetAllTestimonial'

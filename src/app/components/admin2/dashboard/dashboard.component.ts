@@ -6,9 +6,9 @@ import { RegisteredAnnualCount } from 'src/app/shared/Accountant/registered-annu
 import { RegisteredDailyCount } from 'src/app/shared/Accountant/registered-daily-count.model';
 import { RegisteredMonthlyCount } from 'src/app/shared/Accountant/registered-monthly-count.model';
 import { Chart } from 'chart.js';
-import { GetPatientStatsLast5Year } from '../../admin-dashboard/Models/get-patient-stats-last5-year.model';
-import { AdminService } from '../../admin-dashboard/Service/admin.service';
-import { GetSalesStatsLast5Year } from '../../admin-dashboard/Models/get-sales-stats-last5-year.model';
+import { GetPatientStatsLast5Year } from '../Models/get-patient-stats-last5-year.model';
+import { GetSalesStatsLast5Year } from '../Models/get-sales-stats-last5-year.model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-dashboard',

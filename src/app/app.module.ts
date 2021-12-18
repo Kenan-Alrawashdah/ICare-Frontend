@@ -9,8 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './services/auth.Interceptor';
 import { Patient2Component } from './components/patient2/patient2.component';
 import { Patient2Module } from './lazyLoad/patient2/patient2.module';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { AdminDashboardModule } from './lazyLoad/admin-dashboard/admin-dashboard.module';
 import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
@@ -63,14 +61,7 @@ const routes: Routes = [
         (m) => m.Patient2RoutingModule
       ),
   },
-  {
-    path: 'Admin',
-    component: AdminDashboardComponent,
-    loadChildren: () =>
-      import('./lazyLoad/admin-dashboard/admin-dashboard-routing.module').then(
-        (m) => m.AdminDashboardRoutingModule
-      ),
-  },
+
   {
     path: 'Delivery',
     component: DeliveryDashboardComponent,
@@ -96,7 +87,7 @@ const routes: Routes = [
       ).then((m) => m.PharmacerDashboardRoutingModule),
   },
   {
-    path: 'Admin2',
+    path: 'Admin',
     component: Admin2Component,
     loadChildren: () =>
       import('./lazyLoad/admin2/admin2-routing.module').then(
@@ -115,7 +106,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AdminDashboardComponent,
     EmployeeDashboardComponent,
     EmployeeMainComponent,
     EmployeesInformationComponent,
@@ -123,7 +113,6 @@ const routes: Routes = [
     DeliveryDashboardComponent,
     DeliveryMainComponent,
     Patient2Component,
-    AdminDashboardComponent,
     Home2Component,
     PharmacerDashboardComponent,
     PharmacerMainComponent,
@@ -131,12 +120,9 @@ const routes: Routes = [
     DeliveryOrdersComponent,
     Admin2Component,
     PharmacistComponent,
-    AvilableOrdersComponent
-
+    AvilableOrdersComponent,
     GetEmployeeComponent,
-
     DashboardComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -149,13 +135,12 @@ const routes: Routes = [
     Home2Module,
     Admin2Module,
     PharmacistModule,
-    AdminDashboardModule,
     DeliveryDashboardModule,
     EmployeeDashboardModule,
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgChartsModule,
+
   ],
 
   providers: [authInterceptorProviders],
