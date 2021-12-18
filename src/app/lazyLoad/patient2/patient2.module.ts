@@ -12,6 +12,8 @@ import { AddDrugComponent } from 'src/app/components/patient2/add-drug/add-drug.
 import { AddAddressComponent } from 'src/app/components/patient2/add-address/add-address.component';
 import { EditAddressComponent } from 'src/app/components/patient2/edit-address/edit-address.component';
 import { WaterComponent } from 'src/app/components/patient2/water/water.component';
+import { OrderDetailsComponent } from 'src/app/components/patient2/order-details/order-details.component';
+import { EditDrugComponent } from 'src/app/components/patient2/edit-drug/edit-drug.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { WaterComponent } from 'src/app/components/patient2/water/water.componen
     AddDrugComponent,
     AddAddressComponent,
     EditAddressComponent,
-    WaterComponent
+    WaterComponent,
+    OrderDetailsComponent,
+    EditDrugComponent
   ],
   imports: [
     CommonModule,

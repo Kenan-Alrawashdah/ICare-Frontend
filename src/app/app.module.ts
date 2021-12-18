@@ -31,6 +31,8 @@ import { PharmacistComponent } from './components/pharmacist/pharmacist.componen
 import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
 import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
 import { EditAddressComponent } from './components/patient2/edit-address/edit-address.component';
+import { OrderDetailsComponent } from './components/patient2/order-details/order-details.component';
+import { EditDrugComponent } from './components/patient2/edit-drug/edit-drug.component';
 
 const routes: Routes = [
   {
@@ -125,7 +127,7 @@ const routes: Routes = [
     DeliveryOrdersComponent,
     Admin2Component,
     PharmacistComponent,
-    AvilableOrdersComponent,
+    AvilableOrdersComponent
 
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AddDrugModel } from '../models/AddDrug.Model';
 import { MyDrugsComponent } from '../my-drugs/my-drugs.component';
 import { PatientService } from '../patient.service';
@@ -27,8 +28,9 @@ export class AddDrugComponent implements OnInit {
   
   constructor(
     private patientService:PatientService,
-    
-    private router:Router
+    private myDrugsComponen:MyDrugsComponent,
+    private router:Router,
+    private toastr:ToastrService
   ) { 
   }
 
@@ -59,11 +61,9 @@ export class AddDrugComponent implements OnInit {
       this.patientService.addPatientDrug(model)
       .subscribe(
         (data)=>{
-          this.router.navigate(['/Patient/MyDrugs']).then(
-            ()=>{
-              window.location.reload();
-            }
-          );
+          this.toastr.success('Drug added successfully','Done',{timeOut:1500})
+          this.myDrugsComponen.ngOnInit();
+          this.router.navigate(['/Patient/MyDrugs']);
         }
         )
       
@@ -73,7 +73,6 @@ export class AddDrugComponent implements OnInit {
       this.drugNameValidation = true;
     }else{
       this.drugNameValidation = false;
-
     }
     if( this.drugDoseTime1 == null )
     {

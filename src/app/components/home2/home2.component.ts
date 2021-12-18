@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { HomeService } from './home.service';
 import { CartItemModel } from './models/cartItem.model';
@@ -16,13 +18,15 @@ export class Home2Component implements OnInit {
   cartList:CartItemModel[];
   cartItemNumber:number;
   Name: string ;
-  
+  mobileSearch:boolean = false;
 
   public isLogin: boolean;
   public InputSearch: string;
   constructor(
     private service: HomeService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private toastr:ToastrService,
+    private router:Router
   ) {}
   ngOnInit(): void {
     let token = this.tokenService.getToken();
@@ -68,36 +72,54 @@ export class Home2Component implements OnInit {
     )
   }
 
+  OnClickSearchModbile()
+  {
+   
+    
+    // $("#show").click(function(){
+    //   $("p").show();
+    // });
+  }
+
   ngAfterViewInit() {
 
-    (function ($) {
-      'use strict';
+    // (function ($) {
+    //   'use strict';
 
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function (event) {};
-
-      $('.header-search input.custom-search').on('click', function (event) {
-        if ($('.search-content .search-product').hasClass('d-none')) {
-          $('.search-content').find('.search-product').removeClass('d-none');
-          if ($('.search_overlay').length > 0 == false) {
-            $('body').append('<div class="search_overlay"></div>');
-          }
-          $('.header , .announcement-header').css({ zIndex: '99999' });
-          $('body').css({ overflow: 'hidden' });
-        } else {
-          $('.search-content').find('.search-product').addClass('d-none');
-          $('body').find('.search_overlay').remove();
-          $('.header , .announcement-header').attr({ style: '' });
-          $('body').attr({ style: '' });
-        }
-      });
-      $(document).on('click', '.search_overlay', function (event) {
-        $('.search-content').find('.search-product').addClass('d-none');
-        $('body').find('.search_overlay').remove();
-        $('.header , .announcement-header').attr({ style: '' });
-        $('body').attr({ style: '' });
-      });
-    })(jQuery);
+    //   // Close the dropdown if the user clicks outside of it
+    //   window.onclick = function (event) {};
+      
+    //     $("#mobile").click(function(){
+    //       if($("#SmSearch2").css('display') == 'none')
+    //     {
+    //       $("#SmSearch2").css('display', 'block');
+    //     }else{
+    //         $("#SmSearch2").css('display', 'none');
+    //     }
+    //     });
+      
+    //   $('.header-search input.custom-search ').on('click', function (event) {
+    //     if ($('.search-content .search-product').hasClass('d-none')) {
+    //       $('.search-content').find('.search-product').removeClass('d-none');
+    //       if ($('.search_overlay').length > 0 == false) {
+    //         $('body').append('<div class="search_overlay"></div>');
+    //       }
+    //       $('.header , .announcement-header').css({ zIndex: '99999' });
+    //       $('body').css({ overflow: 'hidden' });
+    //     } else {
+    //       $('.search-content').find('.search-product').addClass('d-none');
+    //       $('body').find('.search_overlay').remove();
+    //       $('.header , .announcement-header').attr({ style: '' });
+    //       $('body').attr({ style: '' });
+    //     }
+    //   });
+    //   $(document).on('click', '.search_overlay', function (event) {
+    //     $('.search-content').find('.search-product').addClass('d-none');
+    //     $('body').find('.search_overlay').remove();
+    //     $('.header , .announcement-header').attr({ style: '' });
+    //     $('body').attr({ style: '' });
+    //   });
+    // })(jQuery);
 
     (function ($) {
       'use strict';
@@ -175,24 +197,8 @@ export class Home2Component implements OnInit {
     
       
       }
-      //-------------------------------------------------------
-      // Date Picker
-      //-------------------------------------------------------*/
-   
-      // -------------------------------------------//
-      //  Custom Select
-      // -------------------------------------------//
+ 
 
-    
-      // ---------------------------------------------//
-      // Slick Slider
-      // ---------------------------------------------//
-   
-      // ---------------------------------------------//
-      // add Remove item
-      // ---------------------------------------------//
-   
-  
     
       var websiteWidth = $(document).width();
       $(".header-links-item .header-childrenItem-parent").on(
@@ -230,20 +236,48 @@ export class Home2Component implements OnInit {
         $(".header , .announcement-header").attr({ style: "" });
         $("body").attr({ style: "" });
       });
-    
-      $(".open-sidebar").on("click", function (event) {
-        $(".menu-sidebar").addClass("show");
-        $(".overlay").addClass("show");
-      });
-      $(".close").on("click", function (event) {
-        $(".menu-sidebar").removeClass("show");
-        $(".overlay").removeClass("show");
-      });
-      $(".overlay").on("click", function (event) {
-        $(".menu-sidebar").removeClass("show");
-        $(".overlay").removeClass("show");
-      });
+
     })(jQuery);
+  }
+
+  async CheckItemIfInCart(id:number){
+    await this.service.CheckItemIfInCart(id).toPromise()
+    .then(
+      (response)=>{
+        if(response.success == true)
+        {
+          this.addToCart(id);
+        }else{
+          this.toastr.warning(response.errors[0], '',{
+            timeOut: 2000,
+          });
+        }
+      }
+    )
+  }
+
+
+  addToCart(id:number)
+  {
+    console.log(id)
+    this.service.AddToCart(id,1).subscribe(
+      (data)=>{
+      this.ngOnInit();
+      if(data.success ==true)
+      this.toastr.success('Item added successfully', '',{
+        timeOut: 2000,
+      });
+      }
+    );
+  }
+
+  public GoToDrug(id:number){
+    this.service.DrugId = id;
+    this.router.navigate(['Home/Drug']);
+    $('.search-content').find('.search-product').addClass('d-none');
+    $('body').find('.search_overlay').remove();
+    $('.header , .announcement-header').attr({ style: '' });
+    $('body').attr({ style: '' });
   }
 
 }

@@ -3,34 +3,94 @@
 
 <carousel style="z-index: 100;" [cellsToShow]=1 [images]="images" [height]="400">
 </carousel>
-<!-- gggggggggg -->
 
 <!-- Category -->
-<div class="pt-5">
-    <div class="container theme-container">
-        <h1 style="text-align: center;">Drug Categories</h1>
-        <div class="row">
-            <carousel style="z-index: 100;" [cellsToShow]=3 [cellWidth]='300'>
-                <div *ngFor="let item of Categories" class="carousel-cell">
-                    <div class=" product-categories-grid" style="margin: auto; width: 350px">
-                        <div class="product-img">
-                            <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
-                            <div class="cat-info">
-                                <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
-                                <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+<div id="Category">
+    <div class="pt-5">
+        <div class="container theme-container">
+            <h1 style="text-align: center;">Drug Categories</h1>
+            <div class="row" id="LgCarousel">
+                <carousel style="z-index: 100;width: 100%;" [cellsToShow]=3 [cellWidth]="300">
+                    <div *ngFor="let item of Categories" class="carousel-cell">
+                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
+                            <div class="product-img">
+                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
+                                <div class="cat-info">
+                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
+                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
                     View All <i class="ti-arrow-right"></i>
                   </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </carousel>
+                </carousel>
 
+            </div>
+            <div class="row" id="MdCarousel">
+                <carousel style="z-index: 100;" [cellsToShow]=2 [cellWidth]='300'>
+                    <div *ngFor="let item of Categories" class="carousel-cell">
+                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
+                            <div class="product-img">
+                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
+                                <div class="cat-info">
+                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
+                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+                    View All <i class="ti-arrow-right"></i>
+                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </carousel>
+
+            </div>
+            <div class="row" id="SmCarousel">
+                <carousel style="z-index: 100;" [cellsToShow]=1 [cellWidth]='300'>
+                    <div *ngFor="let item of Categories" class="carousel-cell">
+                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
+                            <div class="product-img">
+                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
+                                <div class="cat-info">
+                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
+                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+                        View All <i class="ti-arrow-right"></i>
+                      </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </carousel>
+
+            </div>
         </div>
-
-
     </div>
 </div>
+
+
+<!-- for mobile -->
+<!-- <div id="smallCarousel">
+    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" [interval]="200000" [keyboard]="true" [pauseOnHover]="true" [wrap]="true">
+        <ng-template *ngFor="let item of Categories" ngbSlide>
+            <div class="carousel-cell">
+                <div class=" product-categories-grid" style="margin: auto; width: 350px">
+                    <div class="product-img">
+                        <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
+                        <div class="cat-info">
+                            <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
+                            <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+                View All <i class="ti-arrow-right"></i>
+              </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div> -->
+
+
+
 <!-- About -->
 <main>
     <section class="py-5 py-md-8 overlay background-center text-white mt-10" data-overlay="6" data-overlay-color="dark" style="background-image: url(assets/img/extra/page-about.jpg)">
