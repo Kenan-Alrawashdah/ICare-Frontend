@@ -47,7 +47,7 @@ const routes: Routes = [
     component:EditAddressComponent
   },
   {
-    path:'Water2',
+    path:'WaterNotification',
     component:WaterComponent
   },
   {

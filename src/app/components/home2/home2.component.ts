@@ -37,6 +37,7 @@ export class Home2Component implements OnInit {
       this.isLogin = true;
       this.Name = this.tokenService.getUser();
     }
+
   }
 
   GetDrugByNameSearch() {
@@ -83,43 +84,46 @@ export class Home2Component implements OnInit {
 
   ngAfterViewInit() {
 
-    // (function ($) {
-    //   'use strict';
+    (function ($) {
+      'use strict';
 
-    //   // Close the dropdown if the user clicks outside of it
-    //   window.onclick = function (event) {};
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {};
       
-    //     $("#mobile").click(function(){
-    //       if($("#SmSearch2").css('display') == 'none')
-    //     {
-    //       $("#SmSearch2").css('display', 'block');
-    //     }else{
-    //         $("#SmSearch2").css('display', 'none');
-    //     }
-    //     });
+        $("#mobile").click(function(){
+          if($("#SmSearch2").css('display') == 'none')
+        {
+          $("#SmSearch2").css('display', 'block');
+        }else{
+            $("#SmSearch2").css('display', 'none');
+        }
+        });
       
-    //   $('.header-search input.custom-search ').on('click', function (event) {
-    //     if ($('.search-content .search-product').hasClass('d-none')) {
-    //       $('.search-content').find('.search-product').removeClass('d-none');
-    //       if ($('.search_overlay').length > 0 == false) {
-    //         $('body').append('<div class="search_overlay"></div>');
-    //       }
-    //       $('.header , .announcement-header').css({ zIndex: '99999' });
-    //       $('body').css({ overflow: 'hidden' });
-    //     } else {
-    //       $('.search-content').find('.search-product').addClass('d-none');
-    //       $('body').find('.search_overlay').remove();
-    //       $('.header , .announcement-header').attr({ style: '' });
-    //       $('body').attr({ style: '' });
-    //     }
-    //   });
-    //   $(document).on('click', '.search_overlay', function (event) {
-    //     $('.search-content').find('.search-product').addClass('d-none');
-    //     $('body').find('.search_overlay').remove();
-    //     $('.header , .announcement-header').attr({ style: '' });
-    //     $('body').attr({ style: '' });
-    //   });
-    // })(jQuery);
+      $('.header-search input.custom-search ').on('click', function (event) {
+        if ($('.search-content .search-product').hasClass('d-none')) {
+          $('.search-content').find('.search-product').removeClass('d-none');
+          if ($('.search_overlay').length > 0 == false) {
+            $('body').append('<div class="search_overlay"></div>');
+          }
+          $('.header , .announcement-header').css({ zIndex: '99999' });
+          $('body').css({ overflow: 'hidden' });
+          $('#Navigators').hide();
+        } else {
+          $('.search-content').find('.search-product').addClass('d-none');
+          $('body').find('.search_overlay').remove();
+          $('.header , .announcement-header').attr({ style: '' });
+          $('body').attr({ style: '' });
+          $('#Navigators').show();
+        }
+      });
+      $(document).on('click', '.search_overlay', function (event) {
+        $('.search-content').find('.search-product').addClass('d-none');
+        $('body').find('.search_overlay').remove();
+        $('.header , .announcement-header').attr({ style: '' });
+        $('body').attr({ style: '' });
+        $('#Navigators').show();
+      });
+    })(jQuery);
 
     (function ($) {
       'use strict';
@@ -197,8 +201,24 @@ export class Home2Component implements OnInit {
     
       
       }
- 
+      //-------------------------------------------------------
+      // Date Picker
+      //-------------------------------------------------------*/
+   
+      // -------------------------------------------//
+      //  Custom Select
+      // -------------------------------------------//
 
+    
+      // ---------------------------------------------//
+      // Slick Slider
+      // ---------------------------------------------//
+   
+      // ---------------------------------------------//
+      // add Remove item
+      // ---------------------------------------------//
+   
+  
     
       var websiteWidth = $(document).width();
       $(".header-links-item .header-childrenItem-parent").on(
@@ -236,9 +256,23 @@ export class Home2Component implements OnInit {
         $(".header , .announcement-header").attr({ style: "" });
         $("body").attr({ style: "" });
       });
-
+    
+      $(".open-sidebar").on("click", function (event) {
+        $(".menu-sidebar").addClass("show");
+        $(".overlay").addClass("show");
+      });
+      $(".close").on("click", function (event) {
+        $(".menu-sidebar").removeClass("show");
+        $(".overlay").removeClass("show");
+      });
+      $(".overlay").on("click", function (event) {
+        $(".menu-sidebar").removeClass("show");
+        $(".overlay").removeClass("show");
+      });
     })(jQuery);
   }
+
+
 
   async CheckItemIfInCart(id:number){
     await this.service.CheckItemIfInCart(id).toPromise()
@@ -278,6 +312,13 @@ export class Home2Component implements OnInit {
     $('body').find('.search_overlay').remove();
     $('.header , .announcement-header').attr({ style: '' });
     $('body').attr({ style: '' });
+  }
+
+  sidebarGoTo(route:string)
+  {
+    this.router.navigate([route]);
+    $(".menu-sidebar").removeClass("show");
+    $(".overlay").removeClass("show");
   }
 
 }

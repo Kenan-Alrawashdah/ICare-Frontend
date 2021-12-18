@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Constants } from '../Constants/constants';
 import { ApiResponseData } from '../shared/api-response.model';
-import { UserToken } from '../shared/Patient/Account/Models/user-token.model';
+import { UserToken } from '../shared/UserToken.model';
 
 const AUTH_API = 'http://localhost:5000';
 

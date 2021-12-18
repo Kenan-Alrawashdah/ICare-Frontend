@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
-import { UserService } from 'src/app/services/user.service';
 import { Home2Component } from '../home2.component';
 declare var FB: any;
 @Component({
@@ -16,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginValidation:boolean =false;
   error:string='';
-  constructor(private userService: UserService,
+  constructor(
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
@@ -65,7 +64,7 @@ export class LoginComponent implements OnInit {
           this.tokenStorage.saveRefreshToken(data.data.refreshToken);
           this.router.navigate(['Home']).then(
             ()=>{
-              window.location.reload();
+              window.location.reload(); 
             }
           ); 
          

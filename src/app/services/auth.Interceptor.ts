@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { TokenStorageService } from './token.service';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 const TOKEN_HEADER_KEY = 'Authorization';    
@@ -14,7 +16,10 @@ export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private tokenService: TokenStorageService, private authService: AuthService) { }
+  constructor(private tokenService: TokenStorageService,
+    private authService: AuthService,
+    private router:Router,
+    private toastr:ToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
     let authReq = req;
@@ -41,7 +46,8 @@ export class AuthInterceptor implements HttpInterceptor {
       const refreshToken = this.tokenService.getRefreshToken();
       const token = this.tokenService.getToken();
       if(token)
-      if (refreshToken)
+      {
+        if (refreshToken)
         return this.authService.refreshToken(token,refreshToken).pipe(
           switchMap((token: any) => {
             this.isRefreshing = false;
@@ -53,11 +59,15 @@ export class AuthInterceptor implements HttpInterceptor {
           catchError((err) => {
 
             this.isRefreshing = false;
-            
             this.tokenService.signOut();
             return throwError(err);
           })
         );
+      }else{
+        this.router.navigate(['/Home/login']);
+        this.toastr.warning('You need to login to complete this action');
+      }
+      
     }
 
     return this.refreshTokenSubject.pipe(

@@ -33,6 +33,8 @@ import { AvilableOrdersComponent } from './components/delivery-dashboard/avilabl
 import { EditAddressComponent } from './components/patient2/edit-address/edit-address.component';
 import { OrderDetailsComponent } from './components/patient2/order-details/order-details.component';
 import { EditDrugComponent } from './components/patient2/edit-drug/edit-drug.component';
+import { SubscriptionComponent } from './components/home2/subscription/subscription.component';
+import { SubscriptionCheckOutComponent } from './components/home2/subscription-check-out/subscription-check-out.component';
 
 const routes: Routes = [
   {

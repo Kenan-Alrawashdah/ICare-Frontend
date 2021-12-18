@@ -1,0 +1,122 @@
+<section class="section-padding mt-5">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-title">
+                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
+                                        Pay with Credit Card
+                                    </h5>
+                                </div>
+                                <div class="accordion-content collapse show" id="collapseOne" data-parent="#accordion">
+                                    <div class="accordion-content-inner">
+                                        <p class="py-4">
+                                            We accept following credit cards:&nbsp;&nbsp;<img class="d-inline-block align-middle" src="assets/img/payment-methods.png" style="width: 187px" alt="Cerdit Cards" />
+                                        </p>
+                                        <form class="credit-card-form row g-3" [formGroup]="CheckOutForm">
+                                            <div class="col-sm-6 mb-4">
+                                                <input class="form-control" type="text" name="number" placeholder="Card Number" formControlName="cardNumber" />
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('cardNumber').hasError(
+                              'required'
+                            ) &&
+                            (CheckOutForm.controls['cardNumber'].dirty ||
+                              CheckOutForm.controls['cardNumber'].touched)
+                          ">
+                          This field is required.
+                        </small>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <input class="form-control" type="text" name="name" placeholder="Card Name" formControlName="cardName" />
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('cardName').hasError('required') &&
+                            (CheckOutForm.controls['cardName'].dirty ||
+                              CheckOutForm.controls['cardName'].touched)
+                          ">
+                          This field is required.
+                        </small>
+                                            </div>
+                                            <div class="col-sm-3 mb-4">
+                                                <input class="form-control" type="text" name="expiry" placeholder="MM/YY" formControlName="expiry" />
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('expiry').hasError('required') &&
+                            (CheckOutForm.controls['expiry'].dirty ||
+                              CheckOutForm.controls['expiry'].touched)
+                          ">
+                          This field is required.
+                        </small>
+                                            </div>
+                                            <div class="col-sm-3 mb-4">
+                                                <input class="form-control" type="text" name="cvc" placeholder="CVC" formControlName="CVC" />
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('CVC').hasError('required') &&
+                            (CheckOutForm.controls['CVC'].dirty ||
+                              CheckOutForm.controls['CVC'].touched)
+                          ">
+                          This field is required.
+                        </small>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <button [disabled]="!CheckOutForm.valid" class="btn btn-primary d-block w-100">
+                          Place order
+                        </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <!-- accordion Title -->
+                                <div class="accordion-title">
+                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseTwo">
+                                        Pay with PayPal
+                                    </h5>
+                                </div>
+                                <!-- accordion Content -->
+                                <div class="collapse accordion-content" id="collapseTwo" data-parent="#accordion">
+                                    <div class="accordion-content-inner">
+                                        <p class="pt-4 mb-0 pb-2">
+                                            <span class="font-weight-bold">PayPal</span> - the safer, easier way to pay
+                                        </p>
+                                        <div id="paypal-checkout-btn"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <!-- accordion Title -->
+                                <div class="accordion-title">
+                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseThree">
+                                        Pay later
+                                    </h5>
+                                </div>
+                                <!-- accordion Content -->
+                                <div class="collapse accordion-content" id="collapseThree" data-parent="#accordion">
+                                    <div class="accordion-content-inner">
+                                        <p class="pt-4 mb-0 pb-3">
+                                            <span class="font-weight-bold">Cash On Delevary</span> -Buy Now Pay Later for all your shopping
+                                        </p>
+                                        <a (click)="onCheckOut()" class="btn btn-primary">Place order</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-lg-0 mt-6">
+                <div class="cart-summary">
+                    <div class="cart-summary-wrap">
+                        <h4>Subscription Details</h4>
+                        <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
+                        <h2>
+                            Total <span>${{ total }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

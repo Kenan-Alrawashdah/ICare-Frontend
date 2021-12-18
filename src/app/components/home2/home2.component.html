@@ -8,8 +8,14 @@
                         <img src="assets/img/logo.png" alt="logo" class="header-logo" />
                     </a>
                 </div>
+                <div id="Navigators" class="row">
+                    <a style="margin-right: 15px;margin-left: 20px;" routerLink="/Home">Home </a>
+                    <a routerLink="/Home/Subscription" style="margin-right: 15px;">Subscription </a>
+                    <a style="margin-right: 0px;">About Us </a>
+                </div>
                 <div class="col">
                     <div class="header-search">
+
                         <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
                         <div class="search-content">
                             <div class="search-product d-none">
@@ -125,21 +131,24 @@
                                 <a routerLink="/Patient/Account"> Account </a>
                             </li>
                             <li>
-                                <a routerLink="/Patient/Account/Change-Password">
+                                <a routerLink="/Patient/ChangePassword">
                         Change Password
                       </a>
                             </li>
                             <li>
-                                <a routerLink="/Patient/Account/Add-Drug"> Add New Drug </a>
+                                <a routerLink="/Patient/MyDrugs"> Drugs Notifications </a>
                             </li>
                             <li>
-                                <a routerLink="/Patient/Account/Address"> Address </a>
+                                <a routerLink="/Patient/WaterNotification"> Water Notifications </a>
                             </li>
                             <li>
-                                <a routerLink="/Patient/Account/Orders"> My Orders </a>
+                                <a routerLink="/Patient/HealthReport">  Health Report </a>
                             </li>
                             <li>
-                                <a routerLink="/Patient/Account/Wish-List"> Wish List </a>
+                                <a routerLink="/Patient/Address"> Address </a>
+                            </li>
+                            <li>
+                                <a routerLink="/Patient/Orders"> My Orders </a>
                             </li>
                             <li>
                                 <a routerLink="/Home/User/SignIn" (click)="logout()">
@@ -151,6 +160,7 @@
                 </li>
                 </ul>
             </div>
+
         </div>
     </div>
 </div>
@@ -175,7 +185,6 @@
                 <ul class="header-right-options ">
                     <li class="link-item">
                         <a id="mobile" style="color: #0d141f;">
-                            Search
                             <i class="fa fa-search"></i>
                         </a>
                     </li>
@@ -183,7 +192,7 @@
                 </ul>
 
             </div>
-            <div class="col-auto">
+            <div *ngIf="isLogin" class="col-auto">
                 <ul class="header-right-options ">
                     <li class="link-item" routerLink="/Home/Cart">
                         <a style="    color: #0d141f;">
@@ -202,7 +211,7 @@
             </div>
 
             <div class="welcome d-flex align-items-center">
-                <a *ngIf="!isLogin" routerLink="./login" data-toggle="modal" data-dismiss="modal" data-target="#login_modal" class="btn btn-soft-primary btn-md">Login</a
+                <a *ngIf="!isLogin" (click)="sidebarGoTo('/Home/login')" data-toggle="modal" data-dismiss="modal" data-target="#login_modal" class="btn btn-soft-primary btn-md">Login</a
           >
           <a *ngIf="!isLogin"
           routerLink="./register"
@@ -229,7 +238,7 @@
     </div>
     <div class="overlay"></div>
 </div>
-<div class="col" id="SmSearch2">
+<div class="col" id="SmSearch2" style="display: none;">
     <div class="header-search">
         <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
         <div class="search-content">
