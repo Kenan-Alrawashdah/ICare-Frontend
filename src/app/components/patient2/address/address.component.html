@@ -2,7 +2,7 @@
     <div class="d-none d-md-block">
         <div class="row mb-md-5">
             <div class="col">
-                <h5 class="mb-1 text-white">Address</h5>
+                <h3 style="color: #a1c8ff;" class="mb-1 ">Address</h3>
             </div>
             <div class="col-auto">
                 <a class="btn btn-primary btn-sm" (click)="goToAddAddress()">
@@ -17,10 +17,10 @@
                 <div *ngFor="let item of LocationList" class="col-lg-6" style="margin-bottom: 15px;">
                     <div class="address-block bg-light rounded p-3">
                         <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
-                            <i class="fa fa-pencil-square-o"></i>
+                            <i class="ti-pencil-alt"></i>
                         </a>
-                        <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
-                            <i class="fa fa-pencil-square-o"></i>
+                        <a class="delete_address" (click)=" DeleteAddress(item.id,item.addressName)">
+                            <i class="ti-trash"></i>
                         </a>
                         <h6>{{item.addressName}}</h6>
                         <p class="text-muted">{{item.phoneNumber}}</p>

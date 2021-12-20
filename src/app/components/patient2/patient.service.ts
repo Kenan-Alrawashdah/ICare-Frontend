@@ -105,4 +105,14 @@ export class PatientService {
     return this.http.get<ApiResponseData<EditDrugModel>>(Constants.baseURL+'Patient/EditDrug/'+this.editDrugIdNumber)
   }
 
+  deleteDrug(id:number)
+  {
+    return this.http.delete<ApiResponseData>(Constants.baseURL+'Patient/DeleteDrug/'+id)
+  }
+
+  deleteLocation(id:number)
+  {
+    return this.http.delete<ApiResponseData>(Constants.baseURL+'Patient/DeleteLocation/'+id)
+  }
+
 }

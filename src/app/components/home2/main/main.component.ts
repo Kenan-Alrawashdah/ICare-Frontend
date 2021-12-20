@@ -32,23 +32,7 @@ export class MainComponent implements OnInit {
     await this.getAllCategories();
   }
   
-  ContactForm = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    userEmail: new FormControl('', [Validators.required, Validators.email]),
-    userSubject: new FormControl('', [Validators.required]),
-    userPhone: new FormControl(''),
-    userMessage: new FormControl('', [Validators.required]),
-  });
-  onSubmit() {
-    this.homeService.AddTestimonial(this.ContactForm).subscribe((data) => {
-      if (data.success) {
-        this.Toastr.success('success', 'Testimonial');
-        this.ContactForm.reset();
-      } else {
-        this.Toastr.error(data.errors.toString());
-      }
-    });
-  }
+
 
     async getAllCategories(){
     await this.homeService.GetAllCategory().toPromise().

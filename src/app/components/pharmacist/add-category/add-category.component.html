@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" [formGroup]="">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="LastName">Name</label>
+                        <input type="text" class="form-control" placeholder="Name" formControlName="Name" />
+                        <!-- <span asp-validation-for="LastName" class="text-danger"></span> -->
+                    </div>
+                    <div class="form-group">
+                        <label style="padding-left: 20px">CAtegory image</label>
+                        <input class="form-control" style="padding-top: 10px" type="file" placeholder="Drug image" (change)="onFileSelected($event)" />
+                        <!-- <span asp-validation-for="Image" class="text-danger"></span> -->
+                    </div>
+                    <div class="form-group justify-content-center">
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-primary me-2">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

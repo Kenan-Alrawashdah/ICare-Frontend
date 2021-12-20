@@ -12,50 +12,65 @@ import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.
 import { OrderDetailsComponent } from 'src/app/components/patient2/order-details/order-details.component';
 import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
 import { WaterComponent } from 'src/app/components/patient2/water/water.component';
+import { PatientGuard } from 'src/app/guards/patient.guard';
+import { SubscriberGuard } from 'src/app/guards/subscriber.guard';
 
 const routes: Routes = [
   {
     path: 'Account',
     component: AccountComponent,
+    canActivate:[PatientGuard]
+
   },
   {
     path:'ChangePassword',
-    component:ChangePasswordComponent
+    component:ChangePasswordComponent,
+    canActivate:[PatientGuard]
+
   },
   {
     path:'AddDrug',
-    component:AddDrugComponent
+    component:AddDrugComponent,
+    canActivate:[SubscriberGuard]
   },
   {
     path:'MyDrugs',
-    component:MyDrugsComponent
+    component:MyDrugsComponent,
+    canActivate:[SubscriberGuard]
   },
   {
     path:'Address',
-    component:AddressComponent
+    component:AddressComponent,
+    canActivate:[PatientGuard]
   },
   {
     path:'Orders',
-    component:OrdersComponent
+    component:OrdersComponent,
+    canActivate:[PatientGuard]
   },
   {
     path:'AddAddress',
-    component:AddAddressComponent
+    component:AddAddressComponent,
+    canActivate:[PatientGuard]
   },
   {
     path:'EditAddress/:id',
-    component:EditAddressComponent
+    component:EditAddressComponent,
+    canActivate:[PatientGuard]
   },
   {
     path:'WaterNotification',
-    component:WaterComponent
+    component:WaterComponent,
+    canActivate:[SubscriberGuard]
   },
   {
     path:'OrderDetails',
-    component:OrderDetailsComponent
+    component:OrderDetailsComponent,
+    canActivate:[PatientGuard]
   },{
     path:'EditDrug',
-    component:EditDrugComponent
+    component:EditDrugComponent,
+    canActivate:[SubscriberGuard]
   }
 ];
 

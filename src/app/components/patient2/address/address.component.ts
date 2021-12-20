@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LocationModel } from '../models/location.model';
 import { PatientService } from '../patient.service';
 
@@ -14,7 +15,8 @@ export class AddressComponent implements OnInit {
   LocationList:LocationModel[];
   constructor(
     private patientService:PatientService,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +39,17 @@ export class AddressComponent implements OnInit {
     this.router.navigate(['/Patient/AddAddress']).then(
       
     )
+  }
+
+  DeleteAddress(id:number,name:string)
+  {
+    if(confirm("Are you sure to delete " + name)) {
+    this.patientService.deleteLocation(id).subscribe(
+      (response)=>{
+        this.toastr.success('Location deleted successfully');
+        this.ngOnInit();
+      }
+    )}
+
   }
 }

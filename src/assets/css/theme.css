@@ -22760,13 +22760,6 @@ select:not(.ignore) {
         position: relative;
         opacity: 0.8;
     }
-    .mobile-header .menu-sidebar .mobileMenuLinks ul li a:after {
-        content: "\f105";
-        font: normal normal normal 14px/1 FontAwesome;
-        position: absolute;
-        right: 20px;
-        top: 12px;
-    }
     .mobile-header .menu-sidebar .mobileMenuLinks h6 {
         padding: 10px 20px;
         color: #343a40;

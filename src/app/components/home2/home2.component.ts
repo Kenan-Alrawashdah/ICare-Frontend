@@ -59,6 +59,8 @@ export class Home2Component implements OnInit {
   }
   logout() {
     this.tokenService.signOut();
+    $(".menu-sidebar").removeClass("show");
+    $(".overlay").removeClass("show");
     this.ngOnInit();
   }
 
@@ -73,14 +75,7 @@ export class Home2Component implements OnInit {
     )
   }
 
-  OnClickSearchModbile()
-  {
-   
-    
-    // $("#show").click(function(){
-    //   $("p").show();
-    // });
-  }
+
 
   ngAfterViewInit() {
 
@@ -320,5 +315,8 @@ export class Home2Component implements OnInit {
     $(".menu-sidebar").removeClass("show");
     $(".overlay").removeClass("show");
   }
+
+
+
 
 }

@@ -60,7 +60,7 @@
                         </small>
                                             </div>
                                             <div class="col-sm-6 mb-4">
-                                                <button [disabled]="!CheckOutForm.valid" class="btn btn-primary d-block w-100">
+                                                <button (click)="onCheckOut()" class="btn btn-primary d-block w-100">
                           Place order
                         </button>
                                             </div>
@@ -85,23 +85,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <!-- accordion Title -->
-                                <div class="accordion-title">
-                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseThree">
-                                        Pay later
-                                    </h5>
-                                </div>
-                                <!-- accordion Content -->
-                                <div class="collapse accordion-content" id="collapseThree" data-parent="#accordion">
-                                    <div class="accordion-content-inner">
-                                        <p class="pt-4 mb-0 pb-3">
-                                            <span class="font-weight-bold">Cash On Delevary</span> -Buy Now Pay Later for all your shopping
-                                        </p>
-                                        <a (click)="onCheckOut()" class="btn btn-primary">Place order</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +93,11 @@
                 <div class="cart-summary">
                     <div class="cart-summary-wrap">
                         <h4>Subscription Details</h4>
-                        <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
+                        <p>Name: <span>{{SType.name}} </span> </p>
+                        <p>Duration: <span>{{SType.days}} Days </span></p>
+                        <p *ngIf="SType.onSale == false">Price: <span>$ {{SType.price}} </span></p>
+                        <p *ngIf="SType.onSale == true">Price before sale: <span>$ {{SType.price}} </span></p>
+                        <p *ngIf="SType.onSale == true">Price after sale: <span>$ {{SType.priceAfterSale}} </span></p>
                         <h2>
                             Total <span>${{ total }}</span>
                         </h2>

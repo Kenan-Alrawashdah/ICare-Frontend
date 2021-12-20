@@ -15,6 +15,8 @@ import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SubscriptionComponent } from 'src/app/components/home2/subscription/subscription.component';
 import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
+import { NotificationsComponent } from 'src/app/components/home2/notifications/notifications.component';
+import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscrip
     CheckOutComponent,
     ThankYouComponent,
     SubscriptionComponent,
-    SubscriptionCheckOutComponent
+    SubscriptionCheckOutComponent,
+    NotificationsComponent,
+    AboutusComponent
   ],
   imports: [
     CommonModule,

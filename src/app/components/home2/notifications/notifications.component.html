@@ -1,0 +1,34 @@
+<section class="section-50">
+    <div class="container col-lg-8">
+        <div class="row">
+            <h3 class="m-b-50 heading-line"><i class="fa fa-bell text-muted"></i> Notifications
+
+
+            </h3>
+        </div>
+        <input style="background: #ffffff;
+            height: 36px;
+            border: 1px solid #DFDFDF;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            margin-right: 15px;" type="date" [(ngModel)]="date">
+        <button (click)="dateOnChange()" class="btn btn-outline-success">Go</button>
+
+        <div *ngFor="let item of notificationsList.slice().reverse()" class="notification-ui_dd-content">
+            <div class="notification-list notification-list--unread">
+                <div class="notification-list_content">
+                    <div class="notification-list_img">
+                        <i class="fa fa-bell text-muted"></i>
+                    </div>
+                    <div class="notification-list_detail">
+                        <p style="margin-left: 10px;"><b>Drug Notification</b> </p>
+                        <p class="text-muted" style="margin-left: 25px;">Content : {{item.message}}</p>
+                        <p class="text-muted" style="margin-left: 25px;"><small>{{item.createdOn | date:'medium'}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>

@@ -6,6 +6,8 @@ import { DashboardComponent } from 'src/app/components/admin2/dashboard/dashboar
 import { GetAllTestimonialComponent } from 'src/app/components/admin2/get-all-testimonial/get-all-testimonial.component';
 import { PaymentOrdersComponent } from 'src/app/components/admin2/payment-orders/payment-orders.component';
 import { GetEmployeeComponent } from 'src/app/components/admin2/get-employee/get-employee.component';
+import { SubscriptionSettingsComponent } from 'src/app/components/admin2/subscription-settings/subscription-settings.component';
+import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscription/edit-subscription.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,14 @@ const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
+  },
+  {
+    path:"SubscriptionSettings",
+    component:SubscriptionSettingsComponent
+  },
+  {
+    path:'EditSubscription/:id',
+    component:EditSubscriptionComponent
   },
 
 ];

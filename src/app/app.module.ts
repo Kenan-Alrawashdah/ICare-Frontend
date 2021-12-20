@@ -36,7 +36,12 @@ import { SubscriptionCheckOutComponent } from './components/home2/subscription-c
 import { GetEmployeeComponent } from './components/admin2/get-employee/get-employee.component';
 
 import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
-import { NgChartsModule } from 'ng2-charts';
+import { SubscriptionSettingsComponent } from './components/admin2/subscription-settings/subscription-settings.component';
+import { EditSubscriptionComponent } from './components/admin2/edit-subscription/edit-subscription.component';
+import { NotificationsComponent } from './components/home2/notifications/notifications.component';
+import { AboutusComponent } from './components/home2/aboutus/aboutus.component';
+import { CategoriesComponent } from './components/pharmacist/categories/categories.component';
+import { AddCategoryComponent } from './components/pharmacist/add-category/add-category.component';
 
 
 const routes: Routes = [
@@ -78,14 +83,7 @@ const routes: Routes = [
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
   },
-  {
-    path: 'Pharmacer',
-    component: PharmacerDashboardComponent,
-    loadChildren: () =>
-      import(
-        './lazyLoad/pharmacer-dashboard/pharmacer-dashboard-routing.module'
-      ).then((m) => m.PharmacerDashboardRoutingModule),
-  },
+
   {
     path: 'Admin',
     component: Admin2Component,
@@ -123,6 +121,7 @@ const routes: Routes = [
     AvilableOrdersComponent,
     GetEmployeeComponent,
     DashboardComponent,
+    
   ],
   imports: [
     BrowserModule,

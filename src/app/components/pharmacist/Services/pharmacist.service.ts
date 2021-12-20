@@ -95,7 +95,11 @@ export class PharmacistService {
   public SetOrderAsCanceled(id:number)
   {
     return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Orders/SetOrderAsCanceled/'+id);
+  }
 
+  public GetAllCategories()
+  {
+    return this.httpClient.get<ApiResponseData<CategoryModel[]>>(Constants.baseURL+'Admin/Category/GetAllDrugCategories')
   }
 
 }

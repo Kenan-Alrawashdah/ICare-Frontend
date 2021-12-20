@@ -10,6 +10,10 @@ import { CheckOutComponent } from 'src/app/components/home2/check-out/check-out.
 import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.component';
 import { SubscriptionComponent } from 'src/app/components/home2/subscription/subscription.component';
 import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
+import { PatientGuard } from 'src/app/guards/patient.guard';
+import { GuestGuard } from 'src/app/guards/guest.guard';
+import { NotificationsComponent } from 'src/app/components/home2/notifications/notifications.component';
+import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
 
 const routes: Routes = [
   {
@@ -23,11 +27,14 @@ const routes: Routes = [
 },
 {
   path:'login',
-  component:LoginComponent
+  component:LoginComponent,
+  canActivate:[GuestGuard]
 },
 {
   path:'register',
-  component:RegistrationComponent
+  component:RegistrationComponent,
+  canActivate:[GuestGuard]
+
 },
 {
   path:'Drugs',
@@ -39,20 +46,31 @@ const routes: Routes = [
 },
 {
   path:'CheckOut',
-  component:CheckOutComponent
+  component:CheckOutComponent,
+  canActivate:[PatientGuard]
 },{
   path:'Cart',
-  component:CartComponent
+  component:CartComponent,
+  canActivate:[PatientGuard]
 },{
   path:'ThankYou',
-  component:ThankYouComponent
+  component:ThankYouComponent,
+  canActivate:[PatientGuard]
 },{
   path:'Subscription',
   component:SubscriptionComponent
 },
 {
   path:'SubscriptionCheckOut/:id',
-  component:SubscriptionCheckOutComponent
+  component:SubscriptionCheckOutComponent,
+  canActivate:[PatientGuard]
+},{
+  path:'Notifications',
+  component:NotificationsComponent
+},
+{
+  path:'AboutUs',
+  component:AboutusComponent
 }
 
 ];
