@@ -84,8 +84,14 @@ export class LoginComponent implements OnInit {
         .LoginByFaceBook(response.authResponse.accessToken)
         .subscribe((data) => {
           if (data.success) {
-            console.log('FaceBook');
-            console.log(data);
+            this.tokenStorage.saveToken(data.data.accessToken);
+            this.tokenStorage.saveRefreshToken(data.data.refreshToken);
+            this.router.navigate(['Home']).then(() => {
+              window.location.reload();
+            });
+          } else {
+            this.loginValidation = true;
+            this.error = data.errors[0];
           }
         });
     });
