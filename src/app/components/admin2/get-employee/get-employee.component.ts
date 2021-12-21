@@ -19,7 +19,12 @@ export class GetEmployeeComponent implements OnInit {
       this.dashboardService
       .getAllEmployee()
       .subscribe(
-        (data) => (this.Employees = data.data as unknown as GetAllEmployees[])
+        (data) => {
+
+          console.log(data)
+          this.Employees = data.data as unknown as GetAllEmployees[]
+          
+        }
       );
     }
 }

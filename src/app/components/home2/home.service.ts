@@ -23,6 +23,7 @@ export class HomeService {
   list: SearchModel[];
   CategoryId:number=-1 ;
   DrugId:number=-1;
+  CategoryName:string;
 
   public GetDrugByNameSearch(search: string) {
     const body = {

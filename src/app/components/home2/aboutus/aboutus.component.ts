@@ -28,7 +28,7 @@ export class AboutusComponent implements OnInit {
   onSubmit() {
     this.homeService.AddTestimonial(this.ContactForm).subscribe((data) => {
       if (data.success) {
-        this.Toastr.success('success', 'Testimonial');
+        this.Toastr.success('Sent Successfully', 'Testimonial ');
         this.ContactForm.reset();
       } else {
         this.Toastr.error(data.errors.toString());

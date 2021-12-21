@@ -9,6 +9,7 @@ import { DrugModel as DrugModel2 } from '../../home2/models/Drug.model';
 import { EditDrugModel } from '../Models/EditDrug.model';
 import { OpenOrderModel } from '../Models/OpenOrders.model';
 import { OrderDrugsModel } from '../Models/OrderDrugs.model';
+import { AddCategoryModel } from '../Models/AddCategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,15 @@ export class PharmacistService {
     console.log(form2);
 
     return this.httpClient.put<ApiResponseData>(Constants.baseURL+'Drugs/EditDrug',form2);
+  }
+
+  AddCategory(form:AddCategoryModel)
+  {console.log(form)
+    let form2:FormData = new FormData();
+    form2.append('name',form.Name)
+    form2.append('image',form.image,form.image.name)
+
+    return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Admin/Category/AddCategory',form2);
   }
 
   getAll(){

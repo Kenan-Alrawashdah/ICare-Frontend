@@ -46,6 +46,7 @@ export class MainComponent implements OnInit {
 
   public goToCategoryDrugs(id:number){
     this.homeService.CategoryId = id;
+    this.homeService.CategoryName = this.Categories.find(c => c.id == id).name;
    this.router.navigate(['Home/Drugs'])
   }
   

@@ -18,7 +18,7 @@ export class AddCategoryComponent implements OnInit {
   ) { 
     this.AddCategoryFormGroup = this.fb.group({
       Name: ['',Validators.required],
-      image: [null]
+      image: [null,Validators.required]
     })
   }
   ngOnInit(): void {
@@ -26,6 +26,22 @@ export class AddCategoryComponent implements OnInit {
 
   onFileSelected(event){
     this.imageFile =<File> event.target.files[0];
+  }
+
+  onSubmit(){
+    this.AddCategoryFormGroup.patchValue({
+      image: this.imageFile
+    });
+    this.pharmacistService.AddCategory(this.AddCategoryFormGroup.value).subscribe(
+      (response)=>{
+        console.log(response);
+        console.log('123')
+      },
+      (error)=>{
+        console.log(error);
+        console.log('safd')
+      }
+    );
   }
 
 }

@@ -12,7 +12,7 @@ import { DrugModel } from '../models/Drug.model';
 export class DrugsComponent implements OnInit {
   
   DrugList:DrugModel[];
-
+  CategoryName:string;
   constructor(
     private homeServices:HomeService,
     private router:Router
@@ -20,7 +20,10 @@ export class DrugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDrugs();
+    this.CategoryName = this.homeServices.CategoryName
   }
+
+
 
   public async getDrugs(){
     if(this.homeServices.CategoryId == -1)

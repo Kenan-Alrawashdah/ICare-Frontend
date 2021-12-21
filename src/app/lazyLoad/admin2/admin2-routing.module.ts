@@ -11,6 +11,11 @@ import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscr
 
 const routes: Routes = [
   {
+    path: 'Admin',
+    redirectTo: 'Admin/Dashboard',
+    pathMatch: 'full',
+  }
+  ,{
     path: 'AddEmployee',
     component: AddEmployeeComponent,
   }
