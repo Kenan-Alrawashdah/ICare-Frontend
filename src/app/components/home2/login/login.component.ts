@@ -8,19 +8,18 @@ declare var FB: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
-  loginValidation:boolean =false;
-  error:string='';
+  loginValidation: boolean = false;
+  error: string = '';
   constructor(
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private home2Component:Home2Component
-  ) { }
+    private home2Component: Home2Component
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -47,49 +46,54 @@ export class LoginComponent implements OnInit {
       js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
-
   }
-  
-
 
   async onSubmit() {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
 
-
-    await this.authService.login(email, password).toPromise().then(
-      data => {
-        if (data.success) {
-          this.tokenStorage.saveToken(data.data.accessToken);
-          this.tokenStorage.saveRefreshToken(data.data.refreshToken);
-          this.router.navigate(['Home']).then(
-            ()=>{
-              window.location.reload(); 
-            }
-          ); 
-         
-        } else {
-          this.loginValidation = true; 
-          this.error = data.errors[0]
+    await this.authService
+      .login(email, password)
+      .toPromise()
+      .then(
+        (data) => {
+          if (data.success) {
+            this.tokenStorage.saveToken(data.data.accessToken);
+            this.tokenStorage.saveRefreshToken(data.data.refreshToken);
+            this.router.navigate(['Home']).then(() => {
+              window.location.reload();
+            });
+          } else {
+            this.loginValidation = true;
+            this.error = data.errors[0];
+          }
+        },
+        (err) => {
+          // this.errorMessage = err.error.message;
+          // this.isLoginFailed = true;
+          console.log('error' + err.error.message);
         }
-
-
-      },
-      err => {
-        // this.errorMessage = err.error.message;
-        // this.isLoginFailed = true; 
-        console.log('error' + err.error.message);
-      }
-    );
+      );
   }
 
-  
   submitLogin() {
     console.log('submit login to facebook');
     // FB.login();
     FB.login((response) => {
-      console.log('submitLogin', response);
+      this.authService
+        .LoginByFaceBook(response.authResponse.accessToken)
+        .subscribe((data) => {
+          if (data.success) {
+            this.tokenStorage.saveToken(data.data.accessToken);
+            this.tokenStorage.saveRefreshToken(data.data.refreshToken);
+            this.router.navigate(['Home']).then(() => {
+              window.location.reload();
+            });
+          } else {
+            this.loginValidation = true;
+            this.error = data.errors[0];
+          }
+        });
     });
   }
-
 }
