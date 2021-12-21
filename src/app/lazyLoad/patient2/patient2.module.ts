@@ -14,6 +14,8 @@ import { EditAddressComponent } from 'src/app/components/patient2/edit-address/e
 import { WaterComponent } from 'src/app/components/patient2/water/water.component';
 import { OrderDetailsComponent } from 'src/app/components/patient2/order-details/order-details.component';
 import { EditDrugComponent } from 'src/app/components/patient2/edit-drug/edit-drug.component';
+import { HealthReportComponent } from 'src/app/components/patient2/health-report/health-report.component';
+import { AddHealthReportComponent } from 'src/app/components/patient2/add-health-report/add-health-report.component';
 
 
 @NgModule({
@@ -28,13 +30,16 @@ import { EditDrugComponent } from 'src/app/components/patient2/edit-drug/edit-dr
     EditAddressComponent,
     WaterComponent,
     OrderDetailsComponent,
-    EditDrugComponent
+    EditDrugComponent,
+    HealthReportComponent,
+    AddHealthReportComponent
   ],
   imports: [
     CommonModule,
     Patient2RoutingModule,
     FormsModule,
     ReactiveFormsModule,
+
   ]
 })
 export class Patient2Module { }

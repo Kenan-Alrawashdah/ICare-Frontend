@@ -59,6 +59,8 @@ export class Home2Component implements OnInit {
   }
   logout() {
     this.tokenService.signOut();
+    $(".menu-sidebar").removeClass("show");
+    $(".overlay").removeClass("show");
     this.ngOnInit();
   }
 
@@ -73,14 +75,7 @@ export class Home2Component implements OnInit {
     )
   }
 
-  OnClickSearchModbile()
-  {
-   
-    
-    // $("#show").click(function(){
-    //   $("p").show();
-    // });
-  }
+
 
   ngAfterViewInit() {
 
@@ -293,7 +288,10 @@ export class Home2Component implements OnInit {
 
   addToCart(id:number)
   {
-    console.log(id)
+    $('.search-content').find('.search-product').addClass('d-none');
+    $('body').find('.search_overlay').remove();
+    $('.header , .announcement-header').attr({ style: '' });
+    $('body').attr({ style: '' });
     this.service.AddToCart(id,1).subscribe(
       (data)=>{
       this.ngOnInit();
@@ -320,5 +318,8 @@ export class Home2Component implements OnInit {
     $(".menu-sidebar").removeClass("show");
     $(".overlay").removeClass("show");
   }
+
+
+
 
 }

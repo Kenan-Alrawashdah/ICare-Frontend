@@ -40,4 +40,16 @@ export class MyDrugsComponent implements OnInit {
     this.router.navigate(['/Patient/EditDrug'])
   }
 
+  deleteDrug(id:number)
+  {
+    if(confirm("Are you sure to delete ")) {
+      this.patientServices.deleteDrug(id).subscribe(
+        (response)=>{
+          this.ngOnInit();
+        }
+      );
+    }
+    
+  }
+
 }

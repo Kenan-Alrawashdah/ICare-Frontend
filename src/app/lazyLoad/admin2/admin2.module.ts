@@ -7,12 +7,17 @@ import { GetAllTestimonialComponent } from 'src/app/components/admin2/get-all-te
 import { PaymentOrdersComponent } from 'src/app/components/admin2/payment-orders/payment-orders.component';
 import { AddEmployeeComponent } from 'src/app/components/admin2/add-employee/add-employee.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SubscriptionSettingsComponent } from 'src/app/components/admin2/subscription-settings/subscription-settings.component';
+import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscription/edit-subscription.component';
 
 @NgModule({
   declarations: [
     AddEmployeeComponent,
     GetAllTestimonialComponent,
     PaymentOrdersComponent,
+    SubscriptionSettingsComponent,
+    EditSubscriptionComponent,
+    
   ],
   imports: [
     CommonModule,

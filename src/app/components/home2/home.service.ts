@@ -10,6 +10,7 @@ import { DrugModel } from './models/Drug.model';
 import { Forgotpassword } from './models/Forgotpassword.model';
 import { GetAllDrugs } from './models/getAllDrugs.model';
 import { LocationModel } from './models/location.model';
+import { NotificationModel } from './models/Notification.model';
 import { SearchModel } from './models/search.model';
 import { SubscriptionTypeModel } from './models/SubscriptionType.model';
 import { UserToken } from './models/UserToken';
@@ -22,6 +23,7 @@ export class HomeService {
   list: SearchModel[];
   CategoryId:number=-1 ;
   DrugId:number=-1;
+  CategoryName:string;
 
   public GetDrugByNameSearch(search: string) {
     const body = {
@@ -130,7 +132,19 @@ export class HomeService {
     return this.httpClient.get<ApiResponseData<SubscriptionTypeModel>>(Constants.baseURL + 'Subscription/GetSubscriptionById/'+id);
   }
 
+  public Subscribe(id:string)
+  {
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Subscription/Subscribe/'+id)
+  }
 
+  public GetNotifications(date)
+  {
+    return this.httpClient.post<ApiResponseData<NotificationModel[]>>(Constants.baseURL+'Patient/GetUserNotifications',{"date":date})
+  }
   
+  public GetRandomDrugs()
+  {
+    return this.httpClient.get<ApiResponseData<DrugModel[]>>(Constants.baseURL+'Drugs/GetRandomdrugs')
+  }
 
 }

@@ -9,7 +9,6 @@
 // import { Observable } from 'rxjs';
 // import { Constants } from '../Constants/constants';
 // import { TokenStorageService } from '../services/token.service';
-// import { PatientInfo } from '../shared/Patient/Account/Models/patient-info.model';
 
 // @Injectable({
 //   providedIn: 'root',
