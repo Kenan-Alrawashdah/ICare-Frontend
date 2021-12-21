@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CategoryModel } from '../../home2/models/Category.model';
 import { PharmacistService } from '../Services/pharmacist.service';
 
@@ -15,7 +17,9 @@ export class AddDrugComponent implements OnInit {
   CategoryList:CategoryModel[];
   constructor(
     private pharmacistService:PharmacistService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private router:Router,
+    private toastr:ToastrService
   ) { 
     this.AddDrugFormGroup = this.fb.group({
       DrugCategoryId: ['',Validators.required],
@@ -51,7 +55,8 @@ export class AddDrugComponent implements OnInit {
     });
     this.pharmacistService.addDrug(this.AddDrugFormGroup.value).subscribe(
       (response)=>{
-        console.log(response);
+        this.toastr.success('Drug added successfully');
+        this.router.navigate(['/pharmacist/GetAllDrugs']);
       },
       (error)=>{
         console.log(error);

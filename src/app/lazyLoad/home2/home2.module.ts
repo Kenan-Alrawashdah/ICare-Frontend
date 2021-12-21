@@ -17,11 +17,11 @@ import { SubscriptionComponent } from 'src/app/components/home2/subscription/sub
 import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
 import { NotificationsComponent } from 'src/app/components/home2/notifications/notifications.component';
 import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
-
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 
 @NgModule({
   declarations: [
-    MainComponent,
     LoginComponent,
     RegistrationComponent,
     DrugComponent,
@@ -32,7 +32,8 @@ import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.compo
     SubscriptionComponent,
     SubscriptionCheckOutComponent,
     NotificationsComponent,
-    AboutusComponent
+    AboutusComponent,
+    MainComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +41,7 @@ import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.compo
     FormsModule,
     ReactiveFormsModule,
     IvyCarouselModule,
-    NgbModule
+    MdbCarouselModule
 
   ]
 })

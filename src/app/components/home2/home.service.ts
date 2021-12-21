@@ -142,5 +142,9 @@ export class HomeService {
     return this.httpClient.post<ApiResponseData<NotificationModel[]>>(Constants.baseURL+'Patient/GetUserNotifications',{"date":date})
   }
   
+  public GetRandomDrugs()
+  {
+    return this.httpClient.get<ApiResponseData<DrugModel[]>>(Constants.baseURL+'Drugs/GetRandomdrugs')
+  }
 
 }

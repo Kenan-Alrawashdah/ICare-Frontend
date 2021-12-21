@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
 import { CategoryModel } from '../models/Category.model';
+import { DrugModel } from '../models/Drug.model';
 
 @Component({
   selector: 'app-main',
@@ -13,12 +14,13 @@ import { CategoryModel } from '../models/Category.model';
 })
 export class MainComponent implements OnInit {
 
-  images = [
-    {path: 'assets/img/slider/slider-1.svg'},
-    {path: 'assets/img/slider/slider-1.svg'},
-    {path: 'assets/img/slider/slider-1.svg'},
+  images:string[] = [
+   'assets/img/slider/slider-1.svg',
+  'assets/img/slider/slider-1.svg',
+     'assets/img/slider/slider-1.svg'
 
 ]
+RandomDrugsList:DrugModel[];
   Categories:CategoryModel[];
    constructor(
     private homeService: HomeService,
@@ -30,9 +32,18 @@ export class MainComponent implements OnInit {
 
    async ngOnInit() {
     await this.getAllCategories();
+      this.getRangomDrugs();
   }
   
-
+  getRangomDrugs()
+  {
+    this.homeService.GetRandomDrugs().subscribe(
+      (response)=>{
+        this.RandomDrugsList = response.data
+        console.log(response)
+      }
+    )
+  }
 
     async getAllCategories(){
     await this.homeService.GetAllCategory().toPromise().
@@ -48,6 +59,11 @@ export class MainComponent implements OnInit {
     this.homeService.CategoryId = id;
     this.homeService.CategoryName = this.Categories.find(c => c.id == id).name;
    this.router.navigate(['Home/Drugs'])
+  }
+
+  public GoToDrug(id:number){
+    this.homeService.DrugId = id;
+    this.router.navigate(['Home/Drug']);
   }
   
 

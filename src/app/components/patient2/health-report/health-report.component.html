@@ -1,0 +1,38 @@
+<div class="ml-0 ml-md-4">
+    <div class=" d-md-block">
+        <div class="row mb-md-5">
+            <div class="col">
+                <h3 style="color: #a1c8ff;" class="mb-1">Health Reports</h3>
+            </div>
+            <div class="col-auto">
+                <a routerLink="/Patient/AddHealthReport" class="btn btn-primary btn-sm">
+                    <i class="fa fa-file-text"></i> Add Health Report</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <input type="hidden" formControlName="">
+
+        <div class="card-body">
+            <div class="col-lg-12">
+                <div class="form-group mb-4">
+                    <div class="row">
+                        <input class="col-6 form-control" [(ngModel)]="date" required name="drugTimes" type="month" />
+                        <a style="margin-left: 15px;" (click)="onClick()" class="btn btn-primary">Search</a>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let item of reportList" class="notification-ui_dd-content">
+                <div class="notification-list notification-list--unread">
+                    <div class="notification-list_content">
+                        <div class="notification-list_detail">
+                            <p style="margin-left: 10px;"><b>Test Name: </b>{{item.type}} </p>
+                            <p class="text-muted" style="margin-left: 25px;"><b>Value: </b> {{item.value}}</p>
+                            <p class="text-muted" style="margin-left: 25px;"><b>Uploaded on: </b> {{item.createdOn | date:'medium'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

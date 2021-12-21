@@ -110,7 +110,6 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-
   ],
 
   providers: [authInterceptorProviders],

@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from 'src/app/components/patient2/account/account.component';
 import { AddAddressComponent } from 'src/app/components/patient2/add-address/add-address.component';
 import { AddDrugComponent } from 'src/app/components/patient2/add-drug/add-drug.component';
+import { AddHealthReportComponent } from 'src/app/components/patient2/add-health-report/add-health-report.component';
 import { AddressComponent } from 'src/app/components/patient2/address/address.component';
 import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 import { EditAddressComponent } from 'src/app/components/patient2/edit-address/edit-address.component';
 import { EditDrugComponent } from 'src/app/components/patient2/edit-drug/edit-drug.component';
+import { HealthReportComponent } from 'src/app/components/patient2/health-report/health-report.component';
 import { MyDrugsComponent } from 'src/app/components/patient2/my-drugs/my-drugs.component';
 import { OrderDetailsComponent } from 'src/app/components/patient2/order-details/order-details.component';
 import { OrdersComponent } from 'src/app/components/patient2/orders/orders.component';
@@ -71,6 +73,13 @@ const routes: Routes = [
     path:'EditDrug',
     component:EditDrugComponent,
     canActivate:[SubscriberGuard]
+  },{
+    path:'HealthReport',
+    component:HealthReportComponent
+  },
+  {
+    path:'AddHealthReport',
+    component:AddHealthReportComponent
   }
 ];
 
