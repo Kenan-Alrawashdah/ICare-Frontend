@@ -23,7 +23,7 @@
                                     <h6>{{item.name}}</h6>
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-icon-text" routerLink="/Admin/EditSubscription/{{item.id}}">Edit</a>
+                                    <a class="btn btn-info btn-icon-text" (click)="goToEditCategory(item.id)">Edit</a>
                                 </td>
                             </tr>
                         </tbody>

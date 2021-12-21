@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryModel } from '../../home2/models/Category.model';
 import { PharmacistService } from '../Services/pharmacist.service';
 
@@ -12,7 +13,8 @@ export class CategoriesComponent implements OnInit {
   CategoriesList:CategoryModel[]
 
   constructor(
-    private pharmacistService:PharmacistService
+    private pharmacistService:PharmacistService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -26,5 +28,11 @@ export class CategoriesComponent implements OnInit {
         this.CategoriesList = response.data['categories']
       }
     )
+  }
+
+  goToEditCategory(id:number)
+  {
+    this.pharmacistService.EditDrugId = id ; 
+    this.router.navigate(['/pharmacist/EditCategory']);
   }
 }

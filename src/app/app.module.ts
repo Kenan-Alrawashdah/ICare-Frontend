@@ -32,50 +32,42 @@ const routes: Routes = [
     path: '',
     redirectTo: '/Home',
     pathMatch: 'full',
-  },
-  {
+  },{
     path: 'Home',
     component: Home2Component,
     loadChildren: () =>
       import('./lazyLoad/home2/home2-routing.module').then(
         (m) => m.Home2RoutingModule
       ),
-  },
-  {
+  },{
     path: 'Patient',
     component: Patient2Component,
     loadChildren: () =>
       import('./lazyLoad/patient2/patient2-routing.module').then(
         (m) => m.Patient2RoutingModule
       ),
-  },
-
-  {
+  },{
     path: 'Delivery',
     component: DeliveryDashboardComponent,
     loadChildren: () =>
       import(
         './lazyLoad/delivery-dashboard/delivery-dashboard-routing.module'
       ).then((m) => m.DeliveryDashboardRoutingModule),
-  },
-  {
+  },{
     path: 'Accountant',
     component: EmployeeDashboardComponent,
     loadChildren: () =>
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-  },
-
-  {
+  },{
     path: 'Admin',
     component: Admin2Component,
     loadChildren: () =>
       import('./lazyLoad/admin2/admin2-routing.module').then(
         (m) => m.Admin2RoutingModule
       ),
-  },
-  {
+  },{
     path: 'pharmacist',
     component: PharmacistComponent,
     loadChildren: () =>
@@ -101,7 +93,6 @@ const routes: Routes = [
     AvilableOrdersComponent,
     GetEmployeeComponent,
     DashboardComponent,
-    
   ],
   imports: [
     BrowserModule,

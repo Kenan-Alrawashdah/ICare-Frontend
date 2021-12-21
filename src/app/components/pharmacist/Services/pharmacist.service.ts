@@ -10,6 +10,7 @@ import { EditDrugModel } from '../Models/EditDrug.model';
 import { OpenOrderModel } from '../Models/OpenOrders.model';
 import { OrderDrugsModel } from '../Models/OrderDrugs.model';
 import { AddCategoryModel } from '../Models/AddCategory.model';
+import { EditCategoryModel } from '../Models/EditCategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class PharmacistService {
 
   drugId:number = -1 ;
   orderDrugId :number = -1 ;
-
+  EditDrugId:number =-1;
   constructor(
     private httpClient:HttpClient
   ) { }
@@ -67,7 +68,23 @@ export class PharmacistService {
 
     return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Admin/Category/AddCategory',form2);
   }
+  public getCategoryById()
+  {
+    return this.httpClient.get<ApiResponseData<EditCategoryModel>>(Constants.baseURL + 'Admin/Category/GetById/'+this.EditDrugId);
+  }
 
+  EditCategory(form:EditCategoryModel)
+  {console.log(form)
+    let form2:FormData = new FormData();
+    form2.append('id',form.id.toString())
+    form2.append('name',form.name)
+    if(form.image != null)
+    {
+      form2.append('image',form.image,form.image.name)
+    }
+
+    return this.httpClient.put<ApiResponseData>(Constants.baseURL+'Admin/Category/Update',form2);
+  }
   getAll(){
     return this.httpClient.get<ApiResponseData<DrugModel[]>>(Constants.baseURL+'Drugs/GetAll');
   }
