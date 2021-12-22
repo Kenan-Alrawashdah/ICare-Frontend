@@ -26,7 +26,6 @@ export class PatientGuard implements CanActivate {
         this.router.navigate(['/Home/login'])
         return false;
       }
-
   }
   
 }

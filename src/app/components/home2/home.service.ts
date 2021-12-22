@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Constants } from 'src/app/Constants/constants';
 import { ApiResponseData } from 'src/app/shared/api-response.model';
+import { UserToken } from 'src/app/shared/UserToken.model';
 import { CartItemModel } from './models/cartItem.model';
 import { CategoryModel } from './models/Category.model';
 import { CreateOrderModel } from './models/CreateOrder.model';
@@ -13,7 +14,6 @@ import { LocationModel } from './models/location.model';
 import { NotificationModel } from './models/Notification.model';
 import { SearchModel } from './models/search.model';
 import { SubscriptionTypeModel } from './models/SubscriptionType.model';
-import { UserToken } from './models/UserToken';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,8 @@ export class HomeService {
       fp
     );
   }
+
+  
   public register(
     fname: string,
     lname: string,

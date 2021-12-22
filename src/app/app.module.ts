@@ -26,6 +26,13 @@ import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
 import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
 import { GetEmployeeComponent } from './components/admin2/get-employee/get-employee.component';
 import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
+import { AddDeliveryComponent } from './components/admin2/add-delivery/add-delivery.component';
+import { PharmacistGuard } from './guards/pharmacist.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { AccountantGuard } from './guards/accountant.guard';
+import { NotEmployeeGuard } from './guards/not-employee.guard';
+import { ForgotPasswordComponent } from './components/home2/forgot-password/forgot-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [
   {
@@ -39,6 +46,7 @@ const routes: Routes = [
       import('./lazyLoad/home2/home2-routing.module').then(
         (m) => m.Home2RoutingModule
       ),
+      canActivate:[NotEmployeeGuard]
   },{
     path: 'Patient',
     component: Patient2Component,
@@ -60,6 +68,8 @@ const routes: Routes = [
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
+    canActivate:[AccountantGuard]
+
   },{
     path: 'Admin',
     component: Admin2Component,
@@ -67,6 +77,7 @@ const routes: Routes = [
       import('./lazyLoad/admin2/admin2-routing.module').then(
         (m) => m.Admin2RoutingModule
       ),
+      canActivate:[AdminGuard]
   },{
     path: 'pharmacist',
     component: PharmacistComponent,
@@ -74,6 +85,7 @@ const routes: Routes = [
       import('./lazyLoad/pharmacist/pharmacist-routing.module').then(
         (m) => m.PharmacistRoutingModule
       ),
+    canActivate:[PharmacistGuard]
   },
 ];
 @NgModule({
@@ -110,6 +122,7 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
 
   providers: [authInterceptorProviders],

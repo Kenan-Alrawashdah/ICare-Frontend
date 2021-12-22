@@ -9,6 +9,8 @@ import { AddEmployeeComponent } from 'src/app/components/admin2/add-employee/add
 import { NgChartsModule } from 'ng2-charts';
 import { SubscriptionSettingsComponent } from 'src/app/components/admin2/subscription-settings/subscription-settings.component';
 import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscription/edit-subscription.component';
+import { DeliveriesComponent } from 'src/app/components/admin2/deliveries/deliveries.component';
+import { AddDeliveryComponent } from 'src/app/components/admin2/add-delivery/add-delivery.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscr
     PaymentOrdersComponent,
     SubscriptionSettingsComponent,
     EditSubscriptionComponent,
-    
+    DeliveriesComponent,
+    AddDeliveryComponent
   ],
   imports: [
     CommonModule,

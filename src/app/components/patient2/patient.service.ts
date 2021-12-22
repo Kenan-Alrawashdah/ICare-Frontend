@@ -8,6 +8,7 @@ import { AddDrugModel } from './models/AddDrug.Model';
 import { ChangePasswordModel } from './models/ChangePassword.model';
 import { EditDrugModel } from './models/EditDrug.model';
 import { GetMyDrugsModel } from './models/GetMyDrug.model';
+import { AddHealthReportModel } from './models/HealthReport.model';
 import { HealthReportResponseModel } from './models/healthReportReponse.model';
 import { GetHeathReportRequestModel } from './models/healthReportRequest.model';
 import { LocationModel } from './models/location.model';
@@ -120,7 +121,16 @@ export class PatientService {
   public GetHealthReportsByMonth(body:GetHeathReportRequestModel)
   {
     return this.http.post<ApiResponseData<HealthReportResponseModel[]>>(Constants.baseURL+'Patient/GetHealthReports',body);
+  }
 
+  public CreateHealthReport(body:AddHealthReportModel)
+  {
+    return this.http.post<ApiResponseData>(Constants.baseURL + 'Patient/CreateHealthReport',body)
+  }
+
+  public DeleteHealthReport(id:number)
+  {
+    return this.http.delete<ApiResponseData>(Constants.baseURL + 'Patient/DeleteHealthReport/'+id)
   }
 
 }

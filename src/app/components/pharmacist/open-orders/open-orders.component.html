@@ -28,13 +28,13 @@
                                     <h6>{{item.firstName +' '+ item.lastName}}</h6>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" (click)="goToOrderDrugs(item.id)">Details</a>
+                                    <a class="btn btn-outline-info btn-icon-text" (click)="goToOrderDrugs(item.id)"><i class="ti-file btn-icon-prepend"></i> Details</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" (click)="SetOrderAsPlaced(item.id)">Set As Placed</a>
+                                    <a class="btn btn-outline-success btn-icon-text" (click)="SetOrderAsPlaced(item.id)"> <i class="ti-check btn-icon-prepend"></i> Set As Placed</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" (click)="SetOrderAsCanceled(item.id)">Cancel</a>
+                                    <a class="btn btn-outline-danger btn-icon-text" (click)="SetOrderAsCanceled(item.id)"><i class="ti-close btn-icon-prepend"></i>Cancel Order</a>
                                 </td>
                             </tr>
 

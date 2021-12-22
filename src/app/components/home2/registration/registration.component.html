@@ -7,8 +7,21 @@
                         <i style="text-align: center">
               <h2>Sing Up</h2>
             </i>
-
-                        <div class="modal-body">
+                        <div class="col-12">
+                            <a (click)="submitLogin()" class="
+  btn btn-gray-border btn-full
+  rounded
+  btn-large
+  text-capitalize
+  mb-3
+">
+                                <img src="assets/img/facebook.png" alt="" /> Login with Facebook
+                            </a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p class="">Or Sign Up With</p>
+                        </div>
+                        <div class="modal-body" style="padding: 10px 40px;">
                             <form [formGroup]="RegistrationForm" (ngSubmit)="onSubmit()" id="register_form">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -45,6 +58,9 @@
                     ">
                     This field is required.
                   </small>
+                                    <small class="text-danger" *ngIf="emailExistValidation">
+                This Email is already exist please try another one
+              </small>
                                     <small class="text-danger" *ngIf="
                       RegistrationForm.get('email').hasError('email') &&
                       (RegistrationForm.controls['email'].dirty ||
@@ -54,7 +70,7 @@
                   </small>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input formControlName="password" type="password" required placeholder="Password" class="form-control rounded" />
+                                    <input formControlName="password" type="password" required placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})" class="form-control rounded" />
                                     <small class="text-danger" *ngIf="
                       RegistrationForm.get('password').hasError('required') &&
                       (RegistrationForm.controls['password'].dirty ||
@@ -62,6 +78,15 @@
                     ">
                     This field is required.
                   </small>
+
+                                    <small class="text-danger" *ngIf="
+                  RegistrationForm.get('password').hasError('pattern') &&
+                  (RegistrationForm.controls['password'].dirty ||
+                    RegistrationForm.controls['password'].touched)
+                ">
+                Password must have at least 8 character <BR/>
+                Password must have at least one big letter and one symbol
+              </small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input formControlName="phone" type="text" placeholder="Phone" class="form-control rounded checkIsNumber phone-check" />
@@ -73,8 +98,8 @@
 
                                 <hr class="my-4" />
                                 <div class="form-group text-center small font-weight-bold mb-0">
-                                    Don’t have an account?
-                                    <a> Login</a>
+                                    have an account?
+                                    <a routerLink="/Home/login"> Login</a>
                                 </div>
                             </form>
                         </div>

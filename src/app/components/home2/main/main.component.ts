@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
 import { CategoryModel } from '../models/Category.model';
@@ -25,14 +26,24 @@ RandomDrugsList:DrugModel[];
    constructor(
     private homeService: HomeService,
     private Toastr: ToastrService,
-    private router:Router
+    private router:Router,
+  private spinner: NgxSpinnerService
   ) {
     
   }
 
    async ngOnInit() {
+    this.spinner.show()
     await this.getAllCategories();
       this.getRangomDrugs();
+  }
+  ngAfterViewInit()
+  {
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 500);
+    
   }
   
   getRangomDrugs()
@@ -40,7 +51,6 @@ RandomDrugsList:DrugModel[];
     this.homeService.GetRandomDrugs().subscribe(
       (response)=>{
         this.RandomDrugsList = response.data
-        console.log(response)
       }
     )
   }

@@ -59,7 +59,8 @@ export class AddEmployeeComponent implements OnInit {
   getRoles(){
     this.adminService.getRoles().subscribe((res)=>{
          if (res.success){
-             this.roles = res.data;
+             this.roles = res.data.filter(r=>r.name != 'Admin' && r.name != 'Patient' && r.name != 'Subscriber');
+             this.roles.find(r=>r.name == 'Employee').name = 'Accountant';
          }
     })
   }

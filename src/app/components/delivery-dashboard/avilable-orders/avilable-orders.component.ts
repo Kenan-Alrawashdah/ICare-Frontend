@@ -62,11 +62,14 @@ export class AvilableOrdersComponent implements OnInit {
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
+
+
     navigator.geolocation.getCurrentPosition((position) => {
       this.source = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
+
     });
     const geocoder = new google.maps.Geocoder();
     this.geocodeLatLng(geocoder, this.map);

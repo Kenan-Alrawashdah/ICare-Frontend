@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
 <!-- Home -->
 <div class="header">
     <div class="container-fluid theme-container">
@@ -212,7 +216,7 @@
                 <div *ngIf="isLogin" class="avater btn-soft-primary">{{Name[0]}}</div>
                 <span>{{Name}}</span>
             </div>
-            <div *ngIf="isLogin" class="mobileMenuLinks mb-4 mt-2">
+            <div class="mobileMenuLinks mb-4 mt-2">
 
                 <ul>
                     <li><a (click)="sidebarGoTo('/Home/main')">Home</a></li>
@@ -220,7 +224,7 @@
                     <li><a (click)="sidebarGoTo('/Home/AboutUs')">About Us</a></li>
                 </ul>
                 <h6></h6>
-                <ul>
+                <ul *ngIf="isLogin">
                     <li><a (click)="sidebarGoTo('/Patient/Account')">Account</a></li>
                     <li><a (click)="sidebarGoTo('/Home/Cart')">Cart</a></li>
                     <li><a (click)="sidebarGoTo('/Home/Notifications')">Notifications</a></li>

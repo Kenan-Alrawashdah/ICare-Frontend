@@ -14,6 +14,7 @@ export class EditDrugComponent implements OnInit {
   EditDrugFormGroup:FormGroup;
   image : File = null ;
   CategoryList:CategoryModel[];
+  CategoryId:number;
   constructor(
     private pharmacistService:PharmacistService,
     public fb: FormBuilder,
@@ -26,9 +27,10 @@ export class EditDrugComponent implements OnInit {
     await this.pharmacistService.GetDrug().toPromise()
     .then(
       (response)=>{
+        
         console.log(response.data.drugCategory)
         this.EditDrugFormGroup = this.fb.group({
-          DrugCategoryId: [0,Validators.required],
+          DrugCategoryId: [,Validators.required],
           id: [response.data.id,Validators.required],
           Name: [response.data.name,Validators.required],
           Price: [response.data.price,Validators.required],
@@ -37,6 +39,7 @@ export class EditDrugComponent implements OnInit {
           Description: [response.data.description,Validators.required],
           image: [null]
         })
+         
       }
     )
   }

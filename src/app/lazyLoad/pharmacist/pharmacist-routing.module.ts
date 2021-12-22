@@ -9,42 +9,65 @@ import { GetAllDrugsComponent } from 'src/app/components/pharmacist/get-all-drug
 import { OpenOrdersComponent } from 'src/app/components/pharmacist/open-orders/open-orders.component';
 import { OrderDrugsComponent } from 'src/app/components/pharmacist/order-drugs/order-drugs.component';
 import { SingleDrugComponent } from 'src/app/components/pharmacist/single-drug/single-drug.component';
+import { PharmacistGuard } from 'src/app/guards/pharmacist.guard';
 
 const routes: Routes = [
   {
+    path: 'pharmacist',
+    redirectTo: 'pharmacist/GetAllDrugs',
+    pathMatch: 'full',
+  },
+  {
     path: 'AddDrug',
     component: AddDrugComponent,
+    canActivate:[PharmacistGuard]
   },
   {
     path: 'GetAllDrugs',
     component: GetAllDrugsComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'SingleDrug',
-    component:SingleDrugComponent
+    component:SingleDrugComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'EditDrug',
-    component:EditDrugComponent
+    component:EditDrugComponent,
+    canActivate:[PharmacistGuard]
+
   },{
     path:'OpenOrders',
-    component:OpenOrdersComponent
+    component:OpenOrdersComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'OrderDrugs',
-    component:OrderDrugsComponent
+    component:OrderDrugsComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'Categories',
-    component:CategoriesComponent
+    component:CategoriesComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'AddCategory',
-    component:AddCategoryComponent
+    component:AddCategoryComponent,
+    canActivate:[PharmacistGuard]
+
   },
   {
     path:'EditCategory',
-    component:EditCategoryComponent
+    component:EditCategoryComponent,
+    canActivate:[PharmacistGuard]
+
   }
 ];
 

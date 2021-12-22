@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { HealthReportResponseModel } from '../models/healthReportReponse.model';
 import { GetHeathReportRequestModel } from '../models/healthReportRequest.model';
 import { PatientService } from '../patient.service';
@@ -13,7 +14,8 @@ export class HealthReportComponent implements OnInit {
   date:string;
   reportList:HealthReportResponseModel[]
   constructor(
-    private patientService:PatientService
+    private patientService:PatientService,
+    private toastr:ToastrService
   ) { 
     let now = new Date()
     this.date = now.getFullYear()+'-'+(now.getMonth()+1)
@@ -34,6 +36,19 @@ export class HealthReportComponent implements OnInit {
       }
     )
     
+  }
+
+  delete(id:number)
+  {
+    if(confirm('Are you sure you want to delete it'))
+    {
+      this.patientService.DeleteHealthReport(id).subscribe(
+        ()=>{
+          this.toastr.success('Report deleted successfully','',{timeOut:1500})
+          this.ngOnInit();
+        }
+      )
+    }
   }
 
 }

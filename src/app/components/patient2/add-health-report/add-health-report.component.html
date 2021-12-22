@@ -1,5 +1,5 @@
 <div class="ml-0 ml-md-4">
-    <div class="d-none d-md-block">
+    <div class="d-none d-md-block" style="margin-bottom: 25px;">
         <div class="row mb-md-5">
             <div class="col">
                 <h3 style="color: #a1c8ff;" class="mb-1">Add Health Report</h3>
@@ -13,36 +13,35 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <form class="row align-items-end" [formGroup]="">
+                <form class="row align-items-end" [formGroup]="AddHealthReportForm" (ngSubmit)="onSubmit()">
                     <!-- First name -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="testName">Test Name</label>
-                        <input type="text" id="testName" formControlName="testName" class="form-control" placeholder="Test Name" />
+                        <label class="form-label" for="testName">Report Name</label>
+                        <input type="text" id="testName" formControlName="name" class="form-control" placeholder="Test Name" />
                     </div>
                     <!-- Last name -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="testType">Test Value</label>
-                        <input type="text" id="testValue" formControlName="testValue" class="form-control" placeholder="Test Value" />
-                    </div>
-
-                    <div class="mb-3 col-12 col-md-12">
-                        <label class="form-label" for="fname">Upload Test Pdf</label
-                      >
-                      <!--  (change)="upload($event)" -->
-                      <input
-                        type="file"
-                        formControlName="testFile"
-                        class="form-control"
-                        style="padding: 7px; height: 70px"
-                      />
+                        <label class="form-label" for="testType">Report Value</label>
+                        <input type="text" id="testValue" formControlName="value" class="form-control" placeholder="Test Value" />
                     </div>
                     <div class="col-12 mb-3 text-lg-right">
                         <!-- [disabled]="!healthReportForm.valid" -->
-                      <button class="btn btn-primary" >
+                        <button class="btn btn-primary">
                         Add Health Report
                       </button>
                     </div>
-                  </form>
+                </form>
+                <div class="mb-3 col-12 col-md-12">
+                    <label class="form-label" for="fname">Upload Test Pdf</label
+                  >
+                  <!--  (change)="upload($event)" -->
+                  <input
+                    type="file"
+                    formControlName="testFile"
+                    class="form-control"
+                    style="padding: 7px; height: 70px"
+                  />
+                </div>
                 </div>
               </div>
             </div>

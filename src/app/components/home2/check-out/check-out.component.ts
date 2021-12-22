@@ -66,7 +66,7 @@ export class CheckOutComponent implements OnInit {
 
   goTOAddLocation()
   {
-    this.router.navigate(['/Patient/Address'])
+    this.router.navigate(['/Patient/AddAddress'])
   }
   onCheckOut()
   {
@@ -100,6 +100,11 @@ export class CheckOutComponent implements OnInit {
     },
     commit: true,
     payment: (data, actions) => {
+      if(this.selectedLocation == 0)
+    {
+      this.toastr.warning('Please select location to deliver','',{timeOut:1500});
+      return actions.payment.cancel();
+    }else
       return actions.payment.create({
         payment: {
           transactions: [
@@ -115,7 +120,7 @@ export class CheckOutComponent implements OnInit {
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
-        console.log('sussecc');
+        this.onCheckOut();
       });
     },
   };

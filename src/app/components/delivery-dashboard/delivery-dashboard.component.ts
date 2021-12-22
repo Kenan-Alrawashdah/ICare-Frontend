@@ -8,10 +8,14 @@ import { TokenStorageService } from 'src/app/services/token.service';
   styleUrls: ['./delivery-dashboard.component.css'],
 })
 export class DeliveryDashboardComponent implements OnInit {
-  constructor(private tokenService:TokenStorageService) {}
-
+  name:string ;
+  constructor(
+    private tokenService:TokenStorageService
+  ) { 
+    this.name=tokenService.getUser();
+  }
   ngOnInit(): void {}
-  logout() {
+  logOut() {
     this.tokenService.signOut();
   }
 }

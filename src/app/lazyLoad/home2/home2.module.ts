@@ -19,6 +19,9 @@ import { NotificationsComponent } from 'src/app/components/home2/notifications/n
 import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
+import { ThankYou2Component } from 'src/app/components/home2/thank-you2/thank-you2.component';
+import { ForgotPasswordComponent } from 'src/app/components/home2/forgot-password/forgot-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
     NotificationsComponent,
     AboutusComponent,
     MainComponent,
+    ThankYou2Component,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +46,8 @@ import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
     FormsModule,
     ReactiveFormsModule,
     IvyCarouselModule,
-    MdbCarouselModule
+    MdbCarouselModule,
+    NgxSpinnerModule
 
   ]
 })
