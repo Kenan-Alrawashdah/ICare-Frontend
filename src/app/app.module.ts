@@ -32,6 +32,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AccountantGuard } from './guards/accountant.guard';
 import { NotEmployeeGuard } from './guards/not-employee.guard';
 import { ForgotPasswordComponent } from './components/home2/forgot-password/forgot-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [
   {
@@ -121,6 +122,7 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
 
   providers: [authInterceptorProviders],
