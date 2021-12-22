@@ -19,11 +19,11 @@ export class AvilableOrdersComponent implements OnInit {
 
   NumberOfOrders: number;
 
+  map: google.maps.Map;
   ds: google.maps.DirectionsService;
   dr: google.maps.DirectionsRenderer;
   source: google.maps.LatLngLiteral;
   destination: google.maps.LatLngLiteral;
-
 
   constructor(
     private deliveryService: DeliveryService,
@@ -33,13 +33,15 @@ export class AvilableOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.getLocation();
 
+    this.map = new google.maps.Map(
+      document.getElementById('map') as HTMLElement,
+      {
+        center: { lat: 31.963158, lng: 35.930359 },
+      }
+    );
 
     this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer({
-      map: null,
-      suppressMarkers: true,
-    });
-
+    this.dr = new google.maps.DirectionsRenderer();
   }
 
   async getLocation() {
@@ -47,7 +49,6 @@ export class AvilableOrdersComponent implements OnInit {
       .GetPlacedOrders()
       .toPromise()
       .then((response) => {
-
         this.ordersList = response.data;
         console.log(this.ordersList);
         if (this.ordersList == null) this.NumberOfOrders = 0;
@@ -55,53 +56,64 @@ export class AvilableOrdersComponent implements OnInit {
 
         console.log(response);
         this.ordersList = response.data;
-
       });
   }
 
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
-    const map = new google.maps.Map(
-      document.getElementById('map') as HTMLElement,
-      {
-        center: { lat: lat, lng: lng },
-      }
-    );
-    navigator.geolocation.getCurrentPosition((position) => {});
-
-    this.source = {
-      lat: parseFloat('40.714224'),
-      lng: parseFloat('-73.991452'),
-    };
-    new google.maps.Marker({
-      position: this.source,
-      animation: google.maps.Animation.DROP,
-      icon: {
-        url: './assets/map/truck_pin.svg',
-        anchor: new google.maps.Point(35, 10),
-        scaledSize: new google.maps.Size(100, 100),
-      },
-      map: map,
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.source = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
     });
+    const geocoder = new google.maps.Geocoder();
+    this.geocodeLatLng(geocoder, this.map);
+  }
+
+  geocodeLatLng(geocoder: google.maps.Geocoder, map: google.maps.Map) {
     const latlng = {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
     };
-    this.destination = latlng;
+    geocoder
+      .geocode({ location: latlng })
+      .then((response) => {
+        if (response.results[0]) {
+          new google.maps.Marker({
+            position: this.source,
+            animation: google.maps.Animation.DROP,
+            icon: {
+              url: './assets/map/truck_pin.svg',
+              anchor: new google.maps.Point(35, 10),
+              scaledSize: new google.maps.Size(100, 100),
+            },
+            map: map,
+          });
+          const latlng = {
+            lat: parseFloat(this.lat),
+            lng: parseFloat(this.lng),
+          };
+          this.destination = latlng;
 
-    new google.maps.Marker({
-      position: this.destination,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      icon: {
-        url: './assets/map/destination_custom_pin.svg',
-        anchor: new google.maps.Point(35, 10),
-        scaledSize: new google.maps.Size(100, 100),
-      },
-    });
-    map.panTo(this.destination);
-    this.setRoutePolyline(map);
+          new google.maps.Marker({
+            position: this.destination,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: {
+              url: './assets/map/destination_custom_pin.svg',
+              anchor: new google.maps.Point(35, 10),
+              scaledSize: new google.maps.Size(100, 100),
+            },
+          });
+          map.panTo(this.destination);
+          this.setRoutePolyline(map);
+        } else {
+          window.alert('No results found');
+        }
+      })
+      .catch((e) => window.alert('Geocoder failed due to: ' + e));
   }
 
   setRoutePolyline(map: google.maps.Map) {
