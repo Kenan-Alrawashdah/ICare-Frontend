@@ -83,6 +83,9 @@
                     AddEmployeeForm.controls['email'].touched) ">
                     This field is required.
                    </small>
+                        <small class="text-danger" *ngIf="emailValidation">
+                    The email is already used,Try another one
+                   </small>
                         <small class="text-danger" *ngIf="
                    AddEmployeeForm.get('email').hasError(
                      'email'
@@ -113,47 +116,8 @@
                     At least 8 char !
                    </small>
                     </div>
-                    <div class="form-group">
-                        <label>Role</label>
-                        <select class="form-select form-control" formControlName="roleId">
-                            <option value="" selected disabled >Choose here</option>
-                            <option *ngFor="let item of roles" [value]="item.id"> {{item.name}}</option>
-                          </select>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Hour Salary</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">$</span>
-                            </div>
-                            <input type="number" formControlName="hourSalary" class="form-control" placeholder="hourSalary">
-                            <small class="text-danger" *ngIf="
-                            AddEmployeeForm.get('hourSalary').hasError(
-                              'required'
-                            ) &&
-                            (AddEmployeeForm.controls['hourSalary'].dirty ||
-                            AddEmployeeForm.controls['hourSalary'].touched) ">
-                            This field is required.
-                        </small>
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Monthly Working Hours</label>
-                        <div class="input-group">
-                            <input type="number" formControlName="monthlyWorkingHours" class="form-control" placeholder="Monthly Working Hours">
-                            <small class="text-danger" *ngIf="
-                    AddEmployeeForm.get('monthlyWorkingHours').hasError(
-                      'required'
-                    ) &&
-                    (AddEmployeeForm.controls['monthlyWorkingHours'].dirty ||
-                    AddEmployeeForm.controls['monthlyWorkingHours'].touched) ">
-                    This field is required.
-                </small>
-
-                        </div>
-                    </div>
 
                     <div class="form-group justify-content-center">
                         <div class="row justify-content-center">

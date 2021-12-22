@@ -20,6 +20,7 @@ import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.compo
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { ThankYou2Component } from 'src/app/components/home2/thank-you2/thank-you2.component';
+import { ForgotPasswordComponent } from 'src/app/components/home2/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ThankYou2Component } from 'src/app/components/home2/thank-you2/thank-yo
     NotificationsComponent,
     AboutusComponent,
     MainComponent,
-    ThankYou2Component
+    ThankYou2Component,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

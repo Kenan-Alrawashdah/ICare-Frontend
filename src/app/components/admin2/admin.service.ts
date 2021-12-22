@@ -11,6 +11,7 @@ import { GetPatientStatsLast5Year } from './Models/get-patient-stats-last5-year.
 import { GetPaymentOrders } from './Models/get-payment-orders.model';
 import { GetSalesStatsLast5Year } from './Models/get-sales-stats-last5-year.model';
 import { SubscriptionTypeModel } from './Models/SubscriptionType.model';
+import { AddDeliveryModel } from './Models/addDelivery.model';
 
 const baseURL = Constants.baseURL;
 @Injectable({
@@ -76,5 +77,10 @@ export class AdminService {
   public EditSubscription(body:SubscriptionTypeModel)
   {
     return this.http.put<ApiResponseData>(Constants.baseURL + 'Subscription/EditSubscription',body);
+  }
+
+  public AddDelivery(body:AddDeliveryModel)
+  {console.log(body)
+    return this.http.post<ApiResponseData>(Constants.baseURL+'Admin/CreateDelivery',body)
   }
 }

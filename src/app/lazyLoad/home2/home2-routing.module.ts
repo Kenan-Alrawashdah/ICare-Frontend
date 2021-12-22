@@ -15,6 +15,7 @@ import { GuestGuard } from 'src/app/guards/guest.guard';
 import { NotificationsComponent } from 'src/app/components/home2/notifications/notifications.component';
 import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
 import { ThankYou2Component } from 'src/app/components/home2/thank-you2/thank-you2.component';
+import { ForgotPasswordComponent } from 'src/app/components/home2/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
 {
   path:'Thanks',
   component:ThankYou2Component
+},
+{
+  path:'ForgotPassword',
+  component:ForgotPasswordComponent
 }
 ];
 

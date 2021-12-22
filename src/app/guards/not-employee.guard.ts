@@ -7,7 +7,7 @@ import { TokenStorageService } from '../services/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PatientGuard implements CanActivate {
+export class NotEmployeeGuard implements CanActivate {
   constructor(
     private router:Router,
     private tokenService:TokenStorageService,
@@ -18,12 +18,12 @@ export class PatientGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let role = this.tokenService.GetRole(); 
-      if(role == 'Patient' || role == 'Subscriber')
+      if(role == 'Patient' || role == 'Subscriber' || role == null)
       {
         return true;
       }else{
-        this.toastr.warning('please login first','',{timeOut:1500});
-        this.router.navigate(['/Home/login'])
+        this.toastr.warning('you cant go to this page','',{timeOut:1500});
+        this.router.navigate([role]);
         return false;
       }
   }

@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../admin.service';
 import { Role } from '../Models/GetRoles';
 
 @Component({
-  selector: 'app-add-employee',
-  templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css'],
+  selector: 'app-add-delivery',
+  templateUrl: './add-delivery.component.html',
+  styleUrls: ['./add-delivery.component.css']
 })
-export class AddEmployeeComponent implements OnInit {
-
-
+export class AddDeliveryComponent implements OnInit {
 
   AddEmployeeForm: FormGroup;
-  roles:Role[];
+  emailValidation:boolean = false; 
   err : string;
   constructor( 
     public fb: FormBuilder,
@@ -29,39 +27,26 @@ export class AddEmployeeComponent implements OnInit {
       email : new FormControl('',[Validators.required,Validators.email]),
       password : new FormControl('',[Validators.required,Validators.minLength(8)]),
       phoneNumber : new FormControl('',[Validators.required]),
-      hourSalary : new FormControl('',[Validators.required]),
-      monthlyWorkingHours : new FormControl('',[Validators.required]),
-      roleId : new FormControl('',[Validators.required])
      });
    }
    
   ngOnInit(): void {
-    this.getRoles();
   }
   
   addEmployee(){
 
-     this.adminService.addEmployee(this.AddEmployeeForm).subscribe((res)=>{
+     this.adminService.AddDelivery(this.AddEmployeeForm.value).subscribe((res)=>{
              if(res.success){
                console.log(res.success);
                this.err = '';
-               this.Toastr.success('Employee added successfully');
+               this.Toastr.success('Delivery added successfully');
                this.router.navigate(['/Admin/GetEmployee']);
              }else{
-               this.err = res.errors[0];
-              console.log(res.errors);
+              this.emailValidation  = true; 
              }
     }
     , (err)=>{
       console.log(err);     
-    })
-  }
-  getRoles(){
-    this.adminService.getRoles().subscribe((res)=>{
-         if (res.success){
-             this.roles = res.data.filter(r=>r.name != 'Admin' && r.name != 'Patient' && r.name != 'Subscriber');
-             this.roles.find(r=>r.name == 'Employee').name = 'Accountant';
-         }
     })
   }
 
