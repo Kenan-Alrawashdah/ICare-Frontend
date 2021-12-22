@@ -41,10 +41,7 @@ export class AvilableOrdersComponent implements OnInit {
     );
 
     this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer({
-      map: this.map,
-      suppressMarkers: true,
-    });
+    this.dr = new google.maps.DirectionsRenderer();
   }
 
   async getLocation() {
@@ -65,13 +62,6 @@ export class AvilableOrdersComponent implements OnInit {
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
-    this.map = new google.maps.Map(
-      document.getElementById('map') as HTMLElement,
-      {
-        zoom: 15,
-        center: { lat: lat, lng: lng },
-      }
-    );
     navigator.geolocation.getCurrentPosition((position) => {
       this.source = {
         lat: position.coords.latitude,
@@ -79,17 +69,10 @@ export class AvilableOrdersComponent implements OnInit {
       };
     });
     const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
-    this.geocodeLatLng(geocoder, this.map, infowindow, lat, lng);
+    this.geocodeLatLng(geocoder, this.map);
   }
 
-  geocodeLatLng(
-    geocoder: google.maps.Geocoder,
-    map: google.maps.Map,
-    infowindow: google.maps.InfoWindow,
-    lat,
-    lng
-  ) {
+  geocodeLatLng(geocoder: google.maps.Geocoder, map: google.maps.Map) {
     const latlng = {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
@@ -126,8 +109,6 @@ export class AvilableOrdersComponent implements OnInit {
           });
           map.panTo(this.destination);
           this.setRoutePolyline(map);
-          console.log(this.destination);
-          console.log(this.source);
         } else {
           window.alert('No results found');
         }

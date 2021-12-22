@@ -36,7 +36,6 @@ export class DeliveryOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMyOrders();
-    console.log('sad');
     this.map = new google.maps.Map(
       document.getElementById('map') as HTMLElement,
       {
@@ -45,31 +44,12 @@ export class DeliveryOrdersComponent implements OnInit {
     );
 
     this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer({
-      map: this.map,
-      suppressMarkers: true,
-    });
+    this.dr = new google.maps.DirectionsRenderer();
   }
 
-  async getMyOrders() {
-    await this.deliveryService
-      .GetMyOrders()
-      .toPromise()
-      .then((response) => {
-        this.myOrders = response.data;
-        this.NumberOfOrders = this.myOrders.length;
-      });
-  }
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
-    this.map = new google.maps.Map(
-      document.getElementById('map') as HTMLElement,
-      {
-        zoom: 15,
-        center: { lat: lat, lng: lng },
-      }
-    );
     navigator.geolocation.getCurrentPosition((position) => {
       this.source = {
         lat: position.coords.latitude,
@@ -77,24 +57,15 @@ export class DeliveryOrdersComponent implements OnInit {
       };
     });
     const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
-    this.geocodeLatLng(geocoder, this.map, infowindow, lat, lng);
+    this.geocodeLatLng(geocoder, this.map);
   }
 
-  geocodeLatLng(
-    geocoder: google.maps.Geocoder,
-    map: google.maps.Map,
-    infowindow: google.maps.InfoWindow,
-    lat,
-    lng
-  ) {
+  geocodeLatLng(geocoder: google.maps.Geocoder, map: google.maps.Map) {
     const latlng = {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
     };
-    geocoder
-      .geocode({ location: latlng })
-      .then((response) => {
+    geocoder.geocode({ location: latlng }).then((response) => {
         if (response.results[0]) {
           new google.maps.Marker({
             position: this.source,
@@ -124,8 +95,6 @@ export class DeliveryOrdersComponent implements OnInit {
           });
           map.panTo(this.destination);
           this.setRoutePolyline(map);
-          console.log(this.destination);
-          console.log(this.source);
         } else {
           window.alert('No results found');
         }
@@ -151,7 +120,15 @@ export class DeliveryOrdersComponent implements OnInit {
       }
     });
   }
-
+  async getMyOrders() {
+    await this.deliveryService
+      .GetMyOrders()
+      .toPromise()
+      .then((response) => {
+        this.myOrders = response.data;
+        this.NumberOfOrders = this.myOrders.length;
+      });
+  }
   async open(content: any, id: number) {
     this.Locatins = this.myOrders.find((o) => o.orderId == id);
     this.modalService
