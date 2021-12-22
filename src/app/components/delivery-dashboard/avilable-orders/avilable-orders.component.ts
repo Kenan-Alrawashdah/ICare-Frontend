@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
 import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
 import { PlacedLocationModel } from '../model/placedLocation.model';
@@ -27,7 +28,8 @@ export class AvilableOrdersComponent implements OnInit {
 
   constructor(
     private deliveryService: DeliveryService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,10 @@ export class AvilableOrdersComponent implements OnInit {
     );
 
     this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer();
+    this.dr = new google.maps.DirectionsRenderer({
+      map:this.map,
+      suppressMarkers:true
+    });
   }
 
   async getLocation() {
@@ -149,6 +154,7 @@ export class AvilableOrdersComponent implements OnInit {
 
   takeOrder(id: number) {
     this.deliveryService.Takeorder(id).subscribe((response) => {
+      this.toastr.success('order taken successfully');
       this.ngOnInit();
     });
   }

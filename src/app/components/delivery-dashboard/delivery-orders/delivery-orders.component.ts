@@ -44,17 +44,24 @@ export class DeliveryOrdersComponent implements OnInit {
     );
 
     this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer();
+     this.dr = new google.maps.DirectionsRenderer({
+      map:this.map,
+      suppressMarkers:true
+    });
   }
 
+  
   ChangeMapLocation(lat, lng) {
     this.lat = lat;
     this.lng = lng;
+
+
     navigator.geolocation.getCurrentPosition((position) => {
       this.source = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
+
     });
     const geocoder = new google.maps.Geocoder();
     this.geocodeLatLng(geocoder, this.map);
@@ -65,7 +72,9 @@ export class DeliveryOrdersComponent implements OnInit {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
     };
-    geocoder.geocode({ location: latlng }).then((response) => {
+    geocoder
+      .geocode({ location: latlng })
+      .then((response) => {
         if (response.results[0]) {
           new google.maps.Marker({
             position: this.source,
