@@ -18,7 +18,7 @@
                                     align-items: center;">
                                         ${{item.price}}
                                     </div>
-                                    <a class="col-6 btn btn-rounded btn-primary "><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                                    <a class="col-6 btn btn-rounded btn-primary " (click)="CheckItemIfInCart(item.id)"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
                                 </div>
                             </div>
                         </div>

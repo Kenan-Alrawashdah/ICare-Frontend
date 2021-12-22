@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CategoryModel } from '../../home2/models/Category.model';
 import { PharmacistService } from '../Services/pharmacist.service';
 
@@ -14,7 +15,8 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private pharmacistService:PharmacistService,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -34,5 +36,18 @@ export class CategoriesComponent implements OnInit {
   {
     this.pharmacistService.EditDrugId = id ; 
     this.router.navigate(['/pharmacist/EditCategory']);
+  }
+
+  DeleteCategory(id:number,name:string)
+  {
+    if(confirm("Are you sure to delete "+name+' all drugs in this category will be deleted!!')) {
+      this.pharmacistService.deleteCategory(id).subscribe(
+        ()=>{
+          this.toastr.success('Category Deleted Successfully','',{timeOut:1500});
+          this.ngOnInit();
+        }
+      )
+    }
+    
   }
 }

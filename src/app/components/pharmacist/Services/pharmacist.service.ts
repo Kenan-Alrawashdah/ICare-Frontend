@@ -129,4 +129,9 @@ export class PharmacistService {
     return this.httpClient.get<ApiResponseData<CategoryModel[]>>(Constants.baseURL+'Admin/Category/GetAllDrugCategories')
   }
 
+  public deleteCategory(id:number)
+  {
+    return this.httpClient.delete<ApiResponseData>(Constants.baseURL+'Admin/Category/Delete/'+id)
+  }
+
 }

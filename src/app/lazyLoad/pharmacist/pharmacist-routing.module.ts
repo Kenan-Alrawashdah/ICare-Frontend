@@ -12,6 +12,11 @@ import { SingleDrugComponent } from 'src/app/components/pharmacist/single-drug/s
 
 const routes: Routes = [
   {
+    path: 'pharmacist',
+    redirectTo: 'pharmacist/GetAllDrugs',
+    pathMatch: 'full',
+  },
+  {
     path: 'AddDrug',
     component: AddDrugComponent,
   },

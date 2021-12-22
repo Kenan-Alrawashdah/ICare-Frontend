@@ -43,7 +43,10 @@ background-image: url(../../../../assets/img/9537.png);
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-margin-top: 15px;">
+margin-top: 15px;
+padding-top:40px ;
+padding-bottom:40px ;
+">
     <div class="pt-5">
         <div class="container theme-container">
             <div class="row" id="LgCarousel">
@@ -121,7 +124,7 @@ margin-top: 15px;">
         </div>
       </div>
       <div class="row">
-        <div *ngFor="let item of RandomDrugsList | slice:0:12;" class="col-md-2 col-sm-4 col-6">
+        <div *ngFor="let item of RandomDrugsList | slice:0:8;" class="col-md-3 col-sm-4 col-6">
             <div class="product">
                 <a (click)="GoToDrug(item.id)" class="product-img">
                     <img src="http://localhost:5000/images/{{item.picturePath}}" class="" alt="">

@@ -4,13 +4,8 @@
             <div class="card-body">
                 <form class="forms-sample" [formGroup]="EditDrugFormGroup" (ngSubmit)="onSubmit()">
                     <input type="hidden" formControlName="">
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select class="form-control" formControlName="DrugCategoryId">
-                            <option value="" selected disabled hidden>Choose here</option>
-                            <option *ngFor="let item of CategoryList" [selected]="this.item.name == 'test'" value="{{item.id}}">{{item.name}}</option>
-                        </select>
-                    </div>
+
+
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" placeholder="Name" formControlName="Name" />
@@ -33,7 +28,7 @@
                         <input type="number" class="form-control" placeholder="Quantity" formControlName="AvailableQuantity" />
                     </div>
                     <div class="form-group">
-                        <label style="padding-left: 20px">Drug image</label>
+                        <label style="padding-left: 20px">Drug image <small style="color: blue;">leave it empty if you want the same image </small></label>
                         <input class="form-control" style="padding-top: 10px" type="file" placeholder="Drug image" (change)="onFileSelected($event)" />
                     </div>
                     <div class="form-group">

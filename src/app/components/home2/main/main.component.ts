@@ -40,7 +40,6 @@ RandomDrugsList:DrugModel[];
     this.homeService.GetRandomDrugs().subscribe(
       (response)=>{
         this.RandomDrugsList = response.data
-        console.log(response)
       }
     )
   }

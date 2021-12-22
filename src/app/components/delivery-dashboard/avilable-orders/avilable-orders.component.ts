@@ -68,12 +68,14 @@ export class AvilableOrdersComponent implements OnInit {
         center: { lat: lat, lng: lng },
       }
     );
-    navigator.geolocation.getCurrentPosition((position) => {});
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.source = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    });
 
-    this.source = {
-      lat: parseFloat('40.714224'),
-      lng: parseFloat('-73.991452'),
-    };
+ 
     new google.maps.Marker({
       position: this.source,
       animation: google.maps.Animation.DROP,

@@ -75,7 +75,6 @@ export class SubscriptionCheckOutComponent implements OnInit {
   }
 
   onCheckOut() {
-    console.log(this.id);
     this.homeService.Subscribe(this.id).subscribe((response) => {
       if (response.success == true) {
         let token = this.tokenService.getToken();
@@ -88,8 +87,9 @@ export class SubscriptionCheckOutComponent implements OnInit {
             this.tokenService.saveRefreshToken(
               response['data']['refreshToken']
             );
-            console.log(this.tokenService.GetRole());
           });
+          this.toastr.success('payment has been placed');
+          this.router.navigate(['/Home/Thanks'])
       }
     });
   }
@@ -119,7 +119,7 @@ export class SubscriptionCheckOutComponent implements OnInit {
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
-        console.log('sussecc');
+        this.onCheckOut()
       });
     },
   };

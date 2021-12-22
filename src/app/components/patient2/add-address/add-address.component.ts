@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -14,9 +15,11 @@ export class AddAddressComponent implements OnInit {
   labelIndex: number = 0;
   markers: google.maps.Marker[] = [];
   AddressForm: FormGroup;
+  mapValidation:boolean =false;
   constructor(
     private patientService:PatientService,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -27,8 +30,8 @@ export class AddAddressComponent implements OnInit {
       street: new FormControl('', [Validators.required]),
       details: new FormControl('', [Validators.required]),
       zipCode: new FormControl('', [Validators.required]),
-      lat: new FormControl('', [Validators.required]),
-      lng: new FormControl('', [Validators.required]),
+      lat: new FormControl(''),
+      lng: new FormControl(''),
     });
 
     const Jordan = { lat: 31.963158, lng: 35.930359 };
@@ -98,9 +101,19 @@ export class AddAddressComponent implements OnInit {
 
   onSubmit()
   {
-    console.log('onSubmit')
-    console.log(this.AddressForm.value)
-    this.patientService.addAddress(this.AddressForm.value).subscribe();
+    if(this.AddressForm.value.lat == '')
+    {
+      this.mapValidation = true;
+    }else{
+      console.log(this.AddressForm.value)
+      this.patientService.addAddress(this.AddressForm.value).subscribe(
+        ()=>{
+          this.toastr.success('Location added successfully');
+          this.router.navigate(['/Patient/Address']);
+        }
+      );
+    }
+    
   }
 
   goToAddAddress()

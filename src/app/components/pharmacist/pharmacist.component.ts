@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token.service';
 
 
 @Component({
@@ -8,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PharmacistComponent implements OnInit {
 
-  constructor() { }
+  name:string ;
+  constructor(
+    private tokenService:TokenStorageService
+  ) { 
+    this.name=tokenService.getUser();
+  }
 
   ngOnInit(): void {
+  }
+
+  logOut()
+  {
+    this.tokenService.signOut();
   }
 
 }

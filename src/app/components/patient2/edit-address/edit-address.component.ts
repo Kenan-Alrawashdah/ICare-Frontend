@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { PatientService } from '../patient.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class EditAddressComponent implements OnInit {
   constructor(
     private patientService:PatientService,
     private router:Router,
-    private _Activatedroute:ActivatedRoute
+    private _Activatedroute:ActivatedRoute,
+    private toastr:ToastrService
     ) {
       this.id=this._Activatedroute.snapshot.paramMap.get("id");
       
@@ -123,7 +125,12 @@ export class EditAddressComponent implements OnInit {
   {
     console.log('onSubmit')
     console.log(this.AddressForm.value)
-    this.patientService.EditLocation(this.AddressForm.value).subscribe();
+    this.patientService.EditLocation(this.AddressForm.value).subscribe(
+      ()=>{
+        this.toastr.success('Location edited successfully');
+        this.router.navigate(['/Patient/Address']);
+      }
+    );
   }
 
   goToAddAddress()

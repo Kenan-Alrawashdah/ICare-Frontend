@@ -12,7 +12,11 @@ import { PharmacistService } from '../Services/pharmacist.service';
 export class GetAllDrugsComponent implements OnInit {
 
   listOfDrugs:DrugModel[];
+  SearchList:DrugModel[];
+  Drug:DrugModel[];
   CategoryList:CategoryModel[];
+  selectedCategory:string = 'Category';
+  search:string ='';
   constructor(
     private pharmacistService:PharmacistService,
     private router:Router
@@ -23,11 +27,40 @@ export class GetAllDrugsComponent implements OnInit {
     this.getAllCategories();
   }
 
+  CategoryFilter(id:number,name:string){
+    if(id == 0)
+    {
+      this.SearchList = this.Drug;
+      this.selectedCategory = 'Category';
+    }else
+    {
+      this.listOfDrugs = this.Drug.filter(c => c.drugCategoryId == id);
+      this.SearchList = this.listOfDrugs;
+      this.selectedCategory = name;
+      this.search = '';
+    }
+    
+  }
+
+  searchDrug()
+  {if(this.search != '')
+  {
+    this.SearchList  = this.listOfDrugs.filter(c => c.name.includes(this.search));
+  }else{
+    this.SearchList  = this.listOfDrugs
+
+  }
+
+
+  }
+
   async getAllDrugs(){
     await this.pharmacistService.getAll().toPromise()
     .then(
       (response)=>{
         this.listOfDrugs = response.data;
+        this.Drug = response.data;
+        this.SearchList = this.listOfDrugs;
         console.log(this.listOfDrugs)
       }
     )
