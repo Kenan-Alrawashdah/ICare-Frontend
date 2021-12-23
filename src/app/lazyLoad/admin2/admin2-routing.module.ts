@@ -11,6 +11,8 @@ import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscr
 import { DeliveriesComponent } from 'src/app/components/admin2/deliveries/deliveries.component';
 import { AddDeliveryComponent } from 'src/app/components/admin2/add-delivery/add-delivery.component';
 import { AdminGuard } from 'src/app/guards/admin.guard';
+import { AccountComponent } from 'src/app/components/admin2/account/account.component';
+import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -70,6 +72,16 @@ const routes: Routes = [
   {
     path:'AddDelivery',
     component:AddDeliveryComponent,
+    canActivate:[AdminGuard]
+  },
+  {
+    path:'Account',
+    component:AccountComponent,
+    canActivate:[AdminGuard]
+  },
+  {
+    path:'ChangePassword',
+    component:ChangePasswordComponent,
     canActivate:[AdminGuard]
   }
 

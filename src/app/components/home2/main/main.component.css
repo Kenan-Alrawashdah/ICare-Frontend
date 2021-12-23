@@ -1,3 +1,5 @@
+/* @import '~mdb-ui-kit/css/mdb.min.css'; */
+
 @media screen and (min-width: 0px) and (max-width: 767px) {
     #LgCarousel {
         display: none;
@@ -8,9 +10,17 @@
     #SmCarousel {
         display: block;
     }
+    #web {
+        display: none;
+    }
+    #phone {
+        display: block;
+    }
+    #Category {
+        background-image: url(../../../../assets/img/c2.png);
+    }
 }
 
-@import '~mdb-ui-kit/css/mdb.min.css';
 @media screen and (min-width: 768px) and (max-width: 1199px) {
     #LgCarousel {
         display: none;
@@ -20,6 +30,15 @@
     }
     #SmCarousel {
         display: none;
+    }
+    #web {
+        display: block;
+    }
+    #phone {
+        display: none;
+    }
+    #Category {
+        background-image: url(../../../../assets/img/c1.png);
     }
 }
 
@@ -33,8 +52,21 @@
     #SmCarousel {
         display: none;
     }
+    #web {
+        display: block;
+    }
+    #phone {
+        display: none;
+    }
+    #Category {
+        background-image: url(../../../../assets/img/c1.png);
+    }
 }
 
 .carousel-control-next {
     display: none !important;
+}
+
+#fff {
+    margin-top: -100px;
 }

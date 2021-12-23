@@ -40,7 +40,7 @@ export class AddDeliveryComponent implements OnInit {
                console.log(res.success);
                this.err = '';
                this.Toastr.success('Delivery added successfully');
-               this.router.navigate(['/Admin/GetEmployee']);
+               this.router.navigate(['/Admin/Deliveries']);
              }else{
               this.emailValidation  = true; 
              }

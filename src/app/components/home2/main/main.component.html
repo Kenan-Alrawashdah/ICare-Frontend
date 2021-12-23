@@ -1,30 +1,62 @@
-<mdb-carousel [controls]="true" [indicators]="true" [dark]="true">
+<mdb-carousel id="phone" [controls]="true" [indicators]="true" [dark]="true">
     <mdb-carousel-item>
-        <img src="{{images[0]}}" class="d-block w-100" alt="Motorbike Smoke" />
+        <img src="../../../../assets/img/m2.png" class="d-block w-100" alt="Motorbike Smoke" />
         <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: black;">First slide label</h5>
-            <p style="color: black;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            <button class="btn btn-primary">sadf</button>
+            <!-- <h5 style="color: black;">First slide label</h5>
+            <p style="color: black;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+            <button style="position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-200%, -150%);" class="btn btn-primary">sadf</button>
         </div>
     </mdb-carousel-item>
 
     <mdb-carousel-item>
-        <img src="{{images[0]}}" class="d-block w-100" alt="Mountaintop" />
-        <div class="carousel-caption d-none d-md-block">
+        <img src="../../../../assets/img/m1.png" class="d-block w-100" alt="Mountaintop" />
+        <!-- <div class="carousel-caption d-none d-md-block">
             <h5>Second slide label</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+        </div> -->
     </mdb-carousel-item>
 
     <mdb-carousel-item>
-        <img src="{{images[0]}}" class="d-block w-100" alt="Woman Reading a Book" />
-        <div class="carousel-caption d-none d-md-block">
+        <img src="../../../../assets/img/m3.png" class="d-block w-100" alt="Woman Reading a Book" />
+        <!-- <div class="carousel-caption d-none d-md-block">
             <h5>Third slide label</h5>
             <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </div>
+        </div> -->
     </mdb-carousel-item>
 </mdb-carousel>
 
+<mdb-carousel id="web" [controls]="true" [indicators]="true" [dark]="true">
+    <mdb-carousel-item>
+        <img src="../../../../assets/img/s2.png" class="d-block w-100" alt="Motorbike Smoke" />
+        <div class="carousel-caption d-none d-md-block">
+            <!-- <h5 style="color: black;">First slide label</h5>
+            <p style="color: black;">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+            <button style="position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-200%, -150%);" class="btn btn-primary">sadf</button>
+        </div>
+    </mdb-carousel-item>
+
+    <mdb-carousel-item>
+        <img src="../../../../assets/img/s1.png" class="d-block w-100" alt="Mountaintop" />
+        <!-- <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div> -->
+    </mdb-carousel-item>
+
+    <mdb-carousel-item>
+        <img src="../../../../assets/img/s3.png" class="d-block w-100" alt="Woman Reading a Book" />
+        <!-- <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </div> -->
+    </mdb-carousel-item>
+</mdb-carousel>
 
 
 
@@ -39,7 +71,6 @@
 <!-- Category -->
 
 <div id="Category" style="
-background-image: url(../../../../assets/img/9537.png);
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -112,40 +143,43 @@ padding-bottom:40px ;
 <!-- Drugs -->
 
 <!-- //product Grid -->
-<div class="pt-5">
+<div class="pt-5" style="
+background-image: url(../../../../assets/img/d1.png) ;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+">
     <div class="container-fluid theme-container">
         <div class="row mb-4">
             <div class="col">
-                <h5 class="product-heading">Deals of the day</h5>
+                <h5 class="product-heading">Sum of our products</h5>
             </div>
-            <div class="col-auto text-md-right">
-                <a href="category.html" class="btn btn-primary btn-sm product-heading-btn">See All</a
-          >
+
         </div>
-      </div>
-      <div class="row">
-        <div *ngFor="let item of RandomDrugsList | slice:0:8;" class="col-md-3 col-sm-4 col-6">
-            <div class="product">
-                <a (click)="GoToDrug(item.id)" class="product-img">
-                    <img src="http://localhost:5000/images/{{item.picturePath}}" class="" alt="">
-                </a>
-                <div class="product-info">
-                    <h3 style="font-family: 'Nunito Sans', sans-serif;font-size: 23px;">
-                        <a (click)="GoToDrug(item.id)">{{item.name}}</a>
-                    </h3>
-                    <div class="product-value ">
-                        <div class="row">
-                            <div class="col-4 current-price" style="display: flex;
+        <div class="row">
+            <div *ngFor="let item of RandomDrugsList | slice:0:8;" class="col-md-3 col-sm-4 col-6">
+                <div class="product">
+                    <a (click)="GoToDrug(item.id)" class="product-img">
+                        <img src="http://localhost:5000/images/{{item.picturePath}}" class="" alt="">
+                    </a>
+                    <div class="product-info">
+                        <h3 style="font-family: 'Nunito Sans', sans-serif;font-size: 23px;">
+                            <a (click)="GoToDrug(item.id)">{{item.name}}</a>
+                        </h3>
+                        <div class="product-value ">
+                            <div class="row">
+                                <div class="col-4 current-price" style="display: flex;
                             align-items: center;">
-                                ${{item.price}}
+                                    ${{item.price}}
+                                </div>
+                                <a class="col-6 btn btn-rounded btn-primary "><i class="fa fa-shopping-cart"></i> Add To Cart</a>
                             </div>
-                            <a class="col-6 btn btn-rounded btn-primary "><i class="fa fa-shopping-cart"></i> Add To Cart</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 </div>

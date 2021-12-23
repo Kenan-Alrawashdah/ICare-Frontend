@@ -13,25 +13,18 @@ import { EmployeeDashboardComponent } from './components/employee-dashboard/empl
 import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
 import { DeliveryDashboardComponent } from './components/delivery-dashboard/delivery-dashboard.component';
-import { DeliveryMainComponent } from './components/delivery-dashboard/delivery-main/delivery-main.component';
 import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
 import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
-import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
 import { Admin2Component } from './components/admin2/admin2.component';
 import { Admin2Module } from './lazyLoad/admin2/admin2.module';
 import { PharmacistComponent } from './components/pharmacist/pharmacist.component';
 import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
-import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
-import { GetEmployeeComponent } from './components/admin2/get-employee/get-employee.component';
-import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
-import { AddDeliveryComponent } from './components/admin2/add-delivery/add-delivery.component';
 import { PharmacistGuard } from './guards/pharmacist.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AccountantGuard } from './guards/accountant.guard';
 import { NotEmployeeGuard } from './guards/not-employee.guard';
-import { ForgotPasswordComponent } from './components/home2/forgot-password/forgot-password.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [
@@ -92,19 +85,12 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     EmployeeDashboardComponent,
-    EmployeeMainComponent,
-    EmployeesInformationComponent,
     //-------
     DeliveryDashboardComponent,
-    DeliveryMainComponent,
     Patient2Component,
     Home2Component,
-    DeliveryOrdersComponent,
     Admin2Component,
     PharmacistComponent,
-    AvilableOrdersComponent,
-    GetEmployeeComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,

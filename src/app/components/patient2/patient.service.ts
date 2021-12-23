@@ -108,6 +108,16 @@ export class PatientService {
     return this.http.get<ApiResponseData<EditDrugModel>>(Constants.baseURL+'Patient/EditDrug/'+this.editDrugIdNumber)
   }
 
+  public upload(file: File) {
+  
+    const formData: FormData = new FormData();
+    formData.append('PdfFile', file, file.name);
+    return this.http.post<ApiResponseData>(
+      Constants.baseURL + 'Patient/InsertPDFData',
+      formData
+    );
+  }
+
   deleteDrug(id:number)
   {
     return this.http.delete<ApiResponseData>(Constants.baseURL+'Patient/DeleteDrug/'+id)

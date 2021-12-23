@@ -12,10 +12,10 @@ export class Admin2Component implements OnInit {
   constructor(
     private tokenService:TokenStorageService
   ) { 
-    this.name=tokenService.getUser();
   }
-
+  
   ngOnInit(): void {
+    this.name=this.tokenService.getUser();
   }
 
   logOut()

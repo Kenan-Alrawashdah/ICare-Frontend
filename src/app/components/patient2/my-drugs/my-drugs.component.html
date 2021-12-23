@@ -24,7 +24,9 @@
                             <i class="ti-trash text-danger"></i>
                         </a>
                         <h6>{{item.drugName}}</h6>
-                        <span class="text-muted">Expire Date: {{item.expireDate | date}}</span>
+                        <span *ngIf="!compare(item.expireDate)" class="text-muted">Expire Date: {{ item.expireDate | date}}</span>
+                        <div></div>
+                        <span *ngIf="compare(item.expireDate)" class="text-danger">Expire Date: {{item.expireDate | date}} SDasd </span>
                         <h6>
                             On:
                             <span class="text-muted" *ngFor="let item of item.times.slice().reverse()">{{' '+item.substring(0, 5)+'  ,'}}</span>

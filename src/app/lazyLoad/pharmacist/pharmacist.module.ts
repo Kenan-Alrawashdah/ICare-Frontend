@@ -13,6 +13,7 @@ import { OrderDrugsComponent } from 'src/app/components/pharmacist/order-drugs/o
 import { CategoriesComponent } from 'src/app/components/pharmacist/categories/categories.component';
 import { AddCategoryComponent } from 'src/app/components/pharmacist/add-category/add-category.component';
 import { EditCategoryComponent } from 'src/app/components/pharmacist/edit-category/edit-category.component';
+import { AccountComponent } from 'src/app/components/pharmacist/account/account.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EditCategoryComponent } from 'src/app/components/pharmacist/edit-catego
     OrderDrugsComponent,
     CategoriesComponent,
     AddCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AccountComponent
 
   ],
   imports: [

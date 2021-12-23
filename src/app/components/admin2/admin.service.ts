@@ -12,6 +12,7 @@ import { GetPaymentOrders } from './Models/get-payment-orders.model';
 import { GetSalesStatsLast5Year } from './Models/get-sales-stats-last5-year.model';
 import { SubscriptionTypeModel } from './Models/SubscriptionType.model';
 import { AddDeliveryModel } from './Models/addDelivery.model';
+import { DeliveryModel } from './Models/Delivery.model';
 
 const baseURL = Constants.baseURL;
 @Injectable({
@@ -80,7 +81,17 @@ export class AdminService {
   }
 
   public AddDelivery(body:AddDeliveryModel)
-  {console.log(body)
+  {
     return this.http.post<ApiResponseData>(Constants.baseURL+'Admin/CreateDelivery',body)
+  }
+
+  public GetAllDeliveries()
+  {
+    return this.http.get<ApiResponseData<DeliveryModel[]>>(Constants.baseURL+'Admin/GetAllDeliveries');
+  }
+
+  public DeleteUser(id:number)
+  {
+    return this.http.delete<ApiResponseData>(Constants.baseURL+'Admin/DeleteUser/'+id)
   }
 }

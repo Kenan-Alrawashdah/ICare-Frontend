@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Constants } from 'src/app/Constants/constants';
 import { TokenStorageService } from 'src/app/services/token.service';
 
@@ -10,12 +11,23 @@ import { TokenStorageService } from 'src/app/services/token.service';
 export class DeliveryDashboardComponent implements OnInit {
   name:string ;
   constructor(
-    private tokenService:TokenStorageService
+    private tokenService:TokenStorageService,
+    private router:Router
   ) { 
-    this.name=tokenService.getUser();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name=this.tokenService.getUser();
+  }
   logOut() {
     this.tokenService.signOut();
+  }
+
+  goTo(url:string)
+  {
+    this.router.navigate([url]).then(
+      ()=>{
+        window.location.reload()
+      }
+    )
   }
 }
