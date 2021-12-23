@@ -1,6 +1,9 @@
 import { GetAllEmployees } from 'src/app/shared/Accountant/get-all-employees.model';
 import { DashboardService } from 'src/app/shared/Accountant/dashboard.service';
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { TokenStorageService } from 'src/app/services/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-get-employee',
@@ -9,7 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetEmployeeComponent implements OnInit {
   Employees: GetAllEmployees[];
-  constructor(private dashboardService: DashboardService) { }
+  constructor(
+    private dashboardService: DashboardService,
+    private adminService:AdminService,
+    private toastr:ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.getEmplyees();
@@ -26,5 +33,18 @@ export class GetEmployeeComponent implements OnInit {
           
         }
       );
+    }
+
+    delete(id:number,name:string)
+    {
+      if(confirm('are you sure you want to delete this employee ' + name ))
+      {
+        this.adminService.DeleteUser(id).subscribe(
+          ()=>{
+            this.toastr.success('Delivery deleted successfully','',{timeOut:1500});
+            this.ngOnInit();
+          }
+        )
+      }
     }
 }

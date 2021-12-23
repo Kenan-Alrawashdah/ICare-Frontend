@@ -25,10 +25,10 @@ export class EditDrugComponent implements OnInit {
   drugDoseTime2?:string;
   drugDoseTime3?:string;
   drugDoseTime4?:string;
-  
+  today:Date = new Date(); 
   constructor(
     private patientService:PatientService,
-    private myDrugsComponen:MyDrugsComponent,
+    private myDrugsComponent:MyDrugsComponent,
     private router:Router,
     private toastr:ToastrService
   ) { 
@@ -79,26 +79,38 @@ export class EditDrugComponent implements OnInit {
     console.log(this.endDate)
     if(this.drugName != '' && this.drugDoseTime1 != '' && this.endDate != '')
     {
-      
-      let model: EditDrugModel=new EditDrugModel();
-      model.id = this.patientService.editDrugIdNumber;
-      model.drugName = this.drugName;
-      model.endDate = this.endDate;
-      model.drugDoseTime1 = this.drugDoseTime1;
-      if(this.secondeDose == true)
+      if(new Date(this.endDate) < this.today)
       {
-        model.drugDoseTime2 = this.drugDoseTime2;
-      }
-      model.drugDoseTime3 = this.drugDoseTime3;
-      model.drugDoseTime4 = this.drugDoseTime4;
-      this.patientService.editPatientDrug(model)
-      .subscribe(
-        (data)=>{
-          this.toastr.success('Drug edited successfully ','Done',{timeOut:1500})
-          this.myDrugsComponen.ngOnInit();
-          this.router.navigate(['/Patient/MyDrugs']);
+        this.toastr.warning('Expier date must be in the future','',{timeOut:1500});
+      }else{
+        let model: EditDrugModel=new EditDrugModel();
+        model.id = this.patientService.editDrugIdNumber;
+        model.drugName = this.drugName;
+        model.endDate = this.endDate;
+        model.drugDoseTime1 = this.drugDoseTime1;
+        if(this.secondeDose == true)
+        {
+          model.drugDoseTime2 = this.drugDoseTime2;
         }
-        )
+        if(this.thirdDose == true)
+        {
+        model.drugDoseTime3 = this.drugDoseTime3;
+        }
+        if(this.fourthDose == true)
+        {
+        model.drugDoseTime4 = this.drugDoseTime4;
+        }
+        this.patientService.editPatientDrug(model)
+        .subscribe(
+          (data)=>{
+            this.toastr.success('Drug edited successfully ','Done',{timeOut:1500})
+            this.myDrugsComponent.ngOnInit();
+            this.router.navigate(['/Patient/MyDrugs']);
+          }
+          )
+      }
+      
+    
       
       }else{
     if(this.drugName == '' )

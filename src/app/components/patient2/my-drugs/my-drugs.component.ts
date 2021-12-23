@@ -15,6 +15,7 @@ import { PatientService } from '../patient.service';
 export class MyDrugsComponent implements OnInit {
 
   myDrugs:GetMyDrugsModel[]
+  today:Date = new Date() ;
   constructor(
     private patientServices:PatientService,
     private router:Router
@@ -24,12 +25,19 @@ export class MyDrugsComponent implements OnInit {
    await this.getMyDrugs();
   }
 
+  compare(dDate:Date) : boolean
+  {
+    return(new Date(dDate) < this.today)
+  }
+
   async getMyDrugs(){
     await this.patientServices.getMyDrugs().toPromise()
     .then(
       (response)=>{
         this.myDrugs = response.data['myDrugs'];
+        
         console.log(this.myDrugs)
+        console.log(this.today)
       }
     )
   }

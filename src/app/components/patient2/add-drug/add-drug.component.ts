@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { AddDrugModel } from '../models/AddDrug.Model';
 import { MyDrugsComponent } from '../my-drugs/my-drugs.component';
@@ -25,6 +26,7 @@ export class AddDrugComponent implements OnInit {
   drugDoseTime2?:string;
   drugDoseTime3?:string;
   drugDoseTime4?:string;
+  today:Date = new Date();
   
   constructor(
     private patientService:PatientService,
@@ -37,35 +39,42 @@ export class AddDrugComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  SecondeDoseOnClick(){
-    // if(this.SecondeDose){
-
-    // }
-    console.log('-------')
-
-  }
 
   onSubmit(){
     if(this.drugName != null && this.drugDoseTime1 != null && this.endDate != null)
     {
-      let model: AddDrugModel=new AddDrugModel();
-      model.drugName = this.drugName;
-      model.endDate = this.endDate;
-      model.drugDoseTime1 = this.drugDoseTime1;
-      if(this.secondeDose == true)
+      if(new Date(this.endDate) < this.today)
       {
-        model.drugDoseTime2 = this.drugDoseTime2;
-      }
-      model.drugDoseTime3 = this.drugDoseTime3;
-      model.drugDoseTime4 = this.drugDoseTime4;
-      this.patientService.addPatientDrug(model)
-      .subscribe(
-        (data)=>{
-          this.toastr.success('Drug added successfully','Done',{timeOut:1500})
-          this.myDrugsComponen.ngOnInit();
-          this.router.navigate(['/Patient/MyDrugs']);
+        this.toastr.warning('Expier date must be in the future','',{timeOut:1500});
+      }else
+      {
+        let model: AddDrugModel=new AddDrugModel();
+        model.drugName = this.drugName;
+        model.endDate = this.endDate;
+        model.drugDoseTime1 = this.drugDoseTime1;
+        if(this.secondeDose == true)
+        {
+          model.drugDoseTime2 = this.drugDoseTime2;
         }
-        )
+        if(this.thirdDose == true)
+        {
+        model.drugDoseTime3 = this.drugDoseTime3;
+        }
+        if(this.fourthDose == true)
+        {
+        model.drugDoseTime4 = this.drugDoseTime4;
+        }
+        this.patientService.addPatientDrug(model)
+        .subscribe(
+          (data)=>{
+            this.toastr.success('Drug added successfully','Done',{timeOut:1500})
+            this.myDrugsComponen.ngOnInit();
+            this.router.navigate(['/Patient/MyDrugs']);
+          }
+          )
+      }
+
+     
       
       }else{
     if(this.drugName == null )

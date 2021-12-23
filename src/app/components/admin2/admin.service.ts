@@ -89,4 +89,9 @@ export class AdminService {
   {
     return this.http.get<ApiResponseData<DeliveryModel[]>>(Constants.baseURL+'Admin/GetAllDeliveries');
   }
+
+  public DeleteUser(id:number)
+  {
+    return this.http.delete<ApiResponseData>(Constants.baseURL+'Admin/DeleteUser/'+id)
+  }
 }

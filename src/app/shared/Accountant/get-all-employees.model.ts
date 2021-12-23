@@ -1,4 +1,5 @@
 export class GetAllEmployees {
+  id:number;
   employeeName: string;
   employeePhoneNumber: string;
   employeeEmail: string;
