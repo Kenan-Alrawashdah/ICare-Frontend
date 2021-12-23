@@ -89,6 +89,8 @@ export class PharmacistService {
     return this.httpClient.get<ApiResponseData<DrugModel[]>>(Constants.baseURL+'Drugs/GetAll');
   }
 
+
+
   getAllOpenOrders(){
     return this.httpClient.get<ApiResponseData<OpenOrderModel[]>>(Constants.baseURL+'Orders/GetOpenOrders');
   }

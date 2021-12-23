@@ -311,20 +311,26 @@
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item nav-category"></li>
-      <li class="nav-item nav-category">Forms and Datas</li>
-
+      <li class="nav-item nav-category">Dashboard</li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          data-bs-toggle="collapse"
-          href="#form-elements"
-          aria-expanded="false"
-          aria-controls="form-elements"
-        >
-          <i class="menu-icon mdi mdi-card-text-outline"></i>
-          <span class="menu-title">orders</span>
-          <i class="menu-arrow"></i>
+        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#Account" aria-expanded="false" aria-controls="tables">
+            <i class="fas fa-user" style="margin-right: 15px;"></i>
+            <span class="menu-title">Account </span>
+            <i class="menu-arrow"></i>
         </a>
+                <div class="collapse" id="Account">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" routerLink="/Delivery/Account">Edit Account</a></li>
+                        <li class="nav-item"> <a class="nav-link" routerLink="/Delivery/ChangePassword">Change Password</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                    <i class="menu-icon mdi mdi-card-text-outline"></i>
+                    <span class="menu-title">orders</span>
+                    <i class="menu-arrow"></i>
+                </a>
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item">

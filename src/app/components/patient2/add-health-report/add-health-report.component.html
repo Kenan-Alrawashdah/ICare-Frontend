@@ -16,32 +16,49 @@
                 <form class="row align-items-end" [formGroup]="AddHealthReportForm" (ngSubmit)="onSubmit()">
                     <!-- First name -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="testName">Report Name</label>
+                        <label class="form-label" for="testName">Test Name</label>
                         <input type="text" id="testName" formControlName="name" class="form-control" placeholder="Test Name" />
                     </div>
                     <!-- Last name -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label" for="testType">Report Value</label>
+                        <label class="form-label" for="testType">Test Value</label>
                         <input type="text" id="testValue" formControlName="value" class="form-control" placeholder="Test Value" />
                     </div>
                     <div class="col-12 mb-3 text-lg-right">
-                        <!-- [disabled]="!healthReportForm.valid" -->
-                        <button class="btn btn-primary">
+                        <!--  -->
+                        <button [disabled]="!AddHealthReportForm.valid" class="btn btn-primary">
                         Add Health Report
                       </button>
                     </div>
                 </form>
+                <hr style="border-top: 2px solid;">
+
+                <label class="form-label" for="fname">Download pdf and let your doctor fill it and upload it</label><br>
+                <button (click)="downloadFile()" type="button" class="btn btn-outline-danger btn-icon-text">
+                    <i class="ti-download btn-icon-prepend"></i>                                                    
+                    Download
+                  </button>
+                <hr>
                 <div class="mb-3 col-12 col-md-12">
-                    <label class="form-label" for="fname">Upload Test Pdf</label
-                  >
-                  <!--  (change)="upload($event)" -->
-                  <input
-                    type="file"
-                    formControlName="testFile"
-                    class="form-control"
-                    style="padding: 7px; height: 70px"
-                  />
+                    <label class="form-label" for="fname">Upload Test Pdf</label   >
+                    <div class="row">
+                          
+                               <input (change)="getFile($event)"
+                                 type="file"
+                                 formControlName="testFile"
+                                 class=" col-7 form-control"
+                                 style="padding: 7px; height: 70px"
+                               />
+                               
+                               <button style="margin-left: 15px;" (click)="upload()"  type="button" class=" btn btn-outline-danger btn-icon-text">
+                                <i class="ti-upload btn-icon-prepend"></i>                                                    
+                                Upload
+                            </button>
+                        </div>
+                        <small class="text-danger">{{error}}</small>
+                 
                 </div>
+               
                 </div>
               </div>
             </div>

@@ -12,6 +12,8 @@ import { PatientService } from '../patient.service';
 export class AddHealthReportComponent implements OnInit {
 
   AddHealthReportForm:FormGroup;
+  selectedFile: File;
+  error:string ; 
   constructor(
     private patientService:PatientService,
     private toastr:ToastrService, 
@@ -35,5 +37,28 @@ export class AddHealthReportComponent implements OnInit {
       }
     )
   }
+
+  getFile(event)
+  {
+    this.selectedFile = event.target.files.item(0);
+  }
+
+  upload() {
+    this.patientService.upload(this.selectedFile).subscribe(
+      (res) => {
+        if(res.success == false)
+        {
+          this.error = res.errors[0];
+        }
+      }
+    );
+  }
+
+ downloadFile(){
+  let link = document.createElement("a");
+  link.download = "HealthReport.pdf";
+  link.href = "../../../../assets/HealthReport.pdf";
+  link.click();
+}
 
 }

@@ -12,9 +12,10 @@ export class DeliveryDashboardComponent implements OnInit {
   constructor(
     private tokenService:TokenStorageService
   ) { 
-    this.name=tokenService.getUser();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name=this.tokenService.getUser();
+  }
   logOut() {
     this.tokenService.signOut();
   }

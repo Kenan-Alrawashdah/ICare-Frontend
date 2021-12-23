@@ -12,6 +12,8 @@ import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscr
 import { DeliveriesComponent } from 'src/app/components/admin2/deliveries/deliveries.component';
 import { AddDeliveryComponent } from 'src/app/components/admin2/add-delivery/add-delivery.component';
 import { AccountComponent } from 'src/app/components/admin2/account/account.component';
+import { GetEmployeeComponent } from 'src/app/components/admin2/get-employee/get-employee.component';
+import { DashboardComponent } from 'src/app/components/admin2/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AccountComponent } from 'src/app/components/admin2/account/account.comp
     EditSubscriptionComponent,
     DeliveriesComponent,
     AddDeliveryComponent,
-    AccountComponent
+    AccountComponent,
+    GetEmployeeComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

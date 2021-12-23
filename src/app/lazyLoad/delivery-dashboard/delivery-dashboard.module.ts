@@ -5,10 +5,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountComponent } from 'src/app/components/delivery-dashboard/account/account.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvilableOrdersComponent } from 'src/app/components/delivery-dashboard/avilable-orders/avilable-orders.component';
+import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
 
 @NgModule({
   declarations: [
-    AccountComponent
+    AccountComponent,
+    AvilableOrdersComponent,
+    DeliveryOrdersComponent,
+
   ],
   imports: [
     CommonModule,
