@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token.service';
 
 
@@ -7,16 +7,20 @@ import { TokenStorageService } from 'src/app/services/token.service';
   templateUrl: './pharmacist.component.html',
   styleUrls: ['./pharmacist.component.css']
 })
+@Injectable({
+  providedIn:'root'
+})
 export class PharmacistComponent implements OnInit {
 
   name:string ;
   constructor(
     private tokenService:TokenStorageService
   ) { 
-    this.name=tokenService.getUser();
   }
-
+  
   ngOnInit(): void {
+    this.name=this.tokenService.getUser();
+    
   }
 
   logOut()

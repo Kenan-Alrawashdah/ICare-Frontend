@@ -4,8 +4,8 @@ import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
-import { PatientService } from '../patient.service';
-import { Patient2Component } from '../patient2.component';
+import { PatientService } from '../../patient2/patient.service';
+import { EmployeeDashboardComponent } from '../employee-dashboard.component';
 
 
 @Component({
@@ -18,10 +18,10 @@ export class AccountComponent implements OnInit {
   AccountForm: FormGroup;
   constructor(
     private patientServices:PatientService,
-    private patientComponent:Patient2Component,
     private toastr:ToastrService,
     private authService: AuthService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private EmployeeDashboardComponent:EmployeeDashboardComponent
   ) {
     this.AccountForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
@@ -50,25 +50,26 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  async onSubmit(){
     
-    var result = this.patientServices.editPatientInfo(this.AccountForm.value);
-    result.subscribe(
+    var result = await  this.patientServices.editPatientInfo(this.AccountForm.value);
+    result.toPromise().then(
       data=>{
         if(data.success == true)
         {
           let token = this.tokenService.getToken();
           let refreshToken = this.tokenService.getRefreshToken();
-          this.authService
+           this.authService
             .refreshToken(token, refreshToken)
             .toPromise()
             .then((response) => {
               this.tokenService.saveToken(response['data']['accessToken']);
               this.tokenService.saveRefreshToken(response['data']['refreshToken'] );
+              this.EmployeeDashboardComponent.ngOnInit();
+              this.ngOnInit();
+              this.toastr.success('Data updated successfully','',{timeOut:1500})
             });
-          this.patientComponent.ngOnInit();
-          this.ngOnInit();
-          this.toastr.success('Data updated successfully','',{timeOut:1500})
+          
         }
       },
       error=>{

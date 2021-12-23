@@ -11,6 +11,7 @@ import { SubscriptionSettingsComponent } from 'src/app/components/admin2/subscri
 import { EditSubscriptionComponent } from 'src/app/components/admin2/edit-subscription/edit-subscription.component';
 import { DeliveriesComponent } from 'src/app/components/admin2/deliveries/deliveries.component';
 import { AddDeliveryComponent } from 'src/app/components/admin2/add-delivery/add-delivery.component';
+import { AccountComponent } from 'src/app/components/admin2/account/account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddDeliveryComponent } from 'src/app/components/admin2/add-delivery/add
     SubscriptionSettingsComponent,
     EditSubscriptionComponent,
     DeliveriesComponent,
-    AddDeliveryComponent
+    AddDeliveryComponent,
+    AccountComponent
   ],
   imports: [
     CommonModule,

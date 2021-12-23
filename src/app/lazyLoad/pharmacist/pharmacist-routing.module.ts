@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
+import { AccountComponent } from 'src/app/components/pharmacist/account/account.component';
 import { AddCategoryComponent } from 'src/app/components/pharmacist/add-category/add-category.component';
 import { AddDrugComponent } from 'src/app/components/pharmacist/add-drug/add-drug.component';
 import { CategoriesComponent } from 'src/app/components/pharmacist/categories/categories.component';
@@ -68,6 +70,16 @@ const routes: Routes = [
     component:EditCategoryComponent,
     canActivate:[PharmacistGuard]
 
+  },
+  {
+    path:'Account',
+    component:AccountComponent,
+    canActivate:[PharmacistGuard]
+  },
+  {
+    path:'ChangePassword',
+    component:ChangePasswordComponent,
+    canActivate:[PharmacistGuard]
   }
 ];
 

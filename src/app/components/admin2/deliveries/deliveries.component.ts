@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { DeliveryModel } from '../Models/Delivery.model';
 
 @Component({
   selector: 'app-deliveries',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeliveriesComponent implements OnInit {
 
-  constructor() { }
+  deliveriesList:DeliveryModel[];
+
+  constructor(
+    private adminService:AdminService
+  ) { }
 
   ngOnInit(): void {
+    this.GetDeliveries()
+  }
+
+  async GetDeliveries()
+  {
+    await this.adminService.GetAllDeliveries().toPromise()
+    .then(
+      (response)=>{
+        this.deliveriesList = response.data
+      }
+    )
   }
 
 }

@@ -84,9 +84,7 @@ export class SubscriptionCheckOutComponent implements OnInit {
           .toPromise()
           .then((response) => {
             this.tokenService.saveToken(response['data']['accessToken']);
-            this.tokenService.saveRefreshToken(
-              response['data']['refreshToken']
-            );
+            this.tokenService.saveRefreshToken(response['data']['refreshToken'] );
           });
           this.toastr.success('payment has been placed');
           this.router.navigate(['/Home/Thanks'])

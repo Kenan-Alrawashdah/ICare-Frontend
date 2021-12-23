@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountComponent } from 'src/app/components/employee-dashboard/account/account.component';
 import { EmployeeMainComponent } from 'src/app/components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from 'src/app/components/employee-dashboard/employees-information/employees-information.component';
+import { ChangePasswordComponent } from 'src/app/components/patient2/change-password/change-password.component';
 import { AccountantGuard } from 'src/app/guards/accountant.guard';
 
 const routes: Routes = [
@@ -20,6 +22,16 @@ const routes: Routes = [
     component: EmployeesInformationComponent,
     canActivate:[AccountantGuard]
   },
+  {
+    path:'Account',
+    component:AccountComponent,
+    canActivate:[AccountantGuard]
+  },
+  {
+    path:'ChangePassword',
+    component:ChangePasswordComponent,
+    canActivate:[AccountantGuard]
+  }
 ];
 
 @NgModule({
