@@ -61,27 +61,23 @@ export class LoginComponent implements OnInit {
             this.tokenStorage.saveToken(data.data.accessToken);
             this.tokenStorage.saveRefreshToken(data.data.refreshToken);
             let role = this.tokenStorage.GetRole();
-            if(role == 'Admin')
-            {
+            if (role == 'Admin') {
               this.router.navigate(['Admin']).then(() => {
                 window.location.reload();
               });
-            }else if(role == 'Employee')
-            {
+            } else if (role == 'Employee') {
               this.router.navigate(['Accountant']).then(() => {
                 window.location.reload();
               });
-            }else if(role == 'Delivery')
-            {
+            } else if (role == 'Delivery') {
               this.router.navigate(['Delivery']).then(() => {
                 window.location.reload();
               });
-            }else if(role == 'Pharmacist')
-            {
+            } else if (role == 'Pharmacist') {
               this.router.navigate(['pharmacist']).then(() => {
                 window.location.reload();
               });
-            }else{
+            } else {
               this.router.navigate(['Home']).then(() => {
                 window.location.reload();
               });
@@ -103,6 +99,7 @@ export class LoginComponent implements OnInit {
     console.log('submit login to facebook');
     // FB.login();
     FB.login((response) => {
+      console.log(response);
       this.authService
         .LoginByFaceBook(response.authResponse.accessToken)
         .subscribe((data) => {
