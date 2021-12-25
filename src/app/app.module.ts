@@ -26,6 +26,12 @@ import { AdminGuard } from './guards/admin.guard';
 import { AccountantGuard } from './guards/accountant.guard';
 import { NotEmployeeGuard } from './guards/not-employee.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from 'angularx-social-login';
 
 const routes: Routes = [
   {
@@ -114,9 +120,30 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
+    SocialLoginModule,
   ],
 
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1339833275-e2bv8cv22feq8fojnr4fnqre8gcif5es.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1291083414713212'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
