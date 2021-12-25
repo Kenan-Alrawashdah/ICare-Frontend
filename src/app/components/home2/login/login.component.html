@@ -1,74 +1,123 @@
-<div class="container mt-5" style="box-shadow: 5px 10px 15px 5px #888888; border-radius: 10px">
-    <div class="row">
-
-        <div class="col-12">
-            <div class="clean_modal clean_modal-lg" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <i style="text-align: center">
-                            <h2>Sign In</h2>
-                        </i>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <a (click)="submitLogin()" class="
+<div
+  class="container mt-5"
+  style="box-shadow: 5px 10px 15px 5px #888888; border-radius: 10px"
+>
+  <div class="row">
+    <div class="col-12">
+      <div class="clean_modal clean_modal-lg" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <i style="text-align: center">
+              <h2>Sign In</h2>
+            </i>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12">
+                  <a
+                    (click)="Facebook()"
+                    class="
                       btn btn-gray-border btn-full
                       rounded
                       btn-large
                       text-capitalize
                       mb-3
-                    ">
-                                        <img src="assets/img/facebook.png" alt="" /> Login with Facebook
-                                    </a>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <p class="text-muted my-4">Or Login With</p>
-                                </div>
-                            </div>
-                            <div class="login_error d-none">
-                                <div class="alert" role="alert"></div>
-                            </div>
-                            <form id="login_modal_form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                                <div class="form-group">
-                                    <small class="text-danger" style="text-align: center; align-items: center" *ngIf="loginValidation">{{ error }}</small>
-                                    <input formControlName="email" id="email" type="email" placeholder="Email" class="form-control input-lg rounded" />
-                                    <small class="text-danger" *ngIf="
-                                    loginForm.get('email').hasError('required') &&
-                                    (            
-                      loginForm.controls['email'].dirty ||
-                      loginForm.controls['email'].touched)
-                    ">
-                                        This field is required.
-                                    </small>
-
-                                </div>
-                                <div class="form-group">
-                                    <input formControlName="password" id="password" type="password" placeholder="Password" class="form-control input-lg rounded" />
-                                    <small class="text-danger" *ngIf="
+                    "
+                  >
+                    <img src="assets/img/facebook.png" alt="" /> Login with
+                    Facebook
+                  </a>
+                </div>
+                <div class="col-12">
+                  <a
+                    (click)="Google()"
+                    class="
+                      btn btn-gray-border btn-full
+                      rounded
+                      btn-large
+                      text-capitalize
+                      mb-3
+                    "
+                  >
+                    <img src="assets/img/google.png" alt="" /> Login with Google
+                  </a>
+                </div>
+                <div class="col-12 text-center">
+                  <p class="text-muted my-4">Or Login With</p>
+                </div>
+              </div>
+              <div class="login_error d-none">
+                <div class="alert" role="alert"></div>
+              </div>
+              <form
+                id="login_modal_form"
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmit()"
+              >
+                <div class="form-group">
+                  <small
+                    class="text-danger"
+                    style="text-align: center; align-items: center"
+                    *ngIf="loginValidation"
+                    >{{ error }}</small
+                  >
+                  <input
+                    formControlName="email"
+                    id="email"
+                    type="email"
+                    placeholder="Email"
+                    class="form-control input-lg rounded"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      loginForm.get('email').hasError('required') &&
+                      (loginForm.controls['email'].dirty ||
+                        loginForm.controls['email'].touched)
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </div>
+                <div class="form-group">
+                  <input
+                    formControlName="password"
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    class="form-control input-lg rounded"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
                       loginForm.get('password').hasError('required') &&
                       (loginForm.controls['password'].dirty ||
                         loginForm.controls['password'].touched)
-                    ">
-                                        This field is required.
-                                    </small>
-                                </div>
-                                <button type="submit" id="login_btn" [disabled]="!loginForm.valid" class="btn btn-primary btn-full btn-medium rounded">
-                                    Login
-                                </button>
-                                <div class="form-group text-center small font-weight-bold mt-3">
-                                    <a routerLink="/Home/ForgotPassword">
-                                        Forgot Password?</a>
-                                </div>
-                                <hr class="my-4" />
-                                <div class="form-group text-center small font-weight-bold mb-0">
-                                    Don’t have an account?
-                                    <a routerLink="/Home/register"> Register</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    "
+                  >
+                    This field is required.
+                  </small>
                 </div>
+                <button
+                  type="submit"
+                  id="login_btn"
+                  [disabled]="!loginForm.valid"
+                  class="btn btn-primary btn-full btn-medium rounded"
+                >
+                  Login
+                </button>
+                <div class="form-group text-center small font-weight-bold mt-3">
+                  <a routerLink="/Home/ForgotPassword"> Forgot Password?</a>
+                </div>
+                <hr class="my-4" />
+                <div class="form-group text-center small font-weight-bold mb-0">
+                  Don’t have an account?
+                  <a routerLink="/Home/register"> Register</a>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

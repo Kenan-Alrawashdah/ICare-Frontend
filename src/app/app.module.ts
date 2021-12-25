@@ -26,59 +26,70 @@ import { AdminGuard } from './guards/admin.guard';
 import { AccountantGuard } from './guards/accountant.guard';
 import { NotEmployeeGuard } from './guards/not-employee.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from 'angularx-social-login';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/Home',
     pathMatch: 'full',
-  },{
+  },
+  {
     path: 'Home',
     component: Home2Component,
     loadChildren: () =>
       import('./lazyLoad/home2/home2-routing.module').then(
         (m) => m.Home2RoutingModule
       ),
-      canActivate:[NotEmployeeGuard]
-  },{
+    canActivate: [NotEmployeeGuard],
+  },
+  {
     path: 'Patient',
     component: Patient2Component,
     loadChildren: () =>
       import('./lazyLoad/patient2/patient2-routing.module').then(
         (m) => m.Patient2RoutingModule
       ),
-  },{
+  },
+  {
     path: 'Delivery',
     component: DeliveryDashboardComponent,
     loadChildren: () =>
       import(
         './lazyLoad/delivery-dashboard/delivery-dashboard-routing.module'
       ).then((m) => m.DeliveryDashboardRoutingModule),
-  },{
+  },
+  {
     path: 'Accountant',
     component: EmployeeDashboardComponent,
     loadChildren: () =>
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-    canActivate:[AccountantGuard]
-
-  },{
+    canActivate: [AccountantGuard],
+  },
+  {
     path: 'Admin',
     component: Admin2Component,
     loadChildren: () =>
       import('./lazyLoad/admin2/admin2-routing.module').then(
         (m) => m.Admin2RoutingModule
       ),
-      canActivate:[AdminGuard]
-  },{
+    canActivate: [AdminGuard],
+  },
+  {
     path: 'pharmacist',
     component: PharmacistComponent,
     loadChildren: () =>
       import('./lazyLoad/pharmacist/pharmacist-routing.module').then(
         (m) => m.PharmacistRoutingModule
       ),
-    canActivate:[PharmacistGuard]
+    canActivate: [PharmacistGuard],
   },
 ];
 @NgModule({
@@ -108,10 +119,31 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SocialLoginModule,
   ],
 
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1339833275-e2bv8cv22feq8fojnr4fnqre8gcif5es.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1291083414713212'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
