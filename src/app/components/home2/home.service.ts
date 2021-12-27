@@ -112,6 +112,7 @@ export class HomeService {
     return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/MinusQuantity/'+id);
   }
 
+  
   public GetUserLocations(){
     return this.httpClient.get<ApiResponseData<LocationModel[]>>(Constants.baseURL+'Patient/GetUserLocations');
   }
