@@ -22,7 +22,7 @@ export class SubscriberGuard implements CanActivate {
       {
         return true;
       }else if(role == 'Patient'){
-        this.toastr.warning('This feature is only for subscriber users','',{timeOut:1500});
+        this.toastr.warning('This feature is only for subscriber users','',{timeOut:2500});
         this.router.navigate(['/Home/Subscription'])
         return false;
       }
