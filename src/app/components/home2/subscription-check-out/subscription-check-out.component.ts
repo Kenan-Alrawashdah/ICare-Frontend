@@ -74,20 +74,19 @@ export class SubscriptionCheckOutComponent implements OnInit {
       });
   }
 
-  onCheckOut() {
-    this.homeService.Subscribe(this.id).subscribe((response) => {
+  async onCheckOut() {
+    await this.homeService.Subscribe(this.id).toPromise().then((response) => {
       if (response.success == true) {
         let token = this.tokenService.getToken();
         let refreshToken = this.tokenService.getRefreshToken();
         this.authService
           .refreshToken(token, refreshToken)
-          .toPromise()
-          .then((response) => {
+          .subscribe((response) => {
             this.tokenService.saveToken(response['data']['accessToken']);
             this.tokenService.saveRefreshToken(response['data']['refreshToken'] );
+            this.toastr.success('payment has been placed');
+            this.router.navigate(['/Home/Thanks'])
           });
-          this.toastr.success('payment has been placed');
-          this.router.navigate(['/Home/Thanks'])
       }
     });
   }

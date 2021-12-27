@@ -32,6 +32,7 @@ export class AddHealthReportComponent implements OnInit {
   {
     this.patientService.CreateHealthReport(this.AddHealthReportForm.value).subscribe(
       (response)=>{
+        console.log('sadklfj')
         this.toastr.success('Report added successfully'); 
         this.router.navigate(['/Patient/HealthReport']);
       }
@@ -49,6 +50,9 @@ export class AddHealthReportComponent implements OnInit {
         if(res.success == false)
         {
           this.error = res.errors[0];
+        }else{
+          this.toastr.success('Report added successfully'); 
+          this.router.navigate(['/Patient/HealthReport']);
         }
       }
     );
