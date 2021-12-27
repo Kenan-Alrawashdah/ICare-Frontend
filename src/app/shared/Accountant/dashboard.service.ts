@@ -81,7 +81,6 @@ export class DashboardService {
   }
   downloadFile(name: string, data: Response | any) {
     const blob = new Blob([data], { type: 'text/csv' });
-    console.log(blob);
     const url = window.URL.createObjectURL(blob);
     var anchor = document.createElement('a');
     anchor.download = name + '.csv';

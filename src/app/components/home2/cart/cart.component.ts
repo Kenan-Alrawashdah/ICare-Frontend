@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
       this.Toastr.warning("Quantity can't be less than 1", '', {
         timeOut: 1000,
       });
+      this.cartItems.find((data) => data.cartId == id).quantity = 1;
     } else {
       this.homeService.ChangeQuantity(id, q).subscribe();
       this.ngOnInit();

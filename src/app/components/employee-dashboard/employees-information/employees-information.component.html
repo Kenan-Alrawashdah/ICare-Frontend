@@ -66,6 +66,11 @@
                 <th class="align-middle text-center text-sm">Employee Name</th>
                 <th class="align-middle text-center text-sm">Phone Number</th>
                 <th class="align-middle text-center text-sm">Email</th>
+                <th class="align-middle text-center text-sm">pricePerHour</th>
+                <th class="align-middle text-center text-sm">
+                  dailyWorkingHours
+                </th>
+                <th class="align-middle text-center text-sm">Salary</th>
               </tr>
             </thead>
             <tbody>
@@ -78,6 +83,15 @@
                 </td>
                 <td class="align-middle text-center text-sm">
                   {{ item.employeeEmail }}
+                </td>
+                <td class="align-middle text-center text-sm">
+                  {{ item.pricePerHour }}
+                </td>
+                <td class="align-middle text-center text-sm">
+                  {{ item.dailyWorkingHours }}
+                </td>
+                <td class="align-middle text-center text-sm">
+                  {{ item.dailyWorkingHours * item.pricePerHour | currency }}
                 </td>
               </tr>
             </tbody>
