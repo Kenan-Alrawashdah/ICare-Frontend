@@ -10,22 +10,21 @@ declare let paypal: any;
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.css']
+  styleUrls: ['./check-out.component.css'],
 })
 export class CheckOutComponent implements OnInit {
-
   CheckOutForm: FormGroup;
   cartItems: CartItemModel[];
-  total:number= 0;
-  locations:LocationModel[];
-  locationsNumber:number;
-  selectedLocation:number = 0;
+  total: number = 0;
+  locations: LocationModel[];
+  locationsNumber: number;
+  selectedLocation: number = 0;
   addScript: boolean = false;
 
   constructor(
-    private homeService:HomeService,
-    private router:Router,
-    private toastr:ToastrService,
+    private homeService: HomeService,
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.CheckOutForm = new FormGroup({
       cardNumber: new FormControl('', [Validators.required]),
@@ -40,55 +39,58 @@ export class CheckOutComponent implements OnInit {
     this.getLocations();
   }
 
-  async getLocations(){
-    await this.homeService.GetUserLocations().toPromise()
-    .then(
-      (response=>{
+  async getLocations() {
+    await this.homeService
+      .GetUserLocations()
+      .toPromise()
+      .then((response) => {
         this.locations = response.data;
         this.locationsNumber = response.data.length;
         console.log(this.locations);
-      })
-    )
-  }
-
-  async getCartItems() {
-    await this.homeService.GetCartItems().toPromise()
-      .then(
-        (response) => {
-          this.cartItems = response.data;
-          this.total =0;
-          response.data.forEach(element => {
-            this.total= this.total +element.price * element.quantity;
-          });
-        }
-      )
-  }
-
-  goTOAddLocation()
-  {
-    this.router.navigate(['/Patient/AddAddress'])
-  }
-  onCheckOut()
-  {
-    if(this.selectedLocation != 0)
-    {
-      let order: CreateOrderModel = new CreateOrderModel();
-  
-       order.totalPrice = this.total; 
-       order.locationId = this.selectedLocation;
-       let CartsId:number[]=[] ; 
-       this.cartItems.forEach(element => {
-        CartsId.push(element.cartId);
-       });
-       order.cartsId = CartsId;
-       console.log(order.cartsId);
-       this.homeService.createOrder(order).subscribe();
-       this.router.navigate(['/Home/ThankYou']);
-    }else{
-      this.toastr.warning('Please select location to deliver','',{timeOut:1500});
+      });
+    if (this.locationsNumber == 0) {
+      this.toastr.warning('Please add a location to complete the payment', '', {
+        timeOut: 1500,
+      });
     }
   }
 
+  async getCartItems() {
+    await this.homeService
+      .GetCartItems()
+      .toPromise()
+      .then((response) => {
+        this.cartItems = response.data;
+        this.total = 0;
+        response.data.forEach((element) => {
+          this.total = this.total + element.price * element.quantity;
+        });
+      });
+  }
+
+  goTOAddLocation() {
+    this.router.navigate(['/Patient/AddAddress']);
+  }
+  onCheckOut() {
+    if (this.selectedLocation != 0) {
+      let order: CreateOrderModel = new CreateOrderModel();
+
+      order.totalPrice = this.total;
+      order.locationId = this.selectedLocation;
+      let CartsId: number[] = [];
+      this.cartItems.forEach((element) => {
+        CartsId.push(element.cartId);
+      });
+      order.cartsId = CartsId;
+      console.log(order.cartsId);
+      this.homeService.createOrder(order).subscribe();
+      this.router.navigate(['/Home/ThankYou']);
+    } else {
+      this.toastr.warning('Please select location to deliver', '', {
+        timeOut: 1500,
+      });
+    }
+  }
 
   paypalConfig = {
     env: 'sandbox',
@@ -100,23 +102,24 @@ export class CheckOutComponent implements OnInit {
     },
     commit: true,
     payment: (data, actions) => {
-      if(this.selectedLocation == 0)
-    {
-      this.toastr.warning('Please select location to deliver','',{timeOut:1500});
-      return actions.payment.cancel();
-    }else
-      return actions.payment.create({
-        payment: {
-          transactions: [
-            {
-              amount: {
-                total: this.total,
-                currency: 'USD',
+      if (this.selectedLocation == 0) {
+        this.toastr.warning('Please select location to deliver', '', {
+          timeOut: 1500,
+        });
+        return actions.payment.cancel();
+      } else
+        return actions.payment.create({
+          payment: {
+            transactions: [
+              {
+                amount: {
+                  total: this.total,
+                  currency: 'USD',
+                },
               },
-            },
-          ],
-        },
-      });
+            ],
+          },
+        });
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {

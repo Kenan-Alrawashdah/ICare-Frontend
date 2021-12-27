@@ -1,12 +1,12 @@
-@media screen and (min-width: 993px) and (max-width: 2000px) {
-    #SmSearch2 {
-        display: none;
-    }
+@media (min-width: 768px) {
+  #SmSearch2 {
+    display: none !important;
+  }
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css");

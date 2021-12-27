@@ -47,7 +47,7 @@
             </div>
             <div class="qty-input btn mt-4 mt-md-0">
               <i class="less" (click)="minus(item.cartId,item.quantity)">-</i>
-              <input type="text" [(ngModel)]="item.quantity" />
+              <input type="number" [(ngModel)]="item.quantity" (ngModelChange)="Change(item.cartId,item.quantity)" />
               <i class="more" (click)="add(item.cartId)">+</i>
             </div>
           </div>
