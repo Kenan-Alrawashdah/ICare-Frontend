@@ -149,6 +149,12 @@ export class HomeService {
     );
   }
 
+  public ChangeQuantity(id: number, Quantity:number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Carts/ChangeQuantity/' + id+"&"+Quantity
+    );
+  }
+
   public GetUserLocations() {
     return this.httpClient.get<ApiResponseData<LocationModel[]>>(
       Constants.baseURL + 'Patient/GetUserLocations'

@@ -38,7 +38,6 @@ export class DrugsComponent implements OnInit {
     .then(
       (response=>{
         this.DrugList = response.data
-        console.log(this.DrugList)
       })
     );
 
@@ -50,7 +49,6 @@ export class DrugsComponent implements OnInit {
   }
 
   async CheckItemIfInCart(id:number){
-    console.log('sadfsadf')
     await this.homeServices.CheckItemIfInCart(id).toPromise()
     .then(
       (response)=>{

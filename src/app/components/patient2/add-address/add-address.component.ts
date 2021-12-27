@@ -7,19 +7,18 @@ import { PatientService } from '../patient.service';
 @Component({
   selector: 'app-add-address',
   templateUrl: './add-address.component.html',
-  styleUrls: ['./add-address.component.css']
+  styleUrls: ['./add-address.component.css'],
 })
 export class AddAddressComponent implements OnInit {
-
   labels = 'A';
   labelIndex: number = 0;
   markers: google.maps.Marker[] = [];
   AddressForm: FormGroup;
-  mapValidation:boolean =false;
+  mapValidation: boolean = false;
   constructor(
-    private patientService:PatientService,
-    private router:Router,
-    private toastr:ToastrService
+    private patientService: PatientService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +50,7 @@ export class AddAddressComponent implements OnInit {
       console.log(z['lat']);
       this.AddressForm.get('lat').setValue(z['lat']);
       this.AddressForm.get('lng').setValue(z['lng']);
+      document.getElementById("dd").classList.add("remove")
     });
   }
 
@@ -91,39 +91,21 @@ export class AddAddressComponent implements OnInit {
     this.hideMarkers();
     this.markers = [];
   }
-  getMyLocation() {
-    if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(function (postion) {
-        console.log(postion);
-      });
-    else console.log('not supported');
-  }
-
-  onSubmit()
-  {
-    if(this.AddressForm.value.lat == '')
-    {
+  onSubmit() {
+    if (this.AddressForm.value.lat == '') {
       this.mapValidation = true;
-    }else{
-      console.log(this.AddressForm.value)
-      this.patientService.addAddress(this.AddressForm.value).subscribe(
-        ()=>{
-          this.toastr.success('Location added successfully');
-          this.router.navigate(['/Patient/Address']);
-        }
-      );
+    } else {
+      console.log(this.AddressForm.value);
+      this.patientService.addAddress(this.AddressForm.value).subscribe(() => {
+        this.toastr.success('Location added successfully');
+        this.router.navigate(['/Patient/Address']);
+      });
     }
-    
   }
 
-  goToAddAddress()
-  {
-    this.router.navigate(['/Patient/AddAddress']).then(
-      ()=>
-      {
-        window.location.reload();
-      }
-    )
+  goToAddAddress() {
+    this.router.navigate(['/Patient/AddAddress']).then(() => {
+      window.location.reload();
+    });
   }
-
 }

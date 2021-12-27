@@ -6,29 +6,26 @@ import { DeliveryOrdersModel } from '../model/DeliveryOrders.model';
 import { PlacedLocationModel } from '../model/placedLocation.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DeliveryService {
+  constructor(private httpClient: HttpClient) {}
 
-
-
-  constructor(
-    private httpClient:HttpClient
-  ) { }
-
-  public GetPlacedOrders()
-  {
-    return this.httpClient.get<ApiResponseData<PlacedLocationModel[]>>(Constants.baseURL+'Orders/GetPlacedOrders');
+  public GetPlacedOrders() {
+    return this.httpClient.get<ApiResponseData<PlacedLocationModel[]>>(
+      Constants.baseURL + 'Orders/GetPlacedOrders'
+    );
   }
 
-  public Takeorder(id:number)
-  {
-    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Deliverys/TakeOrder/'+id)
+  public Takeorder(id: number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Deliverys/TakeOrder/' + id
+    );
   }
 
-  public GetMyOrders()
-  {
-    return this.httpClient.get<ApiResponseData<DeliveryOrdersModel[]>>(Constants.baseURL+'Deliverys/getAllOrdersForDelivery')
+  public GetMyOrders() {
+    return this.httpClient.get<ApiResponseData<DeliveryOrdersModel[]>>(
+      Constants.baseURL + 'Deliverys/getAllOrdersForDelivery'
+    );
   }
-  
 }
