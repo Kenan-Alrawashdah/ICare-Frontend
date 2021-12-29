@@ -39,10 +39,4 @@ export class AuthService {
       httpOptions
     );
   }
-  LoginByFaceBook(accessToken: string) {
-    return this.http.post<ApiResponseData<UserToken>>(
-      AUTH_API + '/api/User/FacebookLogin?accessToken=' + accessToken,
-      accessToken
-    );
-  }
 }
