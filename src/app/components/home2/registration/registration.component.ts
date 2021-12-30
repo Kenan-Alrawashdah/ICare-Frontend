@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { HomeService } from '../home.service';
@@ -9,10 +16,9 @@ import { HomeService } from '../home.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
-
   RegistrationForm: FormGroup;
   emailExistValidation:boolean = false; 
   loginValidation: boolean;
@@ -24,17 +30,20 @@ export class RegistrationComponent implements OnInit {
     private router:Router,
     private authService:AuthService,
     private socialAuthService: SocialAuthService,
+
   ) {
     this.RegistrationForm = new FormGroup({
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),
+
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required ,Validators.minLength(8)]),
+
       phone: new FormControl(''),
     });
   }
 
-  
+
   ngOnInit(): void {}
 
   onSubmit() {
@@ -45,20 +54,19 @@ export class RegistrationComponent implements OnInit {
     let phone = this.RegistrationForm.controls['phone'].value;
     this.homeService.register(fname, lname, email, password, phone).subscribe(
       (data) => {
-        console.log('sadf')
-        if(data.success == false)
-        {
+        console.log('sadf');
+        if (data.success == false) {
           this.emailExistValidation = true;
-        }else {
+        } else {
           this.tokenStorage.saveToken(data.data.accessToken);
           this.tokenStorage.saveRefreshToken(data.data.refreshToken);
           this.router.navigate(['Home']).then(() => {
             window.location.reload();
           });
-        } 
+        }
       },
       (error) => {
-        console.log('sadf')
+        console.log('sadf');
       }
     );
   }
@@ -82,8 +90,10 @@ export class RegistrationComponent implements OnInit {
                 window.location.reload();
               });
             } else {
+
               this.loginValidation = true;
               this.error = data.errors[0];
+
             }
           });
       });
@@ -107,9 +117,9 @@ export class RegistrationComponent implements OnInit {
             } else {
               this.loginValidation = true;
               this.error = data.errors[0];
+
             }
           });
       });
   }
-
 }

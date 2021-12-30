@@ -61,10 +61,15 @@ export class DeliveryOrdersComponent implements OnInit {
       };
     });
     const geocoder = new google.maps.Geocoder();
-    this.geocodeLatLng(geocoder, this.map);
+    const infowindow = new google.maps.InfoWindow();
+    this.geocodeLatLng(geocoder, this.map, infowindow);
   }
 
-  geocodeLatLng(geocoder: google.maps.Geocoder, map: google.maps.Map) {
+  geocodeLatLng(
+    geocoder: google.maps.Geocoder,
+    map: google.maps.Map,
+    infowindow: google.maps.InfoWindow
+  ) {
     const latlng = {
       lat: parseFloat(this.lat),
       lng: parseFloat(this.lng),
@@ -73,6 +78,8 @@ export class DeliveryOrdersComponent implements OnInit {
       .geocode({ location: latlng })
       .then((response) => {
         if (response.results[0]) {
+          map.setZoom(11);
+
           new google.maps.Marker({
             position: this.source,
             animation: google.maps.Animation.DROP,
@@ -101,6 +108,7 @@ export class DeliveryOrdersComponent implements OnInit {
           });
           map.panTo(this.destination);
           this.setRoutePolyline(map);
+          infowindow.setContent(response.results[0].formatted_address);
         } else {
           window.alert('No results found');
         }

@@ -1,22 +1,25 @@
 <section class="section-padding mt-5">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-12 col-lg-8">
-                <div class="cart_product">
-                    <div class="cart_product_heading">
-                        <div class="row align-items-center">
-                            <div class="col-sm-6 text-lg-left">
-                                <h4>
-                                    Shopping Cart
-                                    <span>( {{cartItems.length}} Item )</span>
-                                </h4>
-                            </div>
-                            <div class="col-sm-6 text-lg-right">
-                                <a href="#" class="
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-12 col-lg-8">
+        <div class="cart_product">
+          <div class="cart_product_heading">
+            <div class="row align-items-center">
+              <div class="col-sm-6 text-lg-left">
+                <h4>
+                  Shopping Cart
+                  <span>( {{ cartItems.length }} Item )</span>
+                </h4>
+              </div>
+              <div class="col-sm-6 text-lg-right">
+                <a
+                  href="#"
+                  class="
                     btn btn-light btn-medium
                     button-sm
                     d-none d-md-inline-block
-                  "><i class="ti-trash"></i> Empty Cart</a
+                  "
+                  ><i class="ti-trash"></i> Empty Cart</a
                 >
               </div>
             </div>
@@ -46,8 +49,15 @@
               </div>
             </div>
             <div class="qty-input btn mt-4 mt-md-0">
-              <i class="less" (click)="minus(item.cartId,item.quantity)">-</i>
-              <input type="text" [(ngModel)]="item.quantity" />
+              <i class="less" (click)="minus(item.cartId, item.quantity)">-</i>
+              <input
+              id="quantity"
+                type="number"
+                [(ngModel)]="item.quantity"
+                (ngModelChange)="Change(item.cartId, item.quantity)"
+                onkeypress="return event.charCode >= 49"
+                min="1"
+              />
               <i class="more" (click)="add(item.cartId)">+</i>
             </div>
           </div>
@@ -56,21 +66,24 @@
       <div class="col-lg-4 mt-lg-0 mt-6">
         <div class="cart-summary">
           <div class="cart-summary-wrap">
-            <h4>Cart </h4>
-            <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
+            <h4>Cart</h4>
+            <p *ngFor="let item of cartItems">
+              {{ item.name }}*{{ item.quantity }}
+              <span>${{ item.price * item.quantity }}</span>
+            </p>
             <h2>
-               Total <span>${{ total }}</span>
+              Total <span>${{ total }}</span>
             </h2>
           </div>
           <div class="cart-summary-button">
             <a
-              (click)=" CheckOut()"
+              (click)="CheckOut()"
               class="btn btn-primary btn-rounded btn-full btn-large"
               >Proceed to Checkout <i class="ti-arrow-right"></i>
             </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

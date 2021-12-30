@@ -32,6 +32,7 @@ import {
   SocialAuthServiceConfig,
   SocialLoginModule,
 } from 'angularx-social-login';
+import { DeliveryGuard } from './guards/delivery.guard';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
       import(
         './lazyLoad/delivery-dashboard/delivery-dashboard-routing.module'
       ).then((m) => m.DeliveryDashboardRoutingModule),
+    canActivate: [DeliveryGuard],
   },
   {
     path: 'Accountant',

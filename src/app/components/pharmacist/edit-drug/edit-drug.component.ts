@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CategoryModel } from '../../home2/models/Category.model';
 import { PharmacistService } from '../Services/pharmacist.service';
 
@@ -18,7 +19,8 @@ export class EditDrugComponent implements OnInit {
   constructor(
     private pharmacistService:PharmacistService,
     public fb: FormBuilder,
-    private router:Router
+    private router:Router,
+    private toastr:ToastrService
   ) { 
     this.GetDrug()
   }
@@ -30,7 +32,6 @@ export class EditDrugComponent implements OnInit {
         
         console.log(response.data.drugCategory)
         this.EditDrugFormGroup = this.fb.group({
-          DrugCategoryId: [,Validators.required],
           id: [response.data.id,Validators.required],
           Name: [response.data.name,Validators.required],
           Price: [response.data.price,Validators.required],
@@ -75,6 +76,7 @@ async ngOnInit() {
     console.log(this.EditDrugFormGroup.value)
     this.pharmacistService.EditDrug(this.EditDrugFormGroup.value).subscribe(
       (response)=>{
+        this.toastr.success('drug edited successfully');
         this.router.navigate(['/pharmacist/SingleDrug']);
       },
       (error)=>{

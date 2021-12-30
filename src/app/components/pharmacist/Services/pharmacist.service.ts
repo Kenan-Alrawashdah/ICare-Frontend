@@ -40,7 +40,6 @@ export class PharmacistService {
 
   EditDrug(form:EditDrugModel)
   {
-    console.log(form)
     let form2:FormData = new FormData();
     form2.append('Id',form.id.toString())
     form2.append('Name',form.Name.toString())
@@ -54,7 +53,6 @@ export class PharmacistService {
     form2.append('Brand',form.Brand )
     form2.append('AvailableQuantity',form.AvailableQuantity.toString())
     form2.append('Description',form.Description)
-    console.log(form2);
 
     return this.httpClient.put<ApiResponseData>(Constants.baseURL+'Drugs/EditDrug',form2);
   }
