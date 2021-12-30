@@ -76,8 +76,8 @@ async ngOnInit() {
     console.log(this.EditDrugFormGroup.value)
     this.pharmacistService.EditDrug(this.EditDrugFormGroup.value).subscribe(
       (response)=>{
+        this.toastr.success('drug edited successfully');
         this.router.navigate(['/pharmacist/SingleDrug']);
-        this.toastr.success('drug edited successfully')
       },
       (error)=>{
         console.log(error);

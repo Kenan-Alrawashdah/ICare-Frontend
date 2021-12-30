@@ -6,15 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-  SocialAuthService,
-} from 'angularx-social-login';
+
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
 import { HomeService } from '../home.service';
-declare var FB: any;
 
 @Component({
   selector: 'app-registration',
@@ -23,27 +20,29 @@ declare var FB: any;
 })
 export class RegistrationComponent implements OnInit {
   RegistrationForm: FormGroup;
-  emailExistValidation: boolean = false;
-
+  emailExistValidation:boolean = false; 
+  loginValidation: boolean;
+  error: string;
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
-    private tokenStorage: TokenStorageService,
-    private router: Router,
-    private authService: AuthService,
-    private socialAuthService: SocialAuthService
+    private homeService:HomeService,
+    private tokenStorage:TokenStorageService,
+    private router:Router,
+    private authService:AuthService,
+    private socialAuthService: SocialAuthService,
+
   ) {
     this.RegistrationForm = new FormGroup({
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required ,Validators.minLength(8)]),
+
       phone: new FormControl(''),
     });
   }
+
 
   ngOnInit(): void {}
 
@@ -71,6 +70,7 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
+
   Google(): void {
     this.socialAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
@@ -90,6 +90,10 @@ export class RegistrationComponent implements OnInit {
                 window.location.reload();
               });
             } else {
+
+              this.loginValidation = true;
+              this.error = data.errors[0];
+
             }
           });
       });
@@ -111,6 +115,9 @@ export class RegistrationComponent implements OnInit {
                 window.location.reload();
               });
             } else {
+              this.loginValidation = true;
+              this.error = data.errors[0];
+
             }
           });
       });

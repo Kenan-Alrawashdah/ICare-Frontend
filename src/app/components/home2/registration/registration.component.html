@@ -1,49 +1,48 @@
-<div
-  class="container mt-5"
-  style="box-shadow: 5px 10px 15px 5px #888888; border-radius: 10px"
->
-  <div class="row">
-    <div class="col-12">
-      <div class="clean_modal clean_modal-lg">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <i style="text-align: center">
-              <h2>Sing Up</h2>
+
+<div class="container mt-5" style="box-shadow: 5px 10px 15px 5px #888888; border-radius: 10px">
+    <div class="row">
+        <div class="col-12">
+            <div class="clean_modal clean_modal-lg">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <i style="text-align: center">
+              <h2>Register</h2>
             </i>
-            <div class="col-12">
-              <a
-                class="
-                  btn btn-gray-border btn-full
-                  rounded
-                  btn-large
-                  text-capitalize
-                  mb-3
-                "
-              >
-                <img src="assets/img/facebook.png" alt="" /> Login with Facebook
-              </a>
-            </div>
-            <div class="col-12 text-center">
-              <p class="">Or Sign Up With</p>
-            </div>
-            <div class="modal-body" style="padding: 10px 40px">
-              <form
-                [formGroup]="RegistrationForm"
-                (ngSubmit)="onSubmit()"
-                id="register_form"
-              >
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group mb-3">
-                      <input
-                        class="form-control"
-                        formControlName="fname"
-                        placeholder="First Name"
-                        type="text"
-                      />
-                      <small
-                        class="text-danger"
-                        *ngIf="
+                        <div class="col-12">
+                            <a (click)="Facebook()" class="
+                    btn btn-gray-border btn-full
+                    rounded
+                    btn-large
+                    text-capitalize
+                    mb-3
+                  ">
+                                <img src="assets/img/facebook.png" alt="" /> register with Facebook
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a (click)="Google()" class="
+                    btn btn-gray-border btn-full
+                    rounded
+                    btn-large
+                    text-capitalize
+                    mb-3
+                  ">
+                                <img src="assets/img/google.png" alt="" /> register with Google
+                            </a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <p class="">Or register With</p>
+                        </div>
+                        <div class="modal-body" style="padding: 10px 40px;">
+                            <form [formGroup]="RegistrationForm" (ngSubmit)="onSubmit()" id="register_form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <input class="form-control" formControlName="fname" placeholder="First Name" type="text" />
+                                            <small class="text-danger" *ngIf="
+
+
+
                           RegistrationForm.get('fname').hasError('required') &&
                           (RegistrationForm.controls['fname'].dirty ||
                             RegistrationForm.controls['fname'].touched)
@@ -71,19 +70,13 @@
                       >
                         This field is required.
                       </small>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group mb-3">
-                  <input
-                    type="email"
-                    formControlName="email"
-                    placeholder="Email"
-                    class="form-control rounded"
-                  />
-                  <small
-                    class="text-danger"
-                    *ngIf="
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="email" formControlName="email" placeholder="Email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="form-control rounded" />
+                                    <small class="text-danger" *ngIf="
+
                       RegistrationForm.get('email').hasError('required') &&
                       (RegistrationForm.controls['email'].dirty ||
                         RegistrationForm.controls['email'].touched)
@@ -125,26 +118,27 @@
                     This field is required.
                   </small>
 
-                  <small
-                    class="text-danger"
-                    *ngIf="
-                      RegistrationForm.get('password').hasError('pattern') &&
-                      (RegistrationForm.controls['password'].dirty ||
-                        RegistrationForm.controls['password'].touched)
-                    "
-                  >
-                    Password must have at least 8 character <BR />
-                    Password must have at least one big letter and one symbol
-                  </small>
-                </div>
-                <div class="form-group mb-3">
-                  <input
-                    formControlName="phone"
-                    type="text"
-                    placeholder="Phone"
-                    class="form-control rounded checkIsNumber phone-check"
-                  />
-                </div>
+
+                                    <small class="text-danger" *ngIf="
+                  RegistrationForm.get('password').hasError('pattern') &&
+                  (RegistrationForm.controls['password'].dirty ||
+                    RegistrationForm.controls['password'].touched)
+                ">
+                Password must have at least one big letter and one symbol <br/> 
+              </small>
+                                    <small class="text-danger" *ngIf="
+              RegistrationForm.get('password').hasError('minlength') &&
+              (RegistrationForm.controls['password'].dirty ||
+                RegistrationForm.controls['password'].touched)
+            ">
+            
+            Password must have at least 8 character 
+          </small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input formControlName="phone" type="text" placeholder="Phone" class="form-control rounded checkIsNumber phone-check" />
+                                </div>
+
 
                 <button
                   id="register_btn"

@@ -22,7 +22,6 @@ export class AuthService {
       Email: email,
       Password: password,
     };
-    console.log(body);
     return this.http.post<ApiResponseData<UserToken>>(
       AUTH_API + '/api/Login/SignIn',
       body

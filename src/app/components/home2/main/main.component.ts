@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
+import { Home2Component } from '../home2.component';
 import { CategoryModel } from '../models/Category.model';
 import { DrugModel } from '../models/Drug.model';
 
@@ -25,7 +26,8 @@ export class MainComponent implements OnInit {
     private homeService: HomeService,
     private Toastr: ToastrService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private homeComponent:Home2Component
   ) {}
 
   async ngOnInit() {
@@ -35,7 +37,6 @@ export class MainComponent implements OnInit {
   }
   ngAfterViewInit() {
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 500);
   }
@@ -84,17 +85,15 @@ export class MainComponent implements OnInit {
   }
 
   addToCart(id: number) {
-    console.log(id);
     this.homeService.AddToCart(id, 1).subscribe((data) => {
-      this.ngOnInit();
       if (data.success == true)
+      {
+        this.homeComponent.ngOnInit();
         this.Toastr.success('Item added successfully', '', {
           timeOut: 2000,
         });
-            setTimeout(() => {
-              /** spinner ends after 5 seconds */
-              this.spinner.hide();
-            }, 500);
+      }
+
     });
   }
 }

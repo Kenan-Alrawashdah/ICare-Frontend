@@ -56,7 +56,7 @@ export class AddDrugComponent implements OnInit {
     this.pharmacistService.addDrug(this.AddDrugFormGroup.value).subscribe(
       (response)=>{
         this.toastr.success('Drug added successfully');
-     //   this.router.navigate(['/pharmacist/GetAllDrugs']);
+      this.router.navigate(['/pharmacist/GetAllDrugs']);
       },
       (error)=>{
         console.log(error);
