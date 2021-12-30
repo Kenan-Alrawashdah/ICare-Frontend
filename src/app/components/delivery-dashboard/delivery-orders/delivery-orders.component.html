@@ -34,7 +34,6 @@
                     <table class="table select-table">
                         <thead>
                             <tr>
-                                <th>Order Number</th>
                                 <th>Customer Name</th>
                                 <th>City</th>
                                 <th>Details</th>
@@ -44,9 +43,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of myOrders">
-                                <td>
-                                    <h6>Order#{{ item.orderId }}</h6>
-                                </td>
                                 <td>
                                     <h6>{{ item.firstName + " " + item.lastName }}</h6>
                                 </td>

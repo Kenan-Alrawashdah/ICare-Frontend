@@ -34,7 +34,6 @@
                     <table class="table select-table">
                         <thead>
                             <tr>
-                                <th>Order Number</th>
                                 <th>City</th>
                                 <th>Details</th>
                                 <th>Show On Map</th>
@@ -43,9 +42,6 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of ordersList">
-                                <td>
-                                    <h6>Order#{{ item.orderId }}</h6>
-                                </td>
                                 <td>
                                     <h6>{{ item.city }}</h6>
                                 </td>

@@ -75,7 +75,7 @@ async ngOnInit() {
     console.log(this.EditDrugFormGroup.value)
     this.pharmacistService.EditDrug(this.EditDrugFormGroup.value).subscribe(
       (response)=>{
-        console.log(response);
+        this.router.navigate(['/pharmacist/SingleDrug']);
       },
       (error)=>{
         console.log(error);

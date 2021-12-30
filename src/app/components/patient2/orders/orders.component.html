@@ -15,7 +15,7 @@
             <table class="table mb-0">
                 <thead>
                     <tr>
-                        <th>Order #</th>
+                        <th>Order </th>
                         <th>Date Purchased</th>
                         <th>Status</th>
                         <th>Total</th>
@@ -24,7 +24,7 @@
                 <tbody>
                     <tr *ngFor="let item of orders">
                         <td class="py-3">
-                            <a class="nav-link-style fw-medium fs-sm" (click)="goToDrugDetails(item.id)" data-bs-toggle="modal">Order#{{item.id}}</a>
+                            <a class="nav-link-style fw-medium fs-sm" (click)="goToDrugDetails(item.id)" data-bs-toggle="modal">Order details</a>
                         </td>
                         <td class="py-3">
                             {{item.createdOn| date: "dd/MM/yyyy"}}

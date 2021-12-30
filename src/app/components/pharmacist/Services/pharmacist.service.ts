@@ -43,7 +43,6 @@ export class PharmacistService {
     console.log(form)
     let form2:FormData = new FormData();
     form2.append('Id',form.id.toString())
-    form2.append('DrugCategoryId',form.DrugCategoryId.toString())
     form2.append('Name',form.Name.toString())
     form2.append('Price',form.Price.toString())
     if(form.image != null)
