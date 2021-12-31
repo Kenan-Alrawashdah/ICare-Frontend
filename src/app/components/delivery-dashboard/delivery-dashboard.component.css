@@ -10,11 +10,14 @@
 @import '../../../assets/Admin/vendors/simple-line-icons/css/simple-line-icons.css';
 @import '../../../assets/Admin/vendors/css/vendor.bundle.base.css';
 @import '../../../assets/Admin/js/select.dataTables.min.css';
-
 #map {
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+a {
+    cursor: pointer;
 }

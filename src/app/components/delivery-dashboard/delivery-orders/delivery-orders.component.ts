@@ -143,6 +143,7 @@ export class DeliveryOrdersComponent implements OnInit {
       .then((response) => {
         this.myOrders = response.data;
         this.NumberOfOrders = this.myOrders.length;
+        console.log(response)
       });
   }
   async open(content: any, id: number) {
