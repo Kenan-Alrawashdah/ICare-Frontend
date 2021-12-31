@@ -1,11 +1,25 @@
 @media (min-width: 993px) {
-    #SmSearch2 {
-        display: none !important;
-    }
+  #SmSearch2 {
+    display: none !important;
+  }
 }
-
+@media screen and (min-width: 550px) and (max-width: 876px) {
+  .product.list-view .product-info {
+    position: relative;
+    width: auto;
+    flex: 0 0 52%;
+    max-width: auto;
+    padding-left: 30px;
+  }
+}
+@media (max-width: 561px) {
+  .ss {
+    margin: 5px 5px 5px 76px;
+  }
+}
 a {
-    cursor: pointer;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");

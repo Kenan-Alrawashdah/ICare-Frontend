@@ -22785,7 +22785,8 @@ select:not(.ignore) {
 .search-product {
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 390px;
+    overflow: scroll;
     left: 0;
     right: 0;
     z-index: 999999;

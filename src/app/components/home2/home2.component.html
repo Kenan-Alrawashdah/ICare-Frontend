@@ -1,396 +1,538 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>
 
 <!-- Home -->
 <div class="header">
-    <div class="container-fluid theme-container">
-        <div class="top-header">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <a routerLink="/Home">
-
-                        <img src="../../../assets/img/FinalLogo.png" alt="logo" class="header-logo" />
-                    </a>
-                </div>
-                <div id="Navigators" class="row">
-                    <a style="margin-right: 15px;margin-left: 20px; font-family: 'Acme', sans-serif;color: rgb(0, 49, 71); font-size:17px;" routerLink="/Home">Home </a>
-                    <a routerLink="/Home/Subscription" style="margin-right: 15px; font-family: 'Acme', sans-serif;color: rgb(0, 49, 71);font-size:17px;">Subscription
-                    </a>
-                    <a routerLink="/Home/AboutUs" style="margin-right: 0px;font-family: 'Acme', sans-serif;color: rgb(0, 49, 71);font-size: 17px;">About
-                        us </a>
-                </div>
-                <div class="col">
-                    <div class="header-search">
-
-                        <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
-                        <div class="search-content">
-                            <div class="search-product d-none">
-                                <!-- Search Popup -->
-                                <div id="LgSearch" class="product list-view" *ngFor="let item of searchList | slice:0:4">
-                                    <a (click)="GoToDrug(item.id)" class="product-img">
-                                        <img src="http://localhost:5000/images/{{item.drugPicturePath}}" id="test" class="close" alt="" />
-                                    </a>
-                                    <div class="product-info">
-                                        <h3>
-                                            <a (click)="GoToDrug(item.id)">{{item.drugName}}</a>
-                                        </h3>
-                                        <div class="product-value">
-                                            <div class="current-price">${{item.drugPrice}}</div>
-                                        </div>
-                                    </div>
-                                    <div class="product-actions">
-
-                                        <a (click)="CheckItemIfInCart(item.id)" class="btn btn-primary">
-                                            <i class="ti-shopping-cart"></i> Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="isLogin == false" class="col-auto">
-                    <ul class="header-right-options">
-                        <li class="link-item">
-                            <a class="btn btn-primary btn-sm" style="color: white" routerLink="./login">Login</a>
-                        </li>
-                        <li class="link-item">
-                            <a class="btn btn-primary btn-sm" style="color: white" routerLink="./register">Register</a>
-                        </li>
-                    </ul>
-                </div>
-                <div *ngIf="isLogin == true" class="col-auto">
-                    <ul class="header-right-options mr-5">
-                        <li class="dropdown">
-                            <button routerLink="/Home/Notifications" class="btn dropdown-toggle" type="button">
-                                <div class="list-icon">
-                                    <i class="ti-bell"></i>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="dropdown head-cart-content">
-                            <button id="dropdownCartButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="list-icon" id="cart">
-                                    <i class="ti-bag"></i>
-                                </div>
-                                <span class="badge badge-secondary">{{cartItemNumber}}</span>
-                            </button>
-
-                            <div class="
-                    shopping-cart shopping-cart-empty
-                    dropdown-menu dropdown-menu-right
-                  " id="showCart" aria-labelledby="dropdownMenuButton">
-                                <ul *ngIf="cartList.length == 0" class="shopping-cart-items">
-                                    <li>You have no items in your shopping cart.</li>
-                                    <li class="w-100 d-block">
-                                        <a routerLink="/Home/Cart" class="btn btn-primary w-100 d-block">
-                                            Go to Cart
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul *ngIf="cartList.length > 0" class="shopping-cart-items">
-                                    <li *ngFor="let item of cartList" class="mini_cart_item">
-                                        <div class="left-section">
-                                            <a href="product-single.html">
-                                                <img src="http://localhost:5000/images/{{item.picturePath}}" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="right-section">
-                                            {{item.name}}
-                                            <div>
-                                                <div class="item-desc">${{item.price}}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li class="w-100 d-block">
-                                        <a routerLink="/Home/Cart" class="btn btn-primary w-100 d-block">
-                                            Go to Cart
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown" id="section_1">
-                            <button id="dropdownCartButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="list-icon" id="account">
-                                    <i class="ti-user"></i>{{ Name }}
-                                </div>
-                            </button>
-
-                            <div style="z-index: 999;" class="dropdown-menu dropdown-menu-right user-links" aria-labelledby="dropdownMenuButton" id="user">
-                                <ul>
-                                    <li>
-                                        <a routerLink="/Patient/Account"> Account </a>
-                                    </li>
-                                    <li>
-                                        <a routerLink="/Patient/ChangePassword">
-                                            Change Password
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a style="color: goldenrod;" routerLink="/Patient/MyDrugs"> Drugs Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a style="color: goldenrod;" routerLink="/Patient/WaterNotification"> Water
-                                            Notifications </a>
-                                    </li>
-                                    <li>
-                                        <a style="color: goldenrod;" routerLink="/Patient/HealthReport"> Health Report
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a routerLink="/Patient/Address"> Address </a>
-                                    </li>
-                                    <li>
-                                        <a routerLink="/Patient/Orders"> My Orders </a>
-                                    </li>
-                                    <li>
-                                        <a routerLink="/Home/User/SignIn" (click)="logout()">
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
+  <div class="container-fluid theme-container">
+    <div class="top-header">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <a routerLink="/Home">
+            <img
+              src="../../../assets/img/FinalLogo.png"
+              alt="logo"
+              class="header-logo"
+            />
+          </a>
         </div>
+        <div id="Navigators" class="row">
+          <a
+            style="
+              margin-right: 15px;
+              margin-left: 20px;
+              font-family: 'Acme', sans-serif;
+              color: rgb(0, 49, 71);
+              font-size: 17px;
+            "
+            routerLink="/Home"
+            >Home
+          </a>
+          <a
+            routerLink="/Home/Subscription"
+            style="
+              margin-right: 15px;
+              font-family: 'Acme', sans-serif;
+              color: rgb(0, 49, 71);
+              font-size: 17px;
+            "
+            >Subscription
+          </a>
+          <a
+            routerLink="/Home/AboutUs"
+            style="
+              margin-right: 0px;
+              font-family: 'Acme', sans-serif;
+              color: rgb(0, 49, 71);
+              font-size: 17px;
+            "
+            >About us
+          </a>
+        </div>
+        <div class="col">
+          <div class="header-search">
+            <input
+              class="form-control custom-search"
+              placeholder="Search for Medicines Products"
+              type="text"
+              [(ngModel)]="InputSearch"
+              (ngModelChange)="GetDrugByNameSearch()"
+            />
+            <div class="search-content">
+              <div class="search-product d-none">
+                <!-- Search Popup -->
+                <div
+                  id="LgSearch"
+                  class="product list-view"
+                  *ngFor="let item of searchList"
+                >
+                  <a (click)="GoToDrug(item.id)" class="product-img">
+                    <img
+                      src="http://localhost:5000/images/{{
+                        item.drugPicturePath
+                      }}"
+                      id="test"
+                      class="close"
+                      alt=""
+                    />
+                  </a>
+                  <div class="product-info">
+                    <h3 style="cursor: pointer">
+                      <a (click)="GoToDrug(item.id)">{{ item.drugName }}</a>
+                    </h3>
+                    <div class="product-value">
+                      <div class="current-price">${{ item.drugPrice }}</div>
+                    </div>
+                  </div>
+                  <div class="product-actions">
+                    <a
+                      (click)="CheckItemIfInCart(item.id)"
+                      class="btn btn-primary"
+                    >
+                      <i class="ti-shopping-cart"></i> Add to cart
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isLogin == false" class="col-auto">
+          <ul class="header-right-options">
+            <li class="link-item">
+              <a
+                class="btn btn-primary btn-sm"
+                style="color: white"
+                routerLink="./login"
+                >Login</a
+              >
+            </li>
+            <li class="link-item">
+              <a
+                class="btn btn-primary btn-sm"
+                style="color: white"
+                routerLink="./register"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="isLogin == true" class="col-auto">
+          <ul class="header-right-options mr-5">
+            <li class="dropdown">
+              <button
+                routerLink="/Home/Notifications"
+                class="btn dropdown-toggle"
+                type="button"
+              >
+                <div class="list-icon">
+                  <i class="ti-bell"></i>
+                </div>
+              </button>
+            </li>
+            <li class="dropdown head-cart-content">
+              <button
+                id="dropdownCartButton"
+                class="btn dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="list-icon" id="cart">
+                  <i class="ti-bag"></i>
+                </div>
+                <span class="badge badge-secondary">{{ cartItemNumber }}</span>
+              </button>
+
+              <div
+                class="
+                  shopping-cart shopping-cart-empty
+                  dropdown-menu dropdown-menu-right
+                "
+                id="showCart"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <ul *ngIf="cartList.length == 0" class="shopping-cart-items">
+                  <li>You have no items in your shopping cart.</li>
+                  <li class="w-100 d-block">
+                    <a
+                      routerLink="/Home/Cart"
+                      class="btn btn-primary w-100 d-block"
+                    >
+                      Go to Cart
+                    </a>
+                  </li>
+                </ul>
+                <ul *ngIf="cartList.length > 0" class="shopping-cart-items">
+                  <li *ngFor="let item of cartList" class="mini_cart_item">
+                    <div class="left-section">
+                      <a href="product-single.html">
+                        <img
+                          src="http://localhost:5000/images/{{
+                            item.picturePath
+                          }}"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div class="right-section">
+                      {{ item.name }}
+                      <div>
+                        <div class="item-desc">${{ item.price }}</div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="w-100 d-block">
+                    <a
+                      routerLink="/Home/Cart"
+                      class="btn btn-primary w-100 d-block"
+                    >
+                      Go to Cart
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="dropdown" id="section_1">
+              <button
+                id="dropdownCartButton"
+                class="btn dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="list-icon" id="account">
+                  <i class="ti-user"></i>{{ Name }}
+                </div>
+              </button>
+
+              <div
+                style="z-index: 999"
+                class="dropdown-menu dropdown-menu-right user-links"
+                aria-labelledby="dropdownMenuButton"
+                id="user"
+              >
+                <ul>
+                  <li>
+                    <a routerLink="/Patient/Account"> Account </a>
+                  </li>
+                  <li>
+                    <a routerLink="/Patient/ChangePassword">
+                      Change Password
+                    </a>
+                  </li>
+                  <li>
+                    <a style="color: goldenrod" routerLink="/Patient/MyDrugs">
+                      Drugs Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      style="color: goldenrod"
+                      routerLink="/Patient/WaterNotification"
+                    >
+                      Water Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      style="color: goldenrod"
+                      routerLink="/Patient/HealthReport"
+                    >
+                      Health Report
+                    </a>
+                  </li>
+                  <li>
+                    <a routerLink="/Patient/Address"> Address </a>
+                  </li>
+                  <li>
+                    <a routerLink="/Patient/Orders"> My Orders </a>
+                  </li>
+                  <li>
+                    <a routerLink="/Home/User/SignIn" (click)="logout()">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="mobile-header">
-    <div class="container-fluid theme-container">
-        <div class="row align-items-center">
-            <div class="col-auto">
-                <ul class="header-left-options">
-                    <li class="link-item open-sidebar">
-                        <i class="ti-menu"></i>
-                    </li>
-                </ul>
-            </div>
-            <div class="col text-center">
-                <a routerLink="/Home">
-                    <img style="height: 35px;width: 100px;" src="../../../assets/img/FinalLogo.png" alt="logo" class="header-logo" />
-                </a>
-            </div>
-            <div class="col-auto">
-                <ul class="header-right-options ">
-                    <li class="link-item">
-                        <a id="mobile" style="color: #0d141f;">
-                            <i class="ti-search"></i>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div *ngIf="isLogin" class="col-auto">
-                <ul class="header-right-options ">
-                    <li class="link-item" routerLink="/Home/Cart">
-                        <a style="    color: #0d141f;">
-                            <span class="badge badge-secondary">{{cartItemNumber}}</span>
-                            <i class="ti-bag "></i>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-        <div class="menu-sidebar">
-            <div class="close">
-                <i class="ti-close"></i>
-            </div>
-
-            <div class="welcome d-flex align-items-center">
-                <a *ngIf="!isLogin" (click)="sidebarGoTo('/Home/login')" data-toggle="modal" data-dismiss="modal" data-target="#login_modal" class="btn btn-soft-primary btn-md">Login</a>
-                <a *ngIf="!isLogin" routerLink="./register" data-toggle="modal" data-dismiss="modal" data-target="#register_modal" class="btn btn-primary btn-md">Register</a>
-                <div *ngIf="isLogin" class="avater btn-soft-primary">{{Name[0]}}</div>
-                <span>{{Name}}</span>
-            </div>
-            <div class="mobileMenuLinks mb-4 mt-2">
-
-                <ul>
-                    <li><a (click)="sidebarGoTo('/Home/main')">Home</a></li>
-                    <li><a (click)="sidebarGoTo('/Home/Subscription')">Subscription</a></li>
-                    <li><a (click)="sidebarGoTo('/Home/AboutUs')">About Us</a></li>
-                </ul>
-                <h6></h6>
-                <ul *ngIf="isLogin">
-                    <li><a (click)="sidebarGoTo('/Patient/Account')">Account</a></li>
-                    <li><a (click)="sidebarGoTo('/Home/Cart')">Cart</a></li>
-                    <li><a (click)="sidebarGoTo('/Home/Notifications')">Notifications</a></li>
-                    <li><a (click)=" logout()">Logout</a></li>
-                </ul>
-            </div>
-
-        </div>
+  <div class="container-fluid theme-container">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <ul class="header-left-options">
+          <li class="link-item open-sidebar">
+            <i class="ti-menu"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="col text-center">
+        <a routerLink="/Home">
+          <img
+            style="height: 35px; width: 100px"
+            src="../../../assets/img/FinalLogo.png"
+            alt="logo"
+            class="header-logo"
+          />
+        </a>
+      </div>
+      <div class="col-auto">
+        <ul class="header-right-options">
+          <li class="link-item">
+            <a id="mobile" style="color: #0d141f">
+              <i class="ti-search"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="isLogin" class="col-auto">
+        <ul class="header-right-options">
+          <li class="link-item" routerLink="/Home/Cart">
+            <a style="color: #0d141f">
+              <span class="badge badge-secondary">{{ cartItemNumber }}</span>
+              <i class="ti-bag"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="overlay"></div>
+    <div class="menu-sidebar">
+      <div class="close">
+        <i class="ti-close"></i>
+      </div>
+
+      <div class="welcome d-flex align-items-center">
+        <a
+          *ngIf="!isLogin"
+          (click)="sidebarGoTo('/Home/login')"
+          data-toggle="modal"
+          data-dismiss="modal"
+          data-target="#login_modal"
+          class="btn btn-soft-primary btn-md"
+          >Login</a
+        >
+        <a
+          *ngIf="!isLogin"
+          routerLink="./register"
+          data-toggle="modal"
+          data-dismiss="modal"
+          data-target="#register_modal"
+          class="btn btn-primary btn-md"
+          >Register</a
+        >
+        <div *ngIf="isLogin" class="avater btn-soft-primary">{{ Name[0] }}</div>
+        <span>{{ Name }}</span>
+      </div>
+      <div class="mobileMenuLinks mb-4 mt-2">
+        <ul>
+          <li><a (click)="sidebarGoTo('/Home/main')">Home</a></li>
+          <li>
+            <a (click)="sidebarGoTo('/Home/Subscription')">Subscription</a>
+          </li>
+          <li><a (click)="sidebarGoTo('/Home/AboutUs')">About Us</a></li>
+        </ul>
+        <h6></h6>
+        <ul *ngIf="isLogin">
+          <li><a (click)="sidebarGoTo('/Patient/Account')">Account</a></li>
+          <li><a (click)="sidebarGoTo('/Home/Cart')">Cart</a></li>
+          <li>
+            <a (click)="sidebarGoTo('/Home/Notifications')">Notifications</a>
+          </li>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
 </div>
-<div class="col" id="SmSearch2" style="display: none;">
-    <div class="header-search">
-        <input class="form-control custom-search" placeholder="Search for Medicines Products" type="text" [(ngModel)]="InputSearch" (ngModelChange)="GetDrugByNameSearch()" />
-        <div class="search-content">
-            <div class="search-product d-none">
-                <!-- Search Popup -->
+<div class="col" id="SmSearch2" style="display: none">
+  <div class="header-search">
+    <input
+      class="form-control custom-search"
+      placeholder="Search for Medicines Products"
+      type="text"
+      [(ngModel)]="InputSearch"
+      (ngModelChange)="GetDrugByNameSearch()"
+    />
+    <div class="search-content">
+      <div class="search-product d-none">
+        <!-- Search Popup -->
 
-                <div class="product list-view" *ngFor="let item of searchList | slice:0:4">
-                    <a class="product-img">
-                        <img src="http://localhost:5000/images/{{item.drugPicturePath}}" class="" alt="" />
-                    </a>
-                    <div class="product-info">
-                        <h3>
-                            <a href="product-single.html">{{item.drugName}}</a>
-                        </h3>
-                        <div class="">
-
-                            <div class="current-price">${{item.drugPrice}}</div>
-                        </div>
-                    </div>
-
-                    <a style="margin-left: 70px;margin-top: 10px;" (click)="CheckItemIfInCart(item.id)" class="btn btn-primary">
-                        <i class="ti-shopping-cart"></i> Add to cart</a>
-
-                </div>
+        <div class="product list-view" *ngFor="let item of searchList">
+          <a class="product-img">
+            <img
+              src="http://localhost:5000/images/{{ item.drugPicturePath }}"
+              class=""
+              alt=""
+            />
+          </a>
+          <div class="product-info">
+            <h3>
+              <a href="product-single.html">{{ item.drugName }}</a>
+            </h3>
+            <div class="">
+              <div class="current-price">${{ item.drugPrice }}</div>
             </div>
-        </div>
+          </div>
 
+          <a (click)="CheckItemIfInCart(item.id)" class="btn btn-primary ss">
+            <i class="ti-shopping-cart"></i> Add to cart</a
+          >
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <router-outlet></router-outlet>
 
 <footer class="site-footer footer-padding-lg bg-light mt-8">
-    <div class="container-fluid theme-container">
-        <div id="fff" class="upper-footer">
-            <div class="row justify-content-around">
-                <div class="col-lg-4 col-md-3 col-12">
-                    <div class="widget">
-                        <div class="footer-brand">
-                            <img src="../../../assets/img/FinalLogo.png" alt="" />
-                        </div>
-                        <p>
-                            What is ICare system? <br> It's a website to support diabetic people by reminding them of their medication appointments, drinking water, saving health reports, and buying their medication.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-12">
-                    <div class="widget">
-                        <div class="widget-title">
-                            <h3>Usefull Links</h3>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="#">Documentation</a>
-                            </li>
-                            <li>
-                                <a href="#">Support</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy &amp; terms</a>
-                            </li>
-                            <li>
-                                <a href="#">Sitemap</a>
-                            </li>
-                            <li>
-                                <a href="#">Customers</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-12">
-                    <div class="widget">
-                        <div class="widget-title">
-                            <h3>Help</h3>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <a href="about.html">About Us</a>
-                            </li>
-                            <li>
-                                <a href="#">Business Partnership</a>
-                            </li>
-                            <li>
-                                <a href="blog.html">Blogs</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-12">
-                    <div class="widget">
-                        <div class="widget-title">
-                            <h3>Policy</h3>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="policy.html">Privacy policy</a>
-                            </li>
-                            <li>
-                                <a href="policy.html">Terms and Conditions</a>
-                            </li>
-                            <li>
-                                <a href="policy.html">Return Policy</a>
-                            </li>
-                            <li>
-                                <a href="policy.html">Refund Policy</a>
-                            </li>
-                            <li>
-                                <a href="policy.html">Ip Policy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-12">
-                    <div class="widget">
-                        <div class="widget-title">
-                            <h3>Social</h3>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="#">Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#">Google</a>
-                            </li>
-                            <li>
-                                <a href="#">Pinterest</a>
-                            </li>
-                            <li>
-                                <a href="#">Linkedin</a>
-                            </li>
-                            <li>
-                                <a href="#">Dribble</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+  <div class="container-fluid theme-container">
+    <div id="fff" class="upper-footer">
+      <div class="row justify-content-around">
+        <div class="col-lg-4 col-md-3 col-12">
+          <div class="widget">
+            <div class="footer-brand">
+              <img src="../../../assets/img/FinalLogo.png" alt="" />
             </div>
+            <p>
+              What is ICare system? <br />
+              It's a website to support diabetic people by reminding them of
+              their medication appointments, drinking water, saving health
+              reports, and buying their medication.
+            </p>
+          </div>
         </div>
-        <div class="lower-footer">
-            <div class="row">
-                <div class="col-md-6 text-lg-left">
-                    <p class="mb-4 mb-md-0 text-muted">
-                        Copyright © 2021 ICare | All rights reserved.
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-card text-lg-right">
-                        <img class="img-fluid mx-2" src="assets/img/payment-methods.png" alt="Icon" />
-                    </div>
-                </div>
+        <div class="col-lg-2 col-md-3 col-12">
+          <div class="widget">
+            <div class="widget-title">
+              <h3>Usefull Links</h3>
             </div>
+            <ul>
+              <li>
+                <a href="#">Documentation</a>
+              </li>
+              <li>
+                <a href="#">Support</a>
+              </li>
+              <li>
+                <a href="#">Privacy &amp; terms</a>
+              </li>
+              <li>
+                <a href="#">Sitemap</a>
+              </li>
+              <li>
+                <a href="#">Customers</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="col-lg-2 col-md-3 col-12">
+          <div class="widget">
+            <div class="widget-title">
+              <h3>Help</h3>
+            </div>
+            <ul>
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="about.html">About Us</a>
+              </li>
+              <li>
+                <a href="#">Business Partnership</a>
+              </li>
+              <li>
+                <a href="blog.html">Blogs</a>
+              </li>
+              <li>
+                <a href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-12">
+          <div class="widget">
+            <div class="widget-title">
+              <h3>Policy</h3>
+            </div>
+            <ul>
+              <li>
+                <a href="policy.html">Privacy policy</a>
+              </li>
+              <li>
+                <a href="policy.html">Terms and Conditions</a>
+              </li>
+              <li>
+                <a href="policy.html">Return Policy</a>
+              </li>
+              <li>
+                <a href="policy.html">Refund Policy</a>
+              </li>
+              <li>
+                <a href="policy.html">Ip Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-12">
+          <div class="widget">
+            <div class="widget-title">
+              <h3>Social</h3>
+            </div>
+            <ul>
+              <li>
+                <a href="#">Facebook</a>
+              </li>
+              <li>
+                <a href="#">Google</a>
+              </li>
+              <li>
+                <a href="#">Pinterest</a>
+              </li>
+              <li>
+                <a href="#">Linkedin</a>
+              </li>
+              <li>
+                <a href="#">Dribble</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="lower-footer">
+      <div class="row">
+        <div class="col-md-6 text-lg-left">
+          <p class="mb-4 mb-md-0 text-muted">
+            Copyright © 2021 ICare | All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="footer-card text-lg-right">
+            <img
+              class="img-fluid mx-2"
+              src="assets/img/payment-methods.png"
+              alt="Icon"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
