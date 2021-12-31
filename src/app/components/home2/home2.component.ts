@@ -12,6 +12,7 @@ import { SearchModel } from './models/search.model';
   templateUrl: './home2.component.html',
   styleUrls: ['./home2.component.css']
 })
+
 export class Home2Component implements OnInit {
 
   searchList: SearchModel[];

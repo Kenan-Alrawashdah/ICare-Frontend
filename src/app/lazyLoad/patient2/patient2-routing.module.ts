@@ -75,11 +75,13 @@ const routes: Routes = [
     canActivate:[SubscriberGuard]
   },{
     path:'HealthReport',
-    component:HealthReportComponent
+    component:HealthReportComponent,
+    canActivate:[SubscriberGuard]
   },
   {
     path:'AddHealthReport',
-    component:AddHealthReportComponent
+    component:AddHealthReportComponent,
+    canActivate:[SubscriberGuard]
   }
 ];
 

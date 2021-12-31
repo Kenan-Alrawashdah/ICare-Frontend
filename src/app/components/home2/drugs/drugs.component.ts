@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DrugComponent } from '../drug/drug.component';
 import { HomeService } from '../home.service';
 import { Home2Component } from '../home2.component';
+import { CategoryModel } from '../models/Category.model';
 import { DrugModel } from '../models/Drug.model';
 
 @Component({
@@ -15,6 +16,8 @@ export class DrugsComponent implements OnInit {
   
   DrugList:DrugModel[];
   CategoryName:string;
+  CategoryId:number;
+  Categories: CategoryModel[];
   constructor(
     private homeServices:HomeService,
     private router:Router,
@@ -22,11 +25,29 @@ export class DrugsComponent implements OnInit {
     private Toastr:ToastrService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.getDrugs();
-    this.CategoryName = this.homeServices.CategoryName
+    this.CategoryName = this.homeServices.CategoryName;
+    this.CategoryId = this.homeServices.CategoryId;
+    await this.getAllCategories();
   }
 
+  public goToCategoryDrugs(id: number) {
+    this.homeServices.CategoryId = id;
+    this.homeServices.CategoryName = this.Categories.find(
+      (c) => c.id == id
+    ).name;
+    this.ngOnInit();
+  }
+
+  async getAllCategories() {
+    await this.homeServices
+      .GetAllCategory()
+      .toPromise()
+      .then((response) => {
+        this.Categories = response.data['categories'];
+      });
+  }
 
 
   public async getDrugs(){

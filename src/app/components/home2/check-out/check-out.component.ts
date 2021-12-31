@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
+import { Home2Component } from '../home2.component';
 import { CartItemModel } from '../models/cartItem.model';
 import { CreateOrderModel } from '../models/CreateOrder.model';
 import { LocationModel } from '../models/location.model';
@@ -24,7 +25,8 @@ export class CheckOutComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private homeComponent:Home2Component
   ) {
     this.CheckOutForm = new FormGroup({
       cardNumber: new FormControl('', [Validators.required]),
@@ -73,18 +75,26 @@ export class CheckOutComponent implements OnInit {
   }
   onCheckOut() {
     if (this.selectedLocation != 0) {
+      
       let order: CreateOrderModel = new CreateOrderModel();
-
       order.totalPrice = this.total;
       order.locationId = this.selectedLocation;
       let CartsId: number[] = [];
       this.cartItems.forEach((element) => {
-        CartsId.push(element.cartId);
+      CartsId.push(element.cartId);
       });
       order.cartsId = CartsId;
       console.log(order.cartsId);
-      this.homeService.createOrder(order).subscribe();
-      this.router.navigate(['/Home/ThankYou']);
+      this.homeService.createOrder(order).subscribe(
+        ()=>{
+          this.router.navigate(['/Home/ThankYou']).then(
+            ()=>{
+              this.homeComponent.ngOnInit();
+            }
+          );
+        }
+      );
+      
     } else {
       this.toastr.warning('Please select location to deliver', '', {
         timeOut: 1500,

@@ -1,11 +1,11 @@
-@media (min-width: 768px) {
-  #SmSearch2 {
-    display: none !important;
-  }
+@media (min-width: 993px) {
+    #SmSearch2 {
+        display: none !important;
+    }
 }
 
 a {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");

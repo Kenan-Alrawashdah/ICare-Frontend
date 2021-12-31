@@ -110,12 +110,13 @@
 
 <!-- Drugs -->
 
-<!-- //product Grid -->
+
 <div class="pt-5" style="
     background-image: url(../../../../assets/img/d1.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-bottom: -100px;
   ">
     <div class="container-fluid theme-container">
         <div class="row mb-4">
@@ -131,7 +132,7 @@
                     </a>
                     <div class="product-info">
                         <h3 style="font-family: 'Nunito Sans', sans-serif; font-size: 23px">
-                            <a (click)="GoToDrug(item.id)">{{ item.name }}</a>
+                            <a style="line-height: normal;" (click)="GoToDrug(item.id)">{{ item.name }}</a>
                         </h3>
                         <div class="product-value">
                             <div class="row">

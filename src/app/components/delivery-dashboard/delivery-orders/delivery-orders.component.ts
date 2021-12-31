@@ -8,6 +8,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { DeliveryService } from '../service/delivery.service';
 import { DeliveryOrdersModel } from '../model/DeliveryOrders.model';
 import { GetNumberOfOrdersForDelivery } from 'src/app/shared/Delivery/get-number-of-orders-for-delivery.model';
+import { ToastrService } from 'ngx-toastr';
 
 declare const google: any;
 
@@ -31,7 +32,8 @@ export class DeliveryOrdersComponent implements OnInit {
 
   constructor(
     private deliveryService: DeliveryService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private tosart:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -150,5 +152,21 @@ export class DeliveryOrdersComponent implements OnInit {
       .result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       });
+  }
+
+
+  SetOrderAsDelivered(id:number)
+  {
+    if(confirm("you want to set as delivered"))
+    {
+      console.log(id)
+      this.deliveryService.SetOrderAsDelivered(id).subscribe(
+        ()=>{
+          this.tosart.success('order set as delivered');
+          this.ngOnInit();
+        }
+      )
+    }
+    
   }
 }

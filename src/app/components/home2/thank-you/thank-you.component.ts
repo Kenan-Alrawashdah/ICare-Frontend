@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Home2Component } from '../home2.component';
 
 @Component({
@@ -6,10 +6,14 @@ import { Home2Component } from '../home2.component';
   templateUrl: './thank-you.component.html',
   styleUrls: ['./thank-you.component.css'],
 })
+@Injectable({
+  providedIn : 'root'
+})
 export class ThankYouComponent implements OnInit {
-  constructor(private homeComponent: Home2Component) {}
+  constructor(private homeComponent: Home2Component) {
+    
+  }
 
   ngOnInit(): void {
-    this.homeComponent.ngOnInit();
   }
 }

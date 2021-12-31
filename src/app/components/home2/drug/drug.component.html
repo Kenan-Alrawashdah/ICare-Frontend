@@ -9,7 +9,8 @@
                         <div class="big-image-wrapper">
                             <div class="product-details-big-image-slider-wrapper slider-for" data-autoplay="false" data-nav="false">
                                 <div class="single-image">
-                                    <img src="http://localhost:5000/images/{{drug.picturePath}}" style="width: 80%;height: 80%;" alt="slider">
+                                    <img src="http://localhost:5000/images/{{drug.picturePath}}" style="max-width: 80%;
+                                    max-height: 80%;" alt="slider">
                                 </div>
 
 
@@ -23,7 +24,7 @@
                     <div class="col-lg-12">
                         <div class="single-product-content-description">
                             <h4 class="product-title">{{drug.name}}</h4>
-                            <p class="single-grid-product__price"><span class="discounted-price">₹{{drug.price}}</span></p>
+                            <p class="single-grid-product__price"><span class="discounted-price">${{drug.price}}</span></p>
                             <div class="single-info" style="margin-bottom: 100px;">
                                 <span class="d-block text-muted mb-2"><strong>Category :</strong> {{drug.drugCategory}}</span>
                                 <span class="d-block text-muted mb-2"><strong>Availability :</strong> In
