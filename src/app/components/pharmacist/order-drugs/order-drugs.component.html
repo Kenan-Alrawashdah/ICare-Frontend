@@ -3,11 +3,15 @@
 
         <div class="card card-rounded">
             <div class="card-body">
+                <div class="row justify-content-end">
+                    <a class="btn btn-outline-success btn-icon-text " style="margin-right: 20px; text-align: end;" routerLink="/pharmacist/OpenOrders"> <i class="ti-arrow-left btn-icon-prepend"></i>Go back</a>
+                </div>
 
                 <div class="table-responsive  mt-1">
                     <table class="table select-table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Drug Name</th>
                                 <th>Quantity</th>
 
@@ -15,7 +19,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of orderDrugList">
+                            <tr *ngFor="let item of orderDrugList ;let i = index">
+                                <td>
+                                    <h6>{{i+1}}</h6>
+                                </td>
                                 <td>
                                     <h6>{{item.name}}</h6>
                                 </td>
@@ -27,8 +34,10 @@
 
                         </tbody>
                     </table>
-                    <a class="btn btn-success" style="margin-right: 20px;" (click)="SetOrderAsPlaced()">Set As Placed</a>
-                    <a class="btn btn-danger" (click)="SetOrderAsCanceled()">Cancel</a>
+
+
+                    <a class="btn btn-outline-success btn-icon-text" style="margin-right: 20px;" (click)="SetOrderAsPlaced()"> <i class="ti-check btn-icon-prepend"></i>Set As Placed</a>
+                    <a class="btn btn-outline-danger btn-icon-text" (click)="SetOrderAsCanceled()"><i class="ti-close btn-icon-prepend"></i>Cancel Order</a>
                 </div>
             </div>
         </div>

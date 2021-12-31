@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row justify-content-between">
-        <div class="col-md-8 order-md-2">
-            <div class="row shop-header align-items-center">
-                <div class="col-lg-6">
+        <div class="col-md-12 order-md-2">
+            <div class="row shop-header justify-content-center">
+                <!-- <div class="col-lg-6">
                     <div class="grid-icons">
                         <button class="three-column active"></button>
                         <button class="four-column d-none d-lg-block"></button>
@@ -11,10 +11,32 @@
                     </div>
                 </div>
                 <div class="col-lg-6 text-lg-right">
+                </div> -->
+                <div class="header-search" style="width: 50%;">
+                    <input class="form-control custom-search" placeholder="Search for Medicines Products" [(ngModel)]="search" (ngModelChange)="searchDrug()" type="text" />
+                </div>
+                <div style="margin-left: 25px;" class="btn-group">
+                    <button type="button" class="btn btn-primary">{{selectedCategory}}</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSplitButton1">
+                        <a class="dropdown-item" style="color: crimson;" (click)="CategoryFilter(0, '') ">none</a>
+
+                        <div *ngFor="let item of CategoryList">
+                            <a class="dropdown-item" (click)="CategoryFilter(item.id, item.name) ">{{item.name}}</a>
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        Remember me
+                      <i class="input-helper"></i></label>
+                    </div> -->
                 </div>
             </div>
             <div class="row">
-                <div *ngFor="let item of listOfDrugs" class="col-md-4 col-sm-6 col-12">
+
+                <div *ngFor="let item of SearchList" class="col-md-3 col-sm-6 col-12">
                     <div class="product">
                         <a (click)="goToDrug(item.id)" class="product-img">
                             <img src="http://localhost:5000/images/{{item.picturePath}}" class="" alt="">
@@ -31,28 +53,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-        <div class="col-md-3 order-md-1">
-            <div class="sidebar-wrapper mt-5 mt-md-0">
-                <div class="sidebar-widget widget_categories">
-                    <h6 class="widget-title">Categories</h6>
-                    <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11rem;" data-simplebar data-simplebar-auto-hide="false">
-                        <li *ngFor="let item of CategoryList" class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="brand-1">
-                                <label class="form-check-label widget-filter-item-text" for="brand-1">{{item.name}}</label>
-                            </div>
-                            <!-- <span class="fs-xs text-muted">425</span> -->
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
-
-
         </div>
     </div>
+
 </div>

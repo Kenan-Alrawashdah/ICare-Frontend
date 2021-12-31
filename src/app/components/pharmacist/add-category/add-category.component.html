@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" [formGroup]="AddCategoryFormGroup" (ngSubmit)="onSubmit()">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="LastName">Name</label>
+                        <input type="text" class="form-control" placeholder="Name" formControlName="Name" />
+                        <small class="text-danger" *ngIf="nameValidator">This field is required</small>
+                    </div>
+                    <div class="form-group">
+                        <label style="padding-left: 20px">Category image</label>
+                        <input class="form-control" style="height: 56px;" type="file" placeholder="Drug image" (change)="onFileSelected($event)" />
+                        <small class="text-danger" *ngIf="imageValidator">This field is required</small>
+                    </div>
+                    <div class="form-group justify-content-center">
+                        <div class="row justify-content-center">
+                            <button type="submit" class="btn btn-primary me-2">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

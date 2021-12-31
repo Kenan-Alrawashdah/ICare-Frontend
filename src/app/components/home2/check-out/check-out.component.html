@@ -18,7 +18,7 @@
                                         </p>
                                         <form class="credit-card-form row g-3" [formGroup]="CheckOutForm">
                                             <div class="col-sm-6 mb-4">
-                                                <input class="form-control" type="text" name="number" placeholder="Card Number" formControlName="cardNumber" />
+                                                <input class="form-control" type="number" pattern="^(?:\d[ -]*?){16,16}$" name="number" maxlength="16" placeholder="Card Number" formControlName="cardNumber" />
                                                 <small class="text-danger" *ngIf="
                             CheckOutForm.get('cardNumber').hasError(
                               'required'
@@ -28,6 +28,14 @@
                           ">
                           This field is required.
                         </small>
+                                                <small class="text-danger" *ngIf="
+                        CheckOutForm.get('cardNumber').hasError('pattern') &&
+                        (CheckOutForm.controls['cardNumber'].dirty ||
+                          CheckOutForm.controls['cardNumber'].touched)
+                      ">
+                      please enter valid card number
+                    </small>
+
                                             </div>
                                             <div class="col-sm-6 mb-4">
                                                 <input class="form-control" type="text" name="name" placeholder="Card Name" formControlName="cardName" />
@@ -38,9 +46,10 @@
                           ">
                           This field is required.
                         </small>
+
                                             </div>
                                             <div class="col-sm-3 mb-4">
-                                                <input class="form-control" type="text" name="expiry" placeholder="MM/YY" formControlName="expiry" />
+                                                <input class="form-control" type="text" name="expiry" placeholder="MM/YY" formControlName="expiry" pattern="^(0[1-9]|1[0-2])\/?(([0-9]{4}|[0-9]{2})$)" />
                                                 <small class="text-danger" *ngIf="
                             CheckOutForm.get('expiry').hasError('required') &&
                             (CheckOutForm.controls['expiry'].dirty ||
@@ -48,9 +57,16 @@
                           ">
                           This field is required.
                         </small>
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('expiry').hasError('pattern') &&
+                            (CheckOutForm.controls['expiry'].dirty ||
+                              CheckOutForm.controls['expiry'].touched)
+                          ">
+                          Please input a valid expiry date
+                        </small>
                                             </div>
                                             <div class="col-sm-3 mb-4">
-                                                <input class="form-control" type="text" name="cvc" placeholder="CVC" formControlName="CVC" />
+                                                <input class="form-control" type="number" pattern="^(?:\d[ -]*?){3,3}$" name="cvc" placeholder="CVC" formControlName="CVC" />
                                                 <small class="text-danger" *ngIf="
                             CheckOutForm.get('CVC').hasError('required') &&
                             (CheckOutForm.controls['CVC'].dirty ||
@@ -58,9 +74,16 @@
                           ">
                           This field is required.
                         </small>
+                                                <small class="text-danger" *ngIf="
+                            CheckOutForm.get('CVC').hasError('pattern') &&
+                            (CheckOutForm.controls['CVC'].dirty ||
+                              CheckOutForm.controls['CVC'].touched)
+                          ">
+                          please enter a valid CVC
+                        </small>
                                             </div>
                                             <div class="col-sm-6 mb-4">
-                                                <button [disabled]="!CheckOutForm.valid" class="btn btn-primary d-block w-100">
+                                                <button [disabled]="!CheckOutForm.valid" (click)="onCheckOut()" class="btn btn-primary d-block w-100">
                           Place order
                         </button>
                                             </div>
@@ -85,50 +108,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <!-- accordion Title -->
-                                <div class="accordion-title">
-                                    <h5 class="mb-0" data-toggle="collapse" data-target="#collapseThree">
-                                        Pay later
-                                    </h5>
-                                </div>
-                                <!-- accordion Content -->
-                                <div class="collapse accordion-content" id="collapseThree" data-parent="#accordion">
-                                    <div class="accordion-content-inner">
-                                        <p class="pt-4 mb-0 pb-3">
-                                            <span class="font-weight-bold">Cash On Delevary</span> -Buy Now Pay Later for all your shopping
-                                        </p>
-                                        <a (click)="onCheckOut()" class="btn btn-primary">Place order</a
-                    >
-                  </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mt-lg-0 mt-6">
-        <h6 class="font-weight-bold">Deliver to</h6>
-        <div *ngIf="locationsNumber != 0" class="mb-4">
-          <select [(ngModel)]="selectedLocation" class="form-control">
+            <div class="col-lg-4 mt-lg-0 mt-6">
+                <h6 class="font-weight-bold">Deliver to</h6>
+                <div *ngIf="locationsNumber != 0" class="mb-4">
+                    <select [(ngModel)]="selectedLocation" class="form-control">
             <option [ngValue]="0" selected disabled hidden>Choose here</option>
-            <option *ngFor="let item of locations" [ngValue]="item.id">{{item.addressName}} - {{item.zipCode}}</option>
+            <option *ngFor="let item of locations" [ngValue]="item.id">
+              {{ item.addressName }} - {{ item.zipCode }}
+            </option>
           </select>
+                </div>
+                <div *ngIf="locationsNumber == 0" class="mb-4" style="text-align: center">
+                    <p style="color: red">Please add location</p>
+                    <button (click)="goTOAddLocation()" class="btn btn-primary d-block w-100">
+            Add Location
+          </button>
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-summary-wrap">
+                        <h4>Cart</h4>
+                        <p *ngFor="let item of cartItems">
+                            {{ item.name }}*{{ item.quantity }}
+                            <span>${{ item.price * item.quantity }}</span>
+                        </p>
+                        <h2>
+                            Total <span>${{ total }}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div *ngIf="locationsNumber == 0" class="mb-4" style="text-align: center;">
-          <p style="color: red;">Please add location </p>
-          <button (click)="goTOAddLocation()" class="btn btn-primary d-block w-100">Add Location</button>
-        </div>
-        <div class="cart-summary">
-          <div class="cart-summary-wrap">
-            <h4>Cart </h4>
-            <p *ngFor="let item of cartItems ">{{item.name}}*{{item.quantity}} <span>${{item.price*item.quantity}}</span></p>
-            <h2>
-               Total <span>${{ total }}</span>
-            </h2>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>

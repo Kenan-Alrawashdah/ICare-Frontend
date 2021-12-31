@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
     <div class="card">
@@ -37,7 +36,6 @@
           <table class="table select-table">
             <thead>
               <tr>
-                <th>Order Number</th>
                 <th>City</th>
                 <th>Details</th>
                 <th>Show On Map</th>
@@ -46,9 +44,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of ordersList">
-                <td>
-                  <h6>Order#{{ item.orderId }}</h6>
-                </td>
                 <td>
                   <h6>{{ item.city }}</h6>
                 </td>
@@ -67,10 +62,7 @@
                 <td>
                   <span
                     *ngIf="item.lat != 0"
-                    data-toggle="modal"
-                    data-dismiss="modal"
-                    data-target="#address_model"
-                    (click)="ChangeMapLocation(item.lat, item.lng)"
+                    [routerLink]="['/Delivery/OrderMap/', item.lat, item.lng]"
                     style="cursor: pointer"
                   >
                     <i
@@ -143,7 +135,6 @@
               [value]="Locatins.zipCode"
             />
           </div>
-
         </div>
       </div>
       <div class="row">
@@ -183,27 +174,3 @@
     </button>
   </div>
 </ng-template>
-<div
-  class="modal clean_modal clean_modal-lg"
-  id="address_model"
-  tabindex="-1"
-  aria-labelledby="address_model"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <button
-        type="button"
-        class="close"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="modal-body" style="height: 450px; width: 100%; padding: auto">
-        <div id="map"></div>
-      </div>
-    </div>
-  </div>
-</div>
-

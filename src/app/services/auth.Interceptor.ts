@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 
-const TOKEN_HEADER_KEY = 'Authorization';    
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -29,12 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(authReq).pipe(catchError(error => {
-      // (!authReq.url.includes('auth/signin') &&)
       if (error instanceof HttpErrorResponse &&  error.status === 0) {
         return this.handle401Error(authReq, next);
       }
-
-      return throwError(error);
+        return throwError(error);
     }));
   }
 
@@ -79,7 +77,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addTokenHeader(request: HttpRequest<any>, token: string) {
     
-    return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer '+token) });
+    return request.clone({ headers: request.headers.set('Authorization', 'Bearer '+token)});
   }
 }
 

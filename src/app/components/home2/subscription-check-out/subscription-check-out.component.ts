@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { switchMap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token.service';
 import { HomeService } from '../home.service';
 import { CartItemModel } from '../models/cartItem.model';
 import { CreateOrderModel } from '../models/CreateOrder.model';
@@ -17,10 +20,7 @@ declare let paypal: any;
 })
 export class SubscriptionCheckOutComponent implements OnInit {
   id: string;
-  SType:SubscriptionTypeModel
-
-
-
+  SType: SubscriptionTypeModel;
 
   CheckOutForm: FormGroup;
   cartItems: CartItemModel[];
@@ -32,7 +32,9 @@ export class SubscriptionCheckOutComponent implements OnInit {
     private homeService: HomeService,
     private router: Router,
     private toastr: ToastrService,
-    private _Activatedroute: ActivatedRoute
+    private _Activatedroute: ActivatedRoute,
+    private authService: AuthService,
+    private tokenService: TokenStorageService
   ) {
     this.id = this._Activatedroute.snapshot.paramMap.get('id');
     this.CheckOutForm = new FormGroup({
@@ -44,27 +46,50 @@ export class SubscriptionCheckOutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetSubscriptionType()
+    let role = this.tokenService.GetRole(); 
+    console.log(role)
+    if(role == 'Subscriber')
+    {
+      this.toastr.warning('Your are already have subscription');
+      this.router.navigate(['']);
+    }
+    this.GetSubscriptionType();
   }
+
+
 
   async GetSubscriptionType() {
-    await this.homeService.GetSubscriptionTypeById(this.id).toPromise()
-    .then(
-      (response)=>{
-        console.log(response)
-        this.SType = response.data
-        if(response.data.onSale)
-        {
-          this.total = response.data.priceAfterSale
-        }else{
-          this.total = response.data.price
+    await this.homeService
+      .GetSubscriptionTypeById(this.id)
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        this.SType = response.data;
+        if (response.data.onSale) {
+          this.total = response.data.priceAfterSale;
+        } else {
+          this.total = response.data.price;
         }
-        console.log(this.SType)
-      }
-    )
+        console.log(this.SType);
+      });
   }
 
-  onCheckOut() {}
+  async onCheckOut() {
+    await this.homeService.Subscribe(this.id).toPromise().then((response) => {
+      if (response.success == true) {
+        let token = this.tokenService.getToken();
+        let refreshToken = this.tokenService.getRefreshToken();
+        this.authService
+          .refreshToken(token, refreshToken)
+          .subscribe((response) => {
+            this.tokenService.saveToken(response['data']['accessToken']);
+            this.tokenService.saveRefreshToken(response['data']['refreshToken'] );
+            this.toastr.success('payment has been placed');
+            this.router.navigate(['/Home/Thanks'])
+          });
+      }
+    });
+  }
 
   paypalConfig = {
     env: 'sandbox',
@@ -91,7 +116,7 @@ export class SubscriptionCheckOutComponent implements OnInit {
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
-        console.log('sussecc');
+        this.onCheckOut()
       });
     },
   };

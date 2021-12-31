@@ -1,34 +1,53 @@
 <div class="ml-0 ml-md-4">
-    <div class="d-none d-md-block">
-        <div class="row mb-md-5">
-            <div class="col">
-                <h5 class="mb-1 text-white">Address</h5>
-            </div>
-            <div class="col-auto">
-                <a class="btn btn-primary btn-sm" (click)="goToAddAddress()">
-                      Add New Address</a>
-            </div>
-        </div>
+  <div class="d-none d-md-block" style="margin-bottom: 25px">
+    <div class="row mb-md-5">
+      <div class="col">
+        <h3 style="color: #a1c8ff" class="mb-1">Address</h3>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-primary btn-sm" (click)="goToAddAddress()">
+          Add New Address</a
+        >
+      </div>
     </div>
-    <div class="pt-5"></div>
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div *ngFor="let item of LocationList" class="col-lg-6" style="margin-bottom: 15px;">
-                    <div class="address-block bg-light rounded p-3">
-                        <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <a class="edit_address" routerLink="/Patient/EditAddress/{{item.id}}">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <h6>{{item.addressName}}</h6>
-                        <p class="text-muted">{{item.phoneNumber}}</p>
-                        <span class="text-muted">{{item.city}}, {{item.street}}, {{item.details}} - {{item.zipCode}}</span>
-                    </div>
-                </div>
-                <div class="col-lg-6"></div>
-            </div>
+  </div>
+  <div class="pt-5"></div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div *ngIf="LocationList.length == 0" style="width: 100%">
+          <div class="alert alert-info" role="alert">
+            You don't have addresses to show!
+          </div>
         </div>
+        <div
+          *ngFor="let item of LocationList"
+          class="col-lg-6"
+          style="margin-bottom: 15px"
+        >
+          <div class="address-block bg-light rounded p-3">
+            <a
+              class="edit_address"
+              routerLink="/Patient/EditAddress/{{ item.id }}"
+            >
+              <i class="ti-pencil-alt"></i>
+            </a>
+            <a
+              class="delete_address"
+              (click)="DeleteAddress(item.id, item.addressName)"
+            >
+              <i class="ti-trash"></i>
+            </a>
+            <h6>{{ item.addressName }}</h6>
+            <p class="text-muted">{{ item.phoneNumber }}</p>
+            <span class="text-muted"
+              >{{ item.city }}, {{ item.street }}, {{ item.details }} -
+              {{ item.zipCode }}</span
+            >
+          </div>
+        </div>
+        <div class="col-lg-6"></div>
+      </div>
     </div>
+  </div>
 </div>

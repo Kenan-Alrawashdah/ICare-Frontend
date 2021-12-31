@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-admin2',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Admin2Component implements OnInit {
 
-  constructor() { }
-
+  name:string ;
+  constructor(
+    private tokenService:TokenStorageService
+  ) { 
+  }
+  
   ngOnInit(): void {
+    this.name=this.tokenService.getUser();
   }
 
+  logOut()
+  {
+    this.tokenService.signOut();
+  }
 }

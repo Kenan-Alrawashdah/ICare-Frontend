@@ -1,9 +1,26 @@
-@media screen and (min-width: 993px) and (max-width: 2000px) {
-    #SmSearch2 {
-        display: none;
-    }
+@media (min-width: 993px) {
+  #SmSearch2 {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 550px) and (max-width: 876px) {
+  .product.list-view .product-info {
+    position: relative;
+    width: auto;
+    flex: 0 0 52%;
+    max-width: auto;
+    padding-left: 30px;
+  }
+}
+@media (max-width: 561px) {
+  .ss {
+    margin: 5px 5px 5px 76px;
+  }
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
 }
 
-a {
-    cursor: pointer;
-}
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css");

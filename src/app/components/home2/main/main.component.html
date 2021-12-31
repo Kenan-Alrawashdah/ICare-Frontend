@@ -1,261 +1,229 @@
+<mdb-carousel id="phone" [controls]="true" [indicators]="true" [dark]="true">
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/m2.png"
+      class="d-block w-100"
+      alt="Motorbike Smoke"
+    />
+    <div class="carousel-caption d-none d-md-block"></div>
+  </mdb-carousel-item>
+
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/m1.png"
+      class="d-block w-100"
+      alt="Mountaintop"
+    />
+  </mdb-carousel-item>
+
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/m3.png"
+      class="d-block w-100"
+      alt="Woman Reading a Book"
+    />
+  </mdb-carousel-item>
+</mdb-carousel>
+
+<mdb-carousel id="web" [controls]="true" [indicators]="true" [dark]="true">
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/s2.png"
+      class="d-block w-100"
+      alt="Motorbike Smoke"
+    />
+    <div class="carousel-caption d-none d-md-block"></div>
+  </mdb-carousel-item>
+
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/s1.png"
+      class="d-block w-100"
+      alt="Mountaintop"
+    />
+  </mdb-carousel-item>
+
+  <mdb-carousel-item>
+    <img
+      src="../../../../assets/img/s3.png"
+      class="d-block w-100"
+      alt="Woman Reading a Book"
+    />
+  </mdb-carousel-item>
+</mdb-carousel>
+
 <!-- Main image -->
 
-<carousel style="z-index: 100" [cellsToShow]="1" [images]="images" [height]="400">
-</carousel>
+<!-- <carousel style="z-index: 100" [cellsToShow]="1" [images]="images" [height]="400">
+</carousel> -->
 
 <!-- Category -->
 
-<div id="Category">
-    <div class="pt-5">
-        <div class="container theme-container">
-            <h1 style="text-align: center;">Drug Categories</h1>
-            <div class="row" id="LgCarousel">
-                <carousel style="z-index: 100;width: 100%;" [cellsToShow]=3 [cellWidth]="300">
-                    <div *ngFor="let item of Categories" class="carousel-cell">
-                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
-                            <div class="product-img">
-                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
-                                <div class="cat-info">
-                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
-                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+<div
+  id="Category"
+  style="
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 15px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  "
+>
+  <div class="pt-5">
+    <div class="container theme-container">
+      <div class="row" id="LgCarousel">
+        <carousel
+          style="z-index: 100; width: 100%"
+          [cellsToShow]="3"
+          [cellWidth]="300"
+        >
+          <div *ngFor="let item of Categories" class="carousel-cell">
+            <div
+              class="product-categories-grid"
+              style="margin: auto; width: 350px"
+            >
+              <div class="product-img">
+                <img
+                  src="http://localhost:5000/images/{{ item.imagePath }}"
+                  style="position: absolute"
+                  class=""
+                  alt=""
+                />
+                <div class="cat-info">
+                  <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">
+                    {{ item.name }}
+                  </h5>
+                  <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
                     View All <i class="ti-arrow-right"></i>
                   </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </carousel>
-
+                </div>
+              </div>
             </div>
-            <div class="row" id="MdCarousel">
-                <carousel style="z-index: 100;" [cellsToShow]=2 [cellWidth]='300'>
-                    <div *ngFor="let item of Categories" class="carousel-cell">
-                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
-                            <div class="product-img">
-                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
-                                <div class="cat-info">
-                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
-                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+          </div>
+        </carousel>
+      </div>
+      <div class="row" id="MdCarousel">
+        <carousel style="z-index: 100" [cellsToShow]="2" [cellWidth]="300">
+          <div *ngFor="let item of Categories" class="carousel-cell">
+            <div
+              class="product-categories-grid"
+              style="margin: auto; width: 350px"
+            >
+              <div class="product-img">
+                <img
+                  src="http://localhost:5000/images/{{ item.imagePath }}"
+                  style="position: absolute"
+                  class=""
+                  alt=""
+                />
+                <div class="cat-info">
+                  <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">
+                    {{ item.name }}
+                  </h5>
+                  <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
                     View All <i class="ti-arrow-right"></i>
                   </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </carousel>
-
+                </div>
+              </div>
             </div>
-            <div class="row" id="SmCarousel">
-                <carousel style="z-index: 100;" [cellsToShow]=1 [cellWidth]='300'>
-                    <div *ngFor="let item of Categories" class="carousel-cell">
-                        <div class=" product-categories-grid" style="margin: auto; width: 350px">
-                            <div class="product-img">
-                                <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
-                                <div class="cat-info">
-                                    <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
-                                    <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
-                        View All <i class="ti-arrow-right"></i>
-                      </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </carousel>
-
+          </div>
+        </carousel>
+      </div>
+      <div class="row" id="SmCarousel">
+        <carousel style="z-index: 100" [cellsToShow]="1" [cellWidth]="300">
+          <div *ngFor="let item of Categories" class="carousel-cell">
+            <div
+              class="product-categories-grid"
+              style="margin: auto; width: 350px"
+            >
+              <div class="product-img">
+                <img
+                  src="http://localhost:5000/images/{{ item.imagePath }}"
+                  style="position: absolute"
+                  class=""
+                  alt=""
+                />
+                <div class="cat-info">
+                  <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">
+                    {{ item.name }}
+                  </h5>
+                  <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
+                    View All <i class="ti-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
             </div>
-        </div>
-
+          </div>
+        </carousel>
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Drugs -->
 
-<!-- for mobile -->
-<!-- <div id="smallCarousel">
-    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" [interval]="200000" [keyboard]="true" [pauseOnHover]="true" [wrap]="true">
-        <ng-template *ngFor="let item of Categories" ngbSlide>
-            <div class="carousel-cell">
-                <div class=" product-categories-grid" style="margin: auto; width: 350px">
-                    <div class="product-img">
-                        <img src="http://localhost:5000/images/{{item.imagePath}}" style="position: absolute;" class="" alt="" />
-                        <div class="cat-info">
-                            <h5 (click)="goToCategoryDrugs(item.id)" class="cat-name">{{item.name}}</h5>
-                            <a (click)="goToCategoryDrugs(item.id)" class="cat-link">
-                View All <i class="ti-arrow-right"></i>
-              </a>
-                        </div>
-                    </div>
+<div
+  class="pt-5"
+  style="
+    background-image: url(../../../../assets/img/d1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: -100px;
+  "
+>
+  <div class="container-fluid theme-container">
+    <div class="row mb-4">
+      <div class="col">
+        <h5 class="product-heading">Sum of our products</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        *ngFor="let item of RandomDrugsList | slice: 0:12"
+        class="col-md-3 col-sm-4 col-6"
+      >
+        <div class="product">
+          <a (click)="GoToDrug(item.id)" class="product-img">
+            <img
+              src="http://localhost:5000/images/{{ item.picturePath }}"
+              class=""
+              alt=""
+            />
+          </a>
+          <div class="product-info">
+            <h3
+              style="
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 23px;
+                height: 80px !important;
+                cursor: pointer;
+              "
+            >
+              <a style="line-height: normal" (click)="GoToDrug(item.id)">{{
+                item.name
+              }}</a>
+            </h3>
+            <div class="product-value">
+              <div class="row">
+                <div
+                  class="col-4 current-price"
+                  style="display: flex; align-items: center"
+                >
+                  ${{ item.price }}
                 </div>
+                <a
+                  class="col-6 btn btn-rounded btn-primary"
+                  (click)="CheckItemIfInCart(item.id)"
+                  ><i class="fa fa-shopping-cart"></i> Add To Cart</a
+
+                >
+              </div>
             </div>
-        </ng-template>
-    </ngb-carousel>
-</div> -->
-
-
-
-<!-- About -->
-<main>
-    <section class="py-5 py-md-8 overlay background-center text-white mt-10" data-overlay="6" data-overlay-color="dark" style="background-image: url(assets/img/extra/page-about.jpg)">
-        <div class="container">
-            <div class="header-align text-center">
-                <h1 class="h1 mb-1">Building better teams</h1>
-                <span>An opportunity to introduce the major benefits of your product and
-          set the scene for what's to come
-        </span>
-            </div>
+          </div>
         </div>
-    </section>
-    <section class="pt-5">
-        <div class="container">
-            <h2 class="mb-3">Know About our Company.</h2>
-            <div class="row">
-                <div class="col-lg-7 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="m-b20 m-t10">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ipsa molestias qui perspiciatis consectetur voluptas ratione quas optio natus Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos mollitia architecto voluptatum. Lorem ipsum,
-                                    dolor sit amet consectetur adipisicing elit.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list list-icon mb-lg-0">
-                                <li>Lorem ipsum dolor sit amet</li>
-                                <li>consectetuer adipiscing elit. Aenean</li>
-                                <li>commodo ligula eget dolor. Aenean</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul class="list list-icon mb-lg-0">
-                                <li>Lorem ipsum dolor sit amet</li>
-                                <li>consectetuer adipiscing elit. Aenean</li>
-                                <li>commodo ligula eget dolor. Aenean</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="feature-box icon-left mb-3">
-                        <div class="icon-box-info">
-                            <h5>01. Discussion</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adi pisicing elit. Id, quas? Ratione magnam pariatur consequuturn.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="feature-box icon-left">
-                        <div class="icon-box-info mb-lg-0">
-                            <h5>02. Making</h5>
-                            <p class="mb-lg-0">
-                                Lorem ipsum dolor sit amet consectetur adi pisicing elit. Id, quas? Ratione magnam pariatur consequuturn.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<!--Contact  -->
-<main>
-    <section class="py-5 py-md-8 overlay background-center text-white mt-10" data-overlay="6" data-overlay-color="dark" style="background-image: url(assets/img/extra/page-about.jpg)">
-        <div class="container">
-            <div class="header-align">
-                <h1 class="h1 mb-1">Contact Us</h1>
-                <span>Lorem ipsum dolor sit amet, adipisicing elit. </span>
-            </div>
-        </div>
-    </section>
-    <section class="pt-5 pt-md-7">
-        <div class="container">
-            <div class="row pt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="contact-form">
-                        <form class="form" [formGroup]="ContactForm" (ngSubmit)="onSubmit()">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="text-left m-b20">
-                                        <div class="form-message"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Name*" name="Name" type="text" formControlName="userName" />
-                                        <small class="text-danger" *ngIf="
-                        ContactForm.get('userName').hasError('required') &&
-                        (ContactForm.controls['userName'].dirty ||
-                          ContactForm.controls['userName'].touched)
-                      ">
-                      This field is required.
-                    </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Email*" formControlName="userEmail" type="text" />
-                                    </div>
-                                    <small class="text-danger" *ngIf="
-                      ContactForm.get('userEmail').hasError('required') &&
-                      (ContactForm.controls['userEmail'].dirty ||
-                        ContactForm.controls['userEmail'].touched)
-                    ">
-                    This field is required.
-                  </small>
-                                    <small class="text-danger" *ngIf="
-                      ContactForm.get('userEmail').hasError('email') &&
-                      (ContactForm.controls['userEmail'].dirty ||
-                        ContactForm.controls['userEmail'].touched)
-                    ">
-                    This email is invalid.
-                  </small>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Subject*" formControlName="userSubject" type="text" />
-                                        <small class="text-danger" *ngIf="
-                        ContactForm.get('userSubject').hasError('required') &&
-                        (ContactForm.controls['userSubject'].dirty ||
-                          ContactForm.controls['userSubject'].touched)
-                      ">
-                      This field is required.
-                    </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Phone" formControlName="userPhone" type="text" />
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="4" formControlName="userMessage" placeholder="Text Here*"></textarea>
-                                        <small class="text-danger" *ngIf="
-                        ContactForm.get('userMessage').hasError('required') &&
-                        (ContactForm.controls['userMessage'].dirty ||
-                          ContactForm.controls['userMessage'].touched)
-                      ">
-                      This field is required.
-                    </small>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="text-center">
-                                            <button class="btn btn-primary" type="submit" [disabled]="ContactForm.invalid">
-                        SEND MESSAGE
-                      </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,31 +8,34 @@ import { UserToken } from '../shared/UserToken.model';
 const AUTH_API = 'http://localhost:5000';
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    public login(email: string, password: string) {
-        const body = {
-          Email: email,
-          Password: password,
-        };
-        console.log(body)
-        return this.http.post<ApiResponseData<UserToken>>(
-            AUTH_API +'/api/Login/SignIn',
-          body
-        );
-      }
+  public login(email: string, password: string) {
+    const body = {
+      Email: email,
+      Password: password,
+    };
+    return this.http.post<ApiResponseData<UserToken>>(
+      AUTH_API + '/api/Login/SignIn',
+      body
+    );
+  }
 
-    refreshToken(token: string,refreshToken:string) {
-        return this.http.post(AUTH_API + '/Refresh', {
-          accessToken: token,
-          refreshToken : refreshToken
-        }, httpOptions);
-    }
+  refreshToken(token: string, refreshToken: string) {
+    return this.http.post(
+      AUTH_API + '/Refresh',
+      {
+        accessToken: token,
+        refreshToken: refreshToken,
+      },
+      httpOptions
+    );
+  }
 }

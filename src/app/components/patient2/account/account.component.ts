@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token.service';
 import { PatientService } from '../patient.service';
 import { Patient2Component } from '../patient2.component';
 
@@ -17,7 +19,9 @@ export class AccountComponent implements OnInit {
   constructor(
     private patientServices:PatientService,
     private patientComponent:Patient2Component,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private authService: AuthService,
+    private tokenService: TokenStorageService
   ) {
     this.AccountForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
@@ -53,6 +57,15 @@ export class AccountComponent implements OnInit {
       data=>{
         if(data.success == true)
         {
+          let token = this.tokenService.getToken();
+          let refreshToken = this.tokenService.getRefreshToken();
+          this.authService
+            .refreshToken(token, refreshToken)
+            .toPromise()
+            .then((response) => {
+              this.tokenService.saveToken(response['data']['accessToken']);
+              this.tokenService.saveRefreshToken(response['data']['refreshToken'] );
+            });
           this.patientComponent.ngOnInit();
           this.ngOnInit();
           this.toastr.success('Data updated successfully','',{timeOut:1500})

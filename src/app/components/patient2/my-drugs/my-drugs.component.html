@@ -1,8 +1,8 @@
 <div class="ml-0 ml-md-4">
-    <div class="d-none d-md-block">
-        <div class="row mb-md-5">
+    <div class=" d-md-block">
+        <div class="row mb-md-5" style="margin-bottom: 25px;">
             <div class="col">
-                <h5 class="mb-1 text-white">My Drugs</h5>
+                <h3 style="color: #a1c8ff;" class="mb-1">Drugs Notification</h3>
 
             </div>
             <div class="col-auto">
@@ -18,13 +18,19 @@
                 <div *ngFor="let item of myDrugs" class="col-lg-6" style="margin-bottom: 15px;">
                     <div class="address-block bg-light rounded p-3">
                         <a (click)="goToEditDrug(item.id)" class="edit_address" data-toggle="modal" data-dismiss="modal" data-target="#address_model">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <i class="ti-pencil-alt" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="delete_address">
-                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        <a (click)="  deleteDrug(item.id)" class="delete_address">
+                            <i class="ti-trash text-danger"></i>
                         </a>
                         <h6>{{item.drugName}}</h6>
-                        <span class="text-muted">Expire Date: {{item.expireDate}}</span>
+                        <span *ngIf="!compare(item.expireDate)" class="text-muted">Expire Date: {{ item.expireDate | date}}</span>
+                        <div></div>
+                        <span *ngIf="compare(item.expireDate)" class="text-danger">Expire Date: {{item.expireDate | date}}  </span>
+                        <h6>
+                            On:
+                            <span class="text-muted" *ngFor="let item of item.times.slice().reverse()">{{' '+item.substring(0, 5)+'  ,'}}</span>
+                        </h6>
                     </div>
                 </div>
                 <div class="col-lg-6"></div>

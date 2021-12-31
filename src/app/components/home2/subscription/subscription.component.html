@@ -9,7 +9,7 @@
                 <div class="heading">
                     <h3>{{SubscriptionTypeList[0].name}}</h3>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p style="font-weight: 600;color: #4e97fd;">Drug reminder <br><br> drinking water reminder <br><br> manage your health reports</p>
 
                 <div class="features">
                     <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
@@ -34,7 +34,7 @@
                 <div class="heading">
                     <h3>{{SubscriptionTypeList[1].name}}</h3>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p style="font-weight: 600;color: #4e97fd;">Drug reminder <br><br> drinking water reminder <br><br> manage your health reports</p>
                 <div class="features">
                     <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
                     <h4><span class="feature">Duration</span> : <span class="value">{{SubscriptionTypeList[1].days}} Days</span></h4>
@@ -48,7 +48,7 @@
                         <h4 class="col-6">${{SubscriptionTypeList[1].priceAfterSale}}</h4>
                     </div>
                 </div>
-                <button class="btn btn-block btn-primary" type="submit">BUY NOW</button>
+                <button class="btn btn-block btn-primary" type="submit" routerLink="/Home/SubscriptionCheckOut/{{SubscriptionTypeList[1].id}}">Subscribe Now</button>
             </div>
         </div>
         <div class="col-md-5 col-lg-4">
@@ -57,7 +57,7 @@
                 <div class="heading">
                     <h3>{{SubscriptionTypeList[2].name}}</h3>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p style="font-weight: 600;color: #4e97fd;">Drug reminder <br><br> drinking water reminder <br><br> manage your health reports</p>
                 <div class="features">
                     <h4><span class="feature">Full Support</span> : <span class="value">Yes</span></h4>
                     <h4><span class="feature">Duration</span> : <span class="value">{{SubscriptionTypeList[2].days}} Days</span></h4>
@@ -71,7 +71,7 @@
                         <h4 class="col-6">${{SubscriptionTypeList[2].priceAfterSale}}</h4>
                     </div>
                 </div>
-                <button class="btn btn-block btn-outline-primary" type="submit">BUY NOW</button>
+                <button class="btn btn-block btn-outline-primary" type="submit" routerLink="/Home/SubscriptionCheckOut/{{SubscriptionTypeList[2].id}}">Subscribe Now</button>
             </div>
         </div>
     </div>

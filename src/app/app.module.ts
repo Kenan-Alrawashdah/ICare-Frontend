@@ -13,31 +13,26 @@ import { EmployeeDashboardComponent } from './components/employee-dashboard/empl
 import { EmployeeMainComponent } from './components/employee-dashboard/employee-main/employee-main.component';
 import { EmployeesInformationComponent } from './components/employee-dashboard/employees-information/employees-information.component';
 import { DeliveryDashboardComponent } from './components/delivery-dashboard/delivery-dashboard.component';
-import { DeliveryMainComponent } from './components/delivery-dashboard/delivery-main/delivery-main.component';
 import { Home2Component } from './components/home2/home2.component';
 import { Home2Module } from './lazyLoad/home2/home2.module';
 import { DeliveryDashboardModule } from './lazyLoad/delivery-dashboard/delivery-dashboard.module';
 import { EmployeeDashboardModule } from './lazyLoad/employee-dashboard/employee-dashboard.module';
-import { PharmacerDashboardComponent } from './components/pharmacer-dashboard/pharmacer-dashboard.component';
-import { PharmacerMainComponent } from './components/pharmacer-dashboard/pharmacer-main/pharmacer-main.component';
-import { PharmacerCategorieComponent } from './components/pharmacer-dashboard/pharmacer-categorie/pharmacer-categorie.component';
-import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
 import { Admin2Component } from './components/admin2/admin2.component';
 import { Admin2Module } from './lazyLoad/admin2/admin2.module';
 import { PharmacistComponent } from './components/pharmacist/pharmacist.component';
 import { PharmacistModule } from './lazyLoad/pharmacist/pharmacist.module';
-import { AvilableOrdersComponent } from './components/delivery-dashboard/avilable-orders/avilable-orders.component';
-import { EditAddressComponent } from './components/patient2/edit-address/edit-address.component';
-import { OrderDetailsComponent } from './components/patient2/order-details/order-details.component';
-import { EditDrugComponent } from './components/patient2/edit-drug/edit-drug.component';
-import { SubscriptionComponent } from './components/home2/subscription/subscription.component';
-import { SubscriptionCheckOutComponent } from './components/home2/subscription-check-out/subscription-check-out.component';
-
-import { GetEmployeeComponent } from './components/admin2/get-employee/get-employee.component';
-
-import { DashboardComponent } from './components/admin2/dashboard/dashboard.component';
-import { NgChartsModule } from 'ng2-charts';
-
+import { PharmacistGuard } from './guards/pharmacist.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { AccountantGuard } from './guards/accountant.guard';
+import { NotEmployeeGuard } from './guards/not-employee.guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from 'angularx-social-login';
+import { DeliveryGuard } from './guards/delivery.guard';
 
 const routes: Routes = [
   {
@@ -52,6 +47,7 @@ const routes: Routes = [
       import('./lazyLoad/home2/home2-routing.module').then(
         (m) => m.Home2RoutingModule
       ),
+    canActivate: [NotEmployeeGuard],
   },
   {
     path: 'Patient',
@@ -61,7 +57,6 @@ const routes: Routes = [
         (m) => m.Patient2RoutingModule
       ),
   },
-
   {
     path: 'Delivery',
     component: DeliveryDashboardComponent,
@@ -69,6 +64,7 @@ const routes: Routes = [
       import(
         './lazyLoad/delivery-dashboard/delivery-dashboard-routing.module'
       ).then((m) => m.DeliveryDashboardRoutingModule),
+    canActivate: [DeliveryGuard],
   },
   {
     path: 'Accountant',
@@ -77,14 +73,7 @@ const routes: Routes = [
       import(
         './lazyLoad/employee-dashboard/employee-dashboard-routing.module'
       ).then((m) => m.EmployeeDashboardRoutingModule),
-  },
-  {
-    path: 'Pharmacer',
-    component: PharmacerDashboardComponent,
-    loadChildren: () =>
-      import(
-        './lazyLoad/pharmacer-dashboard/pharmacer-dashboard-routing.module'
-      ).then((m) => m.PharmacerDashboardRoutingModule),
+    canActivate: [AccountantGuard],
   },
   {
     path: 'Admin',
@@ -93,6 +82,7 @@ const routes: Routes = [
       import('./lazyLoad/admin2/admin2-routing.module').then(
         (m) => m.Admin2RoutingModule
       ),
+    canActivate: [AdminGuard],
   },
   {
     path: 'pharmacist',
@@ -101,28 +91,19 @@ const routes: Routes = [
       import('./lazyLoad/pharmacist/pharmacist-routing.module').then(
         (m) => m.PharmacistRoutingModule
       ),
+    canActivate: [PharmacistGuard],
   },
 ];
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeDashboardComponent,
-    EmployeeMainComponent,
-    EmployeesInformationComponent,
     //-------
     DeliveryDashboardComponent,
-    DeliveryMainComponent,
     Patient2Component,
     Home2Component,
-    PharmacerDashboardComponent,
-    PharmacerMainComponent,
-    PharmacerCategorieComponent,
-    DeliveryOrdersComponent,
     Admin2Component,
     PharmacistComponent,
-    AvilableOrdersComponent,
-    GetEmployeeComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -140,10 +121,31 @@ const routes: Routes = [
     //--------
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-
+    NgxSpinnerModule,
+    SocialLoginModule,
   ],
 
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1339833275-e2bv8cv22feq8fojnr4fnqre8gcif5es.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1291083414713212'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,10 +8,15 @@ import { TokenStorageService } from 'src/app/services/token.service';
   styleUrls: ['./employee-dashboard.component.css'],
 })
 export class EmployeeDashboardComponent implements OnInit {
-  constructor(private tokenService: TokenStorageService) {}
-
-  ngOnInit(): void {}
-  logout() {
+  name:string ;
+  constructor(
+    private tokenService:TokenStorageService
+  ) { 
+  }
+  ngOnInit(): void {
+    this.name=this.tokenService.getUser();
+  }
+  logOut() {
     this.tokenService.signOut();
   }
 }

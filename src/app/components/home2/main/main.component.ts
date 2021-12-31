@@ -2,68 +2,98 @@ import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '../home.service';
+import { Home2Component } from '../home2.component';
 import { CategoryModel } from '../models/Category.model';
+import { DrugModel } from '../models/Drug.model';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-
-  images = [
-    {path: 'assets/img/slider/slider-1.svg'},
-    {path: 'assets/img/slider/slider-1.svg'},
-    {path: 'assets/img/slider/slider-1.svg'},
-
-]
-  Categories:CategoryModel[];
-   constructor(
+  images: string[] = [
+    'assets/img/slider/slider-1.svg',
+    'assets/img/slider/slider-1.svg',
+    'assets/img/slider/slider-1.svg',
+  ];
+  RandomDrugsList: DrugModel[];
+  Categories: CategoryModel[];
+  constructor(
     private homeService: HomeService,
     private Toastr: ToastrService,
-    private router:Router
-  ) {
-    
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private homeComponent:Home2Component
+  ) {}
+
+  async ngOnInit() {
+    this.spinner.show();
+    await this.getAllCategories();
+    this.getRangomDrugs();
+  }
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
   }
 
-   async ngOnInit() {
-    await this.getAllCategories();
-  }
-  
-  ContactForm = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    userEmail: new FormControl('', [Validators.required, Validators.email]),
-    userSubject: new FormControl('', [Validators.required]),
-    userPhone: new FormControl(''),
-    userMessage: new FormControl('', [Validators.required]),
-  });
-  onSubmit() {
-    this.homeService.AddTestimonial(this.ContactForm).subscribe((data) => {
-      if (data.success) {
-        this.Toastr.success('success', 'Testimonial');
-        this.ContactForm.reset();
-      } else {
-        this.Toastr.error(data.errors.toString());
-      }
+  getRangomDrugs() {
+    this.homeService.GetRandomDrugs().subscribe((response) => {
+      this.RandomDrugsList = response.data;
     });
   }
 
-    async getAllCategories(){
-    await this.homeService.GetAllCategory().toPromise().
-    then(
-      (response)=>{
-        this.Categories = response.data['categories']
-      }
-    )
-
+  async getAllCategories() {
+    await this.homeService
+      .GetAllCategory()
+      .toPromise()
+      .then((response) => {
+        this.Categories = response.data['categories'];
+      });
   }
 
-  public goToCategoryDrugs(id:number){
+  public goToCategoryDrugs(id: number) {
     this.homeService.CategoryId = id;
-   this.router.navigate(['Home/Drugs'])
+    this.homeService.CategoryName = this.Categories.find(
+      (c) => c.id == id
+    ).name;
+    this.router.navigate(['Home/Drugs']);
   }
-  
 
+  public GoToDrug(id: number) {
+    this.homeService.DrugId = id;
+    this.router.navigate(['Home/Drug']);
+  }
+  async CheckItemIfInCart(id: number) {
+    console.log('sadfsadf');
+    await this.homeService
+      .CheckItemIfInCart(id)
+      .toPromise()
+      .then((response) => {
+        if (response.success == true) {
+          this.addToCart(id);
+        } else {
+          this.Toastr.warning(response.errors[0], '', {
+            timeOut: 2000,
+          });
+        }
+      });
+  }
+
+  addToCart(id: number) {
+    this.homeService.AddToCart(id, 1).subscribe((data) => {
+      if (data.success == true)
+      {
+        this.homeComponent.ngOnInit();
+        this.Toastr.success('Item added successfully', '', {
+          timeOut: 2000,
+        });
+      }
+
+    });
+  }
 }

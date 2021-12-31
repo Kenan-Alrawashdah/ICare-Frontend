@@ -7471,24 +7471,27 @@ a.close.disabled {
 .carousel-control-next {
     position: absolute;
     top: 0;
+    margin-top: 20%;
+    height: 15%;
     bottom: 0;
     z-index: 1;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 15%;
     color: #fff;
     text-align: center;
-    opacity: 0.5;
+    vertical-align: middle;
+    opacity: 0.3;
     -webkit-transition: opacity 0.15s ease;
     -o-transition: opacity 0.15s ease;
     transition: opacity 0.15s ease;
+}
+
+.visually-hidden {
+    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -7507,15 +7510,17 @@ a.close.disabled {
     color: #fff;
     text-decoration: none;
     outline: 0;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 
 .carousel-control-prev {
+    display: none;
     left: 0;
 }
 
 .carousel-control-next {
     right: 0;
+    display: none;
 }
 
 .carousel-control-prev-icon,
@@ -7552,7 +7557,7 @@ a.close.disabled {
     list-style: none;
 }
 
-.carousel-indicators li {
+.carousel-indicators button {
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     -webkit-box-flex: 0;
@@ -7566,8 +7571,6 @@ a.close.disabled {
     cursor: pointer;
     background-color: #fff;
     background-clip: padding-box;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
     opacity: 0.5;
     -webkit-transition: opacity 0.6s ease;
     -o-transition: opacity 0.6s ease;
@@ -22760,13 +22763,6 @@ select:not(.ignore) {
         position: relative;
         opacity: 0.8;
     }
-    .mobile-header .menu-sidebar .mobileMenuLinks ul li a:after {
-        content: "\f105";
-        font: normal normal normal 14px/1 FontAwesome;
-        position: absolute;
-        right: 20px;
-        top: 12px;
-    }
     .mobile-header .menu-sidebar .mobileMenuLinks h6 {
         padding: 10px 20px;
         color: #343a40;
@@ -22789,7 +22785,8 @@ select:not(.ignore) {
 .search-product {
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 390px;
+    overflow: scroll;
     left: 0;
     right: 0;
     z-index: 999999;

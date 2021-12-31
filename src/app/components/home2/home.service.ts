@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Constants } from 'src/app/Constants/constants';
 import { ApiResponseData } from 'src/app/shared/api-response.model';
+import { UserToken } from 'src/app/shared/UserToken.model';
 import { CartItemModel } from './models/cartItem.model';
 import { CategoryModel } from './models/Category.model';
 import { CreateOrderModel } from './models/CreateOrder.model';
@@ -10,18 +11,20 @@ import { DrugModel } from './models/Drug.model';
 import { Forgotpassword } from './models/Forgotpassword.model';
 import { GetAllDrugs } from './models/getAllDrugs.model';
 import { LocationModel } from './models/location.model';
+import { NotificationModel } from './models/Notification.model';
+import { Registration } from './models/registration.model';
 import { SearchModel } from './models/search.model';
 import { SubscriptionTypeModel } from './models/SubscriptionType.model';
-import { UserToken } from './models/UserToken';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
   constructor(private httpClient: HttpClient) {}
   list: SearchModel[];
-  CategoryId:number=-1 ;
-  DrugId:number=-1;
+  CategoryId: number = -1;
+  DrugId: number = -1;
+  CategoryName: string;
 
   public GetDrugByNameSearch(search: string) {
     const body = {
@@ -46,6 +49,7 @@ export class HomeService {
       fp
     );
   }
+
   public register(
     fname: string,
     lname: string,
@@ -62,13 +66,27 @@ export class HomeService {
     };
 
     return this.httpClient.post<ApiResponseData<UserToken>>(
-      Constants.baseURL+
-      'User/PatientRegistration',
+      Constants.baseURL + 'User/PatientRegistration',
       body
     );
-
   }
-
+  public LoginAndRegistrationUsingSocial(
+    fname: string,
+    lname: string,
+    email: string
+  ) {
+    const registration = new Registration();
+    registration.email = email;
+    registration.firstName = fname;
+    registration.lastName = lname;
+    registration.password = 'Q!qwe123';
+    registration.phoneNumber = '0777777777';
+    console.log(registration);
+    return this.httpClient.post<ApiResponseData<UserToken>>(
+      Constants.baseURL + 'User/PatientRegistrationUsingSocial',
+      registration
+    );
+  }
   public AddTestimonial(form: FormGroup) {
     return this.httpClient.post<ApiResponseData>(
       Constants.baseURL + 'Testimonial/AddNewTestimonial',
@@ -76,61 +94,108 @@ export class HomeService {
     );
   }
 
-  public GetAllCategory(){
-    return this.httpClient.get<ApiResponseData<CategoryModel[]>>(Constants.baseURL+'Admin/Category/GetAllDrugCategories');
+  public GetAllCategory() {
+    return this.httpClient.get<ApiResponseData<CategoryModel[]>>(
+      Constants.baseURL + 'Admin/Category/GetAllDrugCategories'
+    );
   }
 
-  public GetAllCategoryDrugs(){
-    return this.httpClient.get<ApiResponseData<DrugModel[]>>(Constants.baseURL+'Drugs/GetCategoryDrugs/'+this.CategoryId);
+  public GetAllCategoryDrugs() {
+    return this.httpClient.get<ApiResponseData<DrugModel[]>>(
+      Constants.baseURL + 'Drugs/GetCategoryDrugs/' + this.CategoryId
+    );
   }
 
-  public GetDrug(){
-    return this.httpClient.get<ApiResponseData<DrugModel>>(Constants.baseURL+'Drugs/GetDrugById/'+this.DrugId);
+  public GetDrug() {
+    return this.httpClient.get<ApiResponseData<DrugModel>>(
+      Constants.baseURL + 'Drugs/GetDrugById/' + this.DrugId
+    );
   }
 
-  public AddToCart(id:number,Quantity:number){
-    return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Carts/AddDrugToCategory',{'drugId':id,'Quantity':Quantity})
+  public AddToCart(id: number, Quantity: number) {
+    return this.httpClient.post<ApiResponseData>(
+      Constants.baseURL + 'Carts/AddDrugToCategory',
+      { drugId: id, Quantity: Quantity }
+    );
   }
 
-  public GetCartItems(){
-    return this.httpClient.get<ApiResponseData<CartItemModel[]>>(Constants.baseURL+'Carts/GetCartItems');
+  public GetCartItems() {
+    return this.httpClient.get<ApiResponseData<CartItemModel[]>>(
+      Constants.baseURL + 'Carts/GetCartItems'
+    );
   }
 
-  public DeleteCartItem(id:number){
-    return this.httpClient.delete<ApiResponseData>(Constants.baseURL+'Carts/DeleteCartItem/'+id);
+  public DeleteCartItem(id: number) {
+    return this.httpClient.delete<ApiResponseData>(
+      Constants.baseURL + 'Carts/DeleteCartItem/' + id
+    );
   }
 
-  public CheckItemIfInCart(id:number){
-    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/CheckItemIfInCart/'+id);
+  public CheckItemIfInCart(id: number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Carts/CheckItemIfInCart/' + id
+    );
   }
 
-  public AddQuantity(id:number){
-    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/AddQuantity/'+id);
+  public AddQuantity(id: number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Carts/AddQuantity/' + id
+    );
   }
 
-  public MinusQuantity(id:number){
-    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Carts/MinusQuantity/'+id);
+  public MinusQuantity(id: number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Carts/MinusQuantity/' + id
+    );
   }
 
-  public GetUserLocations(){
-    return this.httpClient.get<ApiResponseData<LocationModel[]>>(Constants.baseURL+'Patient/GetUserLocations');
+  public ChangeQuantity(id: number, Quantity:number) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Carts/ChangeQuantity/' + id+"&"+Quantity
+    );
   }
 
-  public createOrder(body:CreateOrderModel){
-    return this.httpClient.post<ApiResponseData>(Constants.baseURL+'Orders/CreateOrder',body);
+  public GetUserLocations() {
+    return this.httpClient.get<ApiResponseData<LocationModel[]>>(
+      Constants.baseURL + 'Patient/GetUserLocations'
+    );
   }
 
-  public GetSubscriptionType()
-  {
-    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel[]>>(Constants.baseURL + 'Subscription/GetTypes/');
+  public createOrder(body: CreateOrderModel) {
+    return this.httpClient.post<ApiResponseData>(
+      Constants.baseURL + 'Orders/CreateOrder',
+      body
+    );
   }
 
-  public GetSubscriptionTypeById(id:string)
-  {
-    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel>>(Constants.baseURL + 'Subscription/GetSubscriptionById/'+id);
+  public GetSubscriptionType() {
+    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel[]>>(
+      Constants.baseURL + 'Subscription/GetTypes/'
+    );
   }
 
+  public GetSubscriptionTypeById(id: string) {
+    return this.httpClient.get<ApiResponseData<SubscriptionTypeModel>>(
+      Constants.baseURL + 'Subscription/GetSubscriptionById/' + id
+    );
+  }
 
-  
+  public Subscribe(id: string) {
+    return this.httpClient.get<ApiResponseData>(
+      Constants.baseURL + 'Subscription/Subscribe/' + id
+    );
+  }
 
+  public GetNotifications(date) {
+    return this.httpClient.post<ApiResponseData<NotificationModel[]>>(
+      Constants.baseURL + 'Patient/GetUserNotifications',
+      { date: date }
+    );
+  }
+
+  public GetRandomDrugs() {
+    return this.httpClient.get<ApiResponseData<DrugModel[]>>(
+      Constants.baseURL + 'Drugs/GetRandomdrugs'
+    );
+  }
 }

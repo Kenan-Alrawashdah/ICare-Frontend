@@ -21,7 +21,7 @@
     <div class="accounnt_body">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-lg-4 col-md-4 col-12">
+                <div class="col-lg-4 col-md-4 col-12" style="margin-bottom: 35px;">
                     <nav class="navbar navbar-expand-md mb-4 mb-lg-0 sidenav">
                         <!-- Menu -->
                         <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Sidebar Menu</a>
@@ -60,16 +60,16 @@
                                                 class="fa fa-lock"></i>Change Password</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="./MyDrugs"><i class="fas fa-capsules"></i>
-                                            Drugs Notification</a>
+                                        <a class="nav-link" style="color: goldenrod;" routerLink="./MyDrugs"><i class="fas fa-capsules"></i>
+                                            Drugs Notification  <i class="ti-crown"></i></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="./Water2"><i
-                                                class="fas fa-tint" ></i> Drinking Water Notification</a>
+                                        <a class="nav-link" style="color: goldenrod;" routerLink="./WaterNotification"><i
+                                                class="fas fa-tint" ></i> Drinking Water Notification  <i class="ti-crown"></i></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" routerLink="/Patient/Account/Health-Report"><i
-                                                class="fas fa-file-medical"></i> Add Health Report</a>
+                                        <a style="color: goldenrod;" class="nav-link" routerLink="/Patient/HealthReport"><i
+                                                class="fas fa-file-medical"></i> Health Report  <i class="ti-crown"></i></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" routerLink="./Address"><i class="fa fa-address-book"></i>
@@ -88,7 +88,7 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-lg-8 col-md-8 col-12">
+                <div class="col-lg-8 col-md-8 col-12" style="margin-bottom: 35px;">
                     <router-outlet></router-outlet>
                 </div>
             </div>

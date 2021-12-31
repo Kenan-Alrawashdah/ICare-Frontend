@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { DashboardService } from 'src/app/shared/Delivery/dashboard.service';
 import { ReservationAvailableCount } from 'src/app/shared/Delivery/reservation-available-count.model';
 import { PlacedLocationModel } from '../model/placedLocation.model';
@@ -19,27 +21,15 @@ export class AvilableOrdersComponent implements OnInit {
 
   NumberOfOrders: number;
 
-  ds: google.maps.DirectionsService;
-  dr: google.maps.DirectionsRenderer;
-  source: google.maps.LatLngLiteral;
-  destination: google.maps.LatLngLiteral;
-
-
   constructor(
     private deliveryService: DeliveryService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getLocation();
-
-
-    this.ds = new google.maps.DirectionsService();
-    this.dr = new google.maps.DirectionsRenderer({
-      map: null,
-      suppressMarkers: true,
-    });
-
   }
 
   async getLocation() {
@@ -47,7 +37,6 @@ export class AvilableOrdersComponent implements OnInit {
       .GetPlacedOrders()
       .toPromise()
       .then((response) => {
-
         this.ordersList = response.data;
         console.log(this.ordersList);
         if (this.ordersList == null) this.NumberOfOrders = 0;
@@ -55,72 +44,7 @@ export class AvilableOrdersComponent implements OnInit {
 
         console.log(response);
         this.ordersList = response.data;
-
       });
-  }
-
-  ChangeMapLocation(lat, lng) {
-    this.lat = lat;
-    this.lng = lng;
-    const map = new google.maps.Map(
-      document.getElementById('map') as HTMLElement,
-      {
-        center: { lat: lat, lng: lng },
-      }
-    );
-    navigator.geolocation.getCurrentPosition((position) => {});
-
-    this.source = {
-      lat: parseFloat('40.714224'),
-      lng: parseFloat('-73.991452'),
-    };
-    new google.maps.Marker({
-      position: this.source,
-      animation: google.maps.Animation.DROP,
-      icon: {
-        url: './assets/map/truck_pin.svg',
-        anchor: new google.maps.Point(35, 10),
-        scaledSize: new google.maps.Size(100, 100),
-      },
-      map: map,
-    });
-    const latlng = {
-      lat: parseFloat(this.lat),
-      lng: parseFloat(this.lng),
-    };
-    this.destination = latlng;
-
-    new google.maps.Marker({
-      position: this.destination,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      icon: {
-        url: './assets/map/destination_custom_pin.svg',
-        anchor: new google.maps.Point(35, 10),
-        scaledSize: new google.maps.Size(100, 100),
-      },
-    });
-    map.panTo(this.destination);
-    this.setRoutePolyline(map);
-  }
-
-  setRoutePolyline(map: google.maps.Map) {
-    let request = {
-      origin: this.source,
-      destination: this.destination,
-      travelMode: google.maps.TravelMode.DRIVING,
-    };
-
-    this.ds.route(request, (response, status) => {
-      this.dr.setOptions({
-        suppressPolylines: false,
-        map: map,
-      });
-
-      if (status == google.maps.DirectionsStatus.OK) {
-        this.dr.setDirections(response);
-      }
-    });
   }
 
   async open(content: any, id: number) {
@@ -134,7 +58,13 @@ export class AvilableOrdersComponent implements OnInit {
 
   takeOrder(id: number) {
     this.deliveryService.Takeorder(id).subscribe((response) => {
+      this.toastr.success('order taken successfully');
       this.ngOnInit();
+    });
+  }
+  async goTo(url: string, lat, lng) {
+    await this.router.navigate([url + '/' + lat + '/' + lng]).then(() => {
+      window.location.reload();
     });
   }
 }

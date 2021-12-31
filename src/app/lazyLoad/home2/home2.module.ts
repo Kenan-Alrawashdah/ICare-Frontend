@@ -15,11 +15,16 @@ import { ThankYouComponent } from 'src/app/components/home2/thank-you/thank-you.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SubscriptionComponent } from 'src/app/components/home2/subscription/subscription.component';
 import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscription-check-out/subscription-check-out.component';
-
+import { NotificationsComponent } from 'src/app/components/home2/notifications/notifications.component';
+import { AboutusComponent } from 'src/app/components/home2/aboutus/aboutus.component';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
+import { ThankYou2Component } from 'src/app/components/home2/thank-you2/thank-you2.component';
+import { ForgotPasswordComponent } from 'src/app/components/home2/forgot-password/forgot-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
-    MainComponent,
     LoginComponent,
     RegistrationComponent,
     DrugComponent,
@@ -28,7 +33,12 @@ import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscrip
     CheckOutComponent,
     ThankYouComponent,
     SubscriptionComponent,
-    SubscriptionCheckOutComponent
+    SubscriptionCheckOutComponent,
+    NotificationsComponent,
+    AboutusComponent,
+    MainComponent,
+    ThankYou2Component,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +46,8 @@ import { SubscriptionCheckOutComponent } from 'src/app/components/home2/subscrip
     FormsModule,
     ReactiveFormsModule,
     IvyCarouselModule,
-    NgbModule
+    MdbCarouselModule,
+    NgxSpinnerModule
 
   ]
 })

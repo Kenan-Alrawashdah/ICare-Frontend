@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ClaimsModel } from '../shared/claims.model';
 
 const TOKEN_KEY = 'auth-token';
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';
@@ -43,7 +44,19 @@ export class TokenStorageService {
     if (user) {
       return user;
     }
-
     return null;
+  }
+
+  public GetRole() {
+    if(this.getToken() != null)
+    {
+      let Claims = JSON.parse(
+        atob(this.getToken()?.split('.')[1])
+      ) as ClaimsModel;
+      return Claims.role;
+    }else{
+      return null;
+    }
+   
   }
 }

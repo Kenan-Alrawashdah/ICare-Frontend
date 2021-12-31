@@ -10,6 +10,10 @@ import { EditDrugComponent } from 'src/app/components/pharmacist/edit-drug/edit-
 import { SingleDrugComponent } from 'src/app/components/pharmacist/single-drug/single-drug.component';
 import { OpenOrdersComponent } from 'src/app/components/pharmacist/open-orders/open-orders.component';
 import { OrderDrugsComponent } from 'src/app/components/pharmacist/order-drugs/order-drugs.component';
+import { CategoriesComponent } from 'src/app/components/pharmacist/categories/categories.component';
+import { AddCategoryComponent } from 'src/app/components/pharmacist/add-category/add-category.component';
+import { EditCategoryComponent } from 'src/app/components/pharmacist/edit-category/edit-category.component';
+import { AccountComponent } from 'src/app/components/pharmacist/account/account.component';
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { OrderDrugsComponent } from 'src/app/components/pharmacist/order-drugs/o
     EditDrugComponent,
     SingleDrugComponent,
     OpenOrdersComponent,
-    OrderDrugsComponent
+    OrderDrugsComponent,
+    CategoriesComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    AccountComponent
 
   ],
   imports: [
