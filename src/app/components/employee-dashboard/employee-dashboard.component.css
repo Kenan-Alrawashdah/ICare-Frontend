@@ -6,3 +6,6 @@
 @import "../../../assets/Admin/vendors/simple-line-icons/css/simple-line-icons.css";
 @import "../../../assets/Admin/vendors/css/vendor.bundle.base.css";
 @import "../../../assets/Admin/js/select.dataTables.min.css";
+a {
+    cursor: pointer;
+}

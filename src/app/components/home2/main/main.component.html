@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="row">
-            <div *ngFor="let item of RandomDrugsList | slice: 0:8" class="col-md-3 col-sm-4 col-6">
+            <div *ngFor="let item of RandomDrugsList | slice: 0:12" class="col-md-3 col-sm-4 col-6">
                 <div class="product">
                     <a (click)="GoToDrug(item.id)" class="product-img">
                         <img src="http://localhost:5000/images/{{ item.picturePath }}" class="" alt="" />
