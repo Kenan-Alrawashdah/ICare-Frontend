@@ -28,4 +28,9 @@ export class DeliveryService {
       Constants.baseURL + 'Deliverys/getAllOrdersForDelivery'
     );
   }
+
+  public SetOrderAsDelivered(id:number)
+  {
+    return this.httpClient.get<ApiResponseData>(Constants.baseURL+'Orders/SetOrderAsDelivered/'+id)
+  }
 }
