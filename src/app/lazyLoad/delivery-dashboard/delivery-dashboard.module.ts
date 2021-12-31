@@ -7,13 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvilableOrdersComponent } from 'src/app/components/delivery-dashboard/avilable-orders/avilable-orders.component';
 import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/delivery-orders/delivery-orders.component';
+import { MapComponent } from 'src/app/components/delivery-dashboard/map/map.component';
 
 @NgModule({
   declarations: [
     AccountComponent,
     AvilableOrdersComponent,
     DeliveryOrdersComponent,
-
+    MapComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +22,7 @@ import { DeliveryOrdersComponent } from 'src/app/components/delivery-dashboard/d
     FormsModule,
     ReactiveFormsModule,
     DeliveryDashboardRoutingModule,
-    NgbModule],
+    NgbModule,
+  ],
 })
 export class DeliveryDashboardModule {}

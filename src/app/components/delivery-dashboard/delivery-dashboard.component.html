@@ -348,17 +348,17 @@
           <span class="menu-title">orders</span>
           <i class="menu-arrow"></i>
         </a>
-                            <div class="collapse" id="form-elements">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" (click)="goTo('/Delivery/AvailableOrders')">
+
+        <div class="collapse" id="form-elements">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/Delivery/AvailableOrders">
+
                 Available Orders</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" (click)="goTo('/Delivery/Orders')"
-                >My Orders</a
-              >
+              <a class="nav-link" routerLink="/Delivery/Orders">My Orders</a>
             </li>
           </ul>
         </div>

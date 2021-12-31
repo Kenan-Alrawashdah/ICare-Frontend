@@ -1,63 +1,114 @@
-<div style="margin-top: 25px;" class="row justify-content-center">
-    <div style="margin-top: 85px;" class="col-md-3 ">
-        <div class="furniture-right">
-            <h3 style="font-size: 14px;
-                color: #fff;
-                font-weight: 500;
-                text-transform: none;
-                padding: 15px 25px;
-                margin-bottom: 10px;
+<div style="margin-top: 25px" class="row justify-content-center">
+  <div style="margin-top: 85px" class="col-md-3">
+    <div class="furniture-right">
+      <h3
+        style="
+          font-size: 14px;
+          color: #fff;
+          font-weight: 500;
+          text-transform: none;
+          padding: 15px 25px;
+          margin-bottom: 10px;
+          box-shadow: 0 6px 10px -5px rgb(0 0 0 / 10%);
+          background: #09294c;
+        "
+      >
+        Categories
+      </h3>
+      <div class="right-list-f">
+        <ul>
+          <a *ngFor="let item of Categories">
+            <li
+              *ngIf="CategoryId == item.id"
+              (click)="goToCategoryDrugs(item.id)"
+              style="
+                background-color: rgb(162, 206, 255);
                 box-shadow: 0 6px 10px -5px rgb(0 0 0 / 10%);
-                background: #09294c;">Categories</h3>
-            <div class="right-list-f">
-                <ul>
-                    <a *ngFor="let item of Categories">
-                        <li *ngIf="CategoryId == item.id" (click)="goToCategoryDrugs(item.id)" style="
-                            background-color:rgb(162, 206, 255);
-                            box-shadow: 0 6px 10px -5px rgb(0 0 0 / 10%);
-                            padding: 10px;
-                            margin-bottom: 20px;">
-                            <img style="width:32px;height:40px;" src="http://localhost:5000/images/{{item.imagePath}}" alt="#"> {{item.name}}
-                        </li>
-                        <li *ngIf="CategoryId != item.id" (click)="goToCategoryDrugs(item.id)" style="
-                            background: #ffffff;
-                            box-shadow: 0 6px 10px -5px rgb(0 0 0 / 10%);
-                            padding: 10px;
-                            margin-bottom: 20px;">
-                            <img style="width:32px;height:40px;" src="http://localhost:5000/images/{{item.imagePath}}" alt="#"> {{item.name}}
-                        </li>
-                    </a>
-
-                </ul>
-            </div>
-        </div>
+                padding: 10px;
+                margin-bottom: 20px;
+              "
+            >
+              <img
+                style="width: 32px; height: 40px"
+                src="http://localhost:5000/images/{{ item.imagePath }}"
+                alt="#"
+              />
+              {{ item.name }}
+            </li>
+            <li
+              *ngIf="CategoryId != item.id"
+              (click)="goToCategoryDrugs(item.id)"
+              style="
+                background: #ffffff;
+                box-shadow: 0 6px 10px -5px rgb(0 0 0 / 10%);
+                padding: 10px;
+                margin-bottom: 20px;
+              "
+            >
+              <img
+                style="width: 32px; height: 40px"
+                src="http://localhost:5000/images/{{ item.imagePath }}"
+                alt="#"
+              />
+              {{ item.name }}
+            </li>
+          </a>
+        </ul>
+      </div>
     </div>
-    <div class="col-md-8 order-md-2">
-        <div class="row" style="margin-bottom: 25px;font-family: 'Patua One', cursive;font-size:40px;"> {{CategoryName}}</div>
-        <div class="row">
-            <div *ngFor="let item of DrugList" class="col-md-4 col-sm-6 col-12">
-                <div class="product">
-                    <a (click)="GoToDrug(item.id)" class="product-img">
-                        <img src="http://localhost:5000/images/{{item.picturePath}}" class="" alt="">
-                    </a>
-                    <div class="product-info">
-                        <h3 style="font-family: 'Nunito Sans', sans-serif;font-size: 23px;">
-                            <a style="line-height: normal;" (click)="GoToDrug(item.id)">{{item.name}}</a>
-                        </h3>
-                        <div class="product-value ">
-                            <div class="row">
-                                <div class="col-4 current-price" style="display: flex;
-                                    align-items: center;">
-                                    ${{item.price}}
-                                </div>
-                                <a style="font-size: 10px;" class="col-6 btn btn-rounded btn-primary " (click)="CheckItemIfInCart(item.id)"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
+  </div>
+  <div class="col-md-8 order-md-2">
+    <div
+      class="row"
+      style="
+        margin-bottom: 25px;
+        font-family: 'Patua One', cursive;
+        font-size: 40px;
+      "
+    >
+      {{ CategoryName }}
+    </div>
+    <div class="row">
+      <div *ngFor="let item of DrugList" class="col-md-4 col-sm-6 col-12">
+        <div class="product">
+          <a (click)="GoToDrug(item.id)" class="product-img">
+            <img
+              src="http://localhost:5000/images/{{ item.picturePath }}"
+              class=""
+              alt=""
+            />
+          </a>
+          <div class="product-info">
+            <h3
+              style="
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 23px;
+                height: 100px;
+              "
+            >
+              <a style="line-height: normal" (click)="GoToDrug(item.id)">{{
+                item.name
+              }}</a>
+            </h3>
+            <div class="product-value">
+              <div class="row">
+                <div
+                  class="col-4 current-price"
+                  style="display: flex; align-items: center"
+                >
+                  ${{ item.price }}
                 </div>
+                <a
+                  style="font-size: 10px"
+                  class="col-6 btn btn-rounded btn-primary"
+                  (click)="CheckItemIfInCart(item.id)"
+                  ><i class="fa fa-shopping-cart"></i> Add To Cart</a
+                >
+              </div>
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
-
+  </div>
 </div>
