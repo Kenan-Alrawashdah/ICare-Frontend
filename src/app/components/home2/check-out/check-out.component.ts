@@ -29,7 +29,7 @@ export class CheckOutComponent implements OnInit {
     private homeComponent:Home2Component
   ) {
     this.CheckOutForm = new FormGroup({
-      cardNumber: new FormControl('', [Validators.required]),
+      cardNumber: new FormControl('', [Validators.required,Validators.minLength(16),Validators.maxLength(16)]),
       cardName: new FormControl('', [Validators.required]),
       expiry: new FormControl('', [Validators.required]),
       CVC: new FormControl('', [Validators.required]),

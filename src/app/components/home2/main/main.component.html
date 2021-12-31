@@ -181,7 +181,7 @@
     </div>
     <div class="row">
       <div
-        *ngFor="let item of RandomDrugsList | slice: 0:8"
+        *ngFor="let item of RandomDrugsList | slice: 0:12"
         class="col-md-3 col-sm-4 col-6"
       >
         <div class="product">
@@ -217,6 +217,7 @@
                   class="col-6 btn btn-rounded btn-primary"
                   (click)="CheckItemIfInCart(item.id)"
                   ><i class="fa fa-shopping-cart"></i> Add To Cart</a
+
                 >
               </div>
             </div>
