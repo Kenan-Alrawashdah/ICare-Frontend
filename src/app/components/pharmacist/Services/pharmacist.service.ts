@@ -132,5 +132,10 @@ export class PharmacistService {
   {
     return this.httpClient.delete<ApiResponseData>(Constants.baseURL+'Admin/Category/Delete/'+id)
   }
+  
+  public deleteDrug(id:number)
+  {
+    return this.httpClient.delete<ApiResponseData>(Constants.baseURL+'Drugs/DeleteDrug/'+id)
+  }
 
 }
