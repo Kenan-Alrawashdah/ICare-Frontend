@@ -52,21 +52,13 @@ export class LoginComponent implements OnInit {
             this.tokenStorage.saveRefreshToken(data.data.refreshToken);
             let role = this.tokenStorage.GetRole();
             if (role == 'Admin') {
-              this.router.navigate(['Admin']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/Admin/Dashboard']);
             } else if (role == 'Employee') {
-              this.router.navigate(['Accountant']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/Accountant/main']);
             } else if (role == 'Delivery') {
-              this.router.navigate(['Delivery']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/Delivery/AvailableOrders']);
             } else if (role == 'Pharmacist') {
-              this.router.navigate(['pharmacist']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['/pharmacist/GetAllDrugs']);
             } else {
               this.router.navigate(['Home']).then(() => {
                 window.location.reload();

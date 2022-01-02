@@ -38,6 +38,17 @@ export class SingleDrugComponent implements OnInit {
     )
   }
 
+  onDelete()
+  {
+    if(confirm('are you sure you want to delete this drug'))
+    this.pharmacistService.deleteDrug(this.drug.id).subscribe(
+      ()=>{
+        this.toastr.success('drug deleted successfully');
+        this.router.navigate(['/pharmacist/GetAllDrugs']);
+      }
+    )
+  }
+
   AddQuantity()
   {
     
